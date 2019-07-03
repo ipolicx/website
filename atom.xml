@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-07-03T14:17:10.307Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2019/07/03/hello-world/"/>
+    <id>http://yoursite.com/2019/07/03/hello-world/</id>
+    <published>2019-07-03T10:51:41.000Z</published>
+    <updated>2019-07-03T14:17:10.307Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="hljs-string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2019</title>
+    <link href="http://yoursite.com/2019/06/05/2019/"/>
+    <id>http://yoursite.com/2019/06/05/2019/</id>
+    <published>2019-06-05T03:06:39.000Z</published>
+    <updated>2019-07-03T14:10:21.823Z</updated>
+    
+    <content type="html"><![CDATA[<p>Your time is limited, so don’t waste it living someone else’s life.…Don’t let the noise of others’ opinions drown out your own inner voice。</p><a id="more"></a><p>你的时间有限，不要浪费于重复别人的生活。不要让别人的观点淹没了你内心的声音。</p><p><img src="https://www.policx.com/talk/images/wwdc2019.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Your time is limited, so don’t waste it living someone else’s life.…Don’t let the noise of others’ opinions drown out your own inner voice。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2018</title>
+    <link href="http://yoursite.com/2018/06/05/2018/"/>
+    <id>http://yoursite.com/2018/06/05/2018/</id>
+    <published>2018-06-04T16:59:59.000Z</published>
+    <updated>2019-07-03T14:10:39.656Z</updated>
+    
+    <content type="html"><![CDATA[<p>Being the richest man in the cemetery doesn’t matter to me … Going to bed at night saying we’ve done something wonderful… that’s what matters to me。</p><a id="more"></a><p>是否能成为墓地里最富有的人，对我而言无足轻重。重要的是，当我晚上睡觉时，我可以说：我们今天完成了一些美妙的事。</p><p><img src="https://www.policx.com/talk/images/wwdc2018.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Being the richest man in the cemetery doesn’t matter to me … Going to bed at night saying we’ve done something wonderful… that’s what matters to me。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2017</title>
+    <link href="http://yoursite.com/2017/06/05/2017/"/>
+    <id>http://yoursite.com/2017/06/05/2017/</id>
+    <published>2017-06-04T16:50:49.000Z</published>
+    <updated>2019-07-03T14:10:28.898Z</updated>
+    
+    <content type="html"><![CDATA[<p>We think basically you watch television to turn your brain off, and you work on your computer when you want to turn your brain on.</p><a id="more"></a><p>我们认为看电视的时候，人的大脑基本停止工作，打开电脑的时候，大脑才开始运转。</p><p><img src="https://www.policx.com/talk/images/wwdc2017.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;We think basically you watch television to turn your brain off, and you work on your computer when you want to turn your brain on.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2016</title>
+    <link href="http://yoursite.com/2016/06/14/2016/"/>
+    <id>http://yoursite.com/2016/06/14/2016/</id>
+    <published>2016-06-13T16:43:27.000Z</published>
+    <updated>2019-07-03T14:10:46.200Z</updated>
+    
+    <content type="html"><![CDATA[<p>There’s a phrase in Buddhism, ‘Beginner’s mind.’ It’s wonderful to have a beginner’s mind.</p><a id="more"></a><p>佛教中有一句话：初学者的心态：拥有初学者的心态是件了不起的事情。</p><p><img src="https://www.policx.com/talk/images/wwdc2016.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;There’s a phrase in Buddhism, ‘Beginner’s mind.’ It’s wonderful to have a beginner’s mind.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2015</title>
+    <link href="http://yoursite.com/2015/06/05/2015/"/>
+    <id>http://yoursite.com/2015/06/05/2015/</id>
+    <published>2015-06-04T17:02:03.000Z</published>
+    <updated>2019-07-03T14:10:52.928Z</updated>
+    
+    <content type="html"><![CDATA[<p>I think the greatest value of learning how to think…. I think everybody in this country should learn how to program a computer, should learn a computer language, because it teaches you how to think, it’s like going to law school, I don’t think anybody should be a lawyer, but I think going to law school may actually be useful coz it teaches you how to think in a certain way. In the same way the computer programming teaches you in a slightly different way how to think… And so … I view computer science as a liberal art. It should be something everybody takes in a year in their life, one of the courses they take is, you know learning how to program.<br>                                                                                                ——– Steve Jobs</p><a id="more"></a><p>我认为学习思考最大的价值在于… 我觉得所有美国人都应该学习编程，学习一门编程语言，学习编程教你如何思考，就像学法律一样，学法律的人未必都成为律师，但法律教你一种思考方式。同样编程会教你另一种思考方式，所以我把计算机科学看成基础教育，是每个人都应该花一年时间学习的课程。<br>                                                                                                ——– 史蒂夫·乔布斯</p><p><img src="https://www.policx.com/talk/images/wwdc2015.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I think the greatest value of learning how to think…. I think everybody in this country should learn how to program a computer, should learn a computer language, because it teaches you how to think, it’s like going to law school, I don’t think anybody should be a lawyer, but I think going to law school may actually be useful coz it teaches you how to think in a certain way. In the same way the computer programming teaches you in a slightly different way how to think… And so … I view computer science as a liberal art. It should be something everybody takes in a year in their life, one of the courses they take is, you know learning how to program.&lt;br&gt;                                                                                                ——– Steve Jobs&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WWDC 2014</title>
+    <link href="http://yoursite.com/2014/06/06/2014/"/>
+    <id>http://yoursite.com/2014/06/06/2014/</id>
+    <published>2014-06-06T03:01:22.000Z</published>
+    <updated>2019-07-03T14:10:59.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose。</p><a id="more"></a><p>谨记自己总会死去，是让自己避免陷入“人生有所失”思考的最佳方法。</p><p><img src="https://www.policx.com/talk/images/wwdc2014.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>读书</title>
+    <link href="http://yoursite.com/2014/03/14/kindle/"/>
+    <id>http://yoursite.com/2014/03/14/kindle/</id>
+    <published>2014-03-14T12:01:34.000Z</published>
+    <updated>2019-07-03T13:37:49.648Z</updated>
+    
+    <content type="html"><![CDATA[<p>酒仙桥到立水桥的距离，一辆公交车。至此时此刻，我已经在上下班的路上看过三本书了，它们是《幸福了吗》《看见》《拖延心理学》和《美国记忆冠军》。我很庆幸没有浪费这段宝贵的时光，同时我也在思考，他们给了我一些什么？我又是否体现了它们的价值？看书不记书的我，还得要斥责自己呐，我享受这车上的时光，不觉得时间流淌。还是要去记一点吧，白岩松的《幸福了吗》我记忆深刻的是九一一后一段故事，作者当时作为媒体人一种敏感。</p><a id="more"></a><p><img src="https://policx.github.io/post-images/1560706873491.gif" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;酒仙桥到立水桥的距离，一辆公交车。至此时此刻，我已经在上下班的路上看过三本书了，它们是《幸福了吗》《看见》《拖延心理学》和《美国记忆冠军》。我很庆幸没有浪费这段宝贵的时光，同时我也在思考，他们给了我一些什么？我又是否体现了它们的价值？看书不记书的我，还得要斥责自己呐，我享受这车上的时光，不觉得时间流淌。还是要去记一点吧，白岩松的《幸福了吗》我记忆深刻的是九一一后一段故事，作者当时作为媒体人一种敏感。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于</title>
+    <link href="http://yoursite.com/2012/12/21/about/"/>
+    <id>http://yoursite.com/2012/12/21/about/</id>
+    <published>2012-12-21T01:00:00.000Z</published>
+    <updated>2019-07-03T14:04:59.296Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.2345.com/?k.cn" target="_blank" rel="noopener">一个对着手机微笑的女孩，我也会猜测她微笑，是恋人的密语，还是朋友的问候，或许是看一段笑话，总之，很美。我想坐过去，但她的目光投过来，我又低下了头，像个犯错的孩子。</a></p><a id="more"></a><h4 id="Email-104-x65-97-x6c-64-x70-x6f-x6c-x69-99-120-46-99-x6f-109"><a href="#Email-104-x65-97-x6c-64-x70-x6f-x6c-x69-99-120-46-99-x6f-109" class="headerlink" title="Email :&#104;&#x65;&#97;&#x6c;&#64;&#x70;&#x6f;&#x6c;&#x69;&#99;&#120;&#46;&#99;&#x6f;&#109;"></a><p align="right">Email :<a href="mailto:&#104;&#x65;&#97;&#x6c;&#64;&#x70;&#x6f;&#x6c;&#x69;&#99;&#120;&#46;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#104;&#x65;&#97;&#x6c;&#64;&#x70;&#x6f;&#x6c;&#x69;&#99;&#120;&#46;&#99;&#x6f;&#109;</a></p></h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.2345.com/?k.cn&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;一个对着手机微笑的女孩，我也会猜测她微笑，是恋人的密语，还是朋友的问候，或许是看一段笑话，总之，很美。我想坐过去，但她的目光投过来，我又低下了头，像个犯错的孩子。&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
