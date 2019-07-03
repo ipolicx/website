@@ -79,6 +79,10 @@
     
     
     
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -135,6 +139,47 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-03T11:39:11.000Z">2019-07-03</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    几秒 读完 (大约 10 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/03/code/">code</a>
+            
+        </h1>
+        <div class="content">
+            <p><img src="https://gitee.com/policx/im/raw/master/images/IFoJiZ.jpg" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
     <div class="card">
     
     <div class="card-content article ">
@@ -974,90 +1019,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T17:00:16.000Z">2018-04-18</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 616 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/04/18/django-bi-ji/">Django笔记</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Django-笔记一"><a href="#Django-笔记一" class="headerlink" title="# Django 笔记一"></a># Django 笔记一</h1><h2 id="一-版本选择"><a href="#一-版本选择" class="headerlink" title="一. 版本选择"></a>一. 版本选择</h2><p>Django 2.0.x 支持 Python 3.4, 3.5 和 3.6 （注意，不再支持 Python 2）   </p>
-<h2 id="二-安装-Django"><a href="#二-安装-Django" class="headerlink" title="二. 安装 Django"></a><strong>二. 安装 Django</strong></h2><p><strong>2.1. 用 pip 来安装</strong></p>
-<p><strong>2.1.1 需要先安装pip</strong></p>
-<p>(1). Linux, Mac OSX, Windows 下都可用 get-pip.py 来安装<br>pip：<a href="https://pip.pypa.io/en/latest/installing.html" target="_blank" rel="noopener">https://pip.pypa.io/en/latest/installing.html</a>  </p>
-<p>或者直接下载：<a href="https://bootstrap.pypa.io/get-pip.py" title="get-pip.py" target="_blank" rel="noopener">get-pip.py</a> 然后运行在终端运行 <strong>python get-pip.py 就可以安装 pip。</strong></p>
-<p>Note: 也可以下载 pip 源码包，运行 <strong>python setup.py install</strong> 进行安装 </p>
-<p><strong>2.1.2 利用 pip 安装 Django</strong></p>
-<p><code>（sudo) pip install Django
-    或者
-(sudo) pip install Django==1.8.16 或者 pip install Django==1.11.8</code>    </p>
-<p>如果想升级 pip 可以用： </p>
-<pre><code>(sudo) pip install --upgrade pip</code></pre><p><strong>2.2. 下载源码安装</strong>  </p>
-<p><a href="https://www.djangoproject.com/download/" target="_blank" rel="noopener">https://www.djangoproject.com/download/</a></p>
-<p>如果是源码包, 比如 django-1.11.8.tar.gz </p>
-<p><strong>2.2.1 Linux 或 Mac 下</strong></p>
-<pre><code>tar -xvf django-1.11.8.tar.gz
-cd django-1.11.8
-(sudo) python setup.py install</code></pre><h2 id="三-检查是否安装成功"><a href="#三-检查是否安装成功" class="headerlink" title="三. 检查是否安装成功"></a><strong>三. 检查是否安装成功</strong></h2><p>终端上输入 python ,点击 Enter，进行 python 环境</p>
-<pre><code>&gt;&gt;&gt; import django
-&gt;&gt;&gt; django.VERSION
-(1, 11, 8, &apos;final&apos;, 0)
-&gt;&gt;&gt; 
-&gt;&gt;&gt; django.get_version()
-&apos;1.11.8&apos;</code></pre><p>如果运行后看到版本号，就证明安装成功了！ </p>
-<h2 id="四-搭建多个互不干扰的开发环境（可选）"><a href="#四-搭建多个互不干扰的开发环境（可选）" class="headerlink" title="四. 搭建多个互不干扰的开发环境（可选）"></a><strong>四. 搭建多个互不干扰的开发环境（可选）</strong></h2><p>我们有的时候会发现，一个电脑上有多个项目，一个依赖 Django 1.8，另一个比较旧的项目又要用 Django 1.5，这时候怎么办呢？ </p>
-<p>我们需要一个依赖包管理的工具来处理不同的环境。 </p>
-<h3 id="4-1-虚拟环境依赖安装"><a href="#4-1-虚拟环境依赖安装" class="headerlink" title="4.1 虚拟环境依赖安装"></a>4.1 虚拟环境依赖安装</h3><p>开发会用 virtualenv 来管理多个开发环境 </p>
-<p><strong>Linux/MacOS 下</strong></p>
-<p>virtualenvwrapper 使得virtualenv变得更好用，所以我们一起安装了 </p>
-<pre><code># 安装:
-(sudo) pip install virtualenv virtualenvwrapper</code></pre><p>修改~/.bash_profile或其它环境变量相关文件(如 .bashrc 或用 ZSH 之后的 .zshrc)，添加以下语句  </p>
-<pre><code>export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/workspace
-source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即生效(也可以重启终端使之生效)： </p>
-<pre><code>source ~/.bash_profile</code></pre><h3 id="4-2-虚拟环境使用方法："><a href="#4-2-虚拟环境使用方法：" class="headerlink" title="4.2 虚拟环境使用方法："></a><strong>4.2 虚拟环境使用方法：</strong></h3><p><strong>mkvirtualenv zqxt：创建运行环境zqxt</strong></p>
-<p><strong>workon zqxt: 工作在 zqxt 环境 或 从其它环境切换到 zqxt 环境</strong></p>
-<p><strong>deactivate</strong>: 退出终端环境</p>
-<p><strong>其它的：</strong></p>
-<p><strong>rmvirtualenv</strong> ENV：删除运行环境ENV </p>
-<p><strong>mkproject</strong> mic：创建mic项目和运行环境mic </p>
-<p><strong>mktmpenv</strong>：创建临时运行环境 </p>
-<p><strong>lsvirtualenv</strong>: 列出可用的运行环境 </p>
-<p><strong>lssitepackages</strong>: 列出当前环境安装了的包 </p>
-<p>创建的环境是独立的，互不干扰，无需sudo权限即可使用 pip 来进行包的管理。 </p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1124,7 +1085,7 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        83
                     </p>
                 </div>
             </div>
@@ -1270,6 +1231,25 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
         
         <article class="media">
             
+            <a href="/2019/07/03/code/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="code">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-03T11:39:11.000Z">2019-07-03</time></div>
+                    <a href="/2019/07/03/code/" class="has-link-black-ter is-size-6">code</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/07/03/hello-world/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
@@ -1344,25 +1324,6 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/06/17/python-writer/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python操作excel的包(openpyxl、xlsxwriter)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-17T10:28:27.000Z">2018-06-17</time></div>
-                    <a href="/2018/06/17/python-writer/" class="has-link-black-ter is-size-6">python操作excel的包(openpyxl、xlsxwriter)</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1381,7 +1342,7 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1794,6 +1755,25 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
         
         <article class="media">
             
+            <a href="/2019/07/03/code/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="code">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-03T11:39:11.000Z">2019-07-03</time></div>
+                    <a href="/2019/07/03/code/" class="has-link-black-ter is-size-6">code</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/07/03/hello-world/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
@@ -1868,25 +1848,6 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/06/17/python-writer/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python操作excel的包(openpyxl、xlsxwriter)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-17T10:28:27.000Z">2018-06-17</time></div>
-                    <a href="/2018/06/17/python-writer/" class="has-link-black-ter is-size-6">python操作excel的包(openpyxl、xlsxwriter)</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1905,7 +1866,7 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -2309,51 +2270,65 @@ source /usr/local/bin/virtualenvwrapper.sh</code></pre><p>修改后使之立即�
         <div class="level">
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
-                
-                    <img src="/images/logo.svg" alt="Hexo" height="28">
-                
+                    
+                                <img src="/images/logo.svg" alt="Hexo" height="28">
+                                
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 John Doe&nbsp;
-                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                
+                    &copy;
+                    2019
+                        John Doe&nbsp; Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                            
+                                <br>
+                                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                                </span>
+                                
                 </p>
             </div>
             <div class="level-end">
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                 
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                    <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                         
-                        <i class="fab fa-creative-commons"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
-                        
-                        <i class="fab fa-creative-commons-by"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                </p>
-                
-                </div>
-            
+                            
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                        
+                                                    <i class="fab fa-creative-commons"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                        
+                                                    <i class="fab fa-creative-commons-by"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                        
+                                                    <i class="fab fa-github"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                    </div>
+                    
             </div>
         </div>
     </div>
 </footer>
+<span id="busuanzi_container_site_pv" class="theme-info">
+  |  本站总访问量<span id="busuanzi_value_site_pv">span>次
+ span>
+ <span id="busuanzi_container_site_uv" class="theme-info">
+  |  本站访客数<span id="busuanzi_value_site_uv">span>人次
+ span>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 <script>moment.locale("zh-CN");</script>
@@ -2449,6 +2424,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
+    
+
 
 <script src="/js/main.js" defer></script>
 
@@ -2483,5 +2460,5 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</span></span></span></span><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
