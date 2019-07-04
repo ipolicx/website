@@ -8,6 +8,7 @@
 
 
     <meta name="description" content="MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python3 与 MongoDB 之间的交互">
 <meta property="og:url" content="http://yoursite.com/2018/05/02/pymongo/index.html">
@@ -15,7 +16,7 @@
 <meta property="og:description" content="MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i01picsos.sogoucdn.com/4dee6e9358819886">
-<meta property="og:updated_time" content="2019-07-03T16:07:24.444Z">
+<meta property="og:updated_time" content="2019-07-04T01:33:19.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3 与 MongoDB 之间的交互">
 <meta name="twitter:description" content="MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。">
@@ -121,13 +122,17 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://www.2345.com/?k.cn">
                         
                         <i class="fab fa-github"></i>
                         
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
@@ -256,6 +261,15 @@
 
         </div>
         
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>
+                </div>
+            </div>
+        </div>
+        
         
         
     </div>
@@ -344,7 +358,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -391,7 +405,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        0
+                        1
                     </p>
                 </div>
             </div>
@@ -401,20 +415,20 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        4
                     </p>
                 </div>
             </div>
         </nav>
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+            <a class="level-item button is-link is-rounded" href="https://www.2345.com/?k.cn" target="_blank">
                 关注我</a>
         </div>
         
         
         <div class="level is-mobile">
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://www.2345.com/?k.cn">
                 
                 <i class="fab fa-github"></i>
                 
@@ -438,6 +452,41 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-准备工作">
+        <span class="has-mr-6">1</span>
+        <span>1. 准备工作</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-连接MongoDB">
+        <span class="has-mr-6">2</span>
+        <span>2. 连接MongoDB</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-指定数据库">
+        <span class="has-mr-6">3</span>
+        <span>3. 指定数据库</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-指定集合">
+        <span class="has-mr-6">4</span>
+        <span>4. 指定集合</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-插入数据">
+        <span class="has-mr-6">5</span>
+        <span>5. 插入数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-查询">
+        <span class="has-mr-6">6</span>
+        <span>6. 查询</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -448,17 +497,6 @@
             链接
         </h3>
         <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://www.policx.com" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">江湖</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.policx.com</span>
-                    </span>
-                </a>
-            </li>
         
             <li>
                 <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
@@ -486,7 +524,15 @@
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -498,7 +544,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Python/" style="font-size: 10px;">Python</a>
+        <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -526,7 +572,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T03:06:39.000Z">2019-06-05</time></div>
                     <a href="/2019/06/05/2019/" class="has-link-black-ter is-size-6">WWDC 2019</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -602,7 +648,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-04T16:59:59.000Z">2018-06-05</time></div>
                     <a href="/2018/06/05/2018/" class="has-link-black-ter is-size-6">WWDC 2018</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -997,9 +1043,30 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1039,7 +1106,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T03:06:39.000Z">2019-06-05</time></div>
                     <a href="/2019/06/05/2019/" class="has-link-black-ter is-size-6">WWDC 2019</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1115,7 +1182,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-04T16:59:59.000Z">2018-06-05</time></div>
                     <a href="/2018/06/05/2018/" class="has-link-black-ter is-size-6">WWDC 2018</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1510,9 +1577,30 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1554,7 +1642,7 @@
                         
                             
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-creative-commons"></i>
                                                     
@@ -1562,7 +1650,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-creative-commons-by"></i>
                                                     
@@ -1570,7 +1658,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-github"></i>
                                                     

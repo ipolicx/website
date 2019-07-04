@@ -8,6 +8,7 @@
 
 
     <meta name="description" content="什么是 PyMySQL？PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。 PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python3 与 MySQL 之间的交互">
 <meta property="og:url" content="http://yoursite.com/2018/05/02/pymysql/index.html">
@@ -15,7 +16,7 @@
 <meta property="og:description" content="什么是 PyMySQL？PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。 PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pic.baike.soso.com/ugc/baikepic2/9935/20170728175103-650600219.jpg/300">
-<meta property="og:updated_time" content="2019-07-03T16:17:14.260Z">
+<meta property="og:updated_time" content="2019-07-04T01:33:35.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3 与 MySQL 之间的交互">
 <meta name="twitter:description" content="什么是 PyMySQL？PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。 PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。">
@@ -121,7 +122,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://www.2345.com/?k.cn">
                         
                         <i class="fab fa-github"></i>
                         
@@ -242,6 +243,15 @@
 <h4 id="登录与注册"><a href="#登录与注册" class="headerlink" title="登录与注册"></a>登录与注册</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from mysqlHelper import MysqlHelper</span><br><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def login():</span><br><span class="line">    &apos;&apos;&apos;登录&apos;&apos;&apos;</span><br><span class="line">    name = input(&apos;输入用户名:&apos;)</span><br><span class="line">    pwd = input(&apos;输入密码:&apos;)</span><br><span class="line">    #加密</span><br><span class="line">    pwd = doPwd(pwd)</span><br><span class="line"></span><br><span class="line">    helper = MysqlHelper(&apos;127.0.0.1&apos;, &apos;root&apos;, &apos;123456&apos;, &apos;python01&apos;)</span><br><span class="line">    helper.connect()</span><br><span class="line">    sql = &apos;select * from t_user where name=%s and pwd=%s&apos;</span><br><span class="line">    params = [name, pwd]</span><br><span class="line">    data = helper.fetchone(sql, params)</span><br><span class="line">    if data:</span><br><span class="line">        print(&apos;登录成功.&apos;)</span><br><span class="line">    else:  # None,False,0</span><br><span class="line">        print(&apos;登录失败.&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def doPwd(pwd):</span><br><span class="line">    &apos;&apos;&apos;sha1编码&apos;&apos;&apos;</span><br><span class="line">    mysha1 = hashlib.sha1()</span><br><span class="line">    mysha1.update(pwd.encode(&apos;utf-8&apos;))</span><br><span class="line">    pwd = mysha1.hexdigest()</span><br><span class="line">    return pwd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def register():</span><br><span class="line">    &apos;&apos;&apos;注册&apos;&apos;&apos;</span><br><span class="line">    name = input(&apos;输入用户名:&apos;)</span><br><span class="line">    pwd = input(&apos;输入密码:&apos;)</span><br><span class="line">    # 加密</span><br><span class="line">    pwd = doPwd(pwd)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    helper = MysqlHelper(&apos;127.0.0.1&apos;, &apos;root&apos;, &apos;123456&apos;, &apos;python01&apos;)</span><br><span class="line">    helper.connect()</span><br><span class="line">    sql = &apos;insert into t_user(name,pwd) values(%s,%s)&apos;</span><br><span class="line">    params = [name, pwd]</span><br><span class="line">    count = helper.insert(sql, params)</span><br><span class="line">    if count:</span><br><span class="line">        print(&apos;操作成功.&apos;)</span><br><span class="line">    else:  # None,False,0</span><br><span class="line">        print(&apos;操作失败.&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    #register()</span><br><span class="line">    login()</span><br></pre></td></tr></table></figure>
         </div>
         
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>
+                </div>
+            </div>
+        </div>
+        
         
         
     </div>
@@ -330,7 +340,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -377,7 +387,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        0
+                        1
                     </p>
                 </div>
             </div>
@@ -387,20 +397,20 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        4
                     </p>
                 </div>
             </div>
         </nav>
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+            <a class="level-item button is-link is-rounded" href="https://www.2345.com/?k.cn" target="_blank">
                 关注我</a>
         </div>
         
         
         <div class="level is-mobile">
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://www.2345.com/?k.cn">
                 
                 <i class="fab fa-github"></i>
                 
@@ -436,17 +446,6 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://www.policx.com" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">江湖</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.policx.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
                 <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
                     <span class="level-left">
                         <span class="level-item">PPOffice</span>
@@ -472,7 +471,15 @@
                 分类
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -484,7 +491,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Python/" style="font-size: 10px;">Python</a>
+        <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -512,7 +519,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T03:06:39.000Z">2019-06-05</time></div>
                     <a href="/2019/06/05/2019/" class="has-link-black-ter is-size-6">WWDC 2019</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -588,7 +595,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-04T16:59:59.000Z">2018-06-05</time></div>
                     <a href="/2018/06/05/2018/" class="has-link-black-ter is-size-6">WWDC 2018</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -983,9 +990,30 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1025,7 +1053,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-05T03:06:39.000Z">2019-06-05</time></div>
                     <a href="/2019/06/05/2019/" class="has-link-black-ter is-size-6">WWDC 2019</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1101,7 +1129,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-04T16:59:59.000Z">2018-06-05</time></div>
                     <a href="/2018/06/05/2018/" class="has-link-black-ter is-size-6">WWDC 2018</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1496,9 +1524,30 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1540,7 +1589,7 @@
                         
                             
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-creative-commons"></i>
                                                     
@@ -1548,7 +1597,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-creative-commons-by"></i>
                                                     
@@ -1556,7 +1605,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://www.2345.com/?k.cn">
                                         
                                                     <i class="fab fa-github"></i>
                                                     
