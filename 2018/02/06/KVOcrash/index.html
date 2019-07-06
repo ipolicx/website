@@ -8,6 +8,7 @@
 
 
     <meta name="description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
+<meta name="keywords" content="">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KVO crash 自修复技术实现与原理解析">
 <meta property="og:url" content="http://yoursite.com/2018/02/06/KVOcrash/index.html">
@@ -15,7 +16,7 @@
 <meta property="og:description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-03T16:34:10.000Z">
+<meta property="og:updated_time" content="2019-07-06T05:49:56.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVO crash 自修复技术实现与原理解析">
 <meta name="twitter:description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
@@ -140,6 +141,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -166,6 +171,10 @@
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-02-06T07:44:53.000Z">2018-02-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/programing/">programing</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
@@ -259,11 +268,23 @@
 <p>之后我们就可以模拟dealloc中不写removeObserver，同时也可以写，<br>同时也可以多次 addObserver、removeObserver 这样就完全不干扰我们平时的代码书写逻辑了。</p>
 <hr>
 <p>Posted by <a href="http://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
-<p align="center"><a href="http://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a>
-</p>
+<p align="center"><a href="http://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a></p>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags//"></a>
+                </div>
+            </div>
         </div>
         
         
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
@@ -398,7 +419,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -566,6 +587,29 @@
 
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#简介">
+        <span class="has-mr-6">2</span>
+        <span>简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#防crash措施">
+        <span class="has-mr-6">3</span>
+        <span>防crash措施</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 <div class="card widget">
@@ -581,7 +625,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">13</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -589,7 +633,7 @@
                 <span class="level-item">news</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/programing/">
@@ -597,9 +641,17 @@
                 <span class="level-item">programing</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/programing/life/">
+            <span class="level-start">
+                <span class="level-item">life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -976,7 +1028,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -1006,7 +1058,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Linux/">
                         <span class="tag">Linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1034,7 +1086,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags//">
                         <span class="tag"></span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -1211,6 +1263,29 @@
 
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#简介">
+        <span class="has-mr-6">2</span>
+        <span>简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#防crash措施">
+        <span class="has-mr-6">3</span>
+        <span>防crash措施</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -1226,7 +1301,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">13</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -1234,7 +1309,7 @@
                 <span class="level-item">news</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/programing/">
@@ -1242,9 +1317,17 @@
                 <span class="level-item">programing</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/programing/life/">
+            <span class="level-start">
+                <span class="level-item">life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -1621,7 +1704,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -1651,7 +1734,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Linux/">
                         <span class="tag">Linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1679,7 +1762,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags//">
                         <span class="tag"></span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 

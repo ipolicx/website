@@ -8,6 +8,7 @@
 
 
     <meta name="description" content="相信大家很早就听说过函数式响应编程概念，我是去年面试的时候接触到函数式响应编程的，当时也是第一次接触到MVVM这个概念，转眼都一年过去了，我却没有在函数式编程上做深入的研究，说来还真是惭愧。不过最近由于想要使用RxSwift，所以趁这个时候好好接触和研究一下传说中的函数式编程，由于网上关于RxSwift的教程资料很少，这篇文章其实就是最RxSwift官方文档和一些概念做一些解读。算是大家学习的参考">
+<meta name="keywords" content="">
 <meta property="og:type" content="article">
 <meta property="og:title" content="什么是RxSwift">
 <meta property="og:url" content="http://yoursite.com/2017/08/25/RxSwift/index.html">
@@ -15,7 +16,7 @@
 <meta property="og:description" content="相信大家很早就听说过函数式响应编程概念，我是去年面试的时候接触到函数式响应编程的，当时也是第一次接触到MVVM这个概念，转眼都一年过去了，我却没有在函数式编程上做深入的研究，说来还真是惭愧。不过最近由于想要使用RxSwift，所以趁这个时候好好接触和研究一下传说中的函数式编程，由于网上关于RxSwift的教程资料很少，这篇文章其实就是最RxSwift官方文档和一些概念做一些解读。算是大家学习的参考">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=ef305e5a4510b912bfc1f1f8fbc69b3e/500fd9f9d72a6059070cf8fb2a34349b033bba36.jpg">
-<meta property="og:updated_time" content="2019-07-03T16:02:22.000Z">
+<meta property="og:updated_time" content="2019-07-06T05:53:18.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是RxSwift">
 <meta name="twitter:description" content="相信大家很早就听说过函数式响应编程概念，我是去年面试的时候接触到函数式响应编程的，当时也是第一次接触到MVVM这个概念，转眼都一年过去了，我却没有在函数式编程上做深入的研究，说来还真是惭愧。不过最近由于想要使用RxSwift，所以趁这个时候好好接触和研究一下传说中的函数式编程，由于网上关于RxSwift的教程资料很少，这篇文章其实就是最RxSwift官方文档和一些概念做一些解读。算是大家学习的参考">
@@ -166,6 +167,10 @@
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2017-08-25T12:32:36.000Z">2017-08-25</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/programing/">programing</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
@@ -416,7 +421,20 @@
 
         </div>
         
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags//"></a>
+                </div>
+            </div>
+        </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
@@ -551,7 +569,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -734,7 +752,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">13</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -742,7 +760,7 @@
                 <span class="level-item">news</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/programing/">
@@ -750,9 +768,17 @@
                 <span class="level-item">programing</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/programing/life/">
+            <span class="level-start">
+                <span class="level-item">life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -1129,7 +1155,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -1159,7 +1185,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Linux/">
                         <span class="tag">Linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1187,7 +1213,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags//">
                         <span class="tag"></span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -1379,7 +1405,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">13</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -1387,7 +1413,7 @@
                 <span class="level-item">news</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/programing/">
@@ -1395,9 +1421,17 @@
                 <span class="level-item">programing</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/programing/life/">
+            <span class="level-start">
+                <span class="level-item">life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -1774,7 +1808,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
     </div>
 </div>
 
@@ -1804,7 +1838,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Linux/">
                         <span class="tag">Linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1832,7 +1866,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags//">
                         <span class="tag"></span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
