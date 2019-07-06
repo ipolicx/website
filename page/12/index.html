@@ -118,6 +118,8 @@
                 
                 <a class="navbar-item" href="/tags">Tags</a>
                 
+                <a class="navbar-item" href="/message">Message</a>
+                
                 <a class="navbar-item" href="/about">About</a>
                 
             </div>
@@ -148,6 +150,237 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2016/06/18/ji-chu-ji-he-lei/" class="image is-7by1">
+            <img class="thumbnail" src="https://www.policx.com/talk/images/banner.jpg" alt="iOS基础集合类">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-06-17T19:12:14.000Z">2016-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/programing/">programing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 615 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/06/18/ji-chu-ji-he-lei/">iOS基础集合类</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="NSArray"><a href="#NSArray" class="headerlink" title="NSArray"></a>NSArray</h1><p>##排序</p>
+<ul>
+<li>逆序，array.reverseObjectEnumerator.allObjects</li>
+<li>数组中是字符串对象排序首选sortedArrayUsingSelector:</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSArray *array = @[@&quot;John Appleseed&quot;, @&quot;Tim Cook&quot;, @&quot;Hair Force One&quot;, @&quot;Michael Jurewitz&quot;];</span><br><span class="line">NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>存储内容是数字</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSArray *numbers = @[@9, @5, @11, @3, @1];</span><br><span class="line">NSArray *sortedNumbers = [numbers sortedArrayUsingSelector:@selector(compare:)];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用函数指针sortedArrayHint排序</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (NSData *)sortedArrayHint;</span><br><span class="line">- (NSArray *)sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))comparator</span><br><span class="line">     context:(void *)context;</span><br><span class="line">- (NSArray *)sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))comparator</span><br><span class="line">     context:(void *)context hint:(NSData *)hint;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于block的排序方法</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray *)sortedArrayUsingComparator:(NSComparator)cmptr;</span><br><span class="line">- (NSArray *)sortedArrayWithOptions:(NSSortOptions)opts</span><br><span class="line">     usingComparator:(NSComparator)cmptr;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>性能比较selector最快</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sorting 1000000 elements. selector: 4947.90[ms] function: 5618.93[ms] block: 5082.98[ms].</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更快的二分查找</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, NSBinarySearchingOptions) &#123;</span><br><span class="line">     NSBinarySearchingFirstEqual = (1UL &lt;&lt; 8),</span><br><span class="line">     NSBinarySearchingLastEqual = (1UL &lt;&lt; 9),</span><br><span class="line">     NSBinarySearchingInsertionIndex = (1UL &lt;&lt; 10),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">- (NSUInteger)indexOfObject:(id)obj</span><br><span class="line">     inSortedRange:(NSRange)r</span><br><span class="line">     options:(NSBinarySearchingOptions)opts</span><br><span class="line">     usingComparator:(NSComparator)cmp;</span><br><span class="line"></span><br><span class="line">//Time to search for 1000 entries within 1000000 objects. Linear: 54130.38[ms]. Binary: 7.62[ms]</span><br></pre></td></tr></table></figure>
+
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><ul>
+<li>使用indexesOfObjectsWithOptions:passingTest:</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSIndexSet *indexes = [randomArray indexesOfObjectsWithOptions:NSEnumerationConcurrent</span><br><span class="line">     passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) &#123;</span><br><span class="line">     return testObj(obj);</span><br><span class="line">&#125;];</span><br><span class="line">NSArray *filteredArray = [randomArray objectsAtIndexes:indexes];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>传统的枚举</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *mutableArray = [NSMutableArray array];</span><br><span class="line">for (id obj in randomArray) &#123;</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          [mutableArray addObject:obj];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>block方式枚举</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *mutableArray = [NSMutableArray array];</span><br><span class="line">[randomArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) &#123;</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          [mutableArray addObject:obj];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过下标objectAtIndex:</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *mutableArray = [NSMutableArray array];</span><br><span class="line">for (NSUInteger idx = 0; idx &lt; randomArray.count; idx++) &#123;</span><br><span class="line">     id obj = randomArray[idx];</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          [mutableArray addObject:obj];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用比较传统的学院派NSEnumerator</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *mutableArray = [NSMutableArray array];</span><br><span class="line">NSEnumerator *enumerator = [randomArray objectEnumerator];</span><br><span class="line">id obj = nil;</span><br><span class="line">while ((obj = [enumerator nextObject]) != nil) &#123;</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          [mutableArray addObject:obj];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用predicate</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSArray *filteredArray2 = [randomArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bindings) &#123;</span><br><span class="line">     return testObj(obj);</span><br><span class="line">&#125;]];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>各个方法枚举时间参考，indexesOfObjectsWithOptions在开启了并发枚举的情况下比NSFastEnumeration快一倍。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">枚举方法 / 时间 [ms]</th>
+<th align="right">10.000.000 elements</th>
+<th align="right">10.000 elements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">indexesOfObjects:, concurrent</td>
+<td align="right">1844.73</td>
+<td align="right">2.25</td>
+</tr>
+<tr>
+<td align="left">NSFastEnumeration (for in)</td>
+<td align="right">3223.45</td>
+<td align="right">3.21</td>
+</tr>
+<tr>
+<td align="left">indexesOfObjects:</td>
+<td align="right">4221.23</td>
+<td align="right">3.36</td>
+</tr>
+<tr>
+<td align="left">enumerateObjectsUsingBlock:</td>
+<td align="right">5459.43</td>
+<td align="right">5.43</td>
+</tr>
+<tr>
+<td align="left">objectAtIndex:</td>
+<td align="right">5282.67</td>
+<td align="right">5.53</td>
+</tr>
+<tr>
+<td align="left">NSEnumerator</td>
+<td align="right">5566.92</td>
+<td align="right">5.75</td>
+</tr>
+<tr>
+<td align="left">filteredArrayUsingPredicate:</td>
+<td align="right">6466.95</td>
+<td align="right">6.31</td>
+</tr>
+</tbody></table>
+<h1 id="NSDictionary"><a href="#NSDictionary" class="headerlink" title="NSDictionary"></a>NSDictionary</h1><h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>同样数目的值，NSDictionary比NSArray要花费多得多的内存空间</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>使用NSArray的排序方法将键数组排序为新的对象</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray *)keysSortedByValueUsingSelector:(SEL)comparator;</span><br><span class="line">- (NSArray *)keysSortedByValueUsingComparator:(NSComparator)cmptr;</span><br><span class="line">- (NSArray *)keysSortedByValueWithOptions:(NSSortOptions)opts</span><br><span class="line">     usingComparator:(NSComparator)cmptr;</span><br></pre></td></tr></table></figure>
+
+<h2 id="枚举-1"><a href="#枚举-1" class="headerlink" title="枚举"></a>枚举</h2><ul>
+<li>keysOfEntriesWithOptions:passingTest:，可并行</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NSSet *matchingKeys = [randomDict keysOfEntriesWithOptions:NSEnumerationConcurrent</span><br><span class="line">passingTest:^BOOL(id key, id obj, BOOL *stop)</span><br><span class="line">&#123;</span><br><span class="line">     return testObj(obj);</span><br><span class="line">&#125;];</span><br><span class="line">NSArray *keys = matchingKeys.allObjects;</span><br><span class="line">NSArray *values = [randomDict objectsForKeys:keys notFoundMarker:NSNull.null];</span><br><span class="line">__unused NSDictionary *filteredDictionary = [NSDictionary dictionaryWithObjects:values</span><br><span class="line">     forKeys:keys];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getObjects:andKeys: 枚举，基于c数组</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];</span><br><span class="line">id __unsafe_unretained objects[numberOfEntries];</span><br><span class="line">id __unsafe_unretained keys[numberOfEntries];</span><br><span class="line">[randomDict getObjects:objects andKeys:keys];</span><br><span class="line">for (int i = 0; i &lt; numberOfEntries; i++) &#123;</span><br><span class="line">     id obj = objects[i];</span><br><span class="line">     id key = keys[i];</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          mutableDictionary[key] = obj;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>block枚举</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];</span><br><span class="line">[randomDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) &#123;</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          mutableDictionary[key] = obj;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>NSFastEnumeration</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];</span><br><span class="line">for (id key in randomDict) &#123;</span><br><span class="line">     id obj = randomDict[key];</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          mutableDictionary[key] = obj;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>NSEnumeration</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];</span><br><span class="line">NSEnumerator *enumerator = [randomDict keyEnumerator];</span><br><span class="line">id key = nil;</span><br><span class="line">while ((key = [enumerator nextObject]) != nil) &#123;</span><br><span class="line">     id obj = randomDict[key];</span><br><span class="line">     if (testObj(obj)) &#123;</span><br><span class="line">          mutableDictionary[key] = obj;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>各个方法枚举时间参考</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">枚举方法 / 时间 [ms]</th>
+<th align="right">50.000 elements</th>
+<th align="right">1.000.000 elements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">keysOfEntriesWithOptions:, concurrent</td>
+<td align="right">16.65</td>
+<td align="right">425.24</td>
+</tr>
+<tr>
+<td align="left">getObjects:andKeys:</td>
+<td align="right">30.33</td>
+<td align="right">798.49</td>
+</tr>
+<tr>
+<td align="left">keysOfEntriesWithOptions:</td>
+<td align="right">30.59</td>
+<td align="right">856.93</td>
+</tr>
+<tr>
+<td align="left">enumerateKeysAndObjectsUsingBlock:</td>
+<td align="right">36.33</td>
+<td align="right">882.93</td>
+</tr>
+<tr>
+<td align="left">NSFastEnumeration</td>
+<td align="right">41.20</td>
+<td align="right">1043.42</td>
+</tr>
+<tr>
+<td align="left">NSEnumeration</td>
+<td align="right">42.21</td>
+<td align="right">1113.08</td>
+</tr>
+</tbody></table>
+<p><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -314,47 +547,6 @@
         </h1>
         <div class="content">
             <p><img src="https://www.policx.com/talk/images/Linux.jpg" alt></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-02-24T14:17:03.000Z">2016-02-24</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    几秒 读完 (大约 8 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2016/02/24/nokia/">诺基亚</a>
-            
-        </h1>
-        <div class="content">
-            <p><img src="https://www.policx.com/talk/images/Nokia.jpg" alt></p>
 
         </div>
         
@@ -635,7 +827,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -728,7 +920,7 @@
                     <span class="level-item">三月 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1012,17 +1204,6 @@
             <a class="level is-marginless" href="/archives/2013/07/">
                 <span class="level-start">
                     <span class="level-item">七月 2013</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2013/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2013</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -1291,7 +1472,7 @@
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -1384,7 +1565,7 @@
                     <span class="level-item">三月 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1668,17 +1849,6 @@
             <a class="level is-marginless" href="/archives/2013/07/">
                 <span class="level-start">
                     <span class="level-item">七月 2013</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2013/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2013</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -2007,5 +2177,5 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

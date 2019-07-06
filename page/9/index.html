@@ -118,6 +118,8 @@
                 
                 <a class="navbar-item" href="/tags">Tags</a>
                 
+                <a class="navbar-item" href="/message">Message</a>
+                
                 <a class="navbar-item" href="/about">About</a>
                 
             </div>
@@ -148,6 +150,157 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2016/06/18/gpu/" class="image is-7by1">
+            <img class="thumbnail" src="https://www.policx.com/talk/images/banner.jpg" alt="GPU处理图像">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-06-18T01:53:56.000Z">2016-06-18</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2588 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/06/18/gpu/">GPU处理图像</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Shader着色器"><a href="#Shader着色器" class="headerlink" title="Shader着色器"></a>Shader着色器</h1><p>Shader出现在OpenGL ES 2.0中，允许创建自己的Shader。必须同时创建两个Shader，分别是Vertex shader和Fragment shader.</p>
+<h1 id="Shader工具"><a href="#Shader工具" class="headerlink" title="Shader工具"></a>Shader工具</h1><p>Shader会有很多坑，不过一些工具能够帮助你跳过这些坑</p>
+<ul>
+<li>GPUImage：<a href="https://github.com/BradLarson/GPUImage" target="_blank" rel="noopener">https://github.com/BradLarson/GPUImage</a></li>
+<li>ShaderToy：<a href="https://www.shadertoy.com/" target="_blank" rel="noopener">https://www.shadertoy.com/</a></li>
+<li>Shaderific：<a href="http://www.shaderific.com/" target="_blank" rel="noopener">http://www.shaderific.com/</a></li>
+<li>Quartz Composer：官方工具</li>
+</ul>
+<h1 id="Shader使用范例"><a href="#Shader使用范例" class="headerlink" title="Shader使用范例"></a>Shader使用范例</h1><h2 id="Vertex-shader"><a href="#Vertex-shader" class="headerlink" title="Vertex shader"></a>Vertex shader</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">attribute vec4 position;</span><br><span class="line">attribute vec4 inputTextureCoordinate；</span><br><span class="line">varying vec2 textureCoordinate;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     gl_position = position;</span><br><span class="line">     textureCoordinate = inputTextureCoordinate.xy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Fragment-shader"><a href="#Fragment-shader" class="headerlink" title="Fragment shader"></a>Fragment shader</h2><p>直通滤镜</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate; //highp属性负责变量精度，这个被加入可以提高效率</span><br><span class="line">uniform sampler2D inputImageTexture; //接收一个图片的引用，当做2D的纹理，这个数据类型就是smpler2D。</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     gl_FragColor = texture2D(inputImageTexture, textureCoordinate); //texture是GLSL（着色语言）特有的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="GLSL着色语言"><a href="#GLSL着色语言" class="headerlink" title="GLSL着色语言"></a>GLSL着色语言</h1><h2 id="GLSL的官方快速入门指导"><a href="#GLSL的官方快速入门指导" class="headerlink" title="GLSL的官方快速入门指导"></a>GLSL的官方快速入门指导</h2><ul>
+<li>OpenGL ES：<a href="https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf" target="_blank" rel="noopener">https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf</a></li>
+<li>OpenGL：<a href="https://www.khronos.org/files/opengl-quick-reference-card.pdf" target="_blank" rel="noopener">https://www.khronos.org/files/opengl-quick-reference-card.pdf</a></li>
+</ul>
+<h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>三个可以赋值给我们的变量的标签</p>
+<ul>
+<li>Uniforms：在渲染循环里作为不变的输入值</li>
+<li>Attributes：随顶点位置不同会变的输入值</li>
+<li>Varyings：用来在Vertex shader和Fragment shader之间传递信息的，比如在Vertex shader中写入varying值，然后就可以在Fragment shader中读取和处理</li>
+</ul>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>有很多种向量，但是有三种会经常看到</p>
+<ul>
+<li>vec2：两个浮点数，适合在Fragment shader中保存X和Y坐标的情况</li>
+<li>vec3：三个浮点数</li>
+<li>vec4：四个浮点数，在图像处理中持续追踪每个像素的R,G,V,A这四个值。</li>
+</ul>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>是浮点数组的数组。三个经常处理的矩阵对象</p>
+<ul>
+<li>mat2：相当于保存了两个vec2对象的值或四个浮点数。</li>
+<li>mat3</li>
+<li>mat4</li>
+</ul>
+<h2 id="向量和矩阵运算"><a href="#向量和矩阵运算" class="headerlink" title="向量和矩阵运算"></a>向量和矩阵运算</h2><p>线性代数发挥作用的地方。想知道线性代数如何工作可以看这个资源站：<a href="http://betterexplained.com/articles/linear-algebra-guide/" target="_blank" rel="noopener">http://betterexplained.com/articles/linear-algebra-guide/</a></p>
+<p>线性代数可以一次在很多值上进行并行操作，so，正好适合需求，GLSL内建了很多函数可以处理庞大的计算转换</p>
+<h2 id="GLSL特有函数"><a href="#GLSL特有函数" class="headerlink" title="GLSL特有函数"></a>GLSL特有函数</h2><p>GLSL内建的函数可以在Shaderific网站上找到：<a href="http://www.shaderific.com/glsl-functions" target="_blank" rel="noopener">http://www.shaderific.com/glsl-functions</a>。很多C语言数学库基本数学运算都有对应的函数。</p>
+<ul>
+<li>step()：GPU处理条件逻辑不是很好。step()允许在不产生分支的前提下实现条件逻辑。传入step()函数的值小于阈值就返回0.0，大于等于阈值就返回1.0。</li>
+<li>mix()：将两个颜色值混合为一个。</li>
+<li>clamp()：可以确保值在一个区间内。</li>
+</ul>
+<h2 id="复杂的Shader的例子"><a href="#复杂的Shader的例子" class="headerlink" title="复杂的Shader的例子"></a>复杂的Shader的例子</h2><p>一个饱和度调节的Fragment shader的例子，出自《图形着色器：理论和实践》这本书。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate; //</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line">uniform lowp float saturation;</span><br><span class="line"></span><br><span class="line">const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721); //光亮度里三个值相加要为1，各个值代表着颜色的百分比，中间是绿色的值，70%的比重会让效果更好点。</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     lowp vec4 textureColor = texture2D(inputImageTexture, textureCoordinate); //根据坐标取样图片颜色信息</span><br><span class="line">     lowp float luminance = dot(textureColor.rgb, luminanceWeighting); //GLSL中的点乘运算，线性代数的点运算符相乘两个数字。点乘计算需要将纹理颜色信息和相对应的亮度权重相乘。然后取出所有的三个值相加到一起计算得到这个像素的中和亮度值。</span><br><span class="line">     lowp vec3 greyScaleColor = vec3(luminance); //创建一个三个值都是亮度信息的vec3，如果只指定一个值，编译器会将其它的都设置成这个值</span><br><span class="line">     gl_FragColor = vec4(mix(greyScaleColor, textureColor.rgb, saturation), textureColor.w); //用mix函数把计算的灰度值，初识的纹理颜色和得到的饱和度信息结合起来。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="球形滤镜示例"><a href="#球形滤镜示例" class="headerlink" title="球形滤镜示例"></a>球形滤镜示例</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line"></span><br><span class="line">uniform highp vec2 center;</span><br><span class="line">uniform highp float radius;</span><br><span class="line">uniform highp float aspectRatio;</span><br><span class="line">uniform highp float refractiveIndex;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     highp vec2 textureCoordinateToUse = vec2(textureCoordinate.x, (textureCoordinate.y * aspectRatio + 0.5 - 0.5 * aspectRatio)); //归一化坐标空间需要考虑屏幕是一个单位宽和一个单位长。</span><br><span class="line">     highp float distanceFromCenter = distance(center, textureCoordinateToUse); //计算特定像素点距离球形的中心有多远。使用GLSL内建的distance()函数，用勾股定律计算出中心坐标和长宽比矫正过的纹理坐标的距离</span><br><span class="line">     lowp float checkForPresenceWithinSphere = step(distanceFromCenter, radius); //计算片段是否在球体内。</span><br><span class="line"></span><br><span class="line">     distanceFromCenter = distanceFromCenter / radius;  //标准化到球心的距离，重新设置distanceFromCenter</span><br><span class="line"></span><br><span class="line">     highp float normalizedDepth = radius * sqrt(1.0 - distanceFromCenter * distanceFromCenter); //模拟一个玻璃球，需要计算球的“深度”是多少。</span><br><span class="line">     highp vec3 sphereNormal = normalize(vec3(textureCoordinateToUse - center, normalizedDepth)); //归一化</span><br><span class="line"></span><br><span class="line">     highp vec3 refractedVector = refract(vec3(0.0, 0.0, -1.0), sphereNormal, refractiveIndex); //GLSL的refract()函数以刚才创建的球法线和折射率来计算当光线通过球时从任意一个点看起来如何。</span><br><span class="line"></span><br><span class="line">     gl_FragColor = texture2D(inputImageTexture, (refractedVector.xy + 1.0) * 0.5) * checkForPresenceWithinSphere; //最后凑齐所有计算需要的颜色信息。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试Shader"><a href="#调试Shader" class="headerlink" title="调试Shader"></a>调试Shader</h2><p>使用gl_FragColor调试代码。GPUImage是个开源的资源有些很酷的shader，非常好的学习shader的方式，可以拿一个你觉得很有意思的shader对着源码一点点看下去。GPUImage还有一个shader设计器<a href="https://github.com/BradLarson/GPUImage/tree/master/examples/Mac/ShaderDesigner" target="_blank" rel="noopener">https://github.com/BradLarson/GPUImage/tree/master/examples/Mac/ShaderDesigner</a> 的Mac应用，可以测试shader而不用准备OpenGL代码。</p>
+<h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><p>简单的方法达到调优目的，可以用下载Imagination Technologies PowerVR SDK<a href="http://community.imgtec.com/developers/powervr/" target="_blank" rel="noopener">http://community.imgtec.com/developers/powervr/</a>这个工具帮助分析shader</p>
+<ul>
+<li>消除条件逻辑：使用step()这样的函数</li>
+<li>减少依赖纹理的读取：如果希望从附近像素取样而不是计算Fragment shader相邻像素的偏差，最好在Vertex shader中计算然后把结果以varying的方式传入Fragment shader里。</li>
+<li>计算尽量简单：能够得到一个近似值就尽量用，不要用类似sin()，cos()，tan()的比较消耗的操作。</li>
+<li>尽可能的将计算放到Vertex上：如果计算在图片上会有相同的结果或线性变化最好这样做。因为Vertex shader对每个顶点运行一次，而Fragment shader会在每个像素上运行一次。</li>
+<li>移动设备使用合适的精度：在向量上使用低精度的值会变得更快。两个lowp vec4相加可以在一个时钟周期内完成，两个highp vec4相加则需要四个时钟周期。</li>
+</ul>
+<h1 id="边界探测"><a href="#边界探测" class="headerlink" title="边界探测"></a>边界探测</h1><p>基于OpenCV库，不过这些步骤在GPUImage中都有完整的实现</p>
+<h2 id="Sobel边界探测"><a href="#Sobel边界探测" class="headerlink" title="Sobel边界探测"></a>Sobel边界探测</h2><p>这种操作在滤镜方面比机器视觉方面多。Sobel边界探测用于探测边界的出现位置，边界是由明变暗或者由暗变明的区域。在被处理的图片中一个像素的亮度反映了这个像素周围边界的强度。</p>
+<ul>
+<li>第一步，将彩色图片弄成灰阶图，这个过程就是将每个像素的红绿蓝部分合一代表亮度的值。如是果YUV而不是RGB格式的可以省略这步，因为YUV是将亮度信息和色度信息分开的。如果简化到只剩亮度的话一个像素周围的边界强度就可以由周围3*3个临近像素计算得到。这个计算涉及Convolution Matrix（卷积矩阵），每个像素都要与这个矩阵计算出一个数值，因为没有顺序要求所以可以采取并行运算。</li>
+<li>Sobel的水平处理矩阵</li>
+</ul>
+<p>-1 0 +1<br>-2 0 +2<br>-1 0 +1</p>
+<ul>
+<li>Sobel的垂直矩阵</li>
+</ul>
+<p>-1 -2 -1<br>0 0 0<br>+1 +2 +1</p>
+<ul>
+<li>和Sobel类似的变体，Prewitt边界探测。这个变体会在横向竖向矩阵中用不同的矩阵，但是运作过程差不多。</li>
+<li>OpenGL ES代码<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">precision mediump float;</span><br><span class="line"></span><br><span class="line">//varying的都是在Vertex shader上定义了</span><br><span class="line">varying vec2 textureCoordinate;</span><br><span class="line">varying vec2 leftTextureCoordinate;</span><br><span class="line">varying vec2 rightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">varying vec2 topTextureCoordinate;</span><br><span class="line">varying vec2 topLeftTextureCoordinate;</span><br><span class="line">varying vec2 topRightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">varying vec2 bottomTextureCoordinate;</span><br><span class="line">varying vec2 bottomLeftTextureCoordinate;</span><br><span class="line">varying vec2 bottomRightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     float bottomLeftIntensity = texture2D(inputImageTexture, bottomLeftTextureCoordinate).r;</span><br><span class="line">     float topRightIntensity = texture2D(inputImageTexture, topRightTextureCoordinate).r;</span><br><span class="line">     float topLeftIntensity = texture2D(inputImageTexture, topLeftTextureCoordinate).r;</span><br><span class="line">     float bottomRightIntensity = texture2D(inputImageTexture, bottomRightTextureCoordinate).r;</span><br><span class="line">     float leftIntensity = texture2D(inputImageTexture, leftTextureCoordinate).r;</span><br><span class="line">     float rightIntensity = texture2D(inputImageTexture, rightTextureCoordinate).r;</span><br><span class="line">     float bottomIntensity = texture2D(inputImageTexture, bottomTextureCoordinate).r;</span><br><span class="line">     float topIntensity = texture2D(inputImageTexture, topTextureCoordinate).r;</span><br><span class="line"></span><br><span class="line">     float h = -bottomLeftIntensity - 2.0 * leftIntensity - topLeftIntensity + bottomRightIntensity + 2.0 * rightIntensity + topRightIntensity;</span><br><span class="line">     float v = -topLeftIntensity - 2.0 * topIntensity - topRightIntensity + bottomLeftIntensity + 2.0 * bottomIntensity + bottomRightIntensity;</span><br><span class="line">     float mag = length(vec2(h, v)); //length()函数计算出水平和垂直矩阵转化后值的平方和的平方根的值，这个值会被拷贝进输出像素的红绿蓝通道中，这样就可以来代表边界的明显程度了。</span><br><span class="line"></span><br><span class="line">     gl_FragColor = vec4(vec3(mag), 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Canny边界探测"><a href="#Canny边界探测" class="headerlink" title="Canny边界探测"></a>Canny边界探测</h2><p>Canny探测会比Sobel复杂些，这样做会得到一条物体边界的干净线条。</p>
+<p>探测过程：</p>
+<ul>
+<li><p>先用Sobel矩阵得到边界梯度的强度。这个和Sobel比就是最后一个计算有些不同</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vec2 gradientDirection;</span><br><span class="line">gradientDirection.x = -bottomLeftIntensity - 2.0 * leftIntensity - topLeftIntensity + bottomRightIntensity + 2.0 * rightIntensity + topRightIntensity;</span><br><span class="line">gradientDirection.y = -topLeftIntensity - 2.0 * topIntensity - topRightIntensity + bottomLeftIntensity + 2.0 * bottomIntensity + bottomRightIntensity;</span><br><span class="line"></span><br><span class="line">float gradientMagnitude = length(gradientDirection);</span><br><span class="line">vec2 normalizedDirection = normalize(gradientDirection);</span><br><span class="line">normalizedDirection = sign(normalizedDirection) * floor(abs(normalizedDirection) + 0.617316); // Offset by 1-sin(pi/8) to set to 0 if near axis, 1 if away</span><br><span class="line">normalizedDirection = (normalizedDirection + 1.0) * 0.5; // Place -1.0 - 1.0 within 0 - 1.0</span><br><span class="line"></span><br><span class="line">gl_FragColor = vec4(gradientMagnitude, normalizedDirection.x, normalizedDirection.y, 1.0);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>着色器步骤</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">precision mediump float;</span><br><span class="line"></span><br><span class="line">varying highp vec2 textureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line">uniform highp float texelWidth; //要处理的图片中临近像素之间的距离。</span><br><span class="line">uniform highp float texelHeight; //同上</span><br><span class="line">uniform mediump float upperThreshold; //预期边界强度上下限</span><br><span class="line">uniform mediump float lowerThreshold; </span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     vec3 currentGradientAndDirection = texture2D(inputImageTexture, textureCoordinate).rgb;</span><br><span class="line">     vec2 gradientDirection = ((currentGradientAndDirection.gb * 2.0) - 1.0) * vec2(texelWidth, texelHeight);</span><br><span class="line"></span><br><span class="line">     float firstSampledGradientMagnitude = texture2D(inputImageTexture, textureCoordinate + gradientDirection).r;</span><br><span class="line">     float secondSampledGradientMagnitude = texture2D(inputImageTexture, textureCoordinate - gradientDirection).r;</span><br><span class="line"></span><br><span class="line">     float multiplier = step(firstSampledGradientMagnitude, currentGradientAndDirection.r);</span><br><span class="line">     multiplier = multiplier * step(secondSampledGradientMagnitude, currentGradientAndDirection.r);</span><br><span class="line"></span><br><span class="line">     float thresholdCompliance = smoothstep(lowerThreshold, upperThreshold, currentGradientAndDirection.r);</span><br><span class="line">     multiplier = multiplier * thresholdCompliance;</span><br><span class="line"></span><br><span class="line">     gl_FragColor = vec4(multiplier, multiplier, multiplier, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Harris边角探测"><a href="#Harris边角探测" class="headerlink" title="Harris边角探测"></a>Harris边角探测</h2><p>多步骤的方法来探测场景中的边角。</p>
+<ul>
+<li>先弄得只有亮度信息，再通过Sobel矩阵，普里维特矩阵或者其它相关的矩阵计算出一个像素X和Y方向的梯度值，计算的结果会将X梯度传入红色部分，Y梯度传入绿色部分，X与Y梯度的乘积传入蓝色部分。</li>
+<li>对计算的结果进行高斯模糊。将模糊后图中取出红绿蓝编码的值带到计算边角点可能性公式：</li>
+</ul>
+<p>R = Ix2 × Iy2 − Ixy × Ixy − k × (Ix2 + Iy2)2</p>
+<p>#资料</p>
+<h2 id="相关数学"><a href="#相关数学" class="headerlink" title="相关数学"></a>相关数学</h2><ul>
+<li>3D Math Primer for Graphics and Game Development <a href="http://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231/ref=sr_1_1?ie=UTF8&amp;qid=1422837187&amp;sr=8-1&amp;keywords=3d+math+primer+for+graphics+and+game+development" target="_blank" rel="noopener">http://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231/ref=sr_1_1?ie=UTF8&amp;qid=1422837187&amp;sr=8-1&amp;keywords=3d+math+primer+for+graphics+and+game+development</a></li>
+<li>The Nature of Code <a href="http://natureofcode.com/" target="_blank" rel="noopener">http://natureofcode.com/</a></li>
+<li>The Computational Beauty of Nature <a href="http://www.amazon.com/Computational-Beauty-Nature-Explorations-Adaptation/dp/0262561271/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837256&amp;sr=1-1&amp;keywords=computational+beauty+of+nature" target="_blank" rel="noopener">http://www.amazon.com/Computational-Beauty-Nature-Explorations-Adaptation/dp/0262561271/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837256&amp;sr=1-1&amp;keywords=computational+beauty+of+nature</a></li>
+</ul>
+<h2 id="相关GLSL"><a href="#相关GLSL" class="headerlink" title="相关GLSL"></a>相关GLSL</h2><ul>
+<li>Graphic Shaders: Theory and Practice <a href="http://www.amazon.com/Graphics-Shaders-Theory-Practice-Second/dp/1568814348/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837351&amp;sr=1-1&amp;keywords=graphics+shaders+theory+and+practice" target="_blank" rel="noopener">http://www.amazon.com/Graphics-Shaders-Theory-Practice-Second/dp/1568814348/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837351&amp;sr=1-1&amp;keywords=graphics+shaders+theory+and+practice</a></li>
+<li>The OpenGL Shading Language <a href="http://www.amazon.com/OpenGL-Shading-Language-Randi-Rost/dp/0321637631/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-1&amp;keywords=opengl+shading+language" target="_blank" rel="noopener">http://www.amazon.com/OpenGL-Shading-Language-Randi-Rost/dp/0321637631/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-1&amp;keywords=opengl+shading+language</a></li>
+<li>OpenGL 4 Shading Language Cookbook <a href="http://www.amazon.com/OpenGL-Shading-Language-Cookbook-Second/dp/1782167021/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-2&amp;keywords=opengl+shading+language" target="_blank" rel="noopener">http://www.amazon.com/OpenGL-Shading-Language-Cookbook-Second/dp/1782167021/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-2&amp;keywords=opengl+shading+language</a></li>
+<li>GPU Gems <a href="http://http.developer.nvidia.com/GPUGems/gpugems_part01.html" target="_blank" rel="noopener">http://http.developer.nvidia.com/GPUGems/gpugems_part01.html</a></li>
+<li>GPU Pro: Advanced Rendering Techniques <a href="http://www.amazon.com/GPU-Pro-Advanced-Rendering-Techniques/dp/1568814720/ref=sr_1_4?s=books&amp;ie=UTF8&amp;qid=1422837427&amp;sr=1-4&amp;keywords=gpu+pro" target="_blank" rel="noopener">http://www.amazon.com/GPU-Pro-Advanced-Rendering-Techniques/dp/1568814720/ref=sr_1_4?s=books&amp;ie=UTF8&amp;qid=1422837427&amp;sr=1-4&amp;keywords=gpu+pro</a></li>
+</ul>
+<p><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -635,310 +788,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2016/06/18/pou-xi/" class="image is-7by1">
-            <img class="thumbnail" src="https://www.policx.com/talk/images/banner.jpg" alt="深入剖析 iOS 性能优化">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-06-18T01:43:03.000Z">2016-06-18</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 小时 读完 (大约 9030 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2016/06/18/pou-xi/">深入剖析 iOS 性能优化</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="问题种类"><a href="#问题种类" class="headerlink" title="问题种类"></a>问题种类</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。</p>
-<p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization01.png?raw=true" alt></p>
-<p>上图列出了各种情况的时间复杂度，比如高效的排序算法一般都是 O(n log n)。接下来看看下图：</p>
-<p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization02.png?raw=true" alt></p>
-<p>图中可以看出 O(n) 是个分水岭，大于它对于性能就具有很大的潜在影响，如果是个公共的接口一定要加上说明，自己调用也要做到心中有数。当然最好是通过算法优化或者使用合适的系统接口方法，权衡内存消耗争取通过空间来换取时间。</p>
-<p>下面通过集合里是否有某个值来举个例子：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//O(1)</span><br><span class="line">return array[idx] == value;</span><br><span class="line"></span><br><span class="line">//O(n)</span><br><span class="line">for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">    if (array[i] == value) &#123;</span><br><span class="line">        return YES;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return NO;</span><br><span class="line"></span><br><span class="line">//O(n2) 找重复的值</span><br><span class="line">for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">    for (int j = 0; j &lt; count; j++) &#123;</span><br><span class="line">        if ( i != j &amp;&amp; array[i] == array[j]) &#123;</span><br><span class="line">            return YES;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return NO;</span><br></pre></td></tr></table></figure>
-
-<p>那么 OC 里几种常用集合对象提供的接口方法时间复杂度是怎么样的。</p>
-<h3 id="NSArray-NSMutableArray"><a href="#NSArray-NSMutableArray" class="headerlink" title="NSArray / NSMutableArray"></a>NSArray / NSMutableArray</h3><p>首先我们发现他们是有排序，并允许重复元素存在的，那么这么设计就表明了集合存储没法使用里面的元素做 hash table 的 key 进行相关的快速操作，。所以不同功能接口方法性能是会有很大的差异。</p>
-<ul>
-<li>containsObject:，containsObject:，indexOfObject*，removeObject: 会遍历里面元素查看是否与之匹对，所以复杂度等于或大于 O(n)</li>
-<li>objectAtIndex:，firstObject:，lastObject:，addObject:，removeLastObject: 这些只针对栈顶栈底操作的时间复杂度都是 O(1)</li>
-<li>indexOfObject:inSortedRange:options:usingComparator: 使用的是二分查找，时间复杂度是 O(log n)</li>
-</ul>
-<h3 id="NSSet-NSMutableSet-NSCountedSet"><a href="#NSSet-NSMutableSet-NSCountedSet" class="headerlink" title="NSSet / NSMutableSet / NSCountedSet"></a>NSSet / NSMutableSet / NSCountedSet</h3><p>这些集合类型是无序没有重复元素。这样就可以通过 hash table 进行快速的操作。比如 addObject:, removeObject:, containsObject: 都是按照 O(1) 来的。需要注意的是将数组转成 Set 时会将重复元素合成一个，同时失去排序。</p>
-<h3 id="NSDictionary-NSMutableDictionary"><a href="#NSDictionary-NSMutableDictionary" class="headerlink" title="NSDictionary / NSMutableDictionary"></a>NSDictionary / NSMutableDictionary</h3><p>和 Set 差不多，多了键值对应。添加删除和查找都是 O(1) 的。需要注意的是 Keys 必须是符合 NSCopying。</p>
-<h3 id="containsObject-方法在数组和-Set-里不同的实现"><a href="#containsObject-方法在数组和-Set-里不同的实现" class="headerlink" title="containsObject 方法在数组和 Set 里不同的实现"></a>containsObject 方法在数组和 Set 里不同的实现</h3><p>在数组中的实现</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL) containsObject: (id)anObject</span><br><span class="line">&#123;</span><br><span class="line">  return ([self indexOfObject: anObject] != NSNotFound);</span><br><span class="line">&#125;</span><br><span class="line">- (NSUInteger) indexOfObject: (id)anObject</span><br><span class="line">&#123;</span><br><span class="line">  unsigned    c = [self count];</span><br><span class="line"></span><br><span class="line">  if (c &gt; 0 &amp;&amp; anObject != nil)</span><br><span class="line">    &#123;</span><br><span class="line">      unsigned    i;</span><br><span class="line">      IMP    get = [self methodForSelector: oaiSel];</span><br><span class="line">      BOOL    (*eq)(id, SEL, id)</span><br><span class="line">    = (BOOL (*)(id, SEL, id))[anObject methodForSelector: eqSel];</span><br><span class="line"></span><br><span class="line">      for (i = 0; i &lt; c; i++)</span><br><span class="line">    if ((*eq)(anObject, eqSel, (*get)(self, oaiSel, i)) == YES)</span><br><span class="line">      return i;</span><br><span class="line">    &#125;</span><br><span class="line">  return NSNotFound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到会遍历所有元素在查找到后才进行返回.</p>
-<p>接下来可以看看 containsObject 在 Set 里的实现：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL) containsObject: (id)anObject</span><br><span class="line">&#123;</span><br><span class="line">  return (([self member: anObject]) ? YES : NO);</span><br><span class="line">&#125;</span><br><span class="line">//在 GSSet,m 里有对 member 的实现</span><br><span class="line">- (id) member: (id)anObject</span><br><span class="line">&#123;</span><br><span class="line">  if (anObject != nil)</span><br><span class="line">    &#123;</span><br><span class="line">      GSIMapNode node = GSIMapNodeForKey(&amp;map, (GSIMapKey)anObject);</span><br><span class="line">      if (node != 0)</span><br><span class="line">    &#123;</span><br><span class="line">      return node-&gt;key.obj;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>找元素时是通过键值方式从 map 映射表里取出，因为 Set 里元素是唯一的，所以可以 hash 元素对象作为 key 达到快速获取值的目的。</p>
-<h2 id="用-GCD-来做优化"><a href="#用-GCD-来做优化" class="headerlink" title="用 GCD 来做优化"></a>用 GCD 来做优化</h2><p>我们可以通过 GCD 提供的方法来将一些需要耗时操作放到非主线程上做，使得 App 能够运行的更加流畅响应更快。但是使用 GCD 时需要注意避免可能引起线程爆炸和死锁的情况，还有非主线程处理任务也不是万能的，如果一个处理需要消耗大量内存或者大量CPU操作 GCD 也没法帮你，只能通过将处理进行拆解分步骤分时间进行处理才比较妥当。</p>
-<h3 id="异步处理事件"><a href="#异步处理事件" class="headerlink" title="异步处理事件"></a>异步处理事件</h3><p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization03.png?raw=true" alt></p>
-<p>上图是最典型的异步处理事件的方法</p>
-<h3 id="需要耗时长的任务"><a href="#需要耗时长的任务" class="headerlink" title="需要耗时长的任务"></a>需要耗时长的任务</h3><p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization04.png?raw=true" alt></p>
-<p>将 GCD 的 block 通过 dispatch_block_create_with_qos_class 方法指定队列的 QoS 为 QOS_CLASS_UTILITY。这种 QoS 系统会针对大的计算，I/O，网络以及复杂数据处理做电量优化。</p>
-<h3 id="避免线程爆炸"><a href="#避免线程爆炸" class="headerlink" title="避免线程爆炸"></a>避免线程爆炸</h3><ul>
-<li>使用串行队列</li>
-<li>使用 NSOperationQueues 的并发限制方法 NSOperationQueue.maxConcurrentOperationCount</li>
-</ul>
-<p>举个例子，下面的写法就比较危险，可能会造成线程爆炸和死锁</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; 999; i++) &#123;</span><br><span class="line">    dispatch_async(q, ^&#123;...&#125;);</span><br><span class="line">&#125;</span><br><span class="line">dispatch_barrier_sync(q, ^&#123;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization05.png?raw=true" alt></p>
-<p>那么怎么能够避免呢？首先可以使用 dispatch_apply</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_apply(999, q, ^(size_t i)&#123;...&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>或者使用 dispatch_semaphore</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define CONCURRENT_TASKS 4sema = dispatch_semaphore_create(CONCURRENT_TASKS);for (int i = 0; i &lt; 999; i++)&#123;    dispatch_async(q, ^&#123;        dispatch_semaphore_signal(sema);    &#125;);    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="GCD-相关-Crash-日志"><a href="#GCD-相关-Crash-日志" class="headerlink" title="GCD 相关 Crash 日志"></a>GCD 相关 Crash 日志</h3><p>管理线程问题</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread 1:: Dispatch queue: com.apple.libdispatch-manager</span><br><span class="line">0   libsystem_kernel.dylib   0x00007fff8967e08a kevent_qos + 10</span><br><span class="line">1   libdispatch.dylib        0x00007fff8be05811 _dispatch_mgr_invoke + 251</span><br><span class="line">2   libdispatch.dylib        0x00007fff8be05465 _dispatch_mgr_thread + 52</span><br></pre></td></tr></table></figure>
-
-<p>线程闲置时</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread 6:</span><br><span class="line">0   libsystem_kernel.dylib       0x00007fff8967d772 __workq_kernreturn + 10</span><br><span class="line">1   libsystem_pthread.dylib      0x00007fff8fd317d9 _pthread_wqthread + 1283</span><br><span class="line">2   libsystem_pthread.dylib      0x00007fff8fd2ed95 start_wqthread + 13</span><br></pre></td></tr></table></figure>
-
-<p>线程活跃时</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Thread 3 Crashed:: Dispatch queue: &lt;queue name&gt;</span><br><span class="line">&lt;my code&gt;</span><br><span class="line">7   libdispatch.dylib        0x07fff8fcfd323 _dispatch_call_block_and_release</span><br><span class="line">8   libdispatch.dylib        0x07fff8fcf8c13 _dispatch_client_callout + 8</span><br><span class="line">9   libdispatch.dylib        0x07fff8fcfc365 _dispatch_queue_drain + 1100</span><br><span class="line">10  libdispatch.dylib        0x07fff8fcfdecc _dispatch_queue_invoke + 202</span><br><span class="line">11  libdispatch.dylib        0x07fff8fcfb6b7 _dispatch_root_queue_drain + 463</span><br><span class="line">12  libdispatch.dylib        0x07fff8fd09fe4 _dispatch_worker_thread3 + 91</span><br><span class="line">13  libsystem_pthread.dylib  0x07fff93c17637 _pthread_wqthread + 729</span><br><span class="line">14  libsystem_pthread.dylib  0x07fff93c1540d start_wqthread + 13</span><br></pre></td></tr></table></figure>
-
-<p>主线程闲置时</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Thread 0 Crashed:: Dispatch queue: com.apple.main-thread</span><br><span class="line">0   libsystem_kernel.dylib     0x00007fff906614de mach_msg_trap + 10</span><br><span class="line">1   libsystem_kernel.dylib     0x00007fff9066064f mach_msg + 55</span><br><span class="line">2   com.apple.CoreFoundation   0x00007fff9a8c1eb4 __CFRunLoopServiceMachPort</span><br><span class="line">3   com.apple.CoreFoundation   0x00007fff9a8c137b __CFRunLoopRun + 1371</span><br><span class="line">4   com.apple.CoreFoundation   0x00007fff9a8c0bd8 CFRunLoopRunSpecific + 296</span><br><span class="line">...</span><br><span class="line">10  com.apple.AppKit           0x00007fff8e823c03 -[NSApplication run] + 594</span><br><span class="line">11  com.apple.AppKit           0x00007fff8e7a0354 NSApplicationMain + 1832</span><br><span class="line">12  com.example                0x00000001000013b4 start + 52</span><br></pre></td></tr></table></figure>
-
-<p>主队列</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Thread 0 Crashed:: Dispatch queue: com.apple.main-thread</span><br><span class="line">&lt;my code&gt;</span><br><span class="line">12  com.apple.Foundation      0x00007fff931157e8 __NSBLOCKOPERATION_IS_CALLING_OUT_TO_A_BLOCK__ + 7</span><br><span class="line">13  com.apple.Foundation      0x00007fff931155b5 -[NSBlockOperation main] + 9</span><br><span class="line">14  com.apple.Foundation      0x00007fff93114a6c -[__NSOperationInternal _start:] + 653</span><br><span class="line">15  com.apple.Foundation      0x00007fff93114543 __NSOQSchedule_f + 184</span><br><span class="line">16  libdispatch.dylib         0x00007fff935d6c13 _dispatch_client_callout + 8</span><br><span class="line">17  libdispatch.dylib         0x00007fff935e2cbf _dispatch_main_queue_callback_4CF + 861</span><br><span class="line">18  com.apple.CoreFoundation  0x00007fff8d9223f9 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__</span><br><span class="line">19  com.apple.CoreFoundation  0x00007fff8d8dd68f __CFRunLoopRun + 2159</span><br><span class="line">20  com.apple.CoreFoundation  0x00007fff8d8dcbd8 CFRunLoopRunSpecific + 296</span><br><span class="line">...</span><br><span class="line">26  com.apple.AppKit          0x00007fff999a1bd3 -[NSApplication run] + 594</span><br><span class="line">27  com.apple.AppKit          0x00007fff9991e324 NSApplicationMain + 1832</span><br><span class="line">28  libdyld.dylib             0x00007fff9480f5c9 start + 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="I-O-性能优化"><a href="#I-O-性能优化" class="headerlink" title="I/O 性能优化"></a>I/O 性能优化</h2><p>I/O 是性能消耗大户，任何的 I/O 操作都会使低功耗状态被打破，所以减少 I/O 次数是这个性能优化的关键点，为了达成这个目下面列出一些方法。</p>
-<ul>
-<li>将零碎的内容作为一个整体进行写入</li>
-<li>使用合适的 I/O 操作 API</li>
-<li>使用合适的线程</li>
-<li>使用 NSCache 做缓存能够减少 I/O</li>
-</ul>
-<h3 id="NSCache"><a href="#NSCache" class="headerlink" title="NSCache"></a>NSCache</h3><p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization06.png?raw=true" alt></p>
-<p>达到如图的目的为何不直接用字典来做呢？<br>NSCache 具有字典的所有功能，同时还有如下的特性：</p>
-<ul>
-<li>自动清理系统占用内存</li>
-<li>NSCache 是线程安全</li>
-<li>-(void)cache:(NSCache *)cache willEvictObject:(id)obj;   缓存对象将被清理时的回调 </li>
-<li>evictsObjectsWithDiscardedContent 可以控制是否清理</li>
-</ul>
-<p>那么 NSCache是如何做到这些特性的呢？</p>
-<p>接下来学习下 NSCache 是如何做的。首先 NSCache 是会持有一个 NSMutableDictionary。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@implementation NSCache</span><br><span class="line">- (id) init</span><br><span class="line">&#123;</span><br><span class="line">  if (nil == (self = [super init]))</span><br><span class="line">    &#123;</span><br><span class="line">      return nil;</span><br><span class="line">    &#125;</span><br><span class="line">  _objects = [NSMutableDictionary new];</span><br><span class="line">  _accesses = [NSMutableArray new];</span><br><span class="line">  return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要设计一个 Cached 对象结构来保存一些额外的信息</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@interface _GSCachedObject : NSObject</span><br><span class="line">&#123;</span><br><span class="line">  @public</span><br><span class="line">  id object; //cache 的值</span><br><span class="line">  NSString *key; //设置 cache 的 key</span><br><span class="line">  int accessCount; //保存访问次数，用于自动清理</span><br><span class="line">  NSUInteger cost; //setObject:forKey:cost:</span><br><span class="line">  BOOL isEvictable; //线程安全</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<p>在 Cache 读取的时候会对 _accesses 数组的添加删除通过 isEvictable 布尔值来保证线程安全操作。使用 Cached 对象里的 accessCount 属性进行 +1 操作为后面自动清理的条件判断做准备。具体实现如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (id) objectForKey: (id)key</span><br><span class="line">&#123;</span><br><span class="line">  _GSCachedObject *obj = [_objects objectForKey: key];</span><br><span class="line">  if (nil == obj)</span><br><span class="line">    &#123;</span><br><span class="line">      return nil;</span><br><span class="line">    &#125;</span><br><span class="line">  if (obj-&gt;isEvictable) //保证添加删除操作线程安全</span><br><span class="line">    &#123;</span><br><span class="line">      // 将 obj 移到 access list 末端</span><br><span class="line">      [_accesses removeObjectIdenticalTo: obj];</span><br><span class="line">      [_accesses addObject: obj];</span><br><span class="line">    &#125;</span><br><span class="line">  obj-&gt;accessCount++;</span><br><span class="line">  _totalAccesses++;</span><br><span class="line">  return obj-&gt;object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在每次 Cache 添加时会先去检查是否自动清理，会创建一个 Cached 对象将 key，object，cost 等信息记录下添加到 _accesses 数组和 _objects 字典里。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (void) setObject: (id)obj forKey: (id)key cost: (NSUInteger)num</span><br><span class="line">&#123;</span><br><span class="line">  _GSCachedObject *oldObject = [_objects objectForKey: key];</span><br><span class="line">  _GSCachedObject *newObject;</span><br><span class="line"></span><br><span class="line">  if (nil != oldObject)</span><br><span class="line">    &#123;</span><br><span class="line">      [self removeObjectForKey: oldObject-&gt;key];</span><br><span class="line">    &#125;</span><br><span class="line">  [self _evictObjectsToMakeSpaceForObjectWithCost: num];</span><br><span class="line">  newObject = [_GSCachedObject new];</span><br><span class="line">  // Retained here, released when obj is dealloc&apos;d</span><br><span class="line">  newObject-&gt;object = RETAIN(obj);</span><br><span class="line">  newObject-&gt;key = RETAIN(key);</span><br><span class="line">  newObject-&gt;cost = num;</span><br><span class="line">  if ([obj conformsToProtocol: @protocol(NSDiscardableContent)])</span><br><span class="line">    &#123;</span><br><span class="line">      newObject-&gt;isEvictable = YES;</span><br><span class="line">      [_accesses addObject: newObject];</span><br><span class="line">    &#125;</span><br><span class="line">  [_objects setObject: newObject forKey: key];</span><br><span class="line">  RELEASE(newObject);</span><br><span class="line">  _totalCost += num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>那么上面提到的自动清理内存的方法是如何实现的呢？<br>既然是自动清理必定需要有触发时机和进入清理的条件判断，触发时机一个是发生在添加 Cache 内容时，一个是发生在内存警告时。条件判断代码如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// cost 在添加新 cache 值时指定的 cost</span><br><span class="line">// _costLimit 是 totalCostLimit 属性值</span><br><span class="line">if (_costLimit &gt; 0 &amp;&amp; _totalCost + cost &gt; _costLimit)&#123;</span><br><span class="line">    spaceNeeded = _totalCost + cost - _costLimit;</span><br><span class="line">&#125;</span><br><span class="line">// 只有当 cost 大于人工限制时才会清理</span><br><span class="line">// 或者 cost 设置为0不进行人工干预</span><br><span class="line">if (count &gt; 0 &amp;&amp; (spaceNeeded &gt; 0 || count &gt;= _countLimit))</span><br></pre></td></tr></table></figure>
-
-<p>所以 NSCache 的 totalCostLimit 的值会和每次 Cache 添加的 cost 之和对比，超出限制必然触发内存清理。</p>
-<p>清理时会对经常访问的 objects 不清理，主要是通过 _totalAccesses 和总数获得平均访问频率，如果那个对象的访问次数是小于平均值的才需要清理。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//_totalAccesses 所有的值的访问都会 +1</span><br><span class="line">NSUInteger averageAccesses = (_totalAccesses / count * 0.2) + 1;</span><br><span class="line">//accessCount 每次 obj 取值时会 +1</span><br><span class="line">if (obj-&gt;accessCount &lt; averageAccesses &amp;&amp; obj-&gt;isEvictable)</span><br></pre></td></tr></table></figure>
-
-<p>在清理之前还需要一些准备工作，包括标记 Cached 对象的 isEvictable 防止后面有不安全的线程操作。将满足条件的清理 objects 放到清理数组里，如果空间释放足够就不用再把更多的 objects 加到清理数组里了，最后遍历清理数组进行逐个清理即可。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">NSUInteger cost = obj-&gt;cost;</span><br><span class="line">obj-&gt;cost = 0;</span><br><span class="line">// 不会被再次清除</span><br><span class="line">obj-&gt;isEvictable = NO;</span><br><span class="line">// 添加到 remove list 里</span><br><span class="line">if (_evictsObjectsWithDiscardedContent)</span><br><span class="line">&#123;</span><br><span class="line">    [evictedKeys addObject: obj-&gt;key];</span><br><span class="line">&#125;</span><br><span class="line">_totalCost -= cost;</span><br><span class="line">// 如果已经释放了足够空间就不用后面操作了</span><br><span class="line">if (cost &gt; spaceNeeded)</span><br><span class="line">&#123;</span><br><span class="line">    break;</span><br><span class="line">&#125;</span><br><span class="line">spaceNeeded -= cost;</span><br></pre></td></tr></table></figure>
-
-<p>在清理时会执行回调内容，这样如果有些缓存数据需要持续化存储可以在回调里进行处理。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void) removeObjectForKey: (id)key</span><br><span class="line">&#123;</span><br><span class="line">    _GSCachedObject *obj = [_objects objectForKey: key];</span><br><span class="line">    </span><br><span class="line">    if (nil != obj)</span><br><span class="line">    &#123;</span><br><span class="line">        [_delegate cache: self willEvictObject: obj-&gt;object];</span><br><span class="line">        _totalAccesses -= obj-&gt;accessCount;</span><br><span class="line">        [_objects removeObjectForKey: key];</span><br><span class="line">        [_accesses removeObjectIdenticalTo: obj];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>完整的实现可以查看 GNUstep Base 的 NSCache.m 文件。</p>
-<p>下面可以看看 NSCache 在 SDWebImage 的运用是怎么样的：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key &#123;</span><br><span class="line">    return [self.memCache objectForKey:key];</span><br><span class="line">&#125;</span><br><span class="line">- (UIImage *)imageFromDiskCacheForKey:(NSString *)key &#123;</span><br><span class="line">    // 检查 NSCache 里是否有</span><br><span class="line">    UIImage *image = [self imageFromMemoryCacheForKey:key];</span><br><span class="line">    if (image) &#123;</span><br><span class="line">        return image;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从磁盘里读</span><br><span class="line">    UIImage *diskImage = [self diskImageForKey:key];</span><br><span class="line">    if (diskImage &amp;&amp; self.shouldCacheImagesInMemory) &#123;</span><br><span class="line">        NSUInteger cost = SDCacheCostForImage(diskImage);</span><br><span class="line">        [self.memCache setObject:diskImage forKey:key cost:cost];</span><br><span class="line">    &#125;</span><br><span class="line">    return diskImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看出利用 NSCache 自动释放内存的特点将图片都放到 NSCache 里这样在内存不够用时可以自动清理掉不常用的那些图片，在读取 Cache 里内容时如果没有被清理会直接返回图片数据，清理了的话才会执行 I/O 从磁盘读取图片，通过这种方式能够利用空间减少磁盘操作，空间也能够更加有效的控制释放。</p>
-<h2 id="控制-App-的-Wake-次数"><a href="#控制-App-的-Wake-次数" class="headerlink" title="控制 App 的 Wake 次数"></a>控制 App 的 Wake 次数</h2><p>通知，VoIP，定位，蓝牙等都会使设备从 Standby 状态唤起。唤起这个过程会有比较大的消耗，应该避免频繁发生。通知方面主要要在产品层面多做考虑。定位方面，下面可以看看定位的一些 API 看看它们对性能的不同影响，便于考虑采用合适的接口。</p>
-<p>连续的位置更新</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[locationManager startUpdatingLocation]</span><br></pre></td></tr></table></figure>
-
-<p>这个方法会时设备一直处于活跃状态。</p>
-<p>延时有效定位</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[locationManager allowDeferredLocationUpdatesUntilTraveled: timeout:]</span><br><span class="line">``` </span><br><span class="line">高效节能的定位方式，数据会缓存在位置硬件上。适合于跑步应用应该都采用这种方式。</span><br><span class="line"></span><br><span class="line">重大位置变化</span><br></pre></td></tr></table></figure>
-
-<p>[locationManager startMonitoringSignificantLocationChanges]</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">会更节能，对于那些只有在位置有很大变化的才需要回调的应用可以采用这种，比如天气应用。</span><br><span class="line"></span><br><span class="line">区域监测</span><br></pre></td></tr></table></figure>
-
-<p>[locationManager startMonitoringForRegion:(CLRegion *)]</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">也是一种节能的定位方式，比如在博物馆里按照不同区域监测展示不同信息之类的应用比较适合这种定位。</span><br><span class="line"></span><br><span class="line">经常访问的地方</span><br></pre></td></tr></table></figure>
-
-<p>// Start monitoringlocationManager.startMonitoringVisits()// Stop monitoring when no longer neededlocationManager.stopMonitoringVisits()</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">总的来说，不要轻易使用 startUpdatingLocation() 除非万不得已，尽快的使用 stopUpdatingLocation() 来结束定位还用户一个节能设备。</span><br><span class="line"></span><br><span class="line">## 内存对于性能的影响</span><br><span class="line">首先 Reclaiming 内存是需要时间的，突然的大量内存需求是会影响响应的。</span><br><span class="line"></span><br><span class="line"># 如何预防这些性能问题，需要刻意预防么</span><br><span class="line">坚持下面几个原则争取在编码阶段避免一些性能问题。</span><br><span class="line"></span><br><span class="line">* 优化计算的复杂度从而减少 CPU 的使用</span><br><span class="line">* 在应用响应交互的时候停止没必要的任务处理</span><br><span class="line">* 设置合适的 QoS</span><br><span class="line">* 将定时器任务合并，让 CPU 更多时候处于 idle 状态</span><br><span class="line"></span><br><span class="line">那么如果写需求时来不及注意这些问题做不到预防的话，可以通过自动化代码检查的方式来避免这些问题吗？</span><br><span class="line"></span><br><span class="line"># 如何检查</span><br><span class="line">根据这些问题在代码里查，写工具或用工具自动化查？虽然可以，但是需要考虑的情况太多，现有工具支持不好，自己写需要考虑的点太多需要花费太长的时间，那么什么方式会比较好呢？</span><br><span class="line"></span><br><span class="line"># 通过监听主线程方式来监察</span><br><span class="line">首先用 CFRunLoopObserverCreate 创建一个观察者里面接受 CFRunLoopActivity 的回调，然后用 CFRunLoopAddObserver 将观察者添加到 CFRunLoopGetMain() 主线程 Runloop 的 kCFRunLoopCommonModes 模式下进行观察。</span><br><span class="line"></span><br><span class="line">接下来创建一个子线程来进行监控，使用 dispatch_semaphore_wait 定义区间时间，标准是 16 或 20 微秒一次监控的话基本可以把影响响应的都找出来。监控结果的标准是根据两个 Runloop 的状态 BeforeSources 和 AfterWaiting 在区间时间是否能检测到来判断是否卡顿。</span><br><span class="line"></span><br><span class="line"># 如何打印堆栈信息，保存现场</span><br><span class="line">打印堆栈整体思路是获取线程的信息得到线程的 state 从而得到线程里所有栈的指针，根据这些指针在 符号表里找到对应的描述即符号化解析，这样就能够展示出可读的堆栈信息。具体实现是怎样的呢？下面详细说说：</span><br><span class="line"></span><br><span class="line">## 获取线程的信息</span><br><span class="line">这里首先是要通过 task_threads 取到所有的线程，</span><br></pre></td></tr></table></figure>
-
-<p>thread_act_array_t threads; //int 组成的数组比如 thread[1] = 5635<br>mach_msg_type_number_t thread_count = 0; //mach_msg_type_number_t 是 int 类型<br>const task_t this_task = mach_task_self(); //int<br>//根据当前 task 获取所有线程<br>kern_return_t kr = task_threads(this_task, &amp;threads, &amp;thread_count);</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">遍历时通过 thread_info 获取各个线程的详细信息</span><br></pre></td></tr></table></figure>
-
-<p>SMThreadInfoStruct threadInfoSt = {0};<br>thread_info_data_t threadInfo;<br>thread_basic_info_t threadBasicInfo;<br>mach_msg_type_number_t threadInfoCount = THREAD_INFO_MAX;</p>
-<p>if (thread_info((thread_act_t)thread, THREAD_BASIC_INFO, (thread_info_t)threadInfo, &amp;threadInfoCount) == KERN_SUCCESS) {<br>    threadBasicInfo = (thread_basic_info_t)threadInfo;<br>    if (!(threadBasicInfo-&gt;flags &amp; TH_FLAGS_IDLE)) {<br>        threadInfoSt.cpuUsage = threadBasicInfo-&gt;cpu_usage / 10;<br>        threadInfoSt.userTime = threadBasicInfo-&gt;system_time.microseconds;<br>    }<br>}</p>
-<p>uintptr_t buffer[100];<br>int i = 0;<br>NSMutableString *reStr = [NSMutableString stringWithFormat:@”Stack of thread: %u:\n CPU used: %.1f percent\n user time: %d second\n”, thread, threadInfoSt.cpuUsage, threadInfoSt.userTime];</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 获取线程里所有栈的信息</span><br><span class="line">可以通过 thread_get_state 得到 machine context 里面包含了线程栈里所有的栈指针。</span><br></pre></td></tr></table></figure>
-
-<p>_STRUCT_MCONTEXT machineContext; //线程栈里所有的栈指针<br>//通过 thread_get_state 获取完整的 machineContext 信息，包含 thread 状态信息<br>mach_msg_type_number_t state_count = smThreadStateCountByCPU();<br>kern_return_t kr = thread_get_state(thread, smThreadStateByCPU(), (thread_state_t)&amp;machineContext.__ss, &amp;state_count);</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">创建一个栈结构体用来保存栈的数据</span><br></pre></td></tr></table></figure>
-
-<p>//为通用回溯设计结构支持栈地址由小到大，地址里存储上个栈指针的地址<br>typedef struct SMStackFrame {<br>    const struct SMStackFrame *const previous;<br>    const uintptr_t return_address;<br>} SMStackFrame;</p>
-<p>SMStackFrame stackFrame = {0};<br>//通过栈基址指针获取当前栈帧地址<br>const uintptr_t framePointer = smMachStackBasePointerByCPU(&amp;machineContext);<br>if (framePointer == 0 || smMemCopySafely((void *)framePointer, &amp;stackFrame, sizeof(stackFrame)) != KERN_SUCCESS) {<br>    return @”Fail frame pointer”;<br>}<br>for (; i &lt; 32; i++) {<br>    buffer[i] = stackFrame.return_address;<br>    if (buffer[i] == 0 || stackFrame.previous == 0 || smMemCopySafely(stackFrame.previous, &amp;stackFrame, sizeof(stackFrame)) != KERN_SUCCESS) {<br>        break;<br>    }<br>}</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 符号化</span><br><span class="line">符号化主要思想就是通过栈指针地址减去 Slide 地址得到 ASLR 偏移量，通过这个偏移量可以在 __LINKEDIT segment 查找到字符串和符号表的位置。具体代码实现如下：</span><br></pre></td></tr></table></figure>
-
-<p>info-&gt;dli_fname = NULL;<br>info-&gt;dli_fbase = NULL;<br>info-&gt;dli_sname = NULL;<br>info-&gt;dli_saddr = NULL;<br>//根据地址获取是哪个 image<br>const uint32_t idx = smDyldImageIndexFromAddress(address);<br>if (idx == UINT_MAX) {<br>    return false;<br>}<br>/*</p>
-<h2 id="Header"><a href="#Header" class="headerlink" title=" Header"></a> Header</h2><p> Load commands<br> Segment command 1 ————-|<br> Segment command 2              |<br> ——————             |<br> Data                           |<br> Section 1 data |segment 1 &lt;—-|<br> Section 2 data |          &lt;—-|<br> Section 3 data |          &lt;—-|<br> Section 4 data |segment 2<br> Section 5 data |<br> …            |<br> Section n data |<br> <em>/<br>/</em>———-Mach Header———<em>/<br>//根据 image 的序号获取 mach_header<br>const struct mach_header</em> machHeader = _dyld_get_image_header(idx);<br>//返回 image_index 索引的 image 的虚拟内存地址 slide 的数量，如果 image_index 超出范围返回0<br>//动态链接器加载 image 时，image 必须映射到未占用地址的进程的虚拟地址空间。动态链接器通过添加一个值到 image 的基地址来实现，这个值是虚拟内存 slide 数量<br>const uintptr_t imageVMAddressSlide = (uintptr_t)_dyld_get_image_vmaddr_slide(idx);<br>/<em>———–ASLR 的偏移量———</em>/<br>//<a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Address_space_layout_randomization</a><br>const uintptr_t addressWithSlide = address - imageVMAddressSlide;<br>//根据 Image 的 Index 来获取 segment 的基地址<br>//段定义Mach-O文件中的字节范围以及动态链接器加载应用程序时这些字节映射到虚拟内存中的地址和内存保护属性。 因此，段总是虚拟内存页对齐。 片段包含零个或多个节。<br>const uintptr_t segmentBase = smSegmentBaseOfImageIndex(idx) + imageVMAddressSlide;<br>if (segmentBase == 0) {<br>    return false;<br>}<br>//<br>info-&gt;dli_fname = _dyld_get_image_name(idx);<br>info-&gt;dli_fbase = (void*)machHeader;</p>
-<p>/<em>————–Mach Segment————-</em>/<br>//地址最匹配的symbol<br>const nlistByCPU* bestMatch = NULL;<br>uintptr_t bestDistance = ULONG_MAX;<br>uintptr_t cmdPointer = smCmdFirstPointerFromMachHeader(machHeader);<br>if (cmdPointer == 0) {<br>    return false;<br>}<br>//遍历每个 segment 判断目标地址是否落在该 segment 包含的范围里<br>for (uint32_t iCmd = 0; iCmd &lt; machHeader-&gt;ncmds; iCmd++) {<br>    const struct load_command* loadCmd = (struct load_command<em>)cmdPointer;<br>    /</em>———-目标 Image 的符号表———-<em>/<br>    //Segment 除了 __TEXT 和 __DATA 外还有 __LINKEDIT segment，它里面包含动态链接器的使用的原始数据，比如符号，字符串和重定位表项。<br>    //LC_SYMTAB 描述了 __LINKEDIT segment 内查找字符串和符号表的位置<br>    if (loadCmd-&gt;cmd == LC_SYMTAB) {<br>        //获取字符串和符号表的虚拟内存偏移量。<br>        const struct symtab_command</em> symtabCmd = (struct symtab_command<em>)cmdPointer;<br>        const nlistByCPU</em> symbolTable = (nlistByCPU*)(segmentBase + symtabCmd-&gt;symoff);<br>        const uintptr_t stringTable = segmentBase + symtabCmd-&gt;stroff;</p>
-<pre><code>    for (uint32_t iSym = 0; iSym &lt; symtabCmd-&gt;nsyms; iSym++) {
-        //如果 n_value 是0，symbol 指向外部对象
-        if (symbolTable[iSym].n_value != 0) {
-            //给定的偏移量是文件偏移量，减去 __LINKEDIT segment 的文件偏移量获得字符串和符号表的虚拟内存偏移量
-            uintptr_t symbolBase = symbolTable[iSym].n_value;
-            uintptr_t currentDistance = addressWithSlide - symbolBase;
-            //寻找最小的距离 bestDistance，因为 addressWithSlide 是某个方法的指令地址，要大于这个方法的入口。
-            //离 addressWithSlide 越近的函数入口越匹配
-            if ((addressWithSlide &gt;= symbolBase) &amp;&amp; (currentDistance &lt;= bestDistance)) {
-                bestMatch = symbolTable + iSym;
-                bestDistance = currentDistance;
-            }
-        }
-    }
-    if (bestMatch != NULL) {
-        //将虚拟内存偏移量添加到 __LINKEDIT segment 的虚拟内存地址可以提供字符串和符号表的内存 address。
-        info-&gt;dli_saddr = (void*)(bestMatch-&gt;n_value + imageVMAddressSlide);
-        info-&gt;dli_sname = (char*)((intptr_t)stringTable + (intptr_t)bestMatch-&gt;n_un.n_strx);
-        if (*info-&gt;dli_sname == &apos;_&apos;) {
-            info-&gt;dli_sname++;
-        }
-        //所有的 symbols 的已经被处理好了
-        if (info-&gt;dli_saddr == info-&gt;dli_fbase &amp;&amp; bestMatch-&gt;n_type == 3) {
-            info-&gt;dli_sname = NULL;
-        }
-        break;
-    }
-}
-cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">## 需要注意的地方</span><br><span class="line">需要注意的是这个程序有消耗性能的地方 thread get state。这个也会被监控检查出，所以可以过滤掉这样的堆栈信息。</span><br><span class="line"></span><br><span class="line"># 够获取更多信息的方法</span><br><span class="line">获取更多信息比如全层级方法调用和每个方法消耗的时间，那么这样做的好处在哪呢？</span><br><span class="line"></span><br><span class="line">可以更细化的测量时间消耗，找到耗时方法，更快的交互操作能使用户体验更好，下面是一些可以去衡量的场景：</span><br><span class="line"></span><br><span class="line">* 响应能力</span><br><span class="line">* 按钮点击</span><br><span class="line">* 手势操作</span><br><span class="line">* Tab 切换</span><br><span class="line">* vc 的切换和转场</span><br><span class="line"></span><br><span class="line">可以给优化定个目标，比如滚动和动画达到 60fps，响应用户操作在 100ms 内完成。然后逐个检测出来 fix 掉。</span><br><span class="line"></span><br><span class="line">如何获取到更多信息呢？</span><br><span class="line"></span><br><span class="line">通过 hook objc_msgSend 方法能够获取所有被调用的方法，记录深度就能够得到方法调用的树状结构，通过执行前后时间的记录能够得到每个方法的耗时，这样就能获取一份完整的性能消耗信息了。</span><br><span class="line"></span><br><span class="line">hook c 函数可以使用 facebook 的 [fishhook](https://github.com/facebook/fishhook)， 获取方法调用树状结构可以使用 [InspectiveC](https://github.com/DavidGoldman/InspectiveC)，下面对于他们的实现详细介绍一下：</span><br><span class="line"></span><br><span class="line">## 获取方法调用树结构</span><br><span class="line">首先设计两个结构体，CallRecord 记录调用方法详细信息，包括 obj 和 SEL 等，ThreadCallStack 里面需要用 index 记录当前调用方法树的深度。有了 SEL 再通过 NSStringFromSelector 就能够取得方法名，有了 obj 通过 object_getClass 能够得到 Class 再用 NSStringFromClass 就能够获得类名。</span><br></pre></td></tr></table></figure>
-
-<p>// Shared structures.<br>typedef struct CallRecord_ {<br>  id obj;   //通过 object_getClass 能够得到 Class 再通过 NSStringFromClass 能够得到类名<br>  SEL _cmd; //通过 NSStringFromSelector 方法能够得到方法名<br>  uintptr_t lr;<br>  int prevHitIndex;<br>  char isWatchHit;<br>} CallRecord;</p>
-<p>typedef struct ThreadCallStack_ {<br>  FILE *file;<br>  char *spacesStr;<br>  CallRecord *stack;<br>  int allocatedLength;<br>  int index;<br>  int numWatchHits;<br>  int lastPrintedIndex;<br>  int lastHitIndex;<br>  char isLoggingEnabled;<br>  char isCompleteLoggingEnabled;<br>} ThreadCallStack;</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 存储读取 ThreadCallStack</span><br><span class="line">pthread_setspecific() 可以将私有数据设置在指定线程上，pthread_getspecific() 用来读取这个私有数据，利用这个特性可以就可以将 ThreadCallStack 的数据和该线程绑定在一起，随时进行数据的存取。代码如下：</span><br></pre></td></tr></table></figure>
-
-<p>static inline ThreadCallStack * getThreadCallStack() {<br>  ThreadCallStack *cs = (ThreadCallStack *)pthread_getspecific(threadKey); //读取<br>  if (cs == NULL) {<br>    cs = (ThreadCallStack *)malloc(sizeof(ThreadCallStack));</p>
-<p>#ifdef MAIN_THREAD_ONLY<br>    cs-&gt;file = (pthread_main_np()) ? newFileForThread() : NULL;</p>
-<p>#else<br>    cs-&gt;file = newFileForThread();</p>
-<p>#endif<br>    cs-&gt;isLoggingEnabled = (cs-&gt;file != NULL);<br>    cs-&gt;isCompleteLoggingEnabled = 0;<br>    cs-&gt;spacesStr = (char *)malloc(DEFAULT_CALLSTACK_DEPTH + 1);<br>    memset(cs-&gt;spacesStr, ‘ ‘, DEFAULT_CALLSTACK_DEPTH);<br>    cs-&gt;spacesStr[DEFAULT_CALLSTACK_DEPTH] = ‘\0’;<br>    cs-&gt;stack = (CallRecord *)calloc(DEFAULT_CALLSTACK_DEPTH, sizeof(CallRecord)); //分配 CallRecord 默认空间<br>    cs-&gt;allocatedLength = DEFAULT_CALLSTACK_DEPTH;<br>    cs-&gt;index = cs-&gt;lastPrintedIndex = cs-&gt;lastHitIndex = -1;<br>    cs-&gt;numWatchHits = 0;<br>    pthread_setspecific(threadKey, cs); //保存数据<br>  }<br>  return cs;<br>}</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 记录方法调用深度</span><br><span class="line">因为要记录深度，而一个方法的调用里会有更多的方法调用，所以方法的调用写两个方法分别记录开始 pushCallRecord 和记录结束的时刻 popCallRecord，这样才能够通过在开始时对深度加一在结束时减一。</span><br></pre></td></tr></table></figure>
-
-<p>//开始时<br>static inline void pushCallRecord(id obj, uintptr_t lr, SEL _cmd, ThreadCallStack *cs) {<br>  int nextIndex = (++cs-&gt;index); //增加深度<br>  if (nextIndex &gt;= cs-&gt;allocatedLength) {<br>    cs-&gt;allocatedLength += CALLSTACK_DEPTH_INCREMENT;<br>    cs-&gt;stack = (CallRecord *)realloc(cs-&gt;stack, cs-&gt;allocatedLength * sizeof(CallRecord));<br>    cs-&gt;spacesStr = (char *)realloc(cs-&gt;spacesStr, cs-&gt;allocatedLength + 1);<br>    memset(cs-&gt;spacesStr, ‘ ‘, cs-&gt;allocatedLength);<br>    cs-&gt;spacesStr[cs-&gt;allocatedLength] = ‘\0’;<br>  }<br>  CallRecord *newRecord = &amp;cs-&gt;stack[nextIndex];<br>  newRecord-&gt;obj = obj;<br>  newRecord-&gt;_cmd = _cmd;<br>  newRecord-&gt;lr = lr;<br>  newRecord-&gt;isWatchHit = 0;<br>}<br>//结束时<br>static inline CallRecord * popCallRecord(ThreadCallStack *cs) {<br>  return &amp;cs-&gt;stack[cs-&gt;index–]; //减少深度<br>}</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 在 objc_msgSend 前后插入执行方法</span><br><span class="line">最后是 hook objc_msgSend 需要在调用前和调用后分别加入 pushCallRecord 和 popCallRecord。因为需要在调用后这个时机插入一个方法，而且不可能编写一个保留未知参数并跳转到 c 中任意函数指针的函数，那么这就需要用到汇编来做到。</span><br><span class="line"></span><br><span class="line">下面针对 arm64 进行分析，arm64 有31个64 bit 的整数型寄存器，用 x0 到 x30 表示，主要思路就是先入栈参数，参数寄存器是 x0 - x7，对于objc_msgSend方法来说 x0 第一个参数是传入对象，x1 第二个参数是选择器 _cmd。 syscall 的 number 会放到 x8 里。然后交换寄存器中，将用于返回的寄存器 lr 移到 x1 里。先让 pushCallRecord 能够执行，再执行原始的 objc_msgSend，保存返回值，最后让 popCallRecord 能执行。具体代码如下：</span><br></pre></td></tr></table></figure>
-
-<p>static void replacementObjc_msgSend() {<br>  <strong>asm</strong> volatile (<br>    // sp 是堆栈寄存器，存放栈的偏移地址，每次都指向栈顶。<br>    // 保存 {q0-q7} 偏移地址到 sp 寄存器<br>      “stp q6, q7, [sp, #-32]!\n”<br>      “stp q4, q5, [sp, #-32]!\n”<br>      “stp q2, q3, [sp, #-32]!\n”<br>      “stp q0, q1, [sp, #-32]!\n”<br>    // 保存 {x0-x8, lr}<br>      “stp x8, lr, [sp, #-16]!\n”<br>      “stp x6, x7, [sp, #-16]!\n”<br>      “stp x4, x5, [sp, #-16]!\n”<br>      “stp x2, x3, [sp, #-16]!\n”<br>      “stp x0, x1, [sp, #-16]!\n”<br>    // 交换参数.<br>      “mov x2, x1\n”<br>      “mov x1, lr\n”<br>      “mov x3, sp\n”<br>    // 调用 preObjc_msgSend，使用 bl label 语法。bl 执行一个分支链接操作，label 是无条件分支的，是和本指令的地址偏移，范围是 -128MB 到 +128MB<br>      “bl __Z15preObjc_msgSendP11objc_objectmP13objc_selectorP9RegState_\n”<br>      “mov x9, x0\n”<br>      “mov x10, x1\n”<br>      “tst x10, x10\n”<br>    // 读取 {x0-x8, lr} 从保存到 sp 栈顶的偏移地址读起<br>      “ldp x0, x1, [sp], #16\n”<br>      “ldp x2, x3, [sp], #16\n”<br>      “ldp x4, x5, [sp], #16\n”<br>      “ldp x6, x7, [sp], #16\n”<br>      “ldp x8, lr, [sp], #16\n”<br>    // 读取 {q0-q7}<br>      “ldp q0, q1, [sp], #32\n”<br>      “ldp q2, q3, [sp], #32\n”<br>      “ldp q4, q5, [sp], #32\n”<br>      “ldp q6, q7, [sp], #32\n”<br>      “b.eq Lpassthrough\n”<br>    // 调用原始 objc_msgSend。使用 blr xn 语法。blr 除了从指定寄存器读取新的 PC 值外效果和 bl 一样。xn 是通用寄存器的64位名称分支地址，范围0到31<br>      “blr x9\n”<br>    // 保存 {x0-x9}<br>      “stp x0, x1, [sp, #-16]!\n”<br>      “stp x2, x3, [sp, #-16]!\n”<br>      “stp x4, x5, [sp, #-16]!\n”<br>      “stp x6, x7, [sp, #-16]!\n”<br>      “stp x8, x9, [sp, #-16]!\n”<br>    // 保存 {q0-q7}<br>      “stp q0, q1, [sp, #-32]!\n”<br>      “stp q2, q3, [sp, #-32]!\n”<br>      “stp q4, q5, [sp, #-32]!\n”<br>      “stp q6, q7, [sp, #-32]!\n”<br>    // 调用 postObjc_msgSend hook.<br>      “bl __Z16postObjc_msgSendv\n”<br>      “mov lr, x0\n”<br>    // 读取 {q0-q7}<br>      “ldp q6, q7, [sp], #32\n”<br>      “ldp q4, q5, [sp], #32\n”<br>      “ldp q2, q3, [sp], #32\n”<br>      “ldp q0, q1, [sp], #32\n”<br>    // 读取 {x0-x9}<br>      “ldp x8, x9, [sp], #16\n”<br>      “ldp x6, x7, [sp], #16\n”<br>      “ldp x4, x5, [sp], #16\n”<br>      “ldp x2, x3, [sp], #16\n”<br>      “ldp x0, x1, [sp], #16\n”<br>      “ret\n”<br>      “Lpassthrough:\n”<br>    // br 无条件分支到寄存器中的地址<br>      “br x9”<br>    );<br>}</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 记录时间的方法</span><br><span class="line">为了记录耗时，这样就需要在 pushCallRecord 和 popCallRecord 里记录下时间。下面列出一些计算一段代码开始到结束的时间的方法</span><br><span class="line"></span><br><span class="line">第一种： NSDate 微秒</span><br></pre></td></tr></table></figure>
-
-<p>NSDate* tmpStartData = [NSDate date];<br>//some code need caculate<br>double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];<br>NSLog(@”cost time: %f s”, deltaTime);</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第二种：clock_t 微秒clock_t计时所表示的是占用CPU的时钟单元</span><br></pre></td></tr></table></figure>
-
-<p>clock_t start = clock();<br>//some code need caculate<br>clock_t end = clock();<br>NSLog(@”cost time: %f s”, (double)(end - start)/CLOCKS_PER_SEC);</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第三种：CFAbsoluteTime 微秒</span><br></pre></td></tr></table></figure>
-
-<p>CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();<br>//some code need caculate<br>CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();<br>NSLog(@”cost time = %f s”, end - start); //s</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第四种：CFTimeInterval 纳秒</span><br></pre></td></tr></table></figure>
-
-<p>CFTimeInterval start = CACurrentMediaTime();<br>//some code need caculate<br>CFTimeInterval end = CACurrentMediaTime();<br>NSLog(@”cost time: %f s”, end - start);</p>
-<figure class="highlight plain hljs"><figcaption><span>纳秒</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```objc</span><br><span class="line">uint64_t start = mach_absolute_time ();</span><br><span class="line">//some code need caculate</span><br><span class="line">uint64_t end = mach_absolute_time ();</span><br><span class="line">uint64_t elapsed = 1e-9 *(end - start);</span><br></pre></td></tr></table></figure>
-
-<p>最后两种可用，本质区别<br>NSDate 或 CFAbsoluteTimeGetCurrent() 返回的时钟时间将会会网络时间同步，从时钟 偏移量的角度。mach_absolute_time() 和 CACurrentMediaTime() 是基于内建时钟的。选择一种，加到 pushCallRecord 和 popCallRecord 里，相减就能够获得耗时。</p>
-<h1 id="如何-hook-msgsend-方法"><a href="#如何-hook-msgsend-方法" class="headerlink" title="如何 hook msgsend 方法"></a>如何 hook msgsend 方法</h1><p>那么 objc_msgSend 这个 c 方法是如何 hook 到的呢。首先了解下 dyld 是通过更新 Mach-O 二进制的 __DATA segment 特定的部分中的指针来邦定 lazy 和 non-lazy 符号，通过确认传递给 rebind_symbol 里每个符号名称更新的位置就可以找出对应替换来重新绑定这些符号。下面针对关键代码进行分析：</p>
-<h2 id="遍历-dyld"><a href="#遍历-dyld" class="headerlink" title="遍历 dyld"></a>遍历 dyld</h2><p>首先是遍历 dyld 里的所有的 image，取出 image header 和 slide。注意第一次调用时主要注册 callback。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (!_rebindings_head-&gt;next) &#123;</span><br><span class="line">    _dyld_register_func_for_add_image(_rebind_symbols_for_image);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    uint32_t c = _dyld_image_count();</span><br><span class="line">    for (uint32_t i = 0; i &lt; c; i++) &#123;</span><br><span class="line">        _rebind_symbols_for_image(_dyld_get_image_header(i), _dyld_get_image_vmaddr_slide(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="找出符号表相关-Command"><a href="#找出符号表相关-Command" class="headerlink" title="找出符号表相关 Command"></a>找出符号表相关 Command</h2><p>接下来需要找到符号表相关的 command，包括 linkedit segment command，symtab command 和 dysymtab command。方法如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">segment_command_t *cur_seg_cmd;</span><br><span class="line">segment_command_t *linkedit_segment = NULL;</span><br><span class="line">struct symtab_command* symtab_cmd = NULL;</span><br><span class="line">struct dysymtab_command* dysymtab_cmd = NULL;</span><br><span class="line"></span><br><span class="line">uintptr_t cur = (uintptr_t)header + sizeof(mach_header_t);</span><br><span class="line">for (uint i = 0; i &lt; header-&gt;ncmds; i++, cur += cur_seg_cmd-&gt;cmdsize) &#123;</span><br><span class="line">    cur_seg_cmd = (segment_command_t *)cur;</span><br><span class="line">    if (cur_seg_cmd-&gt;cmd == LC_SEGMENT_ARCH_DEPENDENT) &#123;</span><br><span class="line">        if (strcmp(cur_seg_cmd-&gt;segname, SEG_LINKEDIT) == 0) &#123;</span><br><span class="line">            linkedit_segment = cur_seg_cmd;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if (cur_seg_cmd-&gt;cmd == LC_SYMTAB) &#123;</span><br><span class="line">        symtab_cmd = (struct symtab_command*)cur_seg_cmd;</span><br><span class="line">    &#125; else if (cur_seg_cmd-&gt;cmd == LC_DYSYMTAB) &#123;</span><br><span class="line">        dysymtab_cmd = (struct dysymtab_command*)cur_seg_cmd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="获得-base-和-indirect-符号表"><a href="#获得-base-和-indirect-符号表" class="headerlink" title="获得 base 和 indirect 符号表"></a>获得 base 和 indirect 符号表</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Find base symbol/string table addresses</span><br><span class="line">uintptr_t linkedit_base = (uintptr_t)slide + linkedit_segment-&gt;vmaddr - linkedit_segment-&gt;fileoff;</span><br><span class="line">nlist_t *symtab = (nlist_t *)(linkedit_base + symtab_cmd-&gt;symoff);</span><br><span class="line">char *strtab = (char *)(linkedit_base + symtab_cmd-&gt;stroff);</span><br><span class="line"></span><br><span class="line">// Get indirect symbol table (array of uint32_t indices into symbol table)</span><br><span class="line">uint32_t *indirect_symtab = (uint32_t *)(linkedit_base + dysymtab_cmd-&gt;indirectsymoff);</span><br></pre></td></tr></table></figure>
-
-<h2 id="进行方法替换"><a href="#进行方法替换" class="headerlink" title="进行方法替换"></a>进行方法替换</h2><p>有了符号表和传入的方法替换数组就可以进行符号表访问指针地址的替换，具体实现如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">uint32_t *indirect_symbol_indices = indirect_symtab + section-&gt;reserved1;</span><br><span class="line">void **indirect_symbol_bindings = (void **)((uintptr_t)slide + section-&gt;addr);</span><br><span class="line">for (uint i = 0; i &lt; section-&gt;size / sizeof(void *); i++) &#123;</span><br><span class="line">    uint32_t symtab_index = indirect_symbol_indices[i];</span><br><span class="line">    if (symtab_index == INDIRECT_SYMBOL_ABS || symtab_index == INDIRECT_SYMBOL_LOCAL ||</span><br><span class="line">        symtab_index == (INDIRECT_SYMBOL_LOCAL   | INDIRECT_SYMBOL_ABS)) &#123;</span><br><span class="line">        continue;</span><br><span class="line">    &#125;</span><br><span class="line">    uint32_t strtab_offset = symtab[symtab_index].n_un.n_strx;</span><br><span class="line">    char *symbol_name = strtab + strtab_offset;</span><br><span class="line">    if (strnlen(symbol_name, 2) &lt; 2) &#123;</span><br><span class="line">        continue;</span><br><span class="line">    &#125;</span><br><span class="line">    struct rebindings_entry *cur = rebindings;</span><br><span class="line">    while (cur) &#123;</span><br><span class="line">        for (uint j = 0; j &lt; cur-&gt;rebindings_nel; j++) &#123;</span><br><span class="line">            if (strcmp(&amp;symbol_name[1], cur-&gt;rebindings[j].name) == 0) &#123;</span><br><span class="line">                if (cur-&gt;rebindings[j].replaced != NULL &amp;&amp;</span><br><span class="line">                    indirect_symbol_bindings[i] != cur-&gt;rebindings[j].replacement) &#123;</span><br><span class="line">                    *(cur-&gt;rebindings[j].replaced) = indirect_symbol_bindings[i];</span><br><span class="line">                &#125;</span><br><span class="line">                indirect_symbol_bindings[i] = cur-&gt;rebindings[j].replacement;</span><br><span class="line">                goto symbol_loop;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">symbol_loop:;</span><br></pre></td></tr></table></figure>
-
-<h1 id="统计方法调用频次"><a href="#统计方法调用频次" class="headerlink" title="统计方法调用频次"></a>统计方法调用频次</h1><p>在一些应用场景会有一些频繁的方法调用，有些方法的调用实际上是没有必要的，但是首先是需要将那些频繁调用的方法找出来这样才能够更好的定位到潜在的会造成性能浪费的方法使用。这些频繁调用的方法要怎么找呢？</p>
-<p>大致的思路是这样，基于上面章节提到的记录方法调用深度的方案，将每个调用方法的路径保存住，调用相同路径的相同方法调用一次加一记录在数据库中，最后做一个视图按照调用次数的排序即可找到调用频繁的那些方法。下图是完成后展示的效果：</p>
-<p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization07.PNG?raw=true" alt></p>
-<p>接下来看看具体实现方式</p>
-<h2 id="设计方法调用频次记录的结构"><a href="#设计方法调用频次记录的结构" class="headerlink" title="设计方法调用频次记录的结构"></a>设计方法调用频次记录的结构</h2><p>在先前时间消耗的 model 基础上增加路径，频次等信息</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong) NSString *className;       //类名</span><br><span class="line">@property (nonatomic, strong) NSString *methodName;      //方法名</span><br><span class="line">@property (nonatomic, assign) BOOL isClassMethod;        //是否是类方法</span><br><span class="line">@property (nonatomic, assign) NSTimeInterval timeCost;   //时间消耗</span><br><span class="line">@property (nonatomic, assign) NSUInteger callDepth;      //Call 层级</span><br><span class="line">@property (nonatomic, copy) NSString *path;              //路径</span><br><span class="line">@property (nonatomic, assign) BOOL lastCall;             //是否是最后一个 Call</span><br><span class="line">@property (nonatomic, assign) NSUInteger frequency;      //访问频次</span><br><span class="line">@property (nonatomic, strong) NSArray &lt;SMCallTraceTimeCostModel *&gt; *subCosts;</span><br></pre></td></tr></table></figure>
-
-<h2 id="拼装方法路径"><a href="#拼装方法路径" class="headerlink" title="拼装方法路径"></a>拼装方法路径</h2><p>在遍历 SMCallTrace 记录的方法 model 和 遍历方法子方法时将路径拼装好，记录到数据库中</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for (SMCallTraceTimeCostModel *model in arr) &#123;</span><br><span class="line">    //记录方法路径</span><br><span class="line">    model.path = [NSString stringWithFormat:@&quot;[%@ %@]&quot;,model.className,model.methodName];</span><br><span class="line">    [self appendRecord:model to:mStr];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (void)appendRecord:(SMCallTraceTimeCostModel *)cost to:(NSMutableString *)mStr &#123;</span><br><span class="line">    [mStr appendFormat:@&quot;%@\n path%@\n&quot;,[cost des],cost.path];</span><br><span class="line">    if (cost.subCosts.count &lt; 1) &#123;</span><br><span class="line">        cost.lastCall = YES;</span><br><span class="line">    &#125;</span><br><span class="line">    //记录到数据库中</span><br><span class="line">    [[[SMLagDB shareInstance] increaseWithClsCallModel:cost] subscribeNext:^(id x) &#123;&#125;];</span><br><span class="line">    for (SMCallTraceTimeCostModel *model in cost.subCosts) &#123;</span><br><span class="line">        //记录方法的子方法的路径</span><br><span class="line">        model.path = [NSString stringWithFormat:@&quot;%@ - [%@ %@]&quot;,cost.path,model.className,model.methodName];</span><br><span class="line">        [self appendRecord:model to:mStr];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="记录方法调用频次数据库"><a href="#记录方法调用频次数据库" class="headerlink" title="记录方法调用频次数据库"></a>记录方法调用频次数据库</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>这里的 lastcall 是记录是否是最后一个方法的调用，展示时只取最后一个方法即可，因为也会有完整路径可以知道父方法和来源方法。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">_clsCallDBPath = [PATH_OF_DOCUMENT stringByAppendingPathComponent:@&quot;clsCall.sqlite&quot;];</span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:_clsCallDBPath] == NO) &#123;</span><br><span class="line">    FMDatabase *db = [FMDatabase databaseWithPath:_clsCallDBPath];</span><br><span class="line">    if ([db open]) &#123;</span><br><span class="line">        /*</span><br><span class="line">         cid: 主id</span><br><span class="line">         fid: 父id 暂时不用</span><br><span class="line">         cls: 类名</span><br><span class="line">         mtd: 方法名</span><br><span class="line">         path: 完整路径标识</span><br><span class="line">         timecost: 方法消耗时长</span><br><span class="line">         calldepth: 层级</span><br><span class="line">         frequency: 调用次数</span><br><span class="line">         lastcall: 是否是最后一个 call</span><br><span class="line">         */</span><br><span class="line">        NSString *createSql = @&quot;create table clscall (cid INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, fid integer, cls text, mtd text, path text, timecost integer, calldepth integer, frequency integer, lastcall integer)&quot;;</span><br><span class="line">        [db executeUpdate:createSql];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加记录"><a href="#添加记录" class="headerlink" title="添加记录"></a>添加记录</h3><p>添加记录时需要先检查数据库里是否有相同路径的同一个方法调用，这样可以给 frequency 字段加一已达到记录频次的目的。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FMResultSet *rsl = [db executeQuery:@&quot;select cid,frequency from clscall where path = ?&quot;, model.path];</span><br><span class="line">if ([rsl next]) &#123;</span><br><span class="line">    //有相同路径就更新路径访问频率</span><br><span class="line">    int fq = [rsl intForColumn:@&quot;frequency&quot;] + 1;</span><br><span class="line">    int cid = [rsl intForColumn:@&quot;cid&quot;];</span><br><span class="line">    [db executeUpdate:@&quot;update clscall set frequency = ? where cid = ?&quot;, @(fq), @(cid)];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    //没有就添加一条记录</span><br><span class="line">    NSNumber *lastCall = @0;</span><br><span class="line">    if (model.lastCall) &#123;</span><br><span class="line">        lastCall = @1;</span><br><span class="line">    &#125;</span><br><span class="line">    [db executeUpdate:@&quot;insert into clscall (cls, mtd, path, timecost, calldepth, frequency, lastcall) values (?, ?, ?, ?, ?, ?, ?)&quot;, model.className, model.methodName, model.path, @(model.timeCost), @(model.callDepth), @1, lastCall];</span><br><span class="line">&#125;</span><br><span class="line">[db close];</span><br><span class="line">[subscriber sendCompleted];</span><br></pre></td></tr></table></figure>
-
-<h3 id="检索记录"><a href="#检索记录" class="headerlink" title="检索记录"></a>检索记录</h3><p>检索时注意按照调用频次字段进行排序即可。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FMResultSet *rs = [db executeQuery:@&quot;select * from clscall where lastcall=? order by frequency desc limit ?, 50&quot;,@1, @(page * 50)];</span><br><span class="line">NSUInteger count = 0;</span><br><span class="line">NSMutableArray *arr = [NSMutableArray array];</span><br><span class="line">while ([rs next]) &#123;</span><br><span class="line">    SMCallTraceTimeCostModel *model = [self clsCallModelFromResultSet:rs];</span><br><span class="line">    [arr addObject:model];</span><br><span class="line">    count ++;</span><br><span class="line">&#125;</span><br><span class="line">if (count &gt; 0) &#123;</span><br><span class="line">    [subscriber sendNext:arr];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    [subscriber sendError:nil];</span><br><span class="line">&#125;</span><br><span class="line">[subscriber sendCompleted];</span><br><span class="line">[db close];</span><br></pre></td></tr></table></figure>
-
-<h1 id="找出-CPU-使用大的线程堆栈"><a href="#找出-CPU-使用大的线程堆栈" class="headerlink" title="找出 CPU 使用大的线程堆栈"></a>找出 CPU 使用大的线程堆栈</h1><p>在前面检测卡顿打印的堆栈里提到使用 thread_info 能够获取到各个线程的 cpu 消耗，但是 cpu 不在主线程即使消耗很大也不一定会造成卡顿导致卡顿检测无法检测出更多 cpu 消耗的情况，所以只能通过轮询监控各线程里的 cpu 使用情况，对于超过标准值比如70%的进行记录来跟踪定位出耗电的那些方法。下图是列出 cpu 过载时的堆栈记录的展示效果：</p>
-<p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization08.PNG?raw=true" alt></p>
-<p>有了前面的基础，实现起来轻松多了</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//轮询检查多个线程 cpu 情况</span><br><span class="line">+ (void)updateCPU &#123;</span><br><span class="line">    thread_act_array_t threads;</span><br><span class="line">    mach_msg_type_number_t threadCount = 0;</span><br><span class="line">    const task_t thisTask = mach_task_self();</span><br><span class="line">    kern_return_t kr = task_threads(thisTask, &amp;threads, &amp;threadCount);</span><br><span class="line">    if (kr != KERN_SUCCESS) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; threadCount; i++) &#123;</span><br><span class="line">        thread_info_data_t threadInfo;</span><br><span class="line">        thread_basic_info_t threadBaseInfo;</span><br><span class="line">        mach_msg_type_number_t threadInfoCount = THREAD_INFO_MAX;</span><br><span class="line">        if (thread_info((thread_act_t)threads[i], THREAD_BASIC_INFO, (thread_info_t)threadInfo, &amp;threadInfoCount) == KERN_SUCCESS) &#123;</span><br><span class="line">            threadBaseInfo = (thread_basic_info_t)threadInfo;</span><br><span class="line">            if (!(threadBaseInfo-&gt;flags &amp; TH_FLAGS_IDLE)) &#123;</span><br><span class="line">                integer_t cpuUsage = threadBaseInfo-&gt;cpu_usage / 10;</span><br><span class="line">                if (cpuUsage &gt; 70) &#123;</span><br><span class="line">                    //cup 消耗大于 70 时打印和记录堆栈</span><br><span class="line">                    NSString *reStr = smStackOfThread(threads[i]);</span><br><span class="line">                    //记录数据库中</span><br><span class="line">                    [[[SMLagDB shareInstance] increaseWithStackString:reStr] subscribeNext:^(id x) &#123;&#125;];</span><br><span class="line">                    NSLog(@&quot;CPU useage overload thread stack：\n%@&quot;,reStr);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>工具已整合到先前做的 <a href="https://github.com/ming1016/GCDFetchFeed" target="_blank" rel="noopener">GCDFetchFeed</a> 里。</p>
-<ul>
-<li>子线程检测主线程卡顿使用的话在需要开始检测的地方添加 [[SMLagMonitor shareInstance] beginMonitor]; 即可。</li>
-<li>需要检测所有方法调用的用法就是在需要检测的地方调用 [SMCallTrace start]; 就可以了，不检测打印出结果的话调用 stop 和 save 就好了。这里还可以设置最大深度和最小耗时检测来过滤不需要看到的信息。</li>
-<li>方法调用频次使用可以在需要开始统计的地方加上 [SMCallTrace startWithMaxDepth:3]; 记录时使用 [SMCallTrace stopSaveAndClean]; 记录到到数据库中同时清理内存的占用。可以 hook VC 的 viewWillAppear 和 viewWillDisappear，在 appear 时开始记录，在 disappear 时记录到数据库同时清理一次。结果展示的 view controller 是 SMClsCallViewController，push 出来就能够看到列表结果。</li>
-</ul>
-<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><h2 id="WWDC"><a href="#WWDC" class="headerlink" title="WWDC"></a>WWDC</h2><ul>
-<li>WWDC 2013 224 Designing Code for Performance</li>
-<li>WWDC 2013 408 Optimizing Your Code Using LLVM</li>
-<li>WWDC 2013 712 Energy Best Practices</li>
-<li>WWDC 2014 710 writing energy efficient code part 1</li>
-<li>WWDC 2014 710 writing energy efficient code part 2</li>
-<li>WWDC 2015 230 performance on ios and watchos</li>
-<li>WWDC 2015 707 achieving allday battery life</li>
-<li>WWDC 2015 708 debugging energy issues</li>
-<li>WWDC 2015 718 building responsive and efficient apps with gcd</li>
-<li>WWDC 2016 406 optimizing app startup time</li>
-<li>WWDC 2016 719 optimizing io for performance and battery life</li>
-<li>WWDC 2017 238 writing energy efficient apps</li>
-<li>WWDC 2017 706 modernizing grand central dispatch usage</li>
-</ul>
-<p><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1204,7 +1053,7 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -1297,7 +1146,7 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
                     <span class="level-item">三月 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1581,17 +1430,6 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
             <a class="level is-marginless" href="/archives/2013/07/">
                 <span class="level-start">
                     <span class="level-item">七月 2013</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2013/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2013</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -1860,7 +1698,7 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
                 <span class="level-item">life</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/news/">
@@ -1953,7 +1791,7 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
                     <span class="level-item">三月 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -2237,17 +2075,6 @@ cmdPointer += loadCmd-&gt;cmdsize;</code></pre><p>}</p>
             <a class="level is-marginless" href="/archives/2013/07/">
                 <span class="level-start">
                     <span class="level-item">七月 2013</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2013/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2013</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -2576,5 +2403,5 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-koharu"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
