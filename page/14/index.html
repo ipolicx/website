@@ -168,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1478 个字)
+                    10 分钟 读完 (大约 1479 个字)
                 </span>
                 
                 
@@ -181,74 +181,18 @@
             
         </h1>
         <div class="content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Mac OS X扩展了framework的功能，让我们能够利用它来共享代码和资源。通过framework我们可以共享所有形式的资源，如动态共享库，nib文件，图像字符资源以及文档等。<br>系统会在需要的时候将framework载入内存中，多个应用程序可以同时使用同一个framework。这种方法可以使得你的代码易分享，在多个工程中复用，并且可以隐藏实现细节，控制公开的头文件。</p>
-<h1 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
-<li>打开Xcode，创建新工程。手下留情，请先看图！<br><img src="https://policx.github.io/post-images/1561990020927.png" alt></li>
-<li>创建功能类。这里我创建一个继承自NSObject的SayHello类<br>在新创建的类里面声明方法并实现。这里我写一个<br>sayHello的方法，以便后面测试使用。</li>
-</ul>
-<blockquote>
-<p>SayHello.h</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">@interface SayHello : NSObject</span><br><span class="line">-(void)sayHello;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>SayHello.m</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> #import &quot;SayHello.h&quot;</span><br><span class="line">@implementation SayHello</span><br><span class="line">-(void)sayHello</span><br><span class="line"> &#123;</span><br><span class="line">  NSLog(@&quot;你好，第一次见面，请多关照&quot;);</span><br><span class="line"> &#125;</span><br><span class="line"> @end</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在TARGETS下选中工程，在Build Settings下更改几个参数。<br><img src="https://policx.github.io/post-images/1561990047816.png" alt></li>
-</ul>
-<p>在<code>Architectures</code>下增加<code>armv7s</code>，并选中。将<code>Build Active Architecture Only</code> 设置为<code>NO</code>。<br><img src="https://policx.github.io/post-images/1561990059447.png" alt></p>
-<ul>
-<li>设置Headers<br>将你要公开的头文件移动到Public下，要隐藏的放在Private或者Project下，当然，隐藏的头文件就无法再被引用。<br><img src="https://policx.github.io/post-images/1561990080648.png" alt></li>
-</ul>
-<p>然后需要在Test.h（必须是公开的，否则无法引用）中将你所有要公开的.h引入。<br><img src="https://policx.github.io/post-images/1561990096178.png" alt><br>打包framework</p>
-<ul>
-<li>方法一</li>
-</ul>
-<ol>
-<li><p>选中模拟器，编译程序</p>
-</li>
-<li><p>选中测试机，编译程序</p>
-</li>
-<li><p>在finder中找到framework文件<br><img src="https://policx.github.io/post-images/1561990112677.png" alt></p>
-</li>
-</ol>
-<p>选中图中所标示的framework，然后右键show in finder。<br>找到下图中所示的Test文件，一个是Debug-iphoneos（真机）下的，一个是Debug-iphonesimulator(模拟器)下的。<br><img src="https://policx.github.io/post-images/1561990127326.png" alt></p>
-<p>4.通过终端命令将两个framework合为一个模拟器和真机都可使用的framework。</p>
-<p>打开控制台输入 lipo -create iphoneos下frameworkTest的路径 simulator下frameworkTest的路径 -output 新的路径，这样就完成了模拟器和真机版本的合并，新路径下的frameworkTest就是你合并后的文件，将这个文件名字改成和你未合并之前的Test一样的名字，放到framework文件夹下，替换掉原来的frameworkTest文件。<br><img src="https://policx.github.io/post-images/1561990139642.png" alt></p>
-<p>上面这段命令就是把真机和模拟器的frameworkTest合并成一个MyNewFrameworktest文件并存放在桌面上的New文件夹下。<br><img src="https://policx.github.io/post-images/1561990155996.png" alt></p>
-<p>5.将修改后的framework拷贝出来保存，这就是我们最终制作的framework。</p>
-<ul>
-<li>方法二</li>
-</ul>
-<p>1.选中TARGETS下的工程，点击上方的Editor,选择Add Target创建一个Aggregate.<br><img src="https://policx.github.io/post-images/1561990169651.png" alt></p>
-<p>选择Other下的Aggregate，点击Next创建。<br><img src="https://policx.github.io/post-images/1561990178785.png" alt></p>
-<p>2.嵌入脚本。选中刚刚创建的Aggregate,然后选中右侧的Build Phases,点击左下方加号，选择<code>New Run Script Phase</code><br><img src="https://policx.github.io/post-images/1561990192806.png" alt></p>
-<p>将这段脚本复制进去。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># Sets the target folders and the final</span><br><span class="line">    framework product.</span><br><span class="line"># 如果工程名称和Framework的Target名称不一样的       </span><br><span class="line">    话，要自定义FMKNAME</span><br><span class="line"># 例如: FMK_NAME = &quot;MyFramework&quot;</span><br><span class="line">FMK_NAME=$&#123;PROJECT_NAME&#125;</span><br><span class="line"># Install dir will be the final output to </span><br><span class="line">        the framework.</span><br><span class="line"># The following line create it in the root         </span><br><span class="line">         folder of the current project.</span><br><span class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products/$    </span><br><span class="line">&#123;FMK_NAME&#125;.framework</span><br><span class="line"># Working dir will be deleted after the </span><br><span class="line">        framework creation.</span><br><span class="line">WRK_DIR=build</span><br><span class="line">DEVICE_DIR=$&#123;WRK_DIR&#125;/Release-iphoneos/$              </span><br><span class="line">        &#123;FMK_NAME&#125;.framework</span><br><span class="line">SIMULATOR_DIR=$&#123;WRK_DIR&#125;/Release-</span><br><span class="line">iphonesimulator/$&#123;FMK_NAME&#125;.framework</span><br><span class="line"># -configuration $&#123;CONFIGURATION&#125;</span><br><span class="line"># Clean and Building both architectures.</span><br><span class="line">xcodebuild -configuration &quot;Release&quot; -target         </span><br><span class="line">      &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphoneos clean build</span><br><span class="line">xcodebuild -configuration &quot;Release&quot; -target         </span><br><span class="line">       &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphonesimulator clean </span><br><span class="line">        build</span><br><span class="line"># Cleaning the oldest.</span><br><span class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</span><br><span class="line">then</span><br><span class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">    fi </span><br><span class="line">        mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/&quot; &quot;$&#123;INSTALL_DIR&#125;/&quot;</span><br><span class="line"># Uses the Lipo Tool to merge both binary     </span><br><span class="line">    files (i386 + armv6/armv7) into one     </span><br><span class="line">Universal final product.</span><br><span class="line">lipo -create &quot;$&#123;DEVICE_DIR&#125;/$&#123;FMK_NAME&#125;&quot; </span><br><span class="line">      &quot;$&#123;SIMULATOR_DIR&#125;/$&#123;FMK_NAME&#125;&quot; -output &quot;$            </span><br><span class="line">        &#123;INSTALL_DIR&#125;/$&#123;FMK_NAME&#125;&quot;</span><br><span class="line">rm -r &quot;$&#123;WRK_DIR&#125;&quot;</span><br><span class="line">open &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://policx.github.io/post-images/1561990207341.png" alt></p>
-<p>3.编译。如图所示，command+B编译。<br><img src="https://policx.github.io/post-images/1561990216358.png" alt></p>
-<p>4.在finder中找到framework，拷贝出来。</p>
-<ul>
-<li>使用制作完成的framework<br>直接将你制作出来的framework添加到要使用的工程里，在需要使用的文件里引入头文件，使用framework中的功能类。如下图<br><img src="https://policx.github.io/post-images/1561990227607.png" alt></li>
-</ul>
-<h1 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h1><ol>
-<li><p>在制作framework或者lib的时候，如果使用了category，则使用改FMWK的程序运行时会crash，此时需要在该工程中 other linker flags添加两个参数 -ObjC -all_load.</p>
-</li>
-<li><p>带有图片资源的需要把图片打包成Bundle文件，和framework一起拷贝到相应的项目中。</p>
-</li>
-<li><p>公开的类中如果引用的private的类，打包以后对外会报错，找不到那个private的类，可以把那个private的.h放到</p>
-</li>
-</ol>
-<h1 id="结言"><a href="#结言" class="headerlink" title="结言"></a>结言</h1><p>现在，相信你已经可以按照文档步骤制作出一个framework，相信过程中可能还会遇到一些问题，希望大家能够把这些问题记录并整理，将这些经验分享出来。也欢迎大家联系、讨论。<br>最后，希望大家能完成带有图片资源的Bundle的制作。</p>
-<p>Try your best!</p>
-
+            <ul>
+<li></li></ul>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2015/12/31/framework/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -370,6 +314,12 @@
 
     <div class="card">
     
+    <div class="card-image">
+        <a href="/2015/06/06/macbook/" class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/115655/pexels-photo-115655.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="Mac 技巧">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -380,7 +330,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 333 个字)
+                    2 分钟 读完 (大约 334 个字)
                 </span>
                 
                 
@@ -393,53 +343,18 @@
             
         </h1>
         <div class="content">
-            <h2 id="MacBook-Pro-电源提示音"><a href="#MacBook-Pro-电源提示音" class="headerlink" title="MacBook Pro 电源提示音"></a>MacBook Pro 电源提示音</h2><ul>
-<li><p>激活的方法很简单:<br>打开应用程序 - 实用工具 - 终端. </p>
-</li>
-<li><p>输入如下的命令:</p>
-</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app &amp;</span><br></pre></td></tr></table></figure>
-
-<p>然后回车, 再试试充电是不是就有提示音了?</p>
-<ul>
-<li>如果你不喜欢日后也可以取消命令行如下</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Launchpad中不显示App图标"><a href="#Launchpad中不显示App图标" class="headerlink" title="Launchpad中不显示App图标"></a>Launchpad中不显示App图标</h2><ul>
-<li>在终端重启Launchpad</li>
-</ul>
-<p>第一步  <code>rm ~/Library/Application\ Support/Dock/*.db</code><br>第二步  <code>killall Dock</code></p>
-<p>OK。</p>
-<hr>
-<h2 id="mac-Zip-加密"><a href="#mac-Zip-加密" class="headerlink" title="mac Zip 加密"></a>mac Zip 加密</h2><h3 id="最通俗的用法"><a href="#最通俗的用法" class="headerlink" title="最通俗的用法"></a>最通俗的用法</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -q -r -e -m -o [yourName].zip someThing</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>-q 表示不显示压缩进度状态</p>
-</blockquote>
-<blockquote>
-<p>-r 表示子目录子文件全部压缩为zip  //这部比较重要，不然的话只有something这个文件夹被压缩，里面的没有被压缩进去</p>
-</blockquote>
-<blockquote>
-<p>-e 表示你的压缩文件需要加密，终端会提示你输入密码的</p>
-</blockquote>
-<blockquote>
-<p>// 还有种加密方法，这种是直接在命令行里做的，比如zip -r -P Password01! modudu.zip SomeDir, 就直接用Password01!来加密modudu.zip了。</p>
-</blockquote>
-<blockquote>
-<p>-m 表示压缩完删除原文件</p>
-</blockquote>
-<blockquote>
-<p>-o 表示设置所有被压缩文件的最后修改时间为当前压缩时间</p>
-</blockquote>
-<ul>
-<li>当跨目录的时候是这么操作的</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -q -r -e -m -o &apos;\user\someone\someDir\someFile.zip&apos; &apos;\users\someDir&apos;</span><br></pre></td></tr></table></figure>
+            <ul>
+<li></li></ul>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2015/06/06/macbook/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>

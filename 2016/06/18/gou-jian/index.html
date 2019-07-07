@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考我打算采用Information flow的方式自上而下，两大层分为基础层和展现层的结构。基础层分为多层，展现层也可分为多层。主要思想是将基础层的最下一层当做零部件，将业务层最下层当做组装大部件，通过流程串起来形成一个完整的产品，做零件时按照做出一个就扔进对应基础层的篮子里思路来，目录结构也可以按照这种">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="构建iOS稳定应用架构时方案选择的思考">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/gou-jian/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考我打算采用Information flow的方式自上而下，两大层分为基础层和展现层的结构。基础层分为多层，展现层也可分为多层。主要思想是将基础层的最下一层当做零部件，将业务层最下层当做组装大部件，通过流程串起来形成一个完整的产品，做零件时按照做出一个就扔进对应基础层的篮子里思路来，目录结构也可以按照这种">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:53:58.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:27:45.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建iOS稳定应用架构时方案选择的思考">
-<meta name="twitter:description" content="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考我打算采用Information flow的方式自上而下，两大层分为基础层和展现层的结构。基础层分为多层，展现层也可分为多层。主要思想是将基础层的最下一层当做零部件，将业务层最下层当做组装大部件，通过流程串起来形成一个完整的产品，做零件时按照做出一个就扔进对应基础层的篮子里思路来，目录结构也可以按照这种">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1628 个字)
+                    11 分钟 读完 (大约 1629 个字)
                 </span>
                 
                 
@@ -189,7 +186,11 @@
             
         </h1>
         <div class="content">
-            <h1 id="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考"><a href="#工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考" class="headerlink" title="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考"></a>工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考</h1><p>我打算采用Information flow的方式自上而下，两大层分为基础层和展现层的结构。基础层分为多层，展现层也可分为多层。主要思想是将基础层的最下一层当做零部件，将业务层最下层当做组装大部件，通过流程串起来形成一个完整的产品，做零件时按照做出一个就扔进对应基础层的篮子里思路来，目录结构也可以按照这种来进行。这两大层的最下层按照零件拆得越小越容易应对需求变化越容易保护巩固上层的思路来就好。拿微信这个大家都熟悉的产品的几个功能来简单示例说明下这个思路构建后的结构，模块比较多，一些模块就不深入到最底层分析了：</p>
+            <ul>
+<li><a id="more"></a>
+<h1 id="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考"><a href="#工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考" class="headerlink" title="工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考"></a>工程结构架构，减少耦合混乱以及防治需求大改造成结构重构，如何构建稳定可扩展可变换的工程结构的思考</h1></li>
+</ul>
+<p>我打算采用Information flow的方式自上而下，两大层分为基础层和展现层的结构。基础层分为多层，展现层也可分为多层。主要思想是将基础层的最下一层当做零部件，将业务层最下层当做组装大部件，通过流程串起来形成一个完整的产品，做零件时按照做出一个就扔进对应基础层的篮子里思路来，目录结构也可以按照这种来进行。这两大层的最下层按照零件拆得越小越容易应对需求变化越容易保护巩固上层的思路来就好。拿微信这个大家都熟悉的产品的几个功能来简单示例说明下这个思路构建后的结构，模块比较多，一些模块就不深入到最底层分析了：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">基础层</span><br><span class="line">－ 网络</span><br><span class="line">－－ 收发数据</span><br><span class="line">－－－单例（持续使用数据）</span><br><span class="line">－－－本地（缓存和持续化存储数据对业务的封装输出）</span><br><span class="line">－－－单次使用（API接口Model封装输出和业务逻辑封装的ViewModel，将这些做为业务零件）</span><br><span class="line">－ 存储</span><br><span class="line">－－－ NSUserDefault（对轻量需要存储的添加下一层业务零件封装）</span><br><span class="line">－－－ keychain（对安全级别较高需要存储的添加下一层业务零件封装）</span><br><span class="line">－－－ 文件存储（对时效需求短的需要存储的添加下一层业务零件封装）</span><br><span class="line">－－－ 数据库存储（对数据量大的需要存储的添加下一层业务零件封装，业务层上一层加一层封装CoreData或SQLite方便日后切换数据库用）</span><br><span class="line">－ 动画（下层将动画框架输出成各个可以复用的动画功能小零件）</span><br><span class="line">－ 视图风格</span><br><span class="line">－ 列表控件</span><br><span class="line">－－ 上拉加载更多</span><br><span class="line">－－ 下拉刷新</span><br><span class="line">－－ GuideView</span><br><span class="line">－ WebView控件</span><br><span class="line">－ AlertView</span><br><span class="line">－ iOS系统空间封装</span><br><span class="line">－－ 拍照控件</span><br><span class="line">－－ 通讯录</span><br><span class="line">－ 二维码</span><br><span class="line">－ 语音</span><br><span class="line">－ 安全</span><br><span class="line">－ 支付</span><br><span class="line">－ 统计</span><br><span class="line">－ 日志</span><br><span class="line"></span><br><span class="line">展现层</span><br><span class="line">－ 首页</span><br><span class="line">－－ 订阅</span><br><span class="line">－－ 扫描二维码</span><br><span class="line">－－ 发布视频</span><br><span class="line">－ 列表</span><br><span class="line">－－ 时间轴列表</span><br><span class="line">－－－ Listview头部封面</span><br><span class="line">－－－ 外链情况Cell</span><br><span class="line">－－－ 图片Cell</span><br><span class="line">－－－ 广告插入Cell</span><br><span class="line">－－－ 留言评论</span><br><span class="line">－－－ 赞区域</span><br><span class="line">－－ 我的列表</span><br><span class="line">－－ 订阅列表</span><br><span class="line">－－ 文章列表</span><br><span class="line">－ 详细页</span><br><span class="line">－－ 分享</span><br><span class="line">－－ 内容区</span><br><span class="line">－－ 评论</span><br><span class="line">－ 登录</span><br><span class="line">－－ 注册</span><br><span class="line">－－ 登录</span><br><span class="line">－－ 忘记密码</span><br><span class="line">－－ 条款</span><br><span class="line">－－ 上传头像</span><br><span class="line">－－ 个人信息修改</span><br></pre></td></tr></table></figure>
 
 <p>基础层中各个模块上层可以使用类似CocoaPod或Cathage方式，下一层再对其引用进行业务封装。</p>

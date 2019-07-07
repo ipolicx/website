@@ -7,19 +7,16 @@
 
 
 
-    <meta name="description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
-<meta name="keywords" content="">
+    <meta name="keywords" content="">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KVO crash 自修复技术实现与原理解析">
 <meta property="og:url" content="http://yoursite.com/2018/02/06/KVOcrash/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-06T05:49:56.448Z">
+<meta property="og:updated_time" content="2019-07-07T04:23:08.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVO crash 自修复技术实现与原理解析">
-<meta name="twitter:description" content="前言 【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/denglu.jpg">
 
 
@@ -180,7 +177,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1597 个字)
+                    11 分钟 读完 (大约 1598 个字)
                 </span>
                 
                 
@@ -198,9 +195,13 @@
             
         </h1>
         <div class="content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+            <ul>
+<li><a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2></li>
+</ul>
+<hr>
 <p>【前言】KVO API设计非常不合理，于是有很多的KVO三方库，比如 KVOController 用更优的API来规避这些crash，但是侵入性比较大，必须编码规范来约束所有人都要使用该方式。有没有什么更优雅，无感知的接入方式？</p>
-<a id="more"></a>
+<!-- more -->
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
 <p>KVO crash 也是非常常见的 Crash 类型，在探讨 KVO crash 原因前，我们先来看一下传统的KVO写发：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#warning move this to top of .m file</span><br><span class="line">//#define MyKVOContext(A) static void * const A = (void*)&amp;A;</span><br><span class="line">static void * const MyContext = (void*)&amp;MyContext;</span><br><span class="line"></span><br><span class="line">#warning move this to viewdidload or init method </span><br><span class="line">   // KVO注册监听:</span><br><span class="line">   // _A 监听 _B  的 @&quot;keyPath&quot;  属性</span><br><span class="line">   //[self.B  addObserver: self.A forKeyPath:@&quot;keyPath&quot; options:NSKeyValueObservingOptionNew context:MyContext];</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">   // KVO反注册</span><br><span class="line">   [_B removeObserver:_A forKeyPath:@&quot;keyPath&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// KVO监听执行 </span><br><span class="line">#warning — please move this method to  the class of _A  </span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">   if(context != MyContext) &#123;</span><br><span class="line">       [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];</span><br><span class="line">       return;</span><br><span class="line">   &#125;</span><br><span class="line">   if(context == MyContext) &#123;</span><br><span class="line">   //if ([keyPath isEqualToString:@&quot;keyPath&quot;]) &#123;</span><br><span class="line">       id newKey = change[NSKeyValueChangeNewKey];</span><br><span class="line">       BOOL boolValue = [newKey boolValue];</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

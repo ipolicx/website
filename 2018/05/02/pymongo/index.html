@@ -16,7 +16,7 @@
 <meta property="og:description" content="MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i01picsos.sogoucdn.com/4dee6e9358819886">
-<meta property="og:updated_time" content="2019-07-04T01:33:19.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:35:29.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3 与 MongoDB 之间的交互">
 <meta name="twitter:description" content="MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。">
@@ -196,6 +196,7 @@
         <div class="content">
             <p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。</p>
 <a id="more"></a>
+
 <h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>在开始之前，请确保已经安装好了MongoDB并启动了其服务，并且安装好了Python的PyMongo库。</p>
 <h2 id="2-连接MongoDB"><a href="#2-连接MongoDB" class="headerlink" title="2. 连接MongoDB"></a>2. 连接MongoDB</h2><p>连接MongoDB时，我们需要使用PyMongo库里面的MongoClient。一般来说，传入MongoDB的IP及端口即可，其中第一个参数为地址host，第二个参数为端口port（如果不给它传递参数，默认是27017）：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymongo</span><br><span class="line">client = pymongo.MongoClient(host=&apos;localhost&apos;, port=27017)</span><br></pre></td></tr></table></figure>

@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="前言之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。 简介Mac OS X扩展了framework的功能，让我们能够利用它来共享代码和资源。通过fram">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-制作Framework">
 <meta property="og:url" content="http://yoursite.com/2015/12/31/framework/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="前言之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。 简介Mac OS X扩展了framework的功能，让我们能够利用它来共享代码和资源。通过fram">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:53:17.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:26:54.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-制作Framework">
-<meta name="twitter:description" content="前言之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。 简介Mac OS X扩展了framework的功能，让我们能够利用它来共享代码和资源。通过fram">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/denglu.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1478 个字)
+                    10 分钟 读完 (大约 1479 个字)
                 </span>
                 
                 
@@ -189,7 +186,10 @@
             
         </h1>
         <div class="content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。</p>
+            <ul>
+<li><a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>之前有很多的大神们已经写过framework的制作，但最近由于Xcode7的出现，很多之前的教程内容已经不符，对于初学者来说，找到一篇能够直接明了，简单易学的制作framework的文章比较困难。本文将基于Xcode7创建一个简单的工程，通过两种方法来教大家如何制作一个自己的framework。</li>
+</ul>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Mac OS X扩展了framework的功能，让我们能够利用它来共享代码和资源。通过framework我们可以共享所有形式的资源，如动态共享库，nib文件，图像字符资源以及文档等。<br>系统会在需要的时候将framework载入内存中，多个应用程序可以同时使用同一个framework。这种方法可以使得你的代码易分享，在多个工程中复用，并且可以隐藏实现细节，控制公开的头文件。</p>
 <h1 id="制作"><a href="#制作" class="headerlink" title="制作"></a>制作</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
 <li>打开Xcode，创建新工程。手下留情，请先看图！<br><img src="https://policx.github.io/post-images/1561990020927.png" alt></li>

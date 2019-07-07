@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="一：写在前面请使用ARC！！！ 如果使用的第三方库不支持ARC机制，可以在target-&amp;gt;build phase-&amp;gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发内存泄露修复">
 <meta property="og:url" content="http://yoursite.com/2014/06/07/ios-neicun/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="一：写在前面请使用ARC！！！ 如果使用的第三方库不支持ARC机制，可以在target-&amp;gt;build phase-&amp;gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/policx/im/raw/master/images/Eemimq.png">
-<meta property="og:updated_time" content="2019-07-03T15:55:40.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:29:34.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发内存泄露修复">
-<meta name="twitter:description" content="一：写在前面请使用ARC！！！ 如果使用的第三方库不支持ARC机制，可以在target-&amp;gt;build phase-&amp;gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC">
 <meta name="twitter:image" content="https://gitee.com/policx/im/raw/master/images/Eemimq.png">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1560 个字)
+                    10 分钟 读完 (大约 1561 个字)
                 </span>
                 
                 
@@ -189,7 +186,10 @@
             
         </h1>
         <div class="content">
-            <h2 id="一：写在前面"><a href="#一：写在前面" class="headerlink" title="一：写在前面"></a>一：写在前面</h2><p>请使用ARC！！！</p>
+            <ul>
+<li><a id="more"></a>
+<h2 id="一：写在前面"><a href="#一：写在前面" class="headerlink" title="一：写在前面"></a>一：写在前面</h2>请使用ARC！！！</li>
+</ul>
 <p>如果使用的第三方库不支持ARC机制，可以在target-&gt;build phase-&gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：<br><img src="https://policx.github.io/post-images/1560760059273.png" alt><br>如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC将是你最好的选择，因为修复泄露bug实在是太坑爹了…<br><img src="https://policx.github.io/post-images/1560760084281.png" alt><br>如果你不习惯ARC，又或者你使用的SDK版本根本不支持ARC，那么，请看下文。</p>
 <h2 id="二：修复方法"><a href="#二：修复方法" class="headerlink" title="二：修复方法"></a>二：修复方法</h2><p>好，言归正传。</p>
 <p>按我个人理解，修复内存泄露可分为三个阶段：</p>

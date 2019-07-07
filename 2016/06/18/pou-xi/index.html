@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="问题种类时间复杂度在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。  上图列出了各种情况的时间复杂度，比如高效的排序算法一般都是 O(n log n)。接下来看看下图：  图中可以看出 O(n) 是个分水岭，大于它对于性能就具有很大的潜在影响，如果是个公共的接口一定要加上说明，自己调用">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="深入剖析 iOS 性能优化">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/pou-xi/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="问题种类时间复杂度在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。  上图列出了各种情况的时间复杂度，比如高效的排序算法一般都是 O(n log n)。接下来看看下图：  图中可以看出 O(n) 是个分水岭，大于它对于性能就具有很大的潜在影响，如果是个公共的接口一定要加上说明，自己调用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T16:01:27.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:35:19.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入剖析 iOS 性能优化">
-<meta name="twitter:description" content="问题种类时间复杂度在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。  上图列出了各种情况的时间复杂度，比如高效的排序算法一般都是 O(n log n)。接下来看看下图：  图中可以看出 O(n) 是个分水岭，大于它对于性能就具有很大的潜在影响，如果是个公共的接口一定要加上说明，自己调用">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 9030 个字)
+                    1 小时 读完 (大约 9031 个字)
                 </span>
                 
                 
@@ -189,7 +186,10 @@
             
         </h1>
         <div class="content">
-            <h1 id="问题种类"><a href="#问题种类" class="headerlink" title="问题种类"></a>问题种类</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。</p>
+            <ul>
+<li><a id="more"></a>
+<h1 id="问题种类"><a href="#问题种类" class="headerlink" title="问题种类"></a>问题种类</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2>在集合里数据量小的情况下时间复杂度对于性能的影响看起来微乎其微。但如果某个开发的功能是一个公共功能，无法预料调用者传入数据的量时，这个复杂度的优化显得非常重要了。</li>
+</ul>
 <p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization01.png?raw=true" alt></p>
 <p>上图列出了各种情况的时间复杂度，比如高效的排序算法一般都是 O(n log n)。接下来看看下图：</p>
 <p><img src="https://github.com/ming1016/study/blob/master/pic/deeply-ios-performance-optimization02.png?raw=true" alt></p>

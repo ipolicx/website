@@ -7,18 +7,18 @@
 
 
 
-    <meta name="description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍： Time Profiler可以查看多个线程里那些方法费时过多的方法。先将右侧Hide System Libraries打上勾，这样能够过滤信息。然后在Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费">
+    <meta name="description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="检测iOS的APP性能的一些方法">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/jian-ce/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍： Time Profiler可以查看多个线程里那些方法费时过多的方法。先将右侧Hide System Libraries打上勾，这样能够过滤信息。然后在Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费">
+<meta property="og:description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:56:42.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:30:13.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="检测iOS的APP性能的一些方法">
-<meta name="twitter:description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍： Time Profiler可以查看多个线程里那些方法费时过多的方法。先将右侧Hide System Libraries打上勾，这样能够过滤信息。然后在Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费">
+<meta name="twitter:description" content="首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍：">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +171,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7410 个字)
+                    1 小时 读完 (大约 7411 个字)
                 </span>
                 
                 
@@ -190,7 +190,10 @@
         </h1>
         <div class="content">
             <p>首先如果遇到应用卡顿或者因为内存占用过多时一般使用Instruments里的来进行检测。但对于复杂情况可能就需要用到子线程监控主线程的方式来了，下面我对这些方法做些介绍：</p>
-<h1 id="Time-Profiler"><a href="#Time-Profiler" class="headerlink" title="Time Profiler"></a>Time Profiler</h1><p>可以查看多个线程里那些方法费时过多的方法。先将右侧Hide System Libraries打上勾，这样能够过滤信息。然后在Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费时方法排序，选择方法后能够通过右侧Heaviest Stack Trace里双击查看到具体的费时操作代码，从而能够有针对性的优化，而不需要在一些本来就不会怎么影响性能的地方过度优化。</p>
+<ul>
+<li><a id="more"></a>
+<h1 id="Time-Profiler"><a href="#Time-Profiler" class="headerlink" title="Time Profiler"></a>Time Profiler</h1>可以查看多个线程里那些方法费时过多的方法。先将右侧Hide System Libraries打上勾，这样能够过滤信息。然后在Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费时方法排序，选择方法后能够通过右侧Heaviest Stack Trace里双击查看到具体的费时操作代码，从而能够有针对性的优化，而不需要在一些本来就不会怎么影响性能的地方过度优化。</li>
+</ul>
 <h1 id="Allocations"><a href="#Allocations" class="headerlink" title="Allocations"></a>Allocations</h1><p>这里可以对每个动作的前后进行Generations，对比内存的增加，查看使内存增加的具体的方法和代码所在位置。具体操作是在右侧Generation Analysis里点击Mark Generation，这样会产生一个Generation，切换到其他页面或一段时间产生了另外一个事件时再点Mark Generation来产生一个新的Generation，这样反复，生成多个Generation，查看这几个Generation会看到Growth的大小，如果太大可以点进去查看相应占用较大的线程里右侧Heaviest Stack Trace里查看对应的代码块，然后进行相应的处理。</p>
 <h1 id="Leak"><a href="#Leak" class="headerlink" title="Leak"></a>Leak</h1><p>可以在上面区域的Leaks部分看到对应的时间点产生的溢出，选择后在下面区域的Statistics&gt;Allocation Summary能够看到泄漏的对象，同样可以通过Stack Trace查看到具体对应的代码区域。</p>
 <h1 id="开发时需要注意如何避免一些性能问题"><a href="#开发时需要注意如何避免一些性能问题" class="headerlink" title="开发时需要注意如何避免一些性能问题"></a>开发时需要注意如何避免一些性能问题</h1><h2 id="NSDateFormatter"><a href="#NSDateFormatter" class="headerlink" title="NSDateFormatter"></a>NSDateFormatter</h2><p>通过Instruments的检测会发现创建NSDateFormatter或者设置NSDateFormatter的属性的耗时总是排在前面，如何处理这个问题呢，比较推荐的是添加属性或者创建静态变量，这样能够使得创建初始化这个次数降到最低。还有就是可以直接用C，或者这个NSData的Category来解决<a href="https://github.com/samsoffes/sstoolkit/blob/master/SSToolkit/NSData%2BSSToolkitAdditions.m" target="_blank" rel="noopener">https://github.com/samsoffes/sstoolkit/blob/master/SSToolkit/NSData%2BSSToolkitAdditions.m</a></p>

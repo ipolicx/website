@@ -16,7 +16,7 @@
 <meta property="og:description" content="现在支持python操作excel的包有下列这些 官网上最推荐的是openpyxl，其他包支持较老的excel版本。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg">
-<meta property="og:updated_time" content="2019-07-04T01:33:06.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:36:07.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python操作excel的包(openpyxl、xlsxwriter)">
 <meta name="twitter:description" content="现在支持python操作excel的包有下列这些 官网上最推荐的是openpyxl，其他包支持较老的excel版本。">
@@ -193,7 +193,7 @@
             <p>现在支持python操作excel的包有下列这些<br><img src="https://policx.github.io/post-images/1560767425488.png" alt></p>
 <p>官网上最推荐的是openpyxl，其他包支持较老的excel版本。<br><img src="https://policx.github.io/post-images/1560767456846.png" alt><br><img src="https://policx.github.io/post-images/1560767522161.png" alt></p>
 <a id="more"></a>
-<p>xlsxwriter无法对打开的excel进行写操作，excel必须处于关闭状态才能写成功。</p>
+<p>xlsxwriter无法对打开的excel进行写操作，excel必须处于关闭状态才能写成功。 </p>
 <h4 id="xlswriter-基本代码："><a href="#xlswriter-基本代码：" class="headerlink" title="xlswriter 基本代码："></a>xlswriter 基本代码：</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import xlsxwriter</span><br><span class="line"></span><br><span class="line">workbook = xlsxwriter.Workbook(&apos;hello.xlsx&apos;)</span><br><span class="line">worksheet = workbook.add_worksheet()</span><br><span class="line"></span><br><span class="line">worksheet.write(&apos;A1&apos;, &apos;Hello world&apos;)</span><br><span class="line"></span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
 
 <h4 id="openpyxl基本代码："><a href="#openpyxl基本代码：" class="headerlink" title="openpyxl基本代码："></a>openpyxl基本代码：</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import Workbook</span><br><span class="line"></span><br><span class="line">wb = Workbook()</span><br><span class="line">ws = wb.active</span><br><span class="line">#设置单元格值</span><br><span class="line">ws[&apos;A1&apos;] = 42</span><br><span class="line">#加入一行数据</span><br><span class="line">ws.append([1, 2, 3])</span><br><span class="line"></span><br><span class="line">import datetime</span><br><span class="line">#python 类型数据会被自动转换</span><br><span class="line">ws[&apos;A2&apos;] = datetime.datetime.now()</span><br><span class="line">#保存修改</span><br><span class="line">wb.save(&quot;sample.xlsx&quot;)</span><br></pre></td></tr></table></figure>

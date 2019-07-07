@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="简介简单的说run loop是事件驱动的一个大循环，如下代码所示 123456789101112int main(int argc, char * argv[]) &amp;#123;     //程序一直运行状态     while (AppIsRunning) &amp;#123;          //睡眠状态，等待唤醒事件          id whoWakesMe = SleepForWakingUp">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="CFRunLoop ">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/cfrunloop/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="简介简单的说run loop是事件驱动的一个大循环，如下代码所示 123456789101112int main(int argc, char * argv[]) &amp;#123;     //程序一直运行状态     while (AppIsRunning) &amp;#123;          //睡眠状态，等待唤醒事件          id whoWakesMe = SleepForWakingUp">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:52:40.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:26:27.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CFRunLoop ">
-<meta name="twitter:description" content="简介简单的说run loop是事件驱动的一个大循环，如下代码所示 123456789101112int main(int argc, char * argv[]) &amp;#123;     //程序一直运行状态     while (AppIsRunning) &amp;#123;          //睡眠状态，等待唤醒事件          id whoWakesMe = SleepForWakingUp">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1037 个字)
+                    7 分钟 读完 (大约 1038 个字)
                 </span>
                 
                 
@@ -189,9 +186,12 @@
             
         </h1>
         <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单的说run loop是事件驱动的一个大循环，如下代码所示</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">     //程序一直运行状态</span><br><span class="line">     while (AppIsRunning) &#123;</span><br><span class="line">          //睡眠状态，等待唤醒事件</span><br><span class="line">          id whoWakesMe = SleepForWakingUp();</span><br><span class="line">          //得到唤醒事件</span><br><span class="line">          id event = GetEvent(whoWakesMe);</span><br><span class="line">          //开始处理事件</span><br><span class="line">          HandleEvent(event);</span><br><span class="line">     &#125;</span><br><span class="line">     return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <ul>
+<li><a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1>简单的说run loop是事件驱动的一个大循环，如下代码所示<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">     //程序一直运行状态</span><br><span class="line">     while (AppIsRunning) &#123;</span><br><span class="line">          //睡眠状态，等待唤醒事件</span><br><span class="line">          id whoWakesMe = SleepForWakingUp();</span><br><span class="line">          //得到唤醒事件</span><br><span class="line">          id event = GetEvent(whoWakesMe);</span><br><span class="line">          //开始处理事件</span><br><span class="line">          HandleEvent(event);</span><br><span class="line">     &#125;</span><br><span class="line">     return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <h1 id="Cocoa会涉及到Run-Loops的"><a href="#Cocoa会涉及到Run-Loops的" class="headerlink" title="Cocoa会涉及到Run Loops的"></a>Cocoa会涉及到Run Loops的</h1><ul>
 <li>系统级：GCD，mach kernel，block，pthread</li>
 <li>应用层：NSTimer，UIEvent，Autorelease，NSObject(NSDelayedPerforming)，NSObject(NSThreadPerformAddition)，CADisplayLink，CATransition，CAAnimation，dispatch_get_main_queue()（GCD中dispatch到main queue的block会被dispatch到main RunLoop执行），NSPort，NSURLConnection，AFNetworking(这个第三方网络请求框架使用在开启新线程中添加自己的run loop监听事件)</li>

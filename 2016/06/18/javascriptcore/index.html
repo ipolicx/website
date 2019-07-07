@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="前言最近开始涉及 JS 的解析和处理工作，所以专门研究了下这块。特别是动态类型的处理以及不同引擎对于平台无关的字节码的设计和处理会有很大的帮助。 JavaScriptCore 介绍JavaScriptCore 是 JavaScript 引擎，通常会被叫做虚拟机，专门设计来解释和执行 JavaScript 代码。最开始的 JavaScriptCore  是从 KJS（KDE 的 JavaScript">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="深入剖析-JavaScriptCore">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/javascriptcore/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="前言最近开始涉及 JS 的解析和处理工作，所以专门研究了下这块。特别是动态类型的处理以及不同引擎对于平台无关的字节码的设计和处理会有很大的帮助。 JavaScriptCore 介绍JavaScriptCore 是 JavaScript 引擎，通常会被叫做虚拟机，专门设计来解释和执行 JavaScript 代码。最开始的 JavaScriptCore  是从 KJS（KDE 的 JavaScript">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:56:28.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:30:00.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入剖析-JavaScriptCore">
-<meta name="twitter:description" content="前言最近开始涉及 JS 的解析和处理工作，所以专门研究了下这块。特别是动态类型的处理以及不同引擎对于平台无关的字节码的设计和处理会有很大的帮助。 JavaScriptCore 介绍JavaScriptCore 是 JavaScript 引擎，通常会被叫做虚拟机，专门设计来解释和执行 JavaScript 代码。最开始的 JavaScriptCore  是从 KJS（KDE 的 JavaScript">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 9741 个字)
+                    1 小时 读完 (大约 9742 个字)
                 </span>
                 
                 
@@ -189,7 +186,10 @@
             
         </h1>
         <div class="content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近开始涉及 JS 的解析和处理工作，所以专门研究了下这块。特别是动态类型的处理以及不同引擎对于平台无关的字节码的设计和处理会有很大的帮助。</p>
+            <ul>
+<li><a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>最近开始涉及 JS 的解析和处理工作，所以专门研究了下这块。特别是动态类型的处理以及不同引擎对于平台无关的字节码的设计和处理会有很大的帮助。</li>
+</ul>
 <h1 id="JavaScriptCore-介绍"><a href="#JavaScriptCore-介绍" class="headerlink" title="JavaScriptCore 介绍"></a>JavaScriptCore 介绍</h1><p>JavaScriptCore 是 JavaScript 引擎，通常会被叫做虚拟机，专门设计来解释和执行 JavaScript 代码。最开始的 JavaScriptCore  是从 KJS（KDE 的 JavaScript 引擎）以及 PCRE 正则表达式的基础上开发的，是基于抽象语法树的解释器。2008 年重写了，叫做 SquirrelFish，后来是 SquirrelFish Extreme，又叫 Nitro。目前 JavaScript 引擎还有 Google 的 V8 ，Mozilla 的 SpiderMonkey。</p>
 <p>JavaScriptCore 还能够在 Objective-C 程序中来执行 JavaScript 的代码，也可以在 JavaScript 环境中插入自定义对象。</p>
 <h1 id="JavaScriptCore-全貌"><a href="#JavaScriptCore-全貌" class="headerlink" title="JavaScriptCore 全貌"></a>JavaScriptCore 全貌</h1><p>下面是解析 JavaScript 源码解析编译的详细流程图：<br><img src="https://ming1016.github.io/uploads/deeply-analyse-javascriptcore/01.png" alt></p>

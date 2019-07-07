@@ -15,7 +15,7 @@
 <meta property="og:description" content="要了解Socket首先要了解 TCP，他们两个的关系可以说是： Socket 是抽象出来的使用 TCP/UDP 的概念模型，屏蔽掉了晦涩的底层协议的实现，是一个接口。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-03T16:28:13.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:39:01.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话Socket">
 <meta name="twitter:description" content="要了解Socket首先要了解 TCP，他们两个的关系可以说是： Socket 是抽象出来的使用 TCP/UDP 的概念模型，屏蔽掉了晦涩的底层协议的实现，是一个接口。">
@@ -192,6 +192,7 @@
             <p>要了解Socket首先要了解 TCP，他们两个的关系可以说是：</p>
 <p>Socket 是抽象出来的使用 TCP/UDP 的概念模型，屏蔽掉了晦涩的底层协议的实现，是一个接口。</p>
 <a id="more"></a>
+
 <p>最近看到了一张如此详细的 TCP 三次握手和四次挥手，打印一张放工位！摘自《图解网络硬件》249页 图5-11 《TCP的三次握手》<br><img src="https://camo.githubusercontent.com/23dfbddfdd1d08dfda64dc13436030d947ebd62b/687474703a2f2f7777342e73696e61696d672e636e2f6c617267652f36346466643834396a7731663275646676363638706a32306d30306e6d343463" alt><br><img src="https://camo.githubusercontent.com/dc8cf3d1737ae2148250573fae94d2eea4eaba3d/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f36356534663165366a773166377532786a6f6361746a32306a383064627134362e6a7067" alt><br>所谓的X、X+1、Y、Y+1<br>对应于你收到了没、我收到了、你收到’我收到’没、我收到了不用回了,为什么用+1表示呢？那是因为前两个指的是一个人，后两个指的是一个人。<br>四组是三个连接，每个连接的序号依次是X、Y、Z。</p>
 <p>TCP的连接过程就像两个人的对话：</p>
 <p>想象一下，每次这俩儿人聊天，都要像下面这样一来一回三次，接下来他们才能【好好聊天了。。。】真是有点“作”。。。</p>

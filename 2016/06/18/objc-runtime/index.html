@@ -7,18 +7,15 @@
 
 
 
-    <meta name="description" content="概述Objc Runtime使得C具有了面向对象能力，在程序运行时创建，检查，修改类、对象和它们的方法。Runtime是C和汇编编写的，这里http://www.opensource.apple.com/source/objc4/可以下到苹果维护的开源代码，GNU也有一个开源的runtime版本，他们都努力的保持一致。苹果官方的Runtime编程指南 Runtime函数Runtime系统是由一系列">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="Objc Runtime ">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/objc-runtime/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="概述Objc Runtime使得C具有了面向对象能力，在程序运行时创建，检查，修改类、对象和它们的方法。Runtime是C和汇编编写的，这里http://www.opensource.apple.com/source/objc4/可以下到苹果维护的开源代码，GNU也有一个开源的runtime版本，他们都努力的保持一致。苹果官方的Runtime编程指南 Runtime函数Runtime系统是由一系列">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T16:01:15.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:34:52.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objc Runtime ">
-<meta name="twitter:description" content="概述Objc Runtime使得C具有了面向对象能力，在程序运行时创建，检查，修改类、对象和它们的方法。Runtime是C和汇编编写的，这里http://www.opensource.apple.com/source/objc4/可以下到苹果维护的开源代码，GNU也有一个开源的runtime版本，他们都努力的保持一致。苹果官方的Runtime编程指南 Runtime函数Runtime系统是由一系列">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 9770 个字)
+                    1 小时 读完 (大约 9771 个字)
                 </span>
                 
                 
@@ -189,7 +186,10 @@
             
         </h1>
         <div class="content">
-            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Objc Runtime使得C具有了面向对象能力，在程序运行时创建，检查，修改类、对象和它们的方法。Runtime是C和汇编编写的，这里<a href="http://www.opensource.apple.com/source/objc4/" target="_blank" rel="noopener">http://www.opensource.apple.com/source/objc4/</a>可以下到苹果维护的开源代码，GNU也有一个开源的runtime版本，他们都努力的保持一致。<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="noopener">苹果官方的Runtime编程指南</a></p>
+            <ul>
+<li><a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1>Objc Runtime使得C具有了面向对象能力，在程序运行时创建，检查，修改类、对象和它们的方法。Runtime是C和汇编编写的，这里<a href="http://www.opensource.apple.com/source/objc4/" target="_blank" rel="noopener">http://www.opensource.apple.com/source/objc4/</a>可以下到苹果维护的开源代码，GNU也有一个开源的runtime版本，他们都努力的保持一致。<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="noopener">苹果官方的Runtime编程指南</a></li>
+</ul>
 <h2 id="Runtime函数"><a href="#Runtime函数" class="headerlink" title="Runtime函数"></a>Runtime函数</h2><p>Runtime系统是由一系列的函数和数据结构组成的公共接口动态共享库，在/usr/include/objc目录下可以看到头文件，可以用其中一些函数通过C语言实现Objective-C中一样的功能。苹果官方文档<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html" target="_blank" rel="noopener">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html</a> 里有详细的Runtime函数文档。</p>
 <h1 id="Class和Object基础数据结构"><a href="#Class和Object基础数据结构" class="headerlink" title="Class和Object基础数据结构"></a>Class和Object基础数据结构</h1><h2 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h2><p>objc/runtime.h中objc_class结构体的定义如下：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">struct objc_class &#123;</span><br><span class="line">Class isa OBJC_ISA_AVAILABILITY; //isa指针指向Meta Class，因为Objc的类的本身也是一个Object，为了处理这个关系，runtime就创造了Meta Class，当给类发送[NSObject alloc]这样消息时，实际上是把这个消息发给了Class Object</span><br><span class="line"></span><br><span class="line">#if !__OBJC2__</span><br><span class="line">Class super_class OBJC2_UNAVAILABLE; // 父类</span><br><span class="line">const char *name OBJC2_UNAVAILABLE; // 类名</span><br><span class="line">long version OBJC2_UNAVAILABLE; // 类的版本信息，默认为0</span><br><span class="line">long info OBJC2_UNAVAILABLE; // 类信息，供运行期使用的一些位标识</span><br><span class="line">long instance_size OBJC2_UNAVAILABLE; // 该类的实例变量大小</span><br><span class="line">struct objc_ivar_list *ivars OBJC2_UNAVAILABLE; // 该类的成员变量链表</span><br><span class="line">struct objc_method_list **methodLists OBJC2_UNAVAILABLE; // 方法定义的链表</span><br><span class="line">struct objc_cache *cache OBJC2_UNAVAILABLE; // 方法缓存，对象接到一个消息会根据isa指针查找消息对象，这时会在methodLists中遍历，如果cache了，常用的方法调用时就能够提高调用的效率。</span><br><span class="line">struct objc_protocol_list *protocols OBJC2_UNAVAILABLE; // 协议链表</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br></pre></td></tr></table></figure>

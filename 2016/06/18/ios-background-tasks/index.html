@@ -7,18 +7,18 @@
 
 
 
-    <meta name="description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration Background Fetch开启首先在info plist文件中开启UIBackgroundModes的Ba">
+    <meta name="description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS Background Tasks">
 <meta property="og:url" content="http://yoursite.com/2016/06/18/ios-background-tasks/index.html">
 <meta property="og:site_name" content="River and lake">
-<meta property="og:description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration Background Fetch开启首先在info plist文件中开启UIBackgroundModes的Ba">
+<meta property="og:description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/talk/images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-03T15:54:29.000Z">
+<meta property="og:updated_time" content="2019-07-07T04:28:47.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS Background Tasks">
-<meta name="twitter:description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration Background Fetch开启首先在info plist文件中开启UIBackgroundModes的Ba">
+<meta name="twitter:description" content="三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration">
 <meta name="twitter:image" content="https://www.policx.com/talk/images/banner.jpg">
 
 
@@ -171,7 +171,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 934 个字)
+                    6 分钟 读完 (大约 935 个字)
                 </span>
                 
                 
@@ -190,9 +190,12 @@
         </h1>
         <div class="content">
             <p>三种方式使得iOS程序即使在关闭或崩溃的情况下也能够在后台持续进行一些任务，比如更新程序界面快照，下载文件等。这三个方法分别是Background Fetch，Remote Notification和NSURLSession的backgroundSessionConfiguration</p>
-<h1 id="Background-Fetch"><a href="#Background-Fetch" class="headerlink" title="Background Fetch"></a>Background Fetch</h1><h2 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h2><p>首先在info plist文件中开启UIBackgroundModes的Background fetch。或者手动编辑这个值</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;UIBackgroundModes&lt;/key&gt;</span><br><span class="line">&lt;array&gt;</span><br><span class="line">     &lt;string&gt;fetch&lt;/string&gt;</span><br><span class="line">&lt;/array&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a id="more"></a>
+<h1 id="Background-Fetch"><a href="#Background-Fetch" class="headerlink" title="Background Fetch"></a>Background Fetch</h1><h2 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h2>首先在info plist文件中开启UIBackgroundModes的Background fetch。或者手动编辑这个值<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;UIBackgroundModes&lt;/key&gt;</span><br><span class="line">&lt;array&gt;</span><br><span class="line">     &lt;string&gt;fetch&lt;/string&gt;</span><br><span class="line">&lt;/array&gt;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <p>iOS默认不进行background fetch，需要设置一个时间的间隔</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">     //UIApplicationBackgroundFetchIntervalMinimum表示尽可能频繁去获取，如果需要指定至少多少时间更新一次就需要给定一个时间值</span><br><span class="line">     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];</span><br><span class="line">     return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
