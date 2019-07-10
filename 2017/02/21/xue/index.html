@@ -100,19 +100,19 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-3671867345973568",
-                enable_page_level_ads: true
-            });
-        </script>
 <link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
 <script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
 <script src="/assets/js/Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 <body class="is-3-column">
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -209,7 +209,7 @@
             <p>雪下的那么深，下的那么认真。</p>
 <a id="more"></a>
 
-    <div id="aplayer-sBVkJura" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="001hUNRP0P8g7x" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
+    <div id="aplayer-SFMdcaQZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="001hUNRP0P8g7x" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="true" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
         </div>
         
         
@@ -1914,6 +1914,35 @@
                 </div>
             </section>
             <footer class="footer">
+    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+    <script>
+        var now = new Date();
+
+        function createtime() {
+            var grt = new Date("12/28/2012 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+            now.setTime(now.getTime() + 250);
+            days = (now - grt) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if (String(hnum).length == 1) {
+                hnum = "0" + hnum;
+            }
+            minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if (String(mnum).length == 1) {
+                mnum = "0" + mnum;
+            }
+            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if (String(snum).length == 1) {
+                snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        }
+        setInterval("createtime()", 250);
+    </script>
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
@@ -1940,7 +1969,7 @@
                         
                             
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://www.2345.com/?k.cn">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
                                         
                                                     <i class="fab fa-creative-commons"></i>
                                                     
@@ -1948,7 +1977,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://www.2345.com/?k.cn">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
                                         
                                                     <i class="fab fa-creative-commons-by"></i>
                                                     
