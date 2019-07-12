@@ -98,6 +98,13 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+        <!-- 雪花特效 -->
+        <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 480) {
+                document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+            }
+        </script>
 </head>
 
 <body class="is-3-column">
@@ -1387,13 +1394,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
                                 
-                                    <!-- 雪花特效 -->
-                                    <script type="text/javascript">
-                                        var windowWidth = $(window).width();
-                                        if (windowWidth > 480) {
-                                            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
-                                        }
-                                    </script>
 </body>
 
 </html>
