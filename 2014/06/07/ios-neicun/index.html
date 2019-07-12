@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="IP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/policx/im/raw/master/images/Eemimq.png">
-<meta property="og:updated_time" content="2019-07-07T04:29:34.853Z">
+<meta property="og:updated_time" content="2019-07-12T10:04:08.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发内存泄露修复">
 <meta name="twitter:image" content="https://gitee.com/policx/im/raw/master/images/Eemimq.png">
@@ -172,7 +172,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1561 个字)
+                    10 分钟 读完 (大约 1533 个字)
                 </span>
                 
                 
@@ -194,11 +194,11 @@
 <li><a id="more"></a>
 <h2 id="一：写在前面"><a href="#一：写在前面" class="headerlink" title="一：写在前面"></a>一：写在前面</h2>请使用ARC！！！</li>
 </ul>
-<p>如果使用的第三方库不支持ARC机制，可以在target-&gt;build phase-&gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：<br><img src="https://policx.github.io/post-images/1560760059273.png" alt><br>如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC将是你最好的选择，因为修复泄露bug实在是太坑爹了…<br><img src="https://policx.github.io/post-images/1560760084281.png" alt><br>如果你不习惯ARC，又或者你使用的SDK版本根本不支持ARC，那么，请看下文。</p>
+<p>如果使用的第三方库不支持ARC机制，可以在target-&gt;build phase-&gt;compile sources中选择对应的源码文件并在气候加入-fno-objc-arc标示，如下图所示：<br><img src="/post-images/1560760059273.png" alt><br>如果你的应用对内存泄露比较敏感(长时间运行或者耗费较多内存),或者你对代码有洁癖无法忍受半点内存泄露，而你又没有大把的时间和精力取修复那些虚无缥缈的泄漏点，那么ARC将是你最好的选择，因为修复泄露bug实在是太坑爹了…<br><img src="/post-images/1560760084281.png" alt><br>如果你不习惯ARC，又或者你使用的SDK版本根本不支持ARC，那么，请看下文。</p>
 <h2 id="二：修复方法"><a href="#二：修复方法" class="headerlink" title="二：修复方法"></a>二：修复方法</h2><p>好，言归正传。</p>
 <p>按我个人理解，修复内存泄露可分为三个阶段：</p>
 <h3 id="第一阶段：编码"><a href="#第一阶段：编码" class="headerlink" title="第一阶段：编码"></a>第一阶段：编码</h3><p>好的编码习惯可以杜绝大部分的内存泄露，具体操作规范可参见我的另一篇博客iOS编程内存管理小结，这也是杜绝内存泄露的最关键阶段。在本阶段多花一些力气放在精确的内存管理上，你将会在调试阶段节省下大把的用于修复泄露的时间与精力。所谓：磨刀不误砍柴工！</p>
-<h3 id="第二阶段：静态分析"><a href="#第二阶段：静态分析" class="headerlink" title="第二阶段：静态分析"></a>第二阶段：静态分析</h3><p>说白了，静态分析就是使用Xcode自带的Analyze功能（Product-&gt; Analyze），对代码进行静态分析，对于内存泄露（Potential Memory Leak）, 未使用局部变量(dead store)，逻辑错误(Logic Flaws)以及API使用问题(API-usage)等明确的展示出来，如下图所示：<br><img src="https://policx.github.io/post-images/1560760131582.png" alt><br>dead store比较好处理，将从未使用的变量删掉即可。</p>
+<h3 id="第二阶段：静态分析"><a href="#第二阶段：静态分析" class="headerlink" title="第二阶段：静态分析"></a>第二阶段：静态分析</h3><p>说白了，静态分析就是使用Xcode自带的Analyze功能（Product-&gt; Analyze），对代码进行静态分析，对于内存泄露（Potential Memory Leak）, 未使用局部变量(dead store)，逻辑错误(Logic Flaws)以及API使用问题(API-usage)等明确的展示出来，如下图所示：<br><img src="/post-images/1560760131582.png" alt><br>dead store比较好处理，将从未使用的变量删掉即可。</p>
 <p>Memory Leak的提示其实也比较好办，因为其提示已经足够详细，具体到了具体泄露的代码行。找到问题对症下药即可, 忘记release 的加上release，该放autorelease的地方加上auto release。有一个情况需要特别说明一下，见下面所示代码：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[cpp] view plaincopy</span><br><span class="line"></span><br><span class="line">&lt;span style=&quot;font-size:12px;&quot;&gt;if （self.dataMember == nil) &#123;  </span><br><span class="line"></span><br><span class="line">    self.dataMember = [[NSArray alloc] init];   </span><br><span class="line"></span><br><span class="line">&#125;&lt;/span&gt; </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">这段代码在Analyze的时候也提示有内存泄露，开始我没看出来，后来才发现，等号右边的临时变量却是是泄露了的。正确的写法应该如下所示：</span><br></pre></td></tr></table></figure>
 
@@ -226,13 +226,13 @@ Instruments是Xcode自带的一个强大的应用分析工具，其功能并不�
 使用Instruments分析内存泄露时，最好使用真机进行调试，笔者就碰到过同一份代码在模拟器上分析有泄露而实体机上就没有的情况，看来不同的CPU架构(x86 vs ARM)对内存的管理还是有一定影响的。
 
 连接实体机到开发机，选择选择运行设备为设备，点击Products-&gt; Profile，经过编译后，会弹出如下对话框：
-![](https://policx.github.io/post-images/1560760181109.png)
+![](/post-images/1560760181109.png)
 双击Leak, 进入如下界面：
-![](https://policx.github.io/post-images/1560760207240.png)
+![](/post-images/1560760207240.png)
 上面的蓝色条状部分是内存占用情况，而下面的便是内存泄露情况，当下面的状态栏出现粉色条状物体时，恭喜你，泄露出现了...
-![](https://policx.github.io/post-images/1560760246640.png)
+![](/post-images/1560760246640.png)
 如果运气比较好的话，下面的提示区域会明确的告诉你那个文件哪个函数有泄露出现，但...很多情况下，出现的只是下面这种无厘头的提示：
-![](https://policx.github.io/post-images/1560760276890.png)
+![](/post-images/1560760276890.png)
 这是要闹那样...
 
 

@@ -17,7 +17,7 @@
 <meta property="og:description" content="MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i01picsos.sogoucdn.com/4dee6e9358819886">
-<meta property="og:updated_time" content="2019-07-07T04:23:34.820Z">
+<meta property="og:updated_time" content="2019-07-12T09:59:16.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB">
 <meta name="twitter:description" content="MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。">
@@ -176,7 +176,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    31 分钟 读完 (大约 4586 个字)
+                    30 分钟 读完 (大约 4574 个字)
                 </span>
                 
                 
@@ -447,7 +447,7 @@
 <p>例子</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.mycol.ensureIndex(&#123;&quot;title&quot;:1&#125;)</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">在 ensureIndex()方法，可以通过多个字段，来创建多个字段索引。</span><br><span class="line">&gt;db.mycol.ensureIndex(&#123;&quot;title&quot;:1,&quot;description&quot;:-1&#125;)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 
-<p>ensureIndex() 方法还接受选项列表（这是可选），其列表如下：<br><img src="https://policx.github.io/post-images/1561132706992.png" alt></p>
+<p>ensureIndex() 方法还接受选项列表（这是可选），其列表如下：<br><img src="/post-images/1561132706992.png" alt></p>
 <h4 id="MongoDB-聚合"><a href="#MongoDB-聚合" class="headerlink" title="MongoDB 聚合"></a>MongoDB 聚合</h4><p>聚合操作处理数据记录并返回计算结果。从多个文档聚合分组操作数值，并可以执行多种对分组数据业务返回一个结果。 在SQL中的count(*)，使用group by 与mongodb的聚合是等效的。 对于MongoDB的聚合，使用的是aggregate()方法。</p>
 <p>语法</p>
 <p>aggregate()方法的基本语法如下<br><code>&gt;db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)</code></p>
@@ -458,7 +458,7 @@
 <p>现在从上面的集合，如果想知道每一个用户编写的教程是多少，那么使用aggregate()方法，如下图所示的列表：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.mycol.aggregate([&#123;$group : &#123;_id : &quot;$by_user&quot;, num_tutorial : &#123;$sum : 1&#125;&#125;&#125;])</span><br><span class="line">&#123;</span><br><span class="line">   &quot;result&quot; : [</span><br><span class="line">      &#123;</span><br><span class="line">         &quot;_id&quot; : &quot;Yiibai Yiibai&quot;,</span><br><span class="line">         &quot;num_tutorial&quot; : 2</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">         &quot;_id&quot; : &quot;Neo4j&quot;,</span><br><span class="line">         &quot;num_tutorial&quot; : 1</span><br><span class="line">      &#125;</span><br><span class="line">   ],</span><br><span class="line">   &quot;ok&quot; : 1</span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 
-<pre><code>用于上述用途将等效于sql查询： select by_user, count(*) from mycol group by by_user</code></pre><p>另外，在上述例子中，我们已经使用字段by_user进行分组并计算总和，也就是by_user 出现各个次数。一个列表中可用的聚集表达式。<br>    <img src="https://policx.github.io/post-images/1561132965786.png" alt></p>
+<pre><code>用于上述用途将等效于sql查询： select by_user, count(*) from mycol group by by_user</code></pre><p>另外，在上述例子中，我们已经使用字段by_user进行分组并计算总和，也就是by_user 出现各个次数。一个列表中可用的聚集表达式。<br>    <img src="/post-images/1561132965786.png" alt></p>
 <h4 id="MongoDB-复制"><a href="#MongoDB-复制" class="headerlink" title="MongoDB 复制"></a>MongoDB 复制</h4><p>复制是同步在多个服务器上的数据过程。复制提供了冗余和数据在不同的数据库服务器上的多个副本提高数据的可用性，复制防止在单个服务器上丢失数据库。 复制也可以从硬件故障和服务中断中恢复。带有数据的其他副本，可以选择其中一个灾难恢复，报告或备份。</p>
 <h6 id="为什么要复制？"><a href="#为什么要复制？" class="headerlink" title="为什么要复制？"></a>为什么要复制？</h6><blockquote>
 <pre><code>为了让数据安全
@@ -483,7 +483,7 @@
 在自动故障转移或维护时，选建立了主要和一个新的主节点被选择。
 
 故障节点的恢复后，再次加入副本集，并可以作为一个辅助节点。</code></pre></blockquote>
-<p>mongodb复制的典型图如下图，其中客户端应用程序总是与主节点和主节点交互，然后将数据复制到辅助节点。<br><img src="https://policx.github.io/post-images/1561133216694.png" alt><br>副本集特征</p>
+<p>mongodb复制的典型图如下图，其中客户端应用程序总是与主节点和主节点交互，然后将数据复制到辅助节点。<br><img src="/post-images/1561133216694.png" alt><br>副本集特征</p>
 <ul>
 <li>N个节点的集群</li>
 <li>任何节点可为原发/主节点</li>
