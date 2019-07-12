@@ -1215,44 +1215,49 @@
                                     |
                                     <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
                                         
+                                            <br>
+                                            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                                            <script>
+                                                var now = new Date();
+
+                                                function createtime() {
+                                                    var grt = new Date("05/01/2019 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+                                                    now.setTime(now.getTime() + 250);
+                                                    days = (now - grt) / 1000 / 60 / 60 / 24;
+                                                    dnum = Math.floor(days);
+                                                    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                                                    hnum = Math.floor(hours);
+                                                    if (String(hnum).length == 1) {
+                                                        hnum = "0" + hnum;
+                                                    }
+                                                    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                                                    mnum = Math.floor(minutes);
+                                                    if (String(mnum).length == 1) {
+                                                        mnum = "0" + mnum;
+                                                    }
+                                                    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                                                    snum = Math.round(seconds);
+                                                    if (String(snum).length == 1) {
+                                                        snum = "0" + snum;
+                                                    }
+                                                    document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                                                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                                                }
+                                                setInterval("createtime()", 250);
+                                            </script>
                 </p>
             </div>
             <div class="level-end">
                 
                     <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                         <img src="https://tool.lu/netcard/" height="80px" width="200px">
-                        <!-- 
-                            
-                                <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
-                                        
-                                                    <i class="fab fa-creative-commons"></i>
-                                                    
-                                    </a>
-                                </p>
-                                
-                                <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
-                                        
-                                                    <i class="fab fa-creative-commons-by"></i>
-                                                    
-                                    </a>
-                                </p>
-                                
-                                <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://www.2345.com/?k.cn">
-                                        
-                                                    <i class="fab fa-github"></i>
-                                                    
-                                    </a>
-                                </p>
-                                
+                        <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=0&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
                     </div>
-                     -->
-                    </div>
+                    
             </div>
         </div>
-</div></footer>
+    </div>
+</footer>
                     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 <script>moment.locale("zh-CN");</script>
