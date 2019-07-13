@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言 实现原理 优化：降低50%以上误报机率 对原有API设计的几点优化意见  机制状态应当用枚举来做为API透出    关键数值应当做为初始化参数供用户设置    修复、上报逻辑应当支持用户异步操作   什么时候会出现该异常？ 连续启动 crash 自修复技术实现与原理解析">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/post-images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-12T10:14:17.432Z">
+<meta property="og:updated_time" content="2019-07-13T07:12:51.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="连续启动 crash 自修复技术实现与原理解析">
 <meta name="twitter:description" content="前言 实现原理 优化：降低50%以上误报机率 对原有API设计的几点优化意见  机制状态应当用枚举来做为API透出    关键数值应当做为初始化参数供用户设置    修复、上报逻辑应当支持用户异步操作   什么时候会出现该异常？ 连续启动 crash 自修复技术实现与原理解析">
@@ -261,8 +261,8 @@
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2018-01-18 16:25:37.162980+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：CYLBootingProtection: Launch continuous crash report</span><br><span class="line">2018-01-18 16:25:37.163140+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setIsNormalChecking:&#123;0&#125;</span><br><span class="line">2018-01-18 16:25:37.165738+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setisFixingCrash:&#123;0&#125;</span><br><span class="line">2018-01-18 16:25:37.166883+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：crashCount:0</span><br><span class="line">2018-01-18 16:25:37.167102+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：crashCount:0</span><br><span class="line">2018-01-18 16:25:37.167253+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setIsNormalChecking:&#123;1&#125;</span><br><span class="line">2018-01-18 16:25:37.167938+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setCrashCount:1</span><br><span class="line">2018-01-18 16:25:37.168806+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：need no repair</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2018-01-18 16:25:52.225197+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：CYLBootingProtection: long live the app ( more than 15 seconds ), now reset crash counts</span><br><span class="line">2018-01-18 16:25:52.225378+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setCrashCount:0</span><br><span class="line">2018-01-18 16:25:52.226234+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setIsNormalChecking:&#123;0&#125;</span><br><span class="line">2018-01-18 16:25:52.226595+0800 BootingProtection[89773:15553277] 🔴类名与方法名：-[AppDelegate onBeforeBootingProtection]_block_invoke（在第45行），描述：setisFixingCrash:&#123;0&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>Posted by <a href="http://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
-<p align="center"><a href="http://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a></p>
+<p>Posted by <a href="https://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
+<p align="center"><a href="https://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="https://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a></p>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -489,6 +489,17 @@
 </div>
     
         
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+</div>
+
     
     
         <div class="column-right-shadow is-hidden-widescreen is-sticky">
@@ -1034,17 +1045,6 @@
         </div>
     </div>
 </div>
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
-    </div>
-</div>
-
         
             <div class="card widget">
     <div class="card-content">
@@ -1777,17 +1777,6 @@
     </div>
 </div>
     
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
-    </div>
-</div>
-
-    
         <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -2030,7 +2019,6 @@
                     <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                         <img src="https://tool.lu/netcard/" height="80px" width="200px">
                         <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
-                        <script type="text/javascript" src="//rf.revolvermaps.com/0/0/5.js?i=5lfj1mo86u7&amp;m=6&amp;c=ff0000&amp;cr1=ffffff" async="async"></script>
                     </div>
                     
             </div>
