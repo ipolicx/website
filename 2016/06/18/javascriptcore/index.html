@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="IP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/post-images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-12T10:03:14.596Z">
+<meta property="og:updated_time" content="2019-07-13T08:32:50.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入剖析-JavaScriptCore">
 <meta name="twitter:image" content="https://www.policx.com/post-images/banner.jpg">
@@ -204,7 +204,7 @@
 </li>
 <li><p>DFG JIT：低延迟优化 JIT，更差性能就用这个生成更优化的机器码来执行。在函数被调用了60次或者代码循环了1000次会触发。在 LLInt 和 Baseline JIT 中会收集一些包括最近参数，堆以及返回值中的数据等轻量级的性能信息，方便 DFG 进行类型判断。先获取类型信息可以减少大量的类型检查，推测失败 DFG 会取消优化，也叫 OSR exit。取消可以是同步的也可以是异步的。取消后会回到 Baseline JIT，退回一定次数会进行重新优化，收集更多统计信息，看情况再次调用 DFG。重新优化使用的是指数式回退策略应对一些怪异的代码。DFG 代码在 dfg/ 里。</p>
 </li>
-<li><p>FTL：高吞吐量优化 JIT，全称 Faster Than Light，DFG 高层优化配合 B3 底层优化。以前全称是 Fourth Tier LLVM 底层优化使用的是 LLVM。B3 对 LLVM 做了裁剪，对 JavaScriptCore 做了特性处理，B3 IR 的接口和 LLVM IR 很类似。B3 对 LLVM 的替换主要是考虑减少内存开销，LLVM 主要是针对编译器，编译器在这方面优化动力必然没有 JIT 需求高。B3 IR 将指针改成了更紧凑的整数来表示引用关系。不可变的常用的信息使用固定大小的结构来表示，其它的都放到另外的地方。紧凑的数据放到数组中，更多的数组更少的链表。这样形成的 IR 更省内存。<a href="http://www.filpizlo.com/" target="_blank" rel="noopener">Filip Pizlo</a> 主导的这个改动，DFG JIT 也是他弄的，为了能够更多的减少内存上的开销，他利用在 DFG 里已经做的 InsertionSet 将 LLVM IR 里的 def-use 干掉了，大概思路是把单向链表里批量插入新 IR 节点先放到 InsertionSet 里，在下次遍历 IR 时再批量插入。Filip Pizlo 还把 DFG 里的 UpsilonValue 替代 LLVM SSA 组成部分。B3 后面会把 LLVM 的寄存器分配算法 Greedy 一直到 B3 中。</p>
+<li><p>FTL：高吞吐量优化 JIT，全称 Faster Than Light，DFG 高层优化配合 B3 底层优化。以前全称是 Fourth Tier LLVM 底层优化使用的是 LLVM。B3 对 LLVM 做了裁剪，对 JavaScriptCore 做了特性处理，B3 IR 的接口和 LLVM IR 很类似。B3 对 LLVM 的替换主要是考虑减少内存开销，LLVM 主要是针对编译器，编译器在这方面优化动力必然没有 JIT 需求高。B3 IR 将指针改成了更紧凑的整数来表示引用关系。不可变的常用的信息使用固定大小的结构来表示，其它的都放到另外的地方。紧凑的数据放到数组中，更多的数组更少的链表。这样形成的 IR 更省内存。<a href="https://www.filpizlo.com/" target="_blank" rel="noopener">Filip Pizlo</a> 主导的这个改动，DFG JIT 也是他弄的，为了能够更多的减少内存上的开销，他利用在 DFG 里已经做的 InsertionSet 将 LLVM IR 里的 def-use 干掉了，大概思路是把单向链表里批量插入新 IR 节点先放到 InsertionSet 里，在下次遍历 IR 时再批量插入。Filip Pizlo 还把 DFG 里的 UpsilonValue 替代 LLVM SSA 组成部分。B3 后面会把 LLVM 的寄存器分配算法 Greedy 一直到 B3 中。</p>
 </li>
 </ul>
 <p>执行速度的对比：<br><img src="https://ming1016.github.io/uploads/deeply-analyse-javascriptcore/02.png" alt><br>相对速度，越高表示越好。</p>
@@ -248,7 +248,7 @@
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo(o) &#123;</span><br><span class="line">    if (o.f &amp;&amp; o.f() == 42)</span><br><span class="line">        print(&quot;hello&quot;);</span><br><span class="line">    if (o.g &amp;&amp; o.g() == 63)</span><br><span class="line">        print(&quot;bye&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://ming1016.github.io/uploads/deeply-analyse-javascriptcore/07.png" alt></p>
-<p>还有些其它的 parser 比如 Esprima 提供了一个在线 <a href="http://esprima.org/demo/parse.html" target="_blank" rel="noopener">demo</a> 可以在线 Parser。实现的代码在这里：<a href="https://github.com/jquery/esprima/tree/master/src" target="_blank" rel="noopener">https://github.com/jquery/esprima/tree/master/src</a> 主要使用的是递归下降和运算符优先级混合式来做的 parser。</p>
+<p>还有些其它的 parser 比如 Esprima 提供了一个在线 <a href="https://esprima.org/demo/parse.html" target="_blank" rel="noopener">demo</a> 可以在线 Parser。实现的代码在这里：<a href="https://github.com/jquery/esprima/tree/master/src" target="_blank" rel="noopener">https://github.com/jquery/esprima/tree/master/src</a> 主要使用的是递归下降和运算符优先级混合式来做的 parser。</p>
 <p>我在 HTN （<a href="https://github.com/ming1016/HTN" target="_blank" rel="noopener">https://github.com/ming1016/HTN</a>）项目中做了个 js 的 AST 的 builder：<a href="https://github.com/ming1016/HTN/tree/master/Sources/Core/JavaScript" target="_blank" rel="noopener">https://github.com/ming1016/HTN/tree/master/Sources/Core/JavaScript</a> 分词和语法树生成使用的是状态机处理递归下降。</p>
 <p>WebKit 的性能目录里有用 ES6 标准实现的 ECMA-55 BASIC 这个词法语法分析的测试。代码在：<a href="https://trac.webkit.org/browser/trunk/PerformanceTests/ARES-6/Basic?rev=211697" target="_blank" rel="noopener">https://trac.webkit.org/browser/trunk/PerformanceTests/ARES-6/Basic?rev=211697</a></p>
 <p>程序会被表示成树，每个节点都有与其相关的代码，这些代码都可以递归的调用树中的子节点。Basic 的节点的结构是这样子的：</p>
@@ -364,7 +364,7 @@
 
 <p>可以看到左值是先计算的。</p>
 <p>从树遍历到基于栈的解释，实际上是一个将 AST 树打平的过程。方法是后序遍历 AST 时使用 <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation" target="_blank" rel="noopener">Reverse Polish Notation</a> 这种后缀记法生成一个序列，成为一个线性结构，后面再解释执行这个操作序列。</p>
-<p>JVM 是 Java 语言的虚机。Android 也是用的 Java 语言，那么它的虚机也是 JVM 吗？答案是否定的，Android 使用的虚机叫 <a href="https://en.wikipedia.org/wiki/Dalvik_(software)" target="_blank" rel="noopener">Dalvik VM</a>，这款虚机在很多设计上都与 JVM 兼容，字节码是二地址和三地址并用的方式，是基于寄存器的架构。Dalvik VM 用在移动端为了能够更加高效，开始就没有顾及太多可移植性，这样基于寄存器架构的优势就能够更好的发挥出来了。想更多了解 Dalvik VM 可以通过 <a href="http://www.milk.com/home/danfuzz/" target="_blank" rel="noopener">Dan Bornstein</a> 做的一个 Dalvik 的实现原理的演讲 <a href="https://sites.google.com/site/io/dalvik-vm-internals" target="_blank" rel="noopener">Dalvik VM Internals</a>。</p>
+<p>JVM 是 Java 语言的虚机。Android 也是用的 Java 语言，那么它的虚机也是 JVM 吗？答案是否定的，Android 使用的虚机叫 <a href="https://en.wikipedia.org/wiki/Dalvik_(software)" target="_blank" rel="noopener">Dalvik VM</a>，这款虚机在很多设计上都与 JVM 兼容，字节码是二地址和三地址并用的方式，是基于寄存器的架构。Dalvik VM 用在移动端为了能够更加高效，开始就没有顾及太多可移植性，这样基于寄存器架构的优势就能够更好的发挥出来了。想更多了解 Dalvik VM 可以通过 <a href="https://www.milk.com/home/danfuzz/" target="_blank" rel="noopener">Dan Bornstein</a> 做的一个 Dalvik 的实现原理的演讲 <a href="https://sites.google.com/site/io/dalvik-vm-internals" target="_blank" rel="noopener">Dalvik VM Internals</a>。</p>
 <p>JVM 和 Dalvik VM 的主要区别是后者字节码指令数量和内存更少。JVM 每个线程有一个 Java 栈用来记录方法调用的 activation record，每调用一个方法就会分配一个新栈帧，方法返回就 Pop 出栈帧。每个栈帧会有局部变量区，istore 这样的指令用来移动局部变量和参数到局部变量区。每个栈帧还会有求值栈，这个栈用来存储求值的中间结果和调用其他方法的参数等，使用 iconst 这样的指令来进行数据的移动，还可以通过 iadd，imul 这样的指令在求值栈中 Pop 出值进行求值，然后再把结果 Push 到栈里。</p>
 <p>Dalvik VM 的每个线程有程序计数器和调用栈，方法的调用和 JVM 一样是会分配一个新的帧，不同的是 Dalvik VM 使用的是虚拟寄存器来替代 JVM 里的局部变量区和求值栈。方法调用会有一组自己的虚拟寄存器，常用的是 v0 - v15，有些指令可以使用 v0 - v255。只在虚拟寄存器中进行指令操作，数据移动少多了，保存局部变量的存储单元也会少很多。Dalvik VM 的寄存器每次方法调用会一组自己的，不过在 X86 架构中寄存器是全局的，这样 X86 需要考虑 calling converntion，就是需要保护一些寄存器的状态，在调用时需要处理这些，而 Dalvik VM 调用完方法后，那些寄存器值会恢复成调用前的可以很好的避免这样的问题。</p>
 <p>V8 没有中间的字节码，而是直接编译 JavaScript 生成机器码。不过在内部也用了表达式栈来简化代码生成，在编译过程中使用虚拟栈帧来记录局部变量和栈的状态。生成代码的过程中会有窥孔优化用来去除多余的入栈和出栈，把栈操作转成寄存器操作，生成的代码看起来就和基于寄存器的代码类似了。</p>
@@ -384,7 +384,7 @@
 </li>
 <li><p>JavaScriptCore：苹果开发的开源 JavaScript 引擎，用在 Safari 等浏览器中。Safari 是带有 JIT 的 JavaScriptCore 的，而 UIWebView 是没有的。</p>
 </li>
-<li><p>V8：Google 开发的开源引擎，用于 Chrome。Parser 使用的是手写纯递归下降加运算符优先级混合式。V8 使用了 <a href="http://ariya.ofilabs.com/2012/07/lazy-parsing-in-javascript-engines.html" target="_blank" rel="noopener">2-pass</a>，会先收集一些上下文信息增加预测的准确性。V8 开始时是不用字节码会直接编译成机器码，Dart VM 也是这样设计的，他们一个问题的回答 <a href="https://www.dartlang.org/faq#q-why-didnt-google-build-a-bytecode-vm-targetable-by-multiple-languages-including-dart" target="_blank" rel="noopener">Why didn’t Google build a bytecode VM targetable by multiple languages including Dart?</a> 同样适用于 V8。不过 V8 5.9 启用了 <a href="https://v8project.blogspot.co.id/2017/04/v8-release-59.html" target="_blank" rel="noopener">Ignition</a> 字节码解释器，自此几大 JS 引擎都用了字节码。启用字节码的考虑主要是希望能够减少机器码对内存空间的占用。由于机器码占用的空间也很大，所以不好都缓存下来，不然内存和磁盘都吃不消，序列化和反序列化时间都太长，这样每次编译的机器码都不是完整的只会缓存最外的一层，如果代码最外层包了一层，启动代码每次都是不同的调用就会每次都编译，会导致缓存没有作用。由于字节码通过比较好的设计后能够做到比机器码紧凑，这样引入 Ignition 后内存明显的下降了。TurboFan 再对 Ignition 字节码来进行解释。</p>
+<li><p>V8：Google 开发的开源引擎，用于 Chrome。Parser 使用的是手写纯递归下降加运算符优先级混合式。V8 使用了 <a href="https://ariya.ofilabs.com/2012/07/lazy-parsing-in-javascript-engines.html" target="_blank" rel="noopener">2-pass</a>，会先收集一些上下文信息增加预测的准确性。V8 开始时是不用字节码会直接编译成机器码，Dart VM 也是这样设计的，他们一个问题的回答 <a href="https://www.dartlang.org/faq#q-why-didnt-google-build-a-bytecode-vm-targetable-by-multiple-languages-including-dart" target="_blank" rel="noopener">Why didn’t Google build a bytecode VM targetable by multiple languages including Dart?</a> 同样适用于 V8。不过 V8 5.9 启用了 <a href="https://v8project.blogspot.co.id/2017/04/v8-release-59.html" target="_blank" rel="noopener">Ignition</a> 字节码解释器，自此几大 JS 引擎都用了字节码。启用字节码的考虑主要是希望能够减少机器码对内存空间的占用。由于机器码占用的空间也很大，所以不好都缓存下来，不然内存和磁盘都吃不消，序列化和反序列化时间都太长，这样每次编译的机器码都不是完整的只会缓存最外的一层，如果代码最外层包了一层，启动代码每次都是不同的调用就会每次都编译，会导致缓存没有作用。由于字节码通过比较好的设计后能够做到比机器码紧凑，这样引入 Ignition 后内存明显的下降了。TurboFan 再对 Ignition 字节码来进行解释。</p>
 </li>
 </ul>
 <h2 id="各个引擎之间通用技术"><a href="#各个引擎之间通用技术" class="headerlink" title="各个引擎之间通用技术"></a>各个引擎之间通用技术</h2><p>根据下面关键子去查找，可以了解更多的相关的虚机技术。</p>

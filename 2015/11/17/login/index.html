@@ -15,7 +15,7 @@
 <meta property="og:description" content="我们开发App的时候,常常涉及到用户登陆,那么就会涉及到用户信息的存储和用户的登陆状态">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/post-images/denglu.jpg">
-<meta property="og:updated_time" content="2019-07-12T10:00:56.989Z">
+<meta property="og:updated_time" content="2019-07-13T08:12:31.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之用户登陆信息存储">
 <meta name="twitter:description" content="我们开发App的时候,常常涉及到用户登陆,那么就会涉及到用户信息的存储和用户的登陆状态">
@@ -228,7 +228,7 @@
 <p>以下是关键代码</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//合适的时机保存Cookie</span><br><span class="line">- (void)saveCookies&#123;</span><br><span class="line">    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];</span><br><span class="line">    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">    [defaults setObject: cookiesData forKey: @&quot;org.skyfox.cookie&quot;];</span><br><span class="line">    [defaults synchronize];</span><br><span class="line">&#125;</span><br><span class="line">//合适的时机加载Cookie 一般都是app刚刚启动的时候</span><br><span class="line">- (void)loadCookies&#123;</span><br><span class="line">    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [[NSUserDefaults standardUserDefaults] objectForKey: @&quot;org.skyfox.cookie&quot;]];</span><br><span class="line">    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];</span><br><span class="line">    for (NSHTTPCookie *cookie in cookies)&#123;</span><br><span class="line">        [cookieStorage setCookie: cookie];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Cookie详解：ios htttp网络请求cookie的读取与写入(NSHTTPCookieStorage)<br>写在最后<br>至于还有什么写文件，NSCoder归档等方式就不说了，不怎么常用和实用  <a href="http://www.skyfox.org/ios-login-info-save.html" target="_blank" rel="noopener">天狐博客</a></p>
+<p>Cookie详解：ios htttp网络请求cookie的读取与写入(NSHTTPCookieStorage)<br>写在最后<br>至于还有什么写文件，NSCoder归档等方式就不说了，不怎么常用和实用  <a href="https://www.skyfox.org/ios-login-info-save.html" target="_blank" rel="noopener">天狐博客</a></p>
 
         </div>
         
