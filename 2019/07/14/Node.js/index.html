@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html  lang="zh">
+<head>
     <meta charset="utf-8">
 <title>Node.js - IP</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
 
@@ -16,7 +16,7 @@
 <meta property="og:description" content="一、简介Node.js 是一个基于Google Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/14/5d2b3737979ee64309.jpg">
-<meta property="og:updated_time" content="2019-07-14T14:42:52.507Z">
+<meta property="og:updated_time" content="2019-07-14T15:12:20.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js">
 <meta name="twitter:description" content="一、简介Node.js 是一个基于Google Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。">
@@ -93,7 +93,7 @@
     
     
     
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
     
@@ -115,17 +115,23 @@
             
             <div class="navbar-start">
                 
-                <a class="navbar-item" href="/">Home</a>
+                <a class="navbar-item"
+                href="/">Home</a>
                 
-                <a class="navbar-item" href="/archives">Archives</a>
+                <a class="navbar-item"
+                href="/archives">Archives</a>
                 
-                <a class="navbar-item" href="/categories">Categories</a>
+                <a class="navbar-item"
+                href="/categories">Categories</a>
                 
-                <a class="navbar-item" href="/tags">Tags</a>
+                <a class="navbar-item"
+                href="/tags">Tags</a>
                 
-                <a class="navbar-item" href="/message">Message</a>
+                <a class="navbar-item"
+                href="/message">Message</a>
                 
-                <a class="navbar-item" href="/about">About</a>
+                <a class="navbar-item"
+                href="/about">About</a>
                 
             </div>
             
@@ -159,7 +165,7 @@
                 <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
+        <span  class="image is-7by1">
             <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2b3737979ee64309.jpg" alt="Node.js">
         </span>
     </div>
@@ -178,7 +184,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    44 分钟 读完 (大约 6563 个字)
+                    44 分钟 读完 (大约 6570 个字)
                 </span>
                 
                 
@@ -292,353 +298,105 @@
 <h2 id="5-4、第一个Express框架实例"><a href="#5-4、第一个Express框架实例" class="headerlink" title="5.4、第一个Express框架实例"></a>5.4、第一个Express框架实例</h2><p>接下来我们使用 Express 框架来输出 “Hello World”。<br>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。 </p>
 <p>创建一个目录，如Project，进入命令行： </p>
 <p>使用npm install express 导入express模块。 </p>
-<p>在目录下创建hello.js文件，如下所示： </p>
-<pre><code>//引入express模块
-var express = require(&apos;express&apos;);
-//创建一个app对象，类似一个web 应用（网站）
-var app = express();
-//接受指定路径的请求，指定回调函数
-app.get(&apos;/&apos;, function (req, res){
-res.send(&apos;Hello World&apos;);
-});
-//创建一个web服务器，可以认为就是web服务器对象
-//监听8081端口，当监听成功时回调
-var server = app.listen(8081, function () {
-   var host = server.address().address;  //地址
-   var port = server.address().port;  //端口
-    console.log(&quot;应用实例，访问地址为 https://%s:%s&quot;, host, port);
-});
-})</code></pre><h2 id="5-5、开发Express项目"><a href="#5-5、开发Express项目" class="headerlink" title="5.5、开发Express项目"></a>5.5、开发Express项目</h2><p><img src="https://i.loli.net/2019/07/14/5d2b00e97910997783.jpg" alt><br>创建好的项目如下：<br><img src="https://i.loli.net/2019/07/14/5d2b02dad205355700.jpg" alt></p>
-<p>app.js是网站： </p>
-<pre><code>var express = require(&apos;express&apos;);
-var path = require(&apos;path&apos;);
-var favicon = require(&apos;serve-favicon&apos;);
-var logger = require(&apos;morgan&apos;);
-var cookieParser = require(&apos;cookie-parser&apos;);
-var bodyParser = require(&apos;body-parser&apos;);
+<p>在目录下创建hello.js文件，如下所示：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//引入express模块</span><br><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">//创建一个app对象，类似一个web 应用（网站）</span><br><span class="line">var app = express();</span><br><span class="line">//接受指定路径的请求，指定回调函数</span><br><span class="line">app.get(&apos;/&apos;, function (req, res)&#123;</span><br><span class="line">res.send(&apos;Hello World&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">//创建一个web服务器，可以认为就是web服务器对象</span><br><span class="line">//监听8081端口，当监听成功时回调</span><br><span class="line">var server = app.listen(8081, function () &#123;</span><br><span class="line">   var host = server.address().address;  //地址</span><br><span class="line">   var port = server.address().port;  //端口</span><br><span class="line">    console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-var index = require(&apos;./routes/index&apos;);
-var users = require(&apos;./routes/users&apos;);
+<h2 id="5-5、开发Express项目"><a href="#5-5、开发Express项目" class="headerlink" title="5.5、开发Express项目"></a>5.5、开发Express项目</h2><p><img src="https://i.loli.net/2019/07/14/5d2b00e97910997783.jpg" alt><br>创建好的项目如下：<br><img src="https://i.loli.net/2019/07/14/5d2b02dad205355700.jpg" alt></p>
+<p>app.js是网站：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var path = require(&apos;path&apos;);</span><br><span class="line">var favicon = require(&apos;serve-favicon&apos;);</span><br><span class="line">var logger = require(&apos;morgan&apos;);</span><br><span class="line">var cookieParser = require(&apos;cookie-parser&apos;);</span><br><span class="line">var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line"></span><br><span class="line">var index = require(&apos;./routes/index&apos;);</span><br><span class="line">var users = require(&apos;./routes/users&apos;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">//指定视图引擎为ejs</span><br><span class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line"></span><br><span class="line">// uncomment after placing your favicon in /public</span><br><span class="line">//app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));</span><br><span class="line">app.use(logger(&apos;dev&apos;));</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;));</span><br><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)));</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;, index);</span><br><span class="line">app.use(&apos;/users&apos;, users);</span><br><span class="line"></span><br><span class="line">// catch 404 and forward to error handler</span><br><span class="line">app.use(function(req, res, next) &#123;</span><br><span class="line">  var err = new Error(&apos;Not Found&apos;);</span><br><span class="line">  err.status = 404;</span><br><span class="line">  next(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// error handler</span><br><span class="line">app.use(function(err, req, res, next) &#123;</span><br><span class="line">  // set locals, only providing error in development</span><br><span class="line">  res.locals.message = err.message;</span><br><span class="line">  res.locals.error = req.app.get(&apos;env&apos;) === &apos;development&apos; ? err : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  // render the error page</span><br><span class="line">  res.status(err.status || 500);</span><br><span class="line">  res.render(&apos;error&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = app;</span><br></pre></td></tr></table></figure>
 
-var app = express();
+<p>bin\www是web服务器： </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 依赖模块，导入</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">var app = require(&apos;../app&apos;);</span><br><span class="line">var debug = require(&apos;debug&apos;)(&apos;nodejsexpress:server&apos;);</span><br><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 从上下文环境中获得监听端口，如果空则3000</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">var port = normalizePort(process.env.PORT || &apos;3000&apos;);</span><br><span class="line">app.set(&apos;port&apos;, port);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 创建Web服务器</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">var server = http.createServer(app);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 开始监听</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">server.listen(port);</span><br><span class="line">server.on(&apos;error&apos;, onError);  //指定发生错误时的事件</span><br><span class="line">server.on(&apos;listening&apos;, onListening);  //当监听成功时的回调</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 规范化端口</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function normalizePort(val) &#123;</span><br><span class="line">  var port = parseInt(val, 10);</span><br><span class="line"></span><br><span class="line">  if (isNaN(port)) &#123;</span><br><span class="line">    // named pipe</span><br><span class="line">    return val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (port &gt;= 0) &#123;</span><br><span class="line">    // port number</span><br><span class="line">    return port;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *错误事件监听</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function onError(error) &#123;</span><br><span class="line">  if (error.syscall !== &apos;listen&apos;) &#123;</span><br><span class="line">    throw error;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var bind = typeof port === &apos;string&apos;</span><br><span class="line">    ? &apos;Pipe &apos; + port</span><br><span class="line">    : &apos;Port &apos; + port;</span><br><span class="line"></span><br><span class="line">  //错误处理</span><br><span class="line">  switch (error.code) &#123;</span><br><span class="line">    case &apos;EACCES&apos;:</span><br><span class="line">      console.error(bind + &apos; requires elevated privileges&apos;);</span><br><span class="line">      process.exit(1);  //结束程序</span><br><span class="line">      break;</span><br><span class="line">    case &apos;EADDRINUSE&apos;:</span><br><span class="line">      console.error(bind + &apos; is already in use&apos;);</span><br><span class="line">      process.exit(1);</span><br><span class="line">      break;</span><br><span class="line">    default:</span><br><span class="line">      throw error;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 当用户访问服务器成功时的回调</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function onListening() &#123;</span><br><span class="line">  var addr = server.address();</span><br><span class="line">  var bind = typeof addr === &apos;string&apos;</span><br><span class="line">    ? &apos;pipe &apos; + addr</span><br><span class="line">    : &apos;port &apos; + addr.port;</span><br><span class="line">  debug(&apos;Listening on &apos; + bind);</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">routers/index.js路由，有点类似控制器或Servlet：</span><br></pre></td></tr></table></figure>
 
-//指定视图引擎为ejs
-app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));
-app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+<p>var express = require(‘express’);<br>var router = express.Router();</p>
+<p>/* 获得首页 */<br>router.get(‘/‘, function(req, res, next) {<br>  res.render(‘index’, { title: ‘Express’ });<br>});</p>
+<p>module.exports = router;</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/index.ejs首页视图：</span><br></pre></td></tr></table></figure>
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));
-app.use(logger(&apos;dev&apos;));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, &apos;public&apos;)));
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <title><%= title %></%=></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1><%= title %></%=></h1>
+    <p>Welcome to <%= title %></%=></p>
+  </body>
+</html>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">在www上右键选择“运行方式”-&gt;Run &apos;/bin/www&apos; 运行结果： </span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b034bcca6187136.jpg)</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b044c2b12347829.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b041724d6091090.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 5.5.1、request对象 </span><br><span class="line"></span><br><span class="line">Request 对象 - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</span><br></pre></td></tr></table></figure>
 
-app.use(&apos;/&apos;, index);
-app.use(&apos;/users&apos;, users);
+<p>req.app：当callback为外部文件时，用req.app访问express的实例<br>req.baseUrl：获取路由当前安装的URL路径<br>req.body / req.cookies：获得「请求主体」/ Cookies<br>req.fresh / req.stale：判断请求是否还「新鲜」<br>req.hostname / req.ip：获取主机名和IP地址<br>req.originalUrl：获取原始请求URL<br>req.params：获取路由的parameters<br>req.path：获取请求路径<br>req.protocol：获取协议类型<br>req.query：获取URL的查询参数串<br>req.route：获取当前匹配的路由<br>req.subdomains：获取子域名<br>req.accepts()：检查可接受的请求的文档类型<br>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码<br>req.get()：获取指定的HTTP请求头<br>req.is()：判断请求头Content-Type的MIME类型</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 5.5.2、response对象 </span><br><span class="line"></span><br><span class="line">Response 对象 - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</span><br></pre></td></tr></table></figure>
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error(&apos;Not Found&apos;);
-  err.status = 404;
-  next(err);
-});
+<p>res.app：同req.app一样<br>res.append()：追加指定HTTP头<br>res.set()在res.append()后将重置之前设置的头<br>res.cookie(name，value [，option])：设置Cookie<br>opition: domain / expires / httpOnly / maxAge / path / secure / signed<br>res.clearCookie()：清除Cookie<br>res.download()：传送指定路径的文件<br>res.get()：返回指定的HTTP头<br>res.json()：传送JSON响应<br>res.jsonp()：传送JSONP响应<br>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response<br>res.redirect()：设置响应的Location HTTP头，并且设置状态码302<br>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。<br>res.send()：传送HTTP响应<br>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type<br>res.set()：设置HTTP头，传入object可以一次设置多个头<br>res.status()：设置HTTP状态码<br>res.type()：设置Content-Type的MIME类型</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">###  5.5.3、express获取参数有三种方法 </span><br><span class="line"></span><br><span class="line">req.query 适合 https://localhost:3000/form?num=8888  </span><br><span class="line">req.body 适合https://localhost:3000/form，Post请求中的参数  </span><br><span class="line">req.params 适合获取form后的num：https://localhost:3000/form/num  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（一）、GET</span><br></pre></td></tr></table></figure>
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get(&apos;env&apos;) === &apos;development&apos; ? err : {};
+<p>var num = req.query.num;<br>res.send(“你获取的get数据为:” + num); </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">（二）、POST </span><br><span class="line"></span><br><span class="line">解析post数据需要用到body-parser </span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line">npm install body-parser --save</span><br></pre></td></tr></table></figure>
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render(&apos;error&apos;);
-});
+<p>app.js </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line">//引入body-parser</span><br><span class="line">var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line">app.use(express.static(&apos;public&apos;));</span><br><span class="line"></span><br><span class="line">//需要use的</span><br><span class="line">app.use(bodyParser.json()); // for parsing application/json</span><br><span class="line">app.use(bodyParser.urlencoded(&#123;</span><br><span class="line">extended: true</span><br><span class="line">&#125;)); // for parsing application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">//获取数据</span><br><span class="line">app.post(&apos;/form&apos;, function(req, res) &#123;</span><br><span class="line">var num = req.body.num;</span><br><span class="line">res.send(&quot;你获取的post数据为:&quot; + num);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//设置监听端口</span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
 
-module.exports = app;</code></pre><p>bin\www是web服务器： </p>
-<pre><code>#!/usr/bin/env node
+<p>public/test.html </p>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/form"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"num"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"tinyphp"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-/**
- * 依赖模块，导入
- */
-
-var app = require(&apos;../app&apos;);
-var debug = require(&apos;debug&apos;)(&apos;nodejsexpress:server&apos;);
-var http = require(&apos;http&apos;);
-
-/**
- * 从上下文环境中获得监听端口，如果空则3000
- */
-
-var port = normalizePort(process.env.PORT || &apos;3000&apos;);
-app.set(&apos;port&apos;, port);
-
-/**
- * 创建Web服务器
- */
-
-var server = http.createServer(app);
-
-/**
- * 开始监听
- */
-
-server.listen(port);
-server.on(&apos;error&apos;, onError);  //指定发生错误时的事件
-server.on(&apos;listening&apos;, onListening);  //当监听成功时的回调
-
-/**
- * 规范化端口
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port &gt;= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-/**
- *错误事件监听
- */
-
-function onError(error) {
-  if (error.syscall !== &apos;listen&apos;) {
-    throw error;
-  }
-
-  var bind = typeof port === &apos;string&apos;
-    ? &apos;Pipe &apos; + port
-    : &apos;Port &apos; + port;
-
-  //错误处理
-  switch (error.code) {
-    case &apos;EACCES&apos;:
-      console.error(bind + &apos; requires elevated privileges&apos;);
-      process.exit(1);  //结束程序
-      break;
-    case &apos;EADDRINUSE&apos;:
-      console.error(bind + &apos; is already in use&apos;);
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
- * 当用户访问服务器成功时的回调
- */
-
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === &apos;string&apos;
-    ? &apos;pipe &apos; + addr
-    : &apos;port &apos; + addr.port;
-  debug(&apos;Listening on &apos; + bind);
-}</code></pre><p>routers/index.js路由，有点类似控制器或Servlet： </p>
-<pre><code>var express = require(&apos;express&apos;);
-var router = express.Router();
-
-/* 获得首页 */
-router.get(&apos;/&apos;, function(req, res, next) {
-  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
-});
-
-module.exports = router;</code></pre><p>views/index.ejs首页视图： </p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
-    &lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
-    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre><p>在www上右键选择“运行方式”-&gt;Run ‘/bin/www’ 运行结果：<br><img src="https://i.loli.net/2019/07/14/5d2b034bcca6187136.jpg" alt></p>
-<p><img src="https://i.loli.net/2019/07/14/5d2b044c2b12347829.jpg" alt></p>
-<p><img src="https://i.loli.net/2019/07/14/5d2b041724d6091090.jpg" alt></p>
-<h3 id="5-5-1、request对象"><a href="#5-5-1、request对象" class="headerlink" title="5.5.1、request对象"></a>5.5.1、request对象</h3><p>Request 对象 - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有： </p>
-<pre><code>req.app：当callback为外部文件时，用req.app访问express的实例
-req.baseUrl：获取路由当前安装的URL路径
-req.body / req.cookies：获得「请求主体」/ Cookies
-req.fresh / req.stale：判断请求是否还「新鲜」
-req.hostname / req.ip：获取主机名和IP地址
-req.originalUrl：获取原始请求URL
-req.params：获取路由的parameters
-req.path：获取请求路径
-req.protocol：获取协议类型
-req.query：获取URL的查询参数串
-req.route：获取当前匹配的路由
-req.subdomains：获取子域名
-req.accepts()：检查可接受的请求的文档类型
-req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码
-req.get()：获取指定的HTTP请求头
-req.is()：判断请求头Content-Type的MIME类型</code></pre><h3 id="5-5-2、response对象"><a href="#5-5-2、response对象" class="headerlink" title="5.5.2、response对象"></a>5.5.2、response对象</h3><p>Response 对象 - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有： </p>
-<pre><code>res.app：同req.app一样
-res.append()：追加指定HTTP头
-res.set()在res.append()后将重置之前设置的头
-res.cookie(name，value [，option])：设置Cookie
-opition: domain / expires / httpOnly / maxAge / path / secure / signed
-res.clearCookie()：清除Cookie
-res.download()：传送指定路径的文件
-res.get()：返回指定的HTTP头
-res.json()：传送JSON响应
-res.jsonp()：传送JSONP响应
-res.location()：只设置响应的Location HTTP头，不设置状态码或者close response
-res.redirect()：设置响应的Location HTTP头，并且设置状态码302
-res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。
-res.send()：传送HTTP响应
-res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type
-res.set()：设置HTTP头，传入object可以一次设置多个头
-res.status()：设置HTTP状态码
-res.type()：设置Content-Type的MIME类型</code></pre><h3 id="5-5-3、express获取参数有三种方法"><a href="#5-5-3、express获取参数有三种方法" class="headerlink" title="5.5.3、express获取参数有三种方法"></a>5.5.3、express获取参数有三种方法</h3><p>req.query 适合 <a href="https://localhost:3000/form?num=8888" target="_blank" rel="noopener">https://localhost:3000/form?num=8888</a><br>req.body 适合<a href="https://localhost:3000/form，Post请求中的参数" target="_blank" rel="noopener">https://localhost:3000/form，Post请求中的参数</a><br>req.params 适合获取form后的num：<a href="https://localhost:3000/form/num" target="_blank" rel="noopener">https://localhost:3000/form/num</a>  </p>
-<p>（一）、GET </p>
-<pre><code>var num = req.query.num;
-res.send(&quot;你获取的get数据为:&quot; + num); </code></pre><p>（二）、POST </p>
-<p>解析post数据需要用到body-parser </p>
-<pre><code>npm install body-parser --save</code></pre><p>app.js </p>
-<pre><code>var express = require(&apos;express&apos;);
-var app = express();
-//引入body-parser
-var bodyParser = require(&apos;body-parser&apos;);
-app.use(express.static(&apos;public&apos;));
-
-//需要use的
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({
-extended: true
-})); // for parsing application/x-www-form-urlencoded
-
-//获取数据
-app.post(&apos;/form&apos;, function(req, res) {
-var num = req.body.num;
-res.send(&quot;你获取的post数据为:&quot; + num);
-});
-
-//设置监听端口
-app.listen(3000);</code></pre><p>public/test.html </p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;Document&lt;/title&gt;
-&lt;script src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id=&quot;box&quot;&gt;&lt;/div&gt;
-&lt;form action=&quot;/form&quot; method=&quot;post&quot;&gt;
-&lt;input type=&quot;text&quot; name=&quot;num&quot; value=&quot;tinyphp&quot;&gt;
-&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
-&lt;/form&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</code></pre><p>（三）、获取路径参数 </p>
+<p>（三）、获取路径参数 </p>
 <p><code>app.js</code>  </p>
-<pre><code>var express = require(&apos;express&apos;);
-var app = express();
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">//获取数据</span><br><span class="line">app.get(&apos;/form/:num&apos;, function(req, res) &#123;</span><br><span class="line">var num = req.params.num;</span><br><span class="line">res.send(&quot;你获取到form/后的参数:&quot; + num);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//设置监听端口</span><br><span class="line">app.listen(3000);</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">## 5.6、ejs基础 </span><br><span class="line"></span><br><span class="line">ejs是一个Express Web应用的模板引擎，在NodeJS开发中可以选择的模板引擎可能是所有Web应用开发中范围最广的，如jade、ejs、htmljs、swig、hogan.js，但ejs是最容易上手的，与jsp,asp,php的原始模板引擎风格很像。 </span><br><span class="line"></span><br><span class="line">官网：[https://www.embeddedjs.com/][19]</span><br><span class="line"></span><br><span class="line">   [19]: https://www.embeddedjs.com/</span><br><span class="line"></span><br><span class="line">添加一个`product.js`路由：</span><br></pre></td></tr></table></figure>
 
-//获取数据
-app.get(&apos;/form/:num&apos;, function(req, res) {
-var num = req.params.num;
-res.send(&quot;你获取到form/后的参数:&quot; + num);
-});
+<p>var express = require(‘express’);<br>var router = express.Router();</p>
+<p>/* 产品 */<br>router.get(‘/‘, function(req, res, next) {</p>
+<p>  var products=[];<br>  products.push({name:”ZTE U880”,price:899.8});<br>  products.push({name:”HuWei 荣耀8”,price:1899.8});<br>  products.push({name:”iPhone 7 Plus 128G”,price:5899.8});</p>
+<p>  //将product视图与指定的对象渲染后输出到客户端<br>  res.render(‘product’, { title: ‘天狗商城’, pdts:products});<br>});</p>
+<p>module.exports = router;</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在views目录下添加`product.ejs`视图，这里是一个简单的MVC：</span><br></pre></td></tr></table></figure>
 
-//设置监听端口
-app.listen(3000);</code></pre><h2 id="5-6、ejs基础"><a href="#5-6、ejs基础" class="headerlink" title="5.6、ejs基础"></a>5.6、ejs基础</h2><p>ejs是一个Express Web应用的模板引擎，在NodeJS开发中可以选择的模板引擎可能是所有Web应用开发中范围最广的，如jade、ejs、htmljs、swig、hogan.js，但ejs是最容易上手的，与jsp,asp,php的原始模板引擎风格很像。 </p>
-<p>官网：<a href="https://www.embeddedjs.com/" target="_blank" rel="noopener">https://www.embeddedjs.com/</a></p>
-<p>添加一个<code>product.js</code>路由： </p>
-<pre><code>var express = require(&apos;express&apos;);
-var router = express.Router();
+<!DOCTYPE html>
+<html>
 
-/* 产品 */
-router.get(&apos;/&apos;, function(req, res, next) {
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        &lt;%= title %&gt;
+    &lt;/title&gt;
+    &lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;
+&lt;/head&gt;
 
-  var products=[];
-  products.push({name:&quot;ZTE U880&quot;,price:899.8});
-  products.push({name:&quot;HuWei 荣耀8&quot;,price:1899.8});
-  products.push({name:&quot;iPhone 7 Plus 128G&quot;,price:5899.8});
+&lt;body&gt;
+    &lt;h1&gt;&lt;%= title %&gt; - 产品列表&lt;/h1&gt;
+    &lt;table border=&quot;1&quot; width=&quot;80%&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;序号&lt;/th&gt;
+            &lt;th&gt;名称&lt;/th&gt;
+            &lt;th&gt;价格&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;%pdts.forEach(function(pdt,index){%>
+            <tr>
+                <td>
+                    <%=index+1%>
+                </%=index+1%></td>
+                <td>
+                    <%=pdt.name%>
+                </%=pdt.name%></td>
+                <td>
+                    <%=pdt.price%>
+                </%=pdt.price%></td>
+            </tr>
+            <%});%&gt; &lt; table&gt; &lt;ul&gt; &lt;% for(var i="0;" i&lt;pdts.length; i++) {%&gt; &lt;li&gt; li&gt; } %&gt; body&gt;< code></%});%&gt;></code></pre></html>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改app，注册定义好的模块product：</span><br></pre></td></tr></table></figure>
 
-  //将product视图与指定的对象渲染后输出到客户端
-  res.render(&apos;product&apos;, { title: &apos;天狗商城&apos;, pdts:products});
-});
+<p>var index = require(‘./routes/index’);<br>var users = require(‘./routes/users’);<br>var pdts = require(‘./routes/product’);</p>
+<p>var app = express();</p>
+<p>//指定视图引擎为ejs<br>app.set(‘views’, path.join(__dirname, ‘views’));<br>app.set(‘view engine’, ‘ejs’);</p>
+<p>// uncomment after placing your favicon in /public<br>//app.use(favicon(path.join(<strong>dirname, ‘public’, ‘favicon.ico’)));<br>app.use(logger(‘dev’));<br>app.use(bodyParser.json());<br>app.use(bodyParser.urlencoded({ extended: false }));<br>app.use(cookieParser());<br>app.use(express.static(path.join(</strong>dirname, ‘public’)));</p>
+<p>app.use(‘/‘, index);<br>app.use(‘/users’, users);<br>app.use(‘/pdt’, pdts);</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运行结果： </span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b092ca2eb115835.jpg)</span><br><span class="line">&gt; 原因：没有安装ejs模块</span><br><span class="line">&gt; 解决办法：进入到项目目录，安装ejs</span><br></pre></td></tr></table></figure>
 
-module.exports = router;</code></pre><p>在views目录下添加<code>product.ejs</code>视图，这里是一个简单的MVC： </p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
+<p>npm install –save ejs</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">![](https://i.loli.net/2019/07/14/5d2b09efe80ba53992.jpg)</span><br><span class="line"></span><br><span class="line">重新运行：</span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b0a951a09231745.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 5.7、lodash </span><br><span class="line"></span><br><span class="line">这是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。可以非常方便的操作json。 </span><br><span class="line"></span><br><span class="line">官网：[https://lodashjs.com/][21]</span><br><span class="line"></span><br><span class="line">   [21]: https://lodashjs.com/</span><br><span class="line"></span><br><span class="line">安装：</span><br></pre></td></tr></table></figure>
 
-    &lt;head&gt;
-        &lt;title&gt;
-            &lt;%= title %&gt;
-        &lt;/title&gt;
-        &lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;&lt;%= title %&gt; - 产品列表&lt;/h1&gt;
-        &lt;table border=&quot;1&quot; width=&quot;80%&quot;&gt;
-            &lt;tr&gt;
-                &lt;th&gt;序号&lt;/th&gt;
-                &lt;th&gt;名称&lt;/th&gt;
-                &lt;th&gt;价格&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;%pdts.forEach(function(pdt,index){%>
-                <tr>
-                    <td>
-                        <%=index+1%>
-                    </%=index+1%></td>
-                    <td>
-                        <%=pdt.name%>
-                    </%=pdt.name%></td>
-                    <td>
-                        <%=pdt.price%>
-                    </%=pdt.price%></td>
-                </tr>
-                <%});%&gt; &lt; table&gt; &lt;ul&gt; &lt;% for(var i="0;" i&lt;pdts.length; i++) {%&gt; &lt;li&gt; li&gt; } %&gt; body&gt; html&gt;< code></%});%&gt;></code></pre><p>修改app，注册定义好的模块product： </p>
-<pre><code>var index = require(&apos;./routes/index&apos;);
-var users = require(&apos;./routes/users&apos;);
-var pdts = require(&apos;./routes/product&apos;);
-
-var app = express();
-
-//指定视图引擎为ejs
-app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));
-app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));
-app.use(logger(&apos;dev&apos;));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, &apos;public&apos;)));
-
-app.use(&apos;/&apos;, index);
-app.use(&apos;/users&apos;, users);
-app.use(&apos;/pdt&apos;, pdts);</code></pre><p>运行结果：<br><img src="https://i.loli.net/2019/07/14/5d2b092ca2eb115835.jpg" alt></p>
-<blockquote>
-<p>原因：没有安装ejs模块<br>解决办法：进入到项目目录，安装ejs</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save ejs</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.loli.net/2019/07/14/5d2b09efe80ba53992.jpg" alt></p>
-<p>重新运行：<br><img src="https://i.loli.net/2019/07/14/5d2b0a951a09231745.jpg" alt></p>
-<h2 id="5-7、lodash"><a href="#5-7、lodash" class="headerlink" title="5.7、lodash"></a>5.7、lodash</h2><p>这是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。可以非常方便的操作json。 </p>
-<p>官网：<a href="https://lodashjs.com/" target="_blank" rel="noopener">https://lodashjs.com/</a></p>
-<p>安装： </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g npm</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save lodash</span><br></pre></td></tr></table></figure>
+<p>npm i -g npm </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">npm i --save lodash</span><br></pre></td></tr></table></figure>
 
 <p>安装时先用cd切换到当前项目下。 </p>
 <p>如果浏览器使用可以直接引入： </p>
@@ -647,45 +405,9 @@ app.use(&apos;/pdt&apos;, pdts);</code></pre><p>运行结果：<br><img src="htt
 <p>添加lodash依赖：<br><img src="https://i.loli.net/2019/07/14/5d2b0c4c7c14a17367.jpg" alt></p>
 <p>依赖成功后会在package.json中添加引用：<br><img src="https://i.loli.net/2019/07/14/5d2b0c9e03f1844597.jpg" alt></p>
 <p>后台Node.js使用，可以引入模块： </p>
-<pre><code>//导入lodash模块
-var _= require(&apos;lodash&apos;);
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//导入lodash模块</span><br><span class="line">var _= require(&apos;lodash&apos;);</span><br><span class="line"></span><br><span class="line">var products=[];</span><br><span class="line">products.push(&#123;name:&quot;ZTE U880&quot;,price:899.8&#125;);</span><br><span class="line">products.push(&#123;name:&quot;HuWei 荣耀8&quot;,price:1899.8&#125;);</span><br><span class="line">products.push(&#123;name:&quot;iPhone 7 Plus 128G&quot;,price:5899.8&#125;);</span><br><span class="line"></span><br><span class="line">//1、取出第一个元素</span><br><span class="line">var obj1=_.first(products);</span><br><span class="line">console.log(obj1.name);  //ZTE U880</span><br><span class="line"></span><br><span class="line">//2、取出最后一个元素</span><br><span class="line">var obj2=_.last(products);</span><br><span class="line">console.log(obj2.name);  //iPhone 7 Plus 128G</span><br><span class="line"></span><br><span class="line">//3、指定查找条件返回符合条件的索引</span><br><span class="line">var obj3=_.findIndex(products,function(obj)&#123;</span><br><span class="line">    return obj.price&gt;=1000&amp;&amp;obj.name.indexOf(&quot;7&quot;)&gt;0;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(obj3);  //2</span><br><span class="line"></span><br><span class="line">//4、指定查找条件返回查找到的对象</span><br><span class="line">var obj4=_.find(products,function(obj)&#123;</span><br><span class="line">    return obj.price&gt;=1000&amp;&amp;obj.name.indexOf(&quot;7&quot;)&gt;0;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(obj4);  //&#123; name: &apos;iPhone 7 Plus 128G&apos;, price: 5899.8 &#125;</span><br><span class="line"></span><br><span class="line">//5、排序</span><br><span class="line">var obj5=_.orderBy(products,[&quot;price&quot;,&quot;name&quot;],[&quot;desc&quot;,&quot;asc&quot;]);</span><br><span class="line">console.log(obj5); </span><br><span class="line"></span><br><span class="line">//[ &#123; name: &apos;iPhone 7 Plus 128G&apos;, price: 5899.8 &#125;,</span><br><span class="line">//&#123; name: &apos;HuWei 荣耀8&apos;, price: 1899.8 &#125;,</span><br><span class="line">//&#123; name: &apos;ZTE U880&apos;, price: 899.8 &#125; ]</span><br><span class="line"></span><br><span class="line">//6、查找价格为1899.8的产品的key</span><br><span class="line">var obj6=_.findKey(products,&#123;price:1899.8&#125;);</span><br><span class="line">console.log(obj6);   //1</span><br></pre></td></tr></table></figure>
 
-var products=[];
-products.push({name:&quot;ZTE U880&quot;,price:899.8});
-products.push({name:&quot;HuWei 荣耀8&quot;,price:1899.8});
-products.push({name:&quot;iPhone 7 Plus 128G&quot;,price:5899.8});
-
-//1、取出第一个元素
-var obj1=_.first(products);
-console.log(obj1.name);  //ZTE U880
-
-//2、取出最后一个元素
-var obj2=_.last(products);
-console.log(obj2.name);  //iPhone 7 Plus 128G
-
-//3、指定查找条件返回符合条件的索引
-var obj3=_.findIndex(products,function(obj){
-    return obj.price&gt;=1000&amp;&amp;obj.name.indexOf(&quot;7&quot;)&gt;0;
-});
-console.log(obj3);  //2
-
-//4、指定查找条件返回查找到的对象
-var obj4=_.find(products,function(obj){
-    return obj.price&gt;=1000&amp;&amp;obj.name.indexOf(&quot;7&quot;)&gt;0;
-});
-console.log(obj4);  //{ name: &apos;iPhone 7 Plus 128G&apos;, price: 5899.8 }
-
-//5、排序
-var obj5=_.orderBy(products,[&quot;price&quot;,&quot;name&quot;],[&quot;desc&quot;,&quot;asc&quot;]);
-console.log(obj5); 
-
-//[ { name: &apos;iPhone 7 Plus 128G&apos;, price: 5899.8 },
-//{ name: &apos;HuWei 荣耀8&apos;, price: 1899.8 },
-//{ name: &apos;ZTE U880&apos;, price: 899.8 } ]
-
-//6、查找价格为1899.8的产品的key
-var obj6=_.findKey(products,{price:1899.8});
-console.log(obj6);   //1</code></pre><p><img src="https://i.loli.net/2019/07/14/5d2b0f023a83710965.jpg" alt></p>
+<p><img src="https://i.loli.net/2019/07/14/5d2b0f023a83710965.jpg" alt></p>
 <p>API的使用非常简单，但需要注意版本，可以现查现用，API地址：<a href="https://lodash.com/docs/4.17.2%20" target="_blank" rel="noopener">https://lodash.com/docs/4.17.2 </a></p>
 <h2 id="5-8、参数"><a href="#5-8、参数" class="headerlink" title="5.8、参数"></a>5.8、参数</h2><h3 id="5-8-1、URL中的参数占位"><a href="#5-8-1、URL中的参数占位" class="headerlink" title="5.8.1、URL中的参数占位"></a>5.8.1、URL中的参数占位</h3><p>Checks route params (req.params), ex: /user/:id </p>
 <p>127.0.0.1:3000/index，这种情况下，我们为了得到index，我们可以通过使用req.params得到，通过这种方法我们就可以很好的处理Node中的路由处理问题，同时利用这点可以非常方便的实现MVC模式； </p>
@@ -721,148 +443,33 @@ console.log(obj6);   //1</code></pre><p><img src="https://i.loli.net/2019/07/14/
 <p>结果： </p>
 <p><img src="https://images2015.cnblogs.com/blog/63651/201612/63651-20161222152634417-1260078212.png" alt></p>
 <p>Express已经封装了一个json方法，直接调用该方法就可以序列化对象： </p>
-<pre><code>/* 产品 */
-router.get(&apos;/rest&apos;, function(req, res, next) {
-  res.json(products);
-});</code></pre><p>运行结果：<br><img src="https://i.loli.net/2019/07/14/5d2b1a1e6c48328184.jpg" alt></p>
-<h1 id="六、RESTful（表述性状态转移）"><a href="#六、RESTful（表述性状态转移）" class="headerlink" title="六、RESTful（表述性状态转移）"></a>六、RESTful（表述性状态转移）</h1><p>REST是英文Representational State Transfer的缩写，中文称之为“表述性状态转移” 基于HTTP协议，是另一种服务架构，传递是JSON、POX（Plain Old XML）而不是SOAP格式的数据，充分利用HTTP谓词（Verb），侧重数据的传输，业务逻辑交给客户端自行处理 </p>
-<p>REST是一种分布式服务架构的风格约束，像Java、.Net（WCF、WebAPI）都有对该约束的实现，使URL变得更加有意义，更加简洁明了，如： </p>
-<p><a href="https://www.zhangguo.com/products/1" target="_blank" rel="noopener">https://www.zhangguo.com/products/1</a><br>get请求 表示获得所有产品的第1个 </p>
-<p><a href="https://www.zhangguo.com/products/product" target="_blank" rel="noopener">https://www.zhangguo.com/products/product</a><br>post请求 表示添加一个产品 </p>
-<p><a href="https://www.zhangguo.com/products/1/price" target="_blank" rel="noopener">https://www.zhangguo.com/products/1/price</a><br>get请求 表示获得第1个产品的价格 </p>
-<p><a href="https://www.zhangguo.com/products/1" target="_blank" rel="noopener">https://www.zhangguo.com/products/1</a><br>delete请求 删除编号为1的产品 </p>
-<p>REST设计需要遵循的原则<br>网络上的所有事物都被抽象为资源（resource）；<br>每个资源对应一个唯一的资源标识符（resource identifier）；<br>通过通用的连接器接口（generic connector interface）对资源进行操作；<br>对资源的各种操作不会改变资源标识符；<br>所有的操作都是无状态的（stateless） </p>
-<p>谓词<br><strong>GET</strong><br>表示查询操作，相当于Retrieve、Select操作<br><strong>POST</strong><br>表示插入操作，相当于Create，Insert操作<br><strong>PUT</strong><br>表示修改操作，相当于Update操作<br><strong>DELETE</strong><br>表示删除操作，相当于Delete操作 </p>
-<p>其它还有：<br><img src="https://images2015.cnblogs.com/blog/63651/201612/63651-20161223101344557-1727952968.png" alt></p>
-<p>NodeJS+Express可以很容易的实现REST</p>
-<ul>
-<li>application/x-www-form-urlencoded</li>
-<li>multipart/form-data</li>
-<li>application/json</li>
-<li>res.setHeader(‘Content-Type’, ‘application/json;charset=utf-8’); </li>
-</ul>
-<p>示例代码cars.js：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var router = express.Router();</span><br><span class="line">var _= require(&apos;lodash&apos;);</span><br><span class="line"></span><br><span class="line">var cars=[];</span><br><span class="line">cars.push(&#123;id:201701,name:&quot;BMW&quot;,price:190,speed:&quot;210km/h&quot;,color:&quot;白色&quot;&#125;);</span><br><span class="line">cars.push(&#123;id:201702,name:&quot;BYD&quot;,price:25,speed:&quot;160km/h&quot;,color:&quot;红色&quot;&#125;);</span><br><span class="line">cars.push(&#123;id:201703,name:&quot;Benz&quot;,price:300,speed:&quot;215km/h&quot;,color:&quot;蓝色&quot;&#125;);</span><br><span class="line">cars.push(&#123;id:201704,name:&quot;Honda&quot;,price:190,speed:&quot;170km/h&quot;,color:&quot;黑色&quot;&#125;);</span><br><span class="line">cars.push(&#123;id:201705,name:&quot;QQ&quot;,price:130,speed:&quot;210km/h&quot;,color:&quot;白色&quot;&#125;);</span><br><span class="line"></span><br><span class="line">/* Get */</span><br><span class="line">/*获得所有汽车*/</span><br><span class="line">/*url /cars/*/</span><br><span class="line">router.get(&apos;/&apos;, function(req, res, next) &#123;</span><br><span class="line">    res.json(cars);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/*Get*/</span><br><span class="line">/*获得汽车通过id*/</span><br><span class="line">/*url：/cars/:id  */</span><br><span class="line">router.get(&apos;/:id&apos;, function(req, res, next) &#123;</span><br><span class="line">     //从路径中映射参数，转换成数字</span><br><span class="line">      var id=parseInt(req.params.id);</span><br><span class="line">      var car=_.find(cars,&#123;id:id&#125;);</span><br><span class="line">      res.json(car);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/*Post*/</span><br><span class="line">/*添加汽车*/</span><br><span class="line">/*url：/cars/car  */</span><br><span class="line">router.post(&apos;/car&apos;, function(req, res, next) &#123;</span><br><span class="line">      var car=req.body;  //从请求正文中获得json对象</span><br><span class="line">      car.id=_.last(cars).id+1;  //将编号修改为最后一辆车的编号+1</span><br><span class="line">      cars.push(car);  //将汽车对象添加到集合中</span><br><span class="line">      res.json(car);  //将添加成功的车以json的形式返回</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/*Put*/</span><br><span class="line">/*修改汽车*/</span><br><span class="line">/*url：/cars/car  */</span><br><span class="line">router.put(&apos;/car&apos;, function(req, res, next) &#123;</span><br><span class="line">      var car=req.body;  //从请求正文中获得json对象</span><br><span class="line">      console.log(req.body);</span><br><span class="line">      var index=_.findIndex(cars,&#123;id:parseInt(car.id)&#125;);  //根据id获得车在集合中的下标</span><br><span class="line">      </span><br><span class="line">      cars[index]=car;  //替换原对象</span><br><span class="line">      //res.json(car);  //将修改后的车以json的形式返回</span><br><span class="line">      res.send(&#123;status:&quot;success&quot;, message:&quot;更新成功!&quot;&#125;);  </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/*Delete*/</span><br><span class="line">/*删除汽车*/</span><br><span class="line">/*url：/cars/:id  */</span><br><span class="line">router.delete(&apos;/id/:id&apos;, function(req, res, next) &#123;</span><br><span class="line">      //获得url中的编号参数</span><br><span class="line">      var id=parseInt(req.params.id);</span><br><span class="line">      var index=_.findIndex(cars,&#123;id:id&#125;);  //根据id获得车在集合中的下标</span><br><span class="line">      cars.splice(index,1);   //在cars数组中删除下标从index开始的1条数据</span><br><span class="line">      res.send(&#123;status:&quot;success&quot;, message:&quot;删除成功!&quot;&#125;);  </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = router;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">/* 产品 */</span><br><span class="line">router.get(&apos;/rest&apos;, function(req, res, next) &#123;</span><br><span class="line">  res.json(products);</span><br><span class="line">&#125;);</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">运行结果： </span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b1a1e6c48328184.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 六、RESTful（表述性状态转移）</span><br><span class="line">REST是英文Representational State Transfer的缩写，中文称之为“表述性状态转移” 基于HTTP协议，是另一种服务架构，传递是JSON、POX（Plain Old XML）而不是SOAP格式的数据，充分利用HTTP谓词（Verb），侧重数据的传输，业务逻辑交给客户端自行处理 </span><br><span class="line"></span><br><span class="line">REST是一种分布式服务架构的风格约束，像Java、.Net（WCF、WebAPI）都有对该约束的实现，使URL变得更加有意义，更加简洁明了，如： </span><br><span class="line"></span><br><span class="line">https://www.zhangguo.com/products/1 </span><br><span class="line">get请求 表示获得所有产品的第1个 </span><br><span class="line"></span><br><span class="line">https://www.zhangguo.com/products/product</span><br><span class="line">post请求 表示添加一个产品 </span><br><span class="line"></span><br><span class="line">https://www.zhangguo.com/products/1/price </span><br><span class="line">get请求 表示获得第1个产品的价格 </span><br><span class="line"></span><br><span class="line">https://www.zhangguo.com/products/1 </span><br><span class="line">delete请求 删除编号为1的产品 </span><br><span class="line"></span><br><span class="line">REST设计需要遵循的原则  </span><br><span class="line">网络上的所有事物都被抽象为资源（resource）；  </span><br><span class="line">每个资源对应一个唯一的资源标识符（resource identifier）；  </span><br><span class="line">通过通用的连接器接口（generic connector interface）对资源进行操作；  </span><br><span class="line">对资源的各种操作不会改变资源标识符；  </span><br><span class="line">所有的操作都是无状态的（stateless） </span><br><span class="line"></span><br><span class="line">谓词  </span><br><span class="line">**GET**</span><br><span class="line">表示查询操作，相当于Retrieve、Select操作</span><br><span class="line">**POST**</span><br><span class="line">表示插入操作，相当于Create，Insert操作</span><br><span class="line">**PUT** </span><br><span class="line">表示修改操作，相当于Update操作</span><br><span class="line">**DELETE**</span><br><span class="line">表示删除操作，相当于Delete操作 </span><br><span class="line"></span><br><span class="line">其它还有： </span><br><span class="line">![](https://images2015.cnblogs.com/blog/63651/201612/63651-20161223101344557-1727952968.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NodeJS+Express可以很容易的实现REST</span><br><span class="line">* application/x-www-form-urlencoded</span><br><span class="line">* multipart/form-data</span><br><span class="line">* application/json</span><br><span class="line">* res.setHeader(&apos;Content-Type&apos;, &apos;application/json;charset=utf-8&apos;); </span><br><span class="line"></span><br><span class="line">示例代码cars.js：</span><br></pre></td></tr></table></figure>
 
-<p>示例代码app.js： </p>
-<pre><code>var express = require(&apos;express&apos;);
-var path = require(&apos;path&apos;);
-var favicon = require(&apos;serve-favicon&apos;);
-var logger = require(&apos;morgan&apos;);
-var cookieParser = require(&apos;cookie-parser&apos;);
-var bodyParser = require(&apos;body-parser&apos;);
+<p>var express = require(‘express’);<br>var router = express.Router();<br>var _= require(‘lodash’);</p>
+<p>var cars=[];<br>cars.push({id:201701,name:”BMW”,price:190,speed:”210km/h”,color:”白色”});<br>cars.push({id:201702,name:”BYD”,price:25,speed:”160km/h”,color:”红色”});<br>cars.push({id:201703,name:”Benz”,price:300,speed:”215km/h”,color:”蓝色”});<br>cars.push({id:201704,name:”Honda”,price:190,speed:”170km/h”,color:”黑色”});<br>cars.push({id:201705,name:”QQ”,price:130,speed:”210km/h”,color:”白色”});</p>
+<p>/* Get <em>/<br>/*获得所有汽车</em>/<br>/<em>url /cars/</em>/<br>router.get(‘/‘, function(req, res, next) {<br>    res.json(cars);<br>});</p>
+<p>/<em>Get</em>/<br>/<em>获得汽车通过id</em>/<br>/*url：/cars/:id  */<br>router.get(‘/:id’, function(req, res, next) {<br>     //从路径中映射参数，转换成数字<br>      var id=parseInt(req.params.id);<br>      var car=_.find(cars,{id:id});<br>      res.json(car);<br>});</p>
+<p>/<em>Post</em>/<br>/<em>添加汽车</em>/<br>/*url：/cars/car  */<br>router.post(‘/car’, function(req, res, next) {<br>      var car=req.body;  //从请求正文中获得json对象<br>      car.id=_.last(cars).id+1;  //将编号修改为最后一辆车的编号+1<br>      cars.push(car);  //将汽车对象添加到集合中<br>      res.json(car);  //将添加成功的车以json的形式返回<br>});</p>
+<p>/<em>Put</em>/<br>/<em>修改汽车</em>/<br>/*url：/cars/car  */<br>router.put(‘/car’, function(req, res, next) {<br>      var car=req.body;  //从请求正文中获得json对象<br>      console.log(req.body);<br>      var index=_.findIndex(cars,{id:parseInt(car.id)});  //根据id获得车在集合中的下标</p>
+<pre><code>cars[index]=car;  //替换原对象
+//res.json(car);  //将修改后的车以json的形式返回
+res.send({status:&quot;success&quot;, message:&quot;更新成功!&quot;});  </code></pre><p>});</p>
+<p>/<em>Delete</em>/<br>/<em>删除汽车</em>/<br>/*url：/cars/:id  */<br>router.delete(‘/id/:id’, function(req, res, next) {<br>      //获得url中的编号参数<br>      var id=parseInt(req.params.id);<br>      var index=_.findIndex(cars,{id:id});  //根据id获得车在集合中的下标<br>      cars.splice(index,1);   //在cars数组中删除下标从index开始的1条数据<br>      res.send({status:”success”, message:”删除成功!”});<br>});</p>
+<p>module.exports = router;</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">示例代码app.js： </span><br><span class="line">```    </span><br><span class="line">    var express = require(&apos;express&apos;);</span><br><span class="line">    var path = require(&apos;path&apos;);</span><br><span class="line">    var favicon = require(&apos;serve-favicon&apos;);</span><br><span class="line">    var logger = require(&apos;morgan&apos;);</span><br><span class="line">    var cookieParser = require(&apos;cookie-parser&apos;);</span><br><span class="line">    var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line">    </span><br><span class="line">    var index = require(&apos;./routes/index&apos;);</span><br><span class="line">    var users = require(&apos;./routes/users&apos;);</span><br><span class="line">    var pdts = require(&apos;./routes/product&apos;);</span><br><span class="line">    var task = require(&apos;./routes/task&apos;);</span><br><span class="line">    var cars = require(&apos;./routes/cars&apos;);</span><br><span class="line">    </span><br><span class="line">    var app = express();</span><br><span class="line">    </span><br><span class="line">    //指定视图引擎为ejs</span><br><span class="line">    app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));</span><br><span class="line">    app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line">    </span><br><span class="line">    // uncomment after placing your favicon in /public</span><br><span class="line">    //app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));</span><br><span class="line">    app.use(logger(&apos;dev&apos;));</span><br><span class="line">    app.use(bodyParser.json());</span><br><span class="line">    app.use(bodyParser.urlencoded(&#123; extended: false &#125;));</span><br><span class="line">    app.use(cookieParser());</span><br><span class="line">    app.use(express.static(path.join(__dirname, &apos;public&apos;)));</span><br><span class="line">    </span><br><span class="line">    app.use(&apos;/&apos;, index);</span><br><span class="line">    app.use(&apos;/users&apos;, users);</span><br><span class="line">    app.use(&apos;/pdt&apos;, pdts);</span><br><span class="line">    app.use(&quot;/task&quot;,task);</span><br><span class="line">    app.use(&quot;/cars&quot;,cars);</span><br><span class="line">    </span><br><span class="line">    // catch 404 and forward to error handler</span><br><span class="line">    app.use(function(req, res, next) &#123;</span><br><span class="line">      var err = new Error(&apos;Not Found&apos;);</span><br><span class="line">      err.status = 404;</span><br><span class="line">      next(err);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    // error handler</span><br><span class="line">    app.use(function(err, req, res, next) &#123;</span><br><span class="line">      // set locals, only providing error in development</span><br><span class="line">      res.locals.message = err.message;</span><br><span class="line">      res.locals.error = req.app.get(&apos;env&apos;) === &apos;development&apos; ? err : &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">      // render the error page</span><br><span class="line">      res.status(err.status || 500);</span><br><span class="line">      res.render(&apos;error&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    module.exports = app;</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">&gt; **Get**</span><br><span class="line">  </span><br><span class="line">* 获得所有汽车  </span><br><span class="line">* url /cars/</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b27eb42dea22132.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; **Get**</span><br><span class="line"></span><br><span class="line">* 获得汽车通过id </span><br><span class="line">* url：/cars/:id</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b28e456cdf58111.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; **Post** </span><br><span class="line"></span><br><span class="line">* 添加汽车  </span><br><span class="line">* url：/cars/car</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b30e46f28836556.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">参数中的json格式一定要使用标准格式，注意引号，注意Content-Type，默认的Content-Type类型是：application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; **Put**</span><br><span class="line"></span><br><span class="line">* 修改汽车</span><br><span class="line">* url：/cars/car</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b3434410e778260.jpg)</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b344cd080581595.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; **Delete**  </span><br><span class="line"></span><br><span class="line">* 删除汽车 </span><br><span class="line">* url：/cars/:id</span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b3526d5bff57574.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![](https://i.loli.net/2019/07/14/5d2b35474e9c447189.jpg)</span><br><span class="line"></span><br><span class="line">**node.js跨域**</span><br><span class="line"></span><br><span class="line">修改app.js文件拦截所有的请求，修改头部</span><br></pre></td></tr></table></figure>
 
-var index = require(&apos;./routes/index&apos;);
-var users = require(&apos;./routes/users&apos;);
-var pdts = require(&apos;./routes/product&apos;);
-var task = require(&apos;./routes/task&apos;);
-var cars = require(&apos;./routes/cars&apos;);
+<p>app.use(logger(‘dev’));<br>app.use(bodyParser.json());<br>app.use(bodyParser.urlencoded({ extended: false }));<br>app.use(cookieParser());<br>app.use(express.static(path.join(__dirname, ‘public’)));<br>app.all(‘<em>‘, function(req, res, next) {<br>    res.header(“Access-Control-Allow-Origin”, “</em>“);<br>    res.header(“Access-Control-Allow-Headers”, “content-type”);<br>    res.header(“Access-Control-Allow-Methods”, “PUT,POST,GET,DELETE,OPTIONS”);<br>    res.header(“X-Powered-By”, ‘ 3.2.1’);<br>    res.header(“Content-Type”, “application/json;charset=utf-8”);<br>    if(req.method == “OPTIONS”) {<br>        res.send(“200”);<br>    } else {<br>        next();<br>    }<br>});</p>
+<pre><code>结果： 
 
-var app = express();
+![][43]
 
-//指定视图引擎为ejs
-app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));
-app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+   [43]: https://images2017.cnblogs.com/blog/63651/201801/63651-20180108142729785-1121920664.png
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));
-app.use(logger(&apos;dev&apos;));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, &apos;public&apos;)));
 
-app.use(&apos;/&apos;, index);
-app.use(&apos;/users&apos;, users);
-app.use(&apos;/pdt&apos;, pdts);
-app.use(&quot;/task&quot;,task);
-app.use(&quot;/cars&quot;,cars);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error(&apos;Not Found&apos;);
-  err.status = 404;
-  next(err);
-});
+# 九、[视频](https://www.bilibili.com/video/av17977069)
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get(&apos;env&apos;) === &apos;development&apos; ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render(&apos;error&apos;);
-});
-
-module.exports = app;</code></pre><blockquote>
-<p><strong>Get</strong></p>
-</blockquote>
-<ul>
-<li>获得所有汽车  </li>
-<li>url /cars/</li>
-</ul>
-<p><img src="https://i.loli.net/2019/07/14/5d2b27eb42dea22132.jpg" alt></p>
-<blockquote>
-<p><strong>Get</strong></p>
-</blockquote>
-<ul>
-<li>获得汽车通过id </li>
-<li>url：/cars/:id</li>
-</ul>
-<p><img src="https://i.loli.net/2019/07/14/5d2b28e456cdf58111.jpg" alt></p>
-<blockquote>
-<p><strong>Post</strong> </p>
-</blockquote>
-<ul>
-<li>添加汽车  </li>
-<li>url：/cars/car</li>
-</ul>
-<p><img src="https://i.loli.net/2019/07/14/5d2b30e46f28836556.jpg" alt></p>
-<p>参数中的json格式一定要使用标准格式，注意引号，注意Content-Type，默认的Content-Type类型是：application/x-www-form-urlencoded</p>
-<blockquote>
-<p><strong>Put</strong></p>
-</blockquote>
-<ul>
-<li>修改汽车</li>
-<li>url：/cars/car</li>
-</ul>
-<p><img src="https://i.loli.net/2019/07/14/5d2b3434410e778260.jpg" alt></p>
-<p><img src="https://i.loli.net/2019/07/14/5d2b344cd080581595.jpg" alt></p>
-<blockquote>
-<p><strong>Delete</strong>  </p>
-</blockquote>
-<ul>
-<li>删除汽车 </li>
-<li>url：/cars/:id</li>
-</ul>
-<p><img src="https://i.loli.net/2019/07/14/5d2b3526d5bff57574.jpg" alt></p>
-<p><img src="https://i.loli.net/2019/07/14/5d2b35474e9c447189.jpg" alt></p>
-<p><strong>node.js跨域</strong></p>
-<p>修改app.js文件拦截所有的请求，修改头部 </p>
-<pre><code>app.use(logger(&apos;dev&apos;));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, &apos;public&apos;)));
-app.all(&apos;*&apos;, function(req, res, next) {
-    res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
-    res.header(&quot;Access-Control-Allow-Headers&quot;, &quot;content-type&quot;);
-    res.header(&quot;Access-Control-Allow-Methods&quot;, &quot;PUT,POST,GET,DELETE,OPTIONS&quot;);
-    res.header(&quot;X-Powered-By&quot;, &apos; 3.2.1&apos;);
-    res.header(&quot;Content-Type&quot;, &quot;application/json;charset=utf-8&quot;);
-    if(req.method == &quot;OPTIONS&quot;) {
-        res.send(&quot;200&quot;);
-    } else {
-        next();
-    }
-});</code></pre><p>结果： </p>
-<p><img src="https://images2017.cnblogs.com/blog/63651/201801/63651-20180108142729785-1121920664.png" alt></p>
-<h1 id="九、视频"><a href="#九、视频" class="headerlink" title="九、视频"></a>九、视频</h1><iframe src="//player.bilibili.com/player.html?aid=17977069&cid=29349651&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<p>From: <a href="https://www.cnblogs.com/best/p/6204116.html" target="_blank" rel="noopener">https://www.cnblogs.com/best/p/6204116.html</a></p>
-
+From: &lt;https://www.cnblogs.com/best/p/6204116.html&gt;</code></pre>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -919,9 +526,9 @@ app.all(&apos;*&apos;, function(req, res, next) {
     <span>Paypal</span>
 </a>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
-    <input type="hidden" name="cmd" value="_donations">
-    <input type="hidden" name="business" value="buy@policx.com">
-    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="buy@policx.com" />
+    <input type="hidden" name="currency_code" value="USD" />
 </form>
 
                 
@@ -987,7 +594,8 @@ app.all(&apos;*&apos;, function(req, res, next) {
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div
+    class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
     
     
 <div class="card widget">
@@ -1024,7 +632,7 @@ app.all(&apos;*&apos;, function(req, res, next) {
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        91
+                        90
                     </p>
                 </div>
             </div>
@@ -1057,31 +665,36 @@ app.all(&apos;*&apos;, function(req, res, next) {
         
         <div class="level is-mobile">
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://developer.apple.com/">
                 
                 <i class="fab fa-apple"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
                 
                 <i class="fab fa-python"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://nodejs.org/zh-cn/">
                 
                 <i class="fab fa-node-js"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://developer.android.google.cn/">
                 
                 <i class="fab fa-android"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/atom.xml">
                 
                 <i class="fas fa-rss"></i>
                 
@@ -1233,25 +846,6 @@ app.all(&apos;*&apos;, function(req, res, next) {
         
         <article class="media">
             
-            <a href="/2019/07/14/20190714165944/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="20190714165944">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T08:59:44.000Z">2019-07-14</time></div>
-                    <a href="/2019/07/14/20190714165944/" class="has-link-black-ter is-size-6">20190714165944</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/07/14/ddos/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
@@ -1309,7 +903,7 @@ app.all(&apos;*&apos;, function(req, res, next) {
         
         <article class="media">
             
-            <a href="/2019/07/11/20190711194445/" class="media-left">
+            <a href="/2019/07/11/CSDNnews/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/11/5d27296d524c226778.jpeg" alt="未来五年，iOS 开发如何前行？">
                 </p>
@@ -1318,7 +912,26 @@ app.all(&apos;*&apos;, function(req, res, next) {
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-11T11:44:45.000Z">2019-07-11</time></div>
-                    <a href="/2019/07/11/20190711194445/" class="has-link-black-ter is-size-6">未来五年，iOS 开发如何前行？</a>
+                    <a href="/2019/07/11/CSDNnews/" class="has-link-black-ter is-size-6">未来五年，iOS 开发如何前行？</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/05/BitTorrent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://cdn.sspai.com/article/0b5e11d6-3b9b-0068-0b02-4ba572cd8eee.jpg?imageMogr2/quality/95/thumbnail/!1440x480r/gravity/Center/crop/1440x480" alt="BT 种子和磁力链接是如何工作的？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-05T13:06:16.000Z">2019-07-05</time></div>
+                    <a href="/2019/07/05/BitTorrent/" class="has-link-black-ter is-size-6">BT 种子和磁力链接是如何工作的？</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1382,7 +995,7 @@ app.all(&apos;*&apos;, function(req, res, next) {
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1857,7 +1470,8 @@ app.all(&apos;*&apos;, function(req, res, next) {
                 </a>
                 <p class="is-size-7">
                     &copy; 2019 policx&nbsp;
-                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                     
                     <br>
                     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -1888,7 +1502,8 @@ app.all(&apos;*&apos;, function(req, res, next) {
                 
                 <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                     <img src="https://tool.lu/netcard/" height="80px" width="200px">
-                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1"
+                        async="async"></script>
                 </div>
                 
             </div>
@@ -1999,7 +1614,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
