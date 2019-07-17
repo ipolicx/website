@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.policx.com/2016/02/24/nokia/</loc>
+    <loc>https://www.policx.com/2016/06/18/uicollectionview/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2018/02/06/socket/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2016/06/18/pou-xi/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2018/02/06/ip/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2018/02/06/http/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2017/09/06/GCD-Global/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2019/07/16/flutter/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
+    <loc>https://www.policx.com/2016/06/18/camera/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2016/06/18/block/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2017/02/06/block-callback/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2017/03/19/3year/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
     <loc>https://www.policx.com/2019/07/15/spider/</loc>
-    <lastmod>2019-07-16</lastmod>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2016/06/18/GCD/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2018/02/03/nginx/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2016/02/24/nokia/</loc>
+    <lastmod>2019-07-17</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2019/07/14/node/</loc>
     <lastmod>2019-07-15</lastmod>
@@ -37,9 +73,6 @@
     <loc>https://www.policx.com/2016/06/18/javascriptcore/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2018/02/06/ip/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2017/03/28/iphone/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
@@ -49,9 +82,6 @@
     <loc>https://www.policx.com/2018/05/02/pymysql/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2018/02/06/socket/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2016/06/18/webkit/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
@@ -59,9 +89,6 @@
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/06/18/objc-runtime/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2018/02/03/nginx/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2015/11/17/login/</loc>
@@ -82,19 +109,10 @@
     <loc>https://www.policx.com/2018/09/17/git-del/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2017/09/06/GCD-Global/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2018/02/06/http/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2016/06/18/ios-background-tasks/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/06/18/gpu/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2016/06/18/GCD/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/06/18/clang-llvm/</loc>
@@ -104,9 +122,6 @@
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/06/18/cfrunloop/</loc>
-    <lastmod>2019-07-13</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2017/02/06/block-callback/</loc>
     <lastmod>2019-07-13</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2014/11/10/centos/</loc>
@@ -145,9 +160,6 @@
     <loc>https://www.policx.com/2016/08/08/banjia/</loc>
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2016/06/18/block/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2016/06/18/gou-jian/</loc>
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
@@ -170,9 +182,6 @@
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2018/06/05/2018/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2016/06/18/camera/</loc>
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2018/04/18/django-bi-ji/</loc>
@@ -205,13 +214,7 @@
     <loc>https://www.policx.com/2019/07/04/partner/</loc>
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2016/06/18/pou-xi/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2016/10/23/programming/</loc>
-    <lastmod>2019-07-12</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2016/06/18/uicollectionview/</loc>
     <lastmod>2019-07-12</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/07/22/UIMenuController/</loc>
@@ -242,9 +245,6 @@
     <lastmod>2019-07-08</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2019/06/18/harddisk/</loc>
-    <lastmod>2019-07-08</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2017/03/19/3year/</loc>
     <lastmod>2019-07-08</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2015/09/01/programmer/</loc>

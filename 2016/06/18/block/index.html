@@ -15,7 +15,7 @@
 <meta property="og:description" content="简介block可以当做匿名函数，可以在两个对象间将语句当做数据来进行传递。具有封闭性closure，方便取得上下文相关状态信息。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.policx.com/post-images/banner.jpg">
-<meta property="og:updated_time" content="2019-07-12T10:14:23.608Z">
+<meta property="og:updated_time" content="2019-07-17T08:23:55.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Block">
 <meta name="twitter:description" content="简介block可以当做匿名函数，可以在两个对象间将语句当做数据来进行传递。具有封闭性closure，方便取得上下文相关状态信息。">
@@ -181,7 +181,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 688 个字)
+                    5 分钟 读完 (大约 697 个字)
                 </span>
                 
                 
@@ -227,8 +227,9 @@
 <p>另一个解决方法</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@interface Encoder ()</span><br><span class="line">@property (nonatomic, copy) void (^completionHandler)();</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Encoder</span><br><span class="line"></span><br><span class="line">- (void)encodeWithCompletionHandler:(void (^)())handler</span><br><span class="line">&#123;</span><br><span class="line">     self.completionHandler = handler;</span><br><span class="line">     // 进行异步处理...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这个方法会在完成后被调用一次</span><br><span class="line">- (void)finishedEncoding</span><br><span class="line">&#123;</span><br><span class="line">     self.completionHandler();</span><br><span class="line">     self.completionHandler = nil; //一旦任务完成就设置为nil</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 
-<p> <a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></p>
+<p><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2ecfa7074a070306.jpg" alt="作者"></a></p>
 
+            <p><a href " target="_blank" rel="noopener"><img src alt></a></p>
         </div>
         
         
