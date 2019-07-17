@@ -11,5 +11,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://ipolicx.github.io/sitemap.xml
-Sitemap: https://ipolicx.github.io/baidusitemap.xml
+Sitemap: https://policx.com/sitemap.xml
+Sitemap: https://policx.com/baidusitemap.xml
