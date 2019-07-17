@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.policx.com/2019/07/15/spider/</loc>
+    <loc>https://www.policx.com/about/index.html</loc>
     
-    <lastmod>2019-07-16T16:17:57.991Z</lastmod>
+    <lastmod>2019-07-17T07:08:21.891Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.policx.com/2019/07/16/flutter/</loc>
     
-    <lastmod>2019-07-16T16:04:02.059Z</lastmod>
+    <lastmod>2019-07-17T06:53:58.428Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/2019/07/15/spider/</loc>
+    
+    <lastmod>2019-07-16T16:17:57.991Z</lastmod>
     
   </url>
   
@@ -68,13 +75,6 @@
     <loc>https://www.policx.com/message/index.html</loc>
     
     <lastmod>2019-07-13T15:18:40.174Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/about/index.html</loc>
-    
-    <lastmod>2019-07-13T10:26:13.326Z</lastmod>
     
   </url>
   
