@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>移动端网络请求优化之 IP 测速排序方案 - IP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="IP 测速排序方案">
+<meta name="keywords" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端网络请求优化之 IP 测速排序方案">
+<meta property="og:url" content="https://www.policx.com/编程//ip/index.html">
+<meta property="og:site_name" content="IP">
+<meta property="og:description" content="IP 测速排序方案">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.policx.com/post-images/denglu.jpg">
+<meta property="og:updated_time" content="2019-07-17T14:40:15.933Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端网络请求优化之 IP 测速排序方案">
+<meta name="twitter:description" content="IP 测速排序方案">
+<meta name="twitter:image" content="https://www.policx.com/post-images/denglu.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="移动端网络请求优化之 IP 测速排序方案" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/post-images/denglu.jpg" alt="移动端网络请求优化之 IP 测速排序方案">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-02-06T08:17:03.000Z">2018-02-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1266 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                移动端网络请求优化之 IP 测速排序方案
+            
+        </h1>
+        <div class="content">
+            <p>IP 测速排序方案</p>
+<a id="more"></a>
+
+<h2 id="1-IP-测速排序方案的目的"><a href="#1-IP-测速排序方案的目的" class="headerlink" title="1. IP 测速排序方案的目的"></a>1. IP 测速排序方案的目的</h2><p>无论是从 Local DNS 解析域名，获取到 IP 列表，还是从第三方的 DNS 解析服务中，获取到域名对应的 IP 列表。我们获得多个 IP 后，总是想选取一个最优的 IP 使用，本文主要探讨如何在客户端探测 IP 的连接性以及连接速度，保证返回可用性最好的IP，以达到“IP优选”的目的。</p>
+<h2 id="2-新浪开源的-httpdns-的-sdk-里的测速逻辑"><a href="#2-新浪开源的-httpdns-的-sdk-里的测速逻辑" class="headerlink" title="2. 新浪开源的 httpdns 的 sdk 里的测速逻辑"></a>2. 新浪开源的 httpdns 的 sdk 里的测速逻辑</h2><p>新浪开源一个 HTTPDNSLib ，里面包含了测速逻辑，GitHub地址如下：</p>
+<ul>
+<li><a href="https://github.com/CNSRE/HTTPDNSLib-for-iOS" target="_blank" rel="noopener">《HTTPDNSLib-for-iOS》</a></li>
+<li><a href="https://github.com/CNSRE/HTTPDNSLib" target="_blank" rel="noopener">《HTTPDNSLib》</a></li>
+</ul>
+<h2 id="3-IP-测试实现原理"><a href="#3-IP-测试实现原理" class="headerlink" title="3. IP 测试实现原理"></a>3. IP 测试实现原理</h2><p>使用 linux socket connect 和 select 函数实现的。 基于以下原理：</p>
+<ol>
+<li>即使套接口是非阻塞的。如果连接的服务器在同一台主机上，那么在调用connect 建立连接时，连接通常会立即建立成功，我们必须处理这种情况。</li>
+<li>源自Berkeley的实现(和Posix.1g)有两条与select 和非阻塞IO相关的规则：<br>A. 当连接建立成功时，套接口描述符变成可写；<br>B. 当连接出错时，套接口描述符变成既可读又可写。</li>
+</ol>
+<p>详细的测速实现如下，原理参考注释：</p>
+<p>以 iOS 实现为例：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">//#define CYL_SOCKET_CONNECT_TIMEOUT 10 //单位秒</span><br><span class="line">//#define CYL_SOCKET_CONNECT_TIMEOUT_RTT 600000//10分钟 单位毫秒</span><br><span class="line"></span><br><span class="line">- (int)testSpeedOf:(NSString *)ip port:(int16_t)port &#123;</span><br><span class="line">   NSString *oldIp = ip;</span><br><span class="line">   //request time out</span><br><span class="line">   float rtt = 0.0;</span><br><span class="line">   //sock：将要被设置或者获取选项的套接字。</span><br><span class="line">   int s = 0;</span><br><span class="line">   struct sockaddr_in saddr;</span><br><span class="line">   saddr.sin_family = AF_INET;</span><br><span class="line">   // MARK: - 设置端口，这里需要根据需要自定义，默认是80端口。</span><br><span class="line">   saddr.sin_port = htons(port);</span><br><span class="line">   saddr.sin_addr.s_addr = inet_addr([ip UTF8String]);</span><br><span class="line">   //saddr.sin_addr.s_addr = inet_addr(&quot;1.1.1.123&quot;);</span><br><span class="line">   if( (s=socket(AF_INET, SOCK_STREAM, 0)) &lt; 0) &#123;</span><br><span class="line">       NSLog(@&quot;ERROR:%s:%d, create socket failed.&quot;,__FUNCTION__,__LINE__);</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line">   NSDate *startTime = [NSDate date];</span><br><span class="line">   NSDate *endTime;</span><br><span class="line">   //为了设置connect超时 把socket设置称为非阻塞</span><br><span class="line">   int flags = fcntl(s, F_GETFL,0);</span><br><span class="line">   fcntl(s,F_SETFL, flags | O_NONBLOCK);</span><br><span class="line">   //对于阻塞式套接字，调用connect函数将激发TCP的三次握手过程，而且仅在连接建立成功或者出错时才返回；</span><br><span class="line">   //对于非阻塞式套接字，如果调用connect函数会之间返回-1（表示出错），且错误为EINPROGRESS，表示连接建立，建立启动但是尚未完成；</span><br><span class="line">   //如果返回0，则表示连接已经建立，这通常是在服务器和客户在同一台主机上时发生。</span><br><span class="line">   int i = connect(s,(struct sockaddr*)&amp;saddr, sizeof(saddr));</span><br><span class="line">   if(i == 0) &#123;</span><br><span class="line">       //建立连接成功，返回rtt时间。 因为connect是非阻塞，所以这个时间就是一个函数执行的时间，毫秒级，没必要再测速了。</span><br><span class="line">       close(s);</span><br><span class="line">       return 1;</span><br><span class="line">   &#125;</span><br><span class="line">   struct timeval tv;</span><br><span class="line">   int valopt;</span><br><span class="line">   socklen_t lon;</span><br><span class="line">   tv.tv_sec = CYL_SOCKET_CONNECT_TIMEOUT;</span><br><span class="line">   tv.tv_usec = 0;</span><br><span class="line">   </span><br><span class="line">   fd_set myset;</span><br><span class="line">   FD_ZERO(&amp;myset);</span><br><span class="line">   FD_SET(s, &amp;myset);</span><br><span class="line">   </span><br><span class="line">   // MARK: - 使用select函数，对套接字的IO操作设置超时。</span><br><span class="line">   /**</span><br><span class="line">    select函数</span><br><span class="line">    select是一种IO多路复用机制，它允许进程指示内核等待多个事件的任何一个发生，并且在有一个或者多个事件发生或者经历一段指定的时间后才唤醒它。</span><br><span class="line">    connect本身并不具有设置超时功能，如果想对套接字的IO操作设置超时，可使用select函数。</span><br><span class="line">    **/</span><br><span class="line">   int maxfdp = s+1;</span><br><span class="line">   int j = select(maxfdp, NULL, &amp;myset, NULL, &amp;tv);</span><br><span class="line">   </span><br><span class="line">   if (j == 0) &#123;</span><br><span class="line">       NSLog(@&quot;INFO:%s:%d, test rtt of (%@) timeout.&quot;,__FUNCTION__,__LINE__, oldIp);</span><br><span class="line">       rtt = CYL_SOCKET_CONNECT_TIMEOUT_RTT;</span><br><span class="line">       close(s);</span><br><span class="line">       return rtt;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   if (j &lt; 0) &#123;</span><br><span class="line">       NSLog(@&quot;ERROR:%s:%d, select function error.&quot;,__FUNCTION__,__LINE__);</span><br><span class="line">       rtt = 0;</span><br><span class="line">       close(s);</span><br><span class="line">       return rtt;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   /**</span><br><span class="line">    对于select和非阻塞connect，注意两点：</span><br><span class="line">    [1] 当连接成功建立时，描述符变成可写； [2] 当连接建立遇到错误时，描述符变为即可读，也可写，遇到这种情况，可调用getsockopt函数。</span><br><span class="line">    **/</span><br><span class="line">   lon = sizeof(int);</span><br><span class="line">   //valopt 表示错误信息。</span><br><span class="line">   // MARK: - 测试核心逻辑，连接后，获取错误信息，如果没有错误信息就是访问成功</span><br><span class="line">   /*!</span><br><span class="line">    * //getsockopt函数可获取影响套接字的选项，比如SOCKET的出错信息</span><br><span class="line">    * (get socket option)</span><br><span class="line">    */</span><br><span class="line">   getsockopt(s, SOL_SOCKET, SO_ERROR, (void*)(&amp;valopt), &amp;lon);</span><br><span class="line">   //如果有错误信息：</span><br><span class="line">   if (valopt) &#123;</span><br><span class="line">       NSLog(@&quot;ERROR:%s:%d, select function error.&quot;,__FUNCTION__,__LINE__);</span><br><span class="line">       rtt = 0;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">       endTime = [NSDate date];</span><br><span class="line">       rtt = [endTime timeIntervalSinceDate:startTime] * 1000;</span><br><span class="line">   &#125;</span><br><span class="line">   close(s);</span><br><span class="line">   return rtt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：当出现错误的时候测试结果是速度是0，所以排序时不能简单地按照值大小排序，可以先删除速度为0的结果，或者将速度为零重置为超时时间，比如上面的 CYL_SOCKET_CONNECT_TIMEOUT_RTT 。避免错误IP为0，结果排序后排在前面。</p>
+<hr>
+<p>Posted by <a href="https://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
+<p align="center"><a href="https://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="https://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a>
+
+
+</p>
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags//"></a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/编程//http/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">HTTP状态码汇总</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/编程//KVOcrash/">
+                <span class="level-item">KVO crash 自修复技术实现与原理解析</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/编程//ip/';
+        this.page.identifier = '编程//ip/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        92
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-IP-测速排序方案的目的">
+        <span class="has-mr-6">1</span>
+        <span>1. IP 测速排序方案的目的</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-新浪开源的-httpdns-的-sdk-里的测速逻辑">
+        <span class="has-mr-6">2</span>
+        <span>2. 新浪开源的 httpdns 的 sdk 里的测速逻辑</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-IP-测试实现原理">
+        <span class="has-mr-6">3</span>
+        <span>3. IP 测试实现原理</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/ddos/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T07:26:43.000Z">2019-07-14</time></div>
+                    <a href="/ddos/" class="has-link-black-ter is-size-6">DDoS（分布式拒绝服务）攻击是无解的吗？</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/资讯/">资讯</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/编程/JavaScript/node/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/15/5d2c49fe7e01233711.jpg" alt="Node.js">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-13T16:06:04.000Z">2019-07-14</time></div>
+                    <a href="/编程/JavaScript/node/" class="has-link-black-ter is-size-6">Node.js</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/front-matter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/og_image.png" alt="Hexo front-matter 怎么写？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-11T15:14:18.000Z">2019-07-11</time></div>
+                    <a href="/front-matter/" class="has-link-black-ter is-size-6">Hexo front-matter 怎么写？</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/博客/">博客</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/博客/">
+            <span class="level-start">
+                <span class="level-item">博客</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/生活/">
+            <span class="level-start">
+                <span class="level-item">生活</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/编程/">
+            <span class="level-start">
+                <span class="level-item">编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">56</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/记录/">
+            <span class="level-start">
+                <span class="level-item">记录</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/资讯/">
+            <span class="level-start">
+                <span class="level-item">资讯</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="移动端网络请求优化之 IP 测速排序方案" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

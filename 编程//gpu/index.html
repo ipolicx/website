@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>GPU处理图像 - IP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="GPU处理图像">
+<meta property="og:url" content="https://www.policx.com/编程//gpu/index.html">
+<meta property="og:site_name" content="IP">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.policx.com/post-images/banner.jpg">
+<meta property="og:updated_time" content="2019-07-17T14:40:15.932Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GPU处理图像">
+<meta name="twitter:image" content="https://www.policx.com/post-images/banner.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="GPU处理图像" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/post-images/banner.jpg" alt="GPU处理图像">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-06-18T01:53:56.000Z">2016-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2589 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                GPU处理图像
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li><a id="more"></a>
+<h1 id="Shader着色器"><a href="#Shader着色器" class="headerlink" title="Shader着色器"></a>Shader着色器</h1>Shader出现在OpenGL ES 2.0中，允许创建自己的Shader。必须同时创建两个Shader，分别是Vertex shader和Fragment shader.</li>
+</ul>
+<h1 id="Shader工具"><a href="#Shader工具" class="headerlink" title="Shader工具"></a>Shader工具</h1><p>Shader会有很多坑，不过一些工具能够帮助你跳过这些坑</p>
+<ul>
+<li>GPUImage：<a href="https://github.com/BradLarson/GPUImage" target="_blank" rel="noopener">https://github.com/BradLarson/GPUImage</a></li>
+<li>ShaderToy：<a href="https://www.shadertoy.com/" target="_blank" rel="noopener">https://www.shadertoy.com/</a></li>
+<li>Shaderific：<a href="https://www.shaderific.com/" target="_blank" rel="noopener">https://www.shaderific.com/</a></li>
+<li>Quartz Composer：官方工具</li>
+</ul>
+<h1 id="Shader使用范例"><a href="#Shader使用范例" class="headerlink" title="Shader使用范例"></a>Shader使用范例</h1><h2 id="Vertex-shader"><a href="#Vertex-shader" class="headerlink" title="Vertex shader"></a>Vertex shader</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">attribute vec4 position;</span><br><span class="line">attribute vec4 inputTextureCoordinate；</span><br><span class="line">varying vec2 textureCoordinate;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     gl_position = position;</span><br><span class="line">     textureCoordinate = inputTextureCoordinate.xy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Fragment-shader"><a href="#Fragment-shader" class="headerlink" title="Fragment shader"></a>Fragment shader</h2><p>直通滤镜</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate; //highp属性负责变量精度，这个被加入可以提高效率</span><br><span class="line">uniform sampler2D inputImageTexture; //接收一个图片的引用，当做2D的纹理，这个数据类型就是smpler2D。</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     gl_FragColor = texture2D(inputImageTexture, textureCoordinate); //texture是GLSL（着色语言）特有的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="GLSL着色语言"><a href="#GLSL着色语言" class="headerlink" title="GLSL着色语言"></a>GLSL着色语言</h1><h2 id="GLSL的官方快速入门指导"><a href="#GLSL的官方快速入门指导" class="headerlink" title="GLSL的官方快速入门指导"></a>GLSL的官方快速入门指导</h2><ul>
+<li>OpenGL ES：<a href="https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf" target="_blank" rel="noopener">https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf</a></li>
+<li>OpenGL：<a href="https://www.khronos.org/files/opengl-quick-reference-card.pdf" target="_blank" rel="noopener">https://www.khronos.org/files/opengl-quick-reference-card.pdf</a></li>
+</ul>
+<h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>三个可以赋值给我们的变量的标签</p>
+<ul>
+<li>Uniforms：在渲染循环里作为不变的输入值</li>
+<li>Attributes：随顶点位置不同会变的输入值</li>
+<li>Varyings：用来在Vertex shader和Fragment shader之间传递信息的，比如在Vertex shader中写入varying值，然后就可以在Fragment shader中读取和处理</li>
+</ul>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>有很多种向量，但是有三种会经常看到</p>
+<ul>
+<li>vec2：两个浮点数，适合在Fragment shader中保存X和Y坐标的情况</li>
+<li>vec3：三个浮点数</li>
+<li>vec4：四个浮点数，在图像处理中持续追踪每个像素的R,G,V,A这四个值。</li>
+</ul>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>是浮点数组的数组。三个经常处理的矩阵对象</p>
+<ul>
+<li>mat2：相当于保存了两个vec2对象的值或四个浮点数。</li>
+<li>mat3</li>
+<li>mat4</li>
+</ul>
+<h2 id="向量和矩阵运算"><a href="#向量和矩阵运算" class="headerlink" title="向量和矩阵运算"></a>向量和矩阵运算</h2><p>线性代数发挥作用的地方。想知道线性代数如何工作可以看这个资源站：<a href="https://betterexplained.com/articles/linear-algebra-guide/" target="_blank" rel="noopener">https://betterexplained.com/articles/linear-algebra-guide/</a></p>
+<p>线性代数可以一次在很多值上进行并行操作，so，正好适合需求，GLSL内建了很多函数可以处理庞大的计算转换</p>
+<h2 id="GLSL特有函数"><a href="#GLSL特有函数" class="headerlink" title="GLSL特有函数"></a>GLSL特有函数</h2><p>GLSL内建的函数可以在Shaderific网站上找到：<a href="https://www.shaderific.com/glsl-functions" target="_blank" rel="noopener">https://www.shaderific.com/glsl-functions</a>。很多C语言数学库基本数学运算都有对应的函数。</p>
+<ul>
+<li>step()：GPU处理条件逻辑不是很好。step()允许在不产生分支的前提下实现条件逻辑。传入step()函数的值小于阈值就返回0.0，大于等于阈值就返回1.0。</li>
+<li>mix()：将两个颜色值混合为一个。</li>
+<li>clamp()：可以确保值在一个区间内。</li>
+</ul>
+<h2 id="复杂的Shader的例子"><a href="#复杂的Shader的例子" class="headerlink" title="复杂的Shader的例子"></a>复杂的Shader的例子</h2><p>一个饱和度调节的Fragment shader的例子，出自《图形着色器：理论和实践》这本书。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate; //</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line">uniform lowp float saturation;</span><br><span class="line"></span><br><span class="line">const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721); //光亮度里三个值相加要为1，各个值代表着颜色的百分比，中间是绿色的值，70%的比重会让效果更好点。</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     lowp vec4 textureColor = texture2D(inputImageTexture, textureCoordinate); //根据坐标取样图片颜色信息</span><br><span class="line">     lowp float luminance = dot(textureColor.rgb, luminanceWeighting); //GLSL中的点乘运算，线性代数的点运算符相乘两个数字。点乘计算需要将纹理颜色信息和相对应的亮度权重相乘。然后取出所有的三个值相加到一起计算得到这个像素的中和亮度值。</span><br><span class="line">     lowp vec3 greyScaleColor = vec3(luminance); //创建一个三个值都是亮度信息的vec3，如果只指定一个值，编译器会将其它的都设置成这个值</span><br><span class="line">     gl_FragColor = vec4(mix(greyScaleColor, textureColor.rgb, saturation), textureColor.w); //用mix函数把计算的灰度值，初识的纹理颜色和得到的饱和度信息结合起来。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="球形滤镜示例"><a href="#球形滤镜示例" class="headerlink" title="球形滤镜示例"></a>球形滤镜示例</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">varying highp vec2 textureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line"></span><br><span class="line">uniform highp vec2 center;</span><br><span class="line">uniform highp float radius;</span><br><span class="line">uniform highp float aspectRatio;</span><br><span class="line">uniform highp float refractiveIndex;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     highp vec2 textureCoordinateToUse = vec2(textureCoordinate.x, (textureCoordinate.y * aspectRatio + 0.5 - 0.5 * aspectRatio)); //归一化坐标空间需要考虑屏幕是一个单位宽和一个单位长。</span><br><span class="line">     highp float distanceFromCenter = distance(center, textureCoordinateToUse); //计算特定像素点距离球形的中心有多远。使用GLSL内建的distance()函数，用勾股定律计算出中心坐标和长宽比矫正过的纹理坐标的距离</span><br><span class="line">     lowp float checkForPresenceWithinSphere = step(distanceFromCenter, radius); //计算片段是否在球体内。</span><br><span class="line"></span><br><span class="line">     distanceFromCenter = distanceFromCenter / radius;  //标准化到球心的距离，重新设置distanceFromCenter</span><br><span class="line"></span><br><span class="line">     highp float normalizedDepth = radius * sqrt(1.0 - distanceFromCenter * distanceFromCenter); //模拟一个玻璃球，需要计算球的“深度”是多少。</span><br><span class="line">     highp vec3 sphereNormal = normalize(vec3(textureCoordinateToUse - center, normalizedDepth)); //归一化</span><br><span class="line"></span><br><span class="line">     highp vec3 refractedVector = refract(vec3(0.0, 0.0, -1.0), sphereNormal, refractiveIndex); //GLSL的refract()函数以刚才创建的球法线和折射率来计算当光线通过球时从任意一个点看起来如何。</span><br><span class="line"></span><br><span class="line">     gl_FragColor = texture2D(inputImageTexture, (refractedVector.xy + 1.0) * 0.5) * checkForPresenceWithinSphere; //最后凑齐所有计算需要的颜色信息。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试Shader"><a href="#调试Shader" class="headerlink" title="调试Shader"></a>调试Shader</h2><p>使用gl_FragColor调试代码。GPUImage是个开源的资源有些很酷的shader，非常好的学习shader的方式，可以拿一个你觉得很有意思的shader对着源码一点点看下去。GPUImage还有一个shader设计器<a href="https://github.com/BradLarson/GPUImage/tree/master/examples/Mac/ShaderDesigner" target="_blank" rel="noopener">https://github.com/BradLarson/GPUImage/tree/master/examples/Mac/ShaderDesigner</a> 的Mac应用，可以测试shader而不用准备OpenGL代码。</p>
+<h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><p>简单的方法达到调优目的，可以用下载Imagination Technologies PowerVR SDK<a href="https://community.imgtec.com/developers/powervr/" target="_blank" rel="noopener">https://community.imgtec.com/developers/powervr/</a>这个工具帮助分析shader</p>
+<ul>
+<li>消除条件逻辑：使用step()这样的函数</li>
+<li>减少依赖纹理的读取：如果希望从附近像素取样而不是计算Fragment shader相邻像素的偏差，最好在Vertex shader中计算然后把结果以varying的方式传入Fragment shader里。</li>
+<li>计算尽量简单：能够得到一个近似值就尽量用，不要用类似sin()，cos()，tan()的比较消耗的操作。</li>
+<li>尽可能的将计算放到Vertex上：如果计算在图片上会有相同的结果或线性变化最好这样做。因为Vertex shader对每个顶点运行一次，而Fragment shader会在每个像素上运行一次。</li>
+<li>移动设备使用合适的精度：在向量上使用低精度的值会变得更快。两个lowp vec4相加可以在一个时钟周期内完成，两个highp vec4相加则需要四个时钟周期。</li>
+</ul>
+<h1 id="边界探测"><a href="#边界探测" class="headerlink" title="边界探测"></a>边界探测</h1><p>基于OpenCV库，不过这些步骤在GPUImage中都有完整的实现</p>
+<h2 id="Sobel边界探测"><a href="#Sobel边界探测" class="headerlink" title="Sobel边界探测"></a>Sobel边界探测</h2><p>这种操作在滤镜方面比机器视觉方面多。Sobel边界探测用于探测边界的出现位置，边界是由明变暗或者由暗变明的区域。在被处理的图片中一个像素的亮度反映了这个像素周围边界的强度。</p>
+<ul>
+<li>第一步，将彩色图片弄成灰阶图，这个过程就是将每个像素的红绿蓝部分合一代表亮度的值。如是果YUV而不是RGB格式的可以省略这步，因为YUV是将亮度信息和色度信息分开的。如果简化到只剩亮度的话一个像素周围的边界强度就可以由周围3*3个临近像素计算得到。这个计算涉及Convolution Matrix（卷积矩阵），每个像素都要与这个矩阵计算出一个数值，因为没有顺序要求所以可以采取并行运算。</li>
+<li>Sobel的水平处理矩阵</li>
+</ul>
+<p>-1 0 +1<br>-2 0 +2<br>-1 0 +1</p>
+<ul>
+<li>Sobel的垂直矩阵</li>
+</ul>
+<p>-1 -2 -1<br>0 0 0<br>+1 +2 +1</p>
+<ul>
+<li>和Sobel类似的变体，Prewitt边界探测。这个变体会在横向竖向矩阵中用不同的矩阵，但是运作过程差不多。</li>
+<li>OpenGL ES代码<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">precision mediump float;</span><br><span class="line"></span><br><span class="line">//varying的都是在Vertex shader上定义了</span><br><span class="line">varying vec2 textureCoordinate;</span><br><span class="line">varying vec2 leftTextureCoordinate;</span><br><span class="line">varying vec2 rightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">varying vec2 topTextureCoordinate;</span><br><span class="line">varying vec2 topLeftTextureCoordinate;</span><br><span class="line">varying vec2 topRightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">varying vec2 bottomTextureCoordinate;</span><br><span class="line">varying vec2 bottomLeftTextureCoordinate;</span><br><span class="line">varying vec2 bottomRightTextureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     float bottomLeftIntensity = texture2D(inputImageTexture, bottomLeftTextureCoordinate).r;</span><br><span class="line">     float topRightIntensity = texture2D(inputImageTexture, topRightTextureCoordinate).r;</span><br><span class="line">     float topLeftIntensity = texture2D(inputImageTexture, topLeftTextureCoordinate).r;</span><br><span class="line">     float bottomRightIntensity = texture2D(inputImageTexture, bottomRightTextureCoordinate).r;</span><br><span class="line">     float leftIntensity = texture2D(inputImageTexture, leftTextureCoordinate).r;</span><br><span class="line">     float rightIntensity = texture2D(inputImageTexture, rightTextureCoordinate).r;</span><br><span class="line">     float bottomIntensity = texture2D(inputImageTexture, bottomTextureCoordinate).r;</span><br><span class="line">     float topIntensity = texture2D(inputImageTexture, topTextureCoordinate).r;</span><br><span class="line"></span><br><span class="line">     float h = -bottomLeftIntensity - 2.0 * leftIntensity - topLeftIntensity + bottomRightIntensity + 2.0 * rightIntensity + topRightIntensity;</span><br><span class="line">     float v = -topLeftIntensity - 2.0 * topIntensity - topRightIntensity + bottomLeftIntensity + 2.0 * bottomIntensity + bottomRightIntensity;</span><br><span class="line">     float mag = length(vec2(h, v)); //length()函数计算出水平和垂直矩阵转化后值的平方和的平方根的值，这个值会被拷贝进输出像素的红绿蓝通道中，这样就可以来代表边界的明显程度了。</span><br><span class="line"></span><br><span class="line">     gl_FragColor = vec4(vec3(mag), 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Canny边界探测"><a href="#Canny边界探测" class="headerlink" title="Canny边界探测"></a>Canny边界探测</h2><p>Canny探测会比Sobel复杂些，这样做会得到一条物体边界的干净线条。</p>
+<p>探测过程：</p>
+<ul>
+<li><p>先用Sobel矩阵得到边界梯度的强度。这个和Sobel比就是最后一个计算有些不同</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vec2 gradientDirection;</span><br><span class="line">gradientDirection.x = -bottomLeftIntensity - 2.0 * leftIntensity - topLeftIntensity + bottomRightIntensity + 2.0 * rightIntensity + topRightIntensity;</span><br><span class="line">gradientDirection.y = -topLeftIntensity - 2.0 * topIntensity - topRightIntensity + bottomLeftIntensity + 2.0 * bottomIntensity + bottomRightIntensity;</span><br><span class="line"></span><br><span class="line">float gradientMagnitude = length(gradientDirection);</span><br><span class="line">vec2 normalizedDirection = normalize(gradientDirection);</span><br><span class="line">normalizedDirection = sign(normalizedDirection) * floor(abs(normalizedDirection) + 0.617316); // Offset by 1-sin(pi/8) to set to 0 if near axis, 1 if away</span><br><span class="line">normalizedDirection = (normalizedDirection + 1.0) * 0.5; // Place -1.0 - 1.0 within 0 - 1.0</span><br><span class="line"></span><br><span class="line">gl_FragColor = vec4(gradientMagnitude, normalizedDirection.x, normalizedDirection.y, 1.0);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>着色器步骤</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">precision mediump float;</span><br><span class="line"></span><br><span class="line">varying highp vec2 textureCoordinate;</span><br><span class="line"></span><br><span class="line">uniform sampler2D inputImageTexture;</span><br><span class="line">uniform highp float texelWidth; //要处理的图片中临近像素之间的距离。</span><br><span class="line">uniform highp float texelHeight; //同上</span><br><span class="line">uniform mediump float upperThreshold; //预期边界强度上下限</span><br><span class="line">uniform mediump float lowerThreshold; </span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">     vec3 currentGradientAndDirection = texture2D(inputImageTexture, textureCoordinate).rgb;</span><br><span class="line">     vec2 gradientDirection = ((currentGradientAndDirection.gb * 2.0) - 1.0) * vec2(texelWidth, texelHeight);</span><br><span class="line"></span><br><span class="line">     float firstSampledGradientMagnitude = texture2D(inputImageTexture, textureCoordinate + gradientDirection).r;</span><br><span class="line">     float secondSampledGradientMagnitude = texture2D(inputImageTexture, textureCoordinate - gradientDirection).r;</span><br><span class="line"></span><br><span class="line">     float multiplier = step(firstSampledGradientMagnitude, currentGradientAndDirection.r);</span><br><span class="line">     multiplier = multiplier * step(secondSampledGradientMagnitude, currentGradientAndDirection.r);</span><br><span class="line"></span><br><span class="line">     float thresholdCompliance = smoothstep(lowerThreshold, upperThreshold, currentGradientAndDirection.r);</span><br><span class="line">     multiplier = multiplier * thresholdCompliance;</span><br><span class="line"></span><br><span class="line">     gl_FragColor = vec4(multiplier, multiplier, multiplier, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Harris边角探测"><a href="#Harris边角探测" class="headerlink" title="Harris边角探测"></a>Harris边角探测</h2><p>多步骤的方法来探测场景中的边角。</p>
+<ul>
+<li>先弄得只有亮度信息，再通过Sobel矩阵，普里维特矩阵或者其它相关的矩阵计算出一个像素X和Y方向的梯度值，计算的结果会将X梯度传入红色部分，Y梯度传入绿色部分，X与Y梯度的乘积传入蓝色部分。</li>
+<li>对计算的结果进行高斯模糊。将模糊后图中取出红绿蓝编码的值带到计算边角点可能性公式：</li>
+</ul>
+<p>R = Ix2 × Iy2 − Ixy × Ixy − k × (Ix2 + Iy2)2</p>
+<p>#资料</p>
+<h2 id="相关数学"><a href="#相关数学" class="headerlink" title="相关数学"></a>相关数学</h2><ul>
+<li>3D Math Primer for Graphics and Game Development <a href="https://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231/ref=sr_1_1?ie=UTF8&amp;qid=1422837187&amp;sr=8-1&amp;keywords=3d+math+primer+for+graphics+and+game+development" target="_blank" rel="noopener">https://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231/ref=sr_1_1?ie=UTF8&amp;qid=1422837187&amp;sr=8-1&amp;keywords=3d+math+primer+for+graphics+and+game+development</a></li>
+<li>The Nature of Code <a href="https://natureofcode.com/" target="_blank" rel="noopener">https://natureofcode.com/</a></li>
+<li>The Computational Beauty of Nature <a href="https://www.amazon.com/Computational-Beauty-Nature-Explorations-Adaptation/dp/0262561271/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837256&amp;sr=1-1&amp;keywords=computational+beauty+of+nature" target="_blank" rel="noopener">https://www.amazon.com/Computational-Beauty-Nature-Explorations-Adaptation/dp/0262561271/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837256&amp;sr=1-1&amp;keywords=computational+beauty+of+nature</a></li>
+</ul>
+<h2 id="相关GLSL"><a href="#相关GLSL" class="headerlink" title="相关GLSL"></a>相关GLSL</h2><ul>
+<li>Graphic Shaders: Theory and Practice <a href="https://www.amazon.com/Graphics-Shaders-Theory-Practice-Second/dp/1568814348/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837351&amp;sr=1-1&amp;keywords=graphics+shaders+theory+and+practice" target="_blank" rel="noopener">https://www.amazon.com/Graphics-Shaders-Theory-Practice-Second/dp/1568814348/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422837351&amp;sr=1-1&amp;keywords=graphics+shaders+theory+and+practice</a></li>
+<li>The OpenGL Shading Language <a href="https://www.amazon.com/OpenGL-Shading-Language-Randi-Rost/dp/0321637631/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-1&amp;keywords=opengl+shading+language" target="_blank" rel="noopener">https://www.amazon.com/OpenGL-Shading-Language-Randi-Rost/dp/0321637631/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-1&amp;keywords=opengl+shading+language</a></li>
+<li>OpenGL 4 Shading Language Cookbook <a href="https://www.amazon.com/OpenGL-Shading-Language-Cookbook-Second/dp/1782167021/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-2&amp;keywords=opengl+shading+language" target="_blank" rel="noopener">https://www.amazon.com/OpenGL-Shading-Language-Cookbook-Second/dp/1782167021/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1422896457&amp;sr=1-2&amp;keywords=opengl+shading+language</a></li>
+<li>GPU Gems <a href="https://http.developer.nvidia.com/GPUGems/gpugems_part01.html" target="_blank" rel="noopener">https://http.developer.nvidia.com/GPUGems/gpugems_part01.html</a></li>
+<li>GPU Pro: Advanced Rendering Techniques <a href="https://www.amazon.com/GPU-Pro-Advanced-Rendering-Techniques/dp/1568814720/ref=sr_1_4?s=books&amp;ie=UTF8&amp;qid=1422837427&amp;sr=1-4&amp;keywords=gpu+pro" target="_blank" rel="noopener">https://www.amazon.com/GPU-Pro-Advanced-Rendering-Techniques/dp/1568814720/ref=sr_1_4?s=books&amp;ie=UTF8&amp;qid=1422837427&amp;sr=1-4&amp;keywords=gpu+pro</a></li>
+</ul>
+<p><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></p>
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/编程//ios-han/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">iOS函数响应式编程以及ReactiveCocoa的使用</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/编程//camera/">
+                <span class="level-item">Camera</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/编程//gpu/';
+        this.page.identifier = '编程//gpu/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        92
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/ddos/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T07:26:43.000Z">2019-07-14</time></div>
+                    <a href="/ddos/" class="has-link-black-ter is-size-6">DDoS（分布式拒绝服务）攻击是无解的吗？</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/资讯/">资讯</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/编程/JavaScript/node/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/15/5d2c49fe7e01233711.jpg" alt="Node.js">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-13T16:06:04.000Z">2019-07-14</time></div>
+                    <a href="/编程/JavaScript/node/" class="has-link-black-ter is-size-6">Node.js</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/编程/">编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/front-matter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/og_image.png" alt="Hexo front-matter 怎么写？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-11T15:14:18.000Z">2019-07-11</time></div>
+                    <a href="/front-matter/" class="has-link-black-ter is-size-6">Hexo front-matter 怎么写？</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/博客/">博客</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/博客/">
+            <span class="level-start">
+                <span class="level-item">博客</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/生活/">
+            <span class="level-start">
+                <span class="level-item">生活</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/编程/">
+            <span class="level-start">
+                <span class="level-item">编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">56</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/记录/">
+            <span class="level-start">
+                <span class="level-item">记录</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/资讯/">
+            <span class="level-start">
+                <span class="level-item">资讯</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="GPU处理图像" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
