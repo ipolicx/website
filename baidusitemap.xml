@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.policx.com/2019/07/15/spider/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2019/07/16/flutter/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
+    <loc>https://www.policx.com/2019/05/01/hexo-theme-icarus/</loc>
+    <lastmod>2019-07-17</lastmod>
+  </url>  <url>
     <loc>https://www.policx.com/2016/06/18/uicollectionview/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
@@ -19,9 +28,6 @@
     <loc>https://www.policx.com/2017/09/06/GCD-Global/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
-    <loc>https://www.policx.com/2019/07/16/flutter/</loc>
-    <lastmod>2019-07-17</lastmod>
-  </url>  <url>
     <loc>https://www.policx.com/2016/06/18/camera/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
@@ -32,9 +38,6 @@
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2017/03/19/3year/</loc>
-    <lastmod>2019-07-17</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2019/07/15/spider/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2016/06/18/GCD/</loc>
@@ -237,9 +240,6 @@
   </url>  <url>
     <loc>https://www.policx.com/2013/07/12/training/</loc>
     <lastmod>2019-07-11</lastmod>
-  </url>  <url>
-    <loc>https://www.policx.com/2019/05/01/hexo-theme-icarus/</loc>
-    <lastmod>2019-07-09</lastmod>
   </url>  <url>
     <loc>https://www.policx.com/2019/07/05/BitTorrent/</loc>
     <lastmod>2019-07-08</lastmod>
