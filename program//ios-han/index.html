@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>iOS函数响应式编程以及ReactiveCocoa的使用 - IP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="打算在项目中大面积使用RAC来开发，所以整理一些常用的实践范例和比较完整的api说明方便开发时随时查阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS函数响应式编程以及ReactiveCocoa的使用">
+<meta property="og:url" content="https://www.policx.com/program//ios-han/index.html">
+<meta property="og:site_name" content="IP">
+<meta property="og:description" content="打算在项目中大面积使用RAC来开发，所以整理一些常用的实践范例和比较完整的api说明方便开发时随时查阅">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images.pexels.com/photos/2454801/pexels-photo-2454801.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+<meta property="og:updated_time" content="2019-07-18T06:22:40.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS函数响应式编程以及ReactiveCocoa的使用">
+<meta name="twitter:description" content="打算在项目中大面积使用RAC来开发，所以整理一些常用的实践范例和比较完整的api说明方便开发时随时查阅">
+<meta name="twitter:image" content="https://images.pexels.com/photos/2454801/pexels-photo-2454801.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="iOS函数响应式编程以及ReactiveCocoa的使用" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/2454801/pexels-photo-2454801.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="iOS函数响应式编程以及ReactiveCocoa的使用">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-06-18T01:55:45.000Z">2016-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    32 分钟 读完 (大约 4740 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                iOS函数响应式编程以及ReactiveCocoa的使用
+            
+        </h1>
+        <div class="content">
+            <p>打算在项目中大面积使用RAC来开发，所以整理一些常用的实践范例和比较完整的api说明方便开发时随时查阅</p>
+<ul>
+<li><a id="more"></a>
+<h1 id="声明式编程泛型Declarative-programming"><a href="#声明式编程泛型Declarative-programming" class="headerlink" title="声明式编程泛型Declarative programming"></a>声明式编程泛型Declarative programming</h1>函数反应式编程是声明式编程的子编程范式之一</li>
+</ul>
+<h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>需要满足两个条件</p>
+<ul>
+<li>一个或者多个函数作为输入。</li>
+<li>有且仅有一个函数输出。</li>
+</ul>
+<p>Objective-c里使用block作为函数</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[array enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger idx, BOOL *stop)</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,number);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h2 id="映射map"><a href="#映射map" class="headerlink" title="映射map"></a>映射map</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSArray * mappedArray = [array rx_mapWithBlock:^id(id each)&#123;</span><br><span class="line">    return @(pow([each integerValue],2));</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤filter"><a href="#过滤filter" class="headerlink" title="过滤filter"></a>过滤filter</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSArray *filteredArray = [array rx_filterWithBlock:^BOOL(id each)&#123;</span><br><span class="line">    return ([each integerValue] % 2 == 0);</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="折叠fold"><a href="#折叠fold" class="headerlink" title="折叠fold"></a>折叠fold</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[array rx_mapWithBlock:^id (id each)&#123;</span><br><span class="line">        return [each stringValue];</span><br><span class="line">    &#125;] rx_foldInitialValue:@&quot;&quot; block:^id (id memo , id each)&#123;</span><br><span class="line">        return [memo stringByAppendingString:each];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Currying"><a href="#Currying" class="headerlink" title="Currying"></a>Currying</h2><p>用函数生成另一个函数</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func filterGenerator(lastnameCondition: String) -&gt; (Staff) -&gt; (Bool) &#123; </span><br><span class="line">    return &#123;staff in </span><br><span class="line">        return staff.lastname == lastnameCondition</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let filterWang = filterGenerator(&quot;Wang&quot;) </span><br><span class="line">let filterHu = filterGenerator(&quot;Hu&quot;)</span><br><span class="line"></span><br><span class="line">staffs.filter(filterHu)</span><br></pre></td></tr></table></figure>
+
+<h1 id="RAC中使用高阶函数"><a href="#RAC中使用高阶函数" class="headerlink" title="RAC中使用高阶函数"></a>RAC中使用高阶函数</h1><h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSArray *array = @[ @1, @2, @3 ];</span><br><span class="line">RACSequence * stream = [array rac_sequence];</span><br><span class="line">//RACSequence是一个RACStream的子类。</span><br><span class="line">[stream map:^id (id value)&#123;</span><br><span class="line">    return @(pow([value integerValue], 2));</span><br><span class="line">&#125;];</span><br><span class="line">//RACSequence有一个方法返回数组:array</span><br><span class="line">NSLog(@&quot;%@&quot;,[stream array]);</span><br><span class="line"></span><br><span class="line">//避免污染变量的作用域</span><br><span class="line">NSLog(@&quot;%@&quot;,[[[array rac_sequence] map:^id (id value)&#123;</span><br><span class="line">                    return @(pow([value integerValue], 2));</span><br><span class="line">                &#125;] array]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;%@&quot;, [[[array rac_sequence] filter:^BOOL (id value)&#123;</span><br><span class="line">                        return [value integerValue] % 2 == 0;</span><br><span class="line">                    &#125;] array]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;%@&quot;,[[[array rac_sequence] map:^id (id value)&#123;</span><br><span class="line">                    return [value stringValue];</span><br><span class="line">                &#125;] foldLeftWithStart:@&quot;&quot; reduce:^id (id accumulator, id value)&#123;</span><br><span class="line">                    return [accumulator stringByAppendingString:value];</span><br><span class="line">            &#125;]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="绑定键值"><a href="#绑定键值" class="headerlink" title="绑定键值"></a>绑定键值</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">RACSignal * validEmailSignal = [self.textField.rac_textSignal map:^id (NSString *value)&#123;</span><br><span class="line">    return @([value rangeOfString:@&quot;@&quot;].location != NSNotFound);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">RAC(self.button, enabled) = validEmailSignal;</span><br><span class="line"></span><br><span class="line">RAC(self.textField, textColor) = [validEmailSignal map: ^id (id value)&#123;</span><br><span class="line">    if([value boolValue])&#123;</span><br><span class="line">        return [UIColor greenColor];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return [UIColor redColor];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/ming1016/study/blob/master/pic/CombinePipeline.png?raw=true" alt="绑定键值图示"></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>比较好的一个完整的RAC实践的例子：<a href="https://github.com/ashfurrow/FunctionalReactivePixels" target="_blank" rel="noopener">https://github.com/ashfurrow/FunctionalReactivePixels</a></p>
+<h3 id="网络请求生成对应model"><a href="#网络请求生成对应model" class="headerlink" title="网络请求生成对应model"></a>网络请求生成对应model</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)importPhotos&#123;</span><br><span class="line">    RACReplaySubject * subject = [RACReplaySubject subject];</span><br><span class="line">    NSURLRequest * request = [self popularURLRequest];</span><br><span class="line">    [NSURLConnection sendAsynchronousRequest:request</span><br><span class="line">                                    queue:[NSOperationQueue mainQueue]</span><br><span class="line">                        completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)&#123;</span><br><span class="line">                            if (data) &#123;</span><br><span class="line">                                id results = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];</span><br><span class="line"></span><br><span class="line">                                [subject sendNext:[[[results[@&quot;photos&quot;] rac_sequence] map:^id(NSDictionary *photoDictionary)&#123;</span><br><span class="line">                                    FRPPhotoModel * model = [FRPPhotoModel new];</span><br><span class="line"></span><br><span class="line">                                    [self configurePhotoModel:model withDictionary:photoDictionary];</span><br><span class="line">                                    [self downloadThumbnailForPhotoModel:model];</span><br><span class="line"></span><br><span class="line">                                    return model;</span><br><span class="line">                                &#125;] array]];</span><br><span class="line"></span><br><span class="line">                                [subject sendCompleted];</span><br><span class="line">                            &#125;</span><br><span class="line">                            else&#123;</span><br><span class="line">                                [subject sendError:connectionError];</span><br><span class="line">                            &#125;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    return subject;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="过滤相同大小的图片，取出他们的url，返回第一个"><a href="#过滤相同大小的图片，取出他们的url，返回第一个" class="headerlink" title="过滤相同大小的图片，取出他们的url，返回第一个"></a>过滤相同大小的图片，取出他们的url，返回第一个</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *)urlForImageSize:(NSInteger)size inDictionary:(NSArray *)array&#123;</span><br><span class="line">    return [[[[[array rac_sequence] filter:^ BOOL (NSDictionary * value)&#123;</span><br><span class="line">        return [value[@&quot;size&quot;] integerValue] == size;</span><br><span class="line">    &#125;] map:^id (id value)&#123;</span><br><span class="line">        return value[@&quot;url&quot;];</span><br><span class="line">    &#125;] array] firstObject];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="观察model里的图片数据，进行为空过滤判断，将data转为UIImage，再把绑定新信号的值给对象的关键路径"><a href="#观察model里的图片数据，进行为空过滤判断，将data转为UIImage，再把绑定新信号的值给对象的关键路径" class="headerlink" title="观察model里的图片数据，进行为空过滤判断，将data转为UIImage，再把绑定新信号的值给对象的关键路径"></a>观察model里的图片数据，进行为空过滤判断，将data转为UIImage，再把绑定新信号的值给对象的关键路径</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (void)setPhotoModel:(FRPPhotoModel *)photoModel&#123;</span><br><span class="line">    self.subscription = [[[RACObserver(photoModel, thumbnailData)</span><br><span class="line">        filter:^ BOOL (id value)&#123;</span><br><span class="line">            return value != nil;</span><br><span class="line">        &#125;] map:^id (id value)&#123;</span><br><span class="line">            return [UIImage imageWithData:value];</span><br><span class="line">        &#125;] setKeyPath:@keypath(self.imageView, image) onObject:self.imageView];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="UITableViewCell复用时需要取消cell上各个组件的订阅"><a href="#UITableViewCell复用时需要取消cell上各个组件的订阅" class="headerlink" title="UITableViewCell复用时需要取消cell上各个组件的订阅"></a>UITableViewCell复用时需要取消cell上各个组件的订阅</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)perpareForReuse &#123;</span><br><span class="line">    [super prepareForReuse];</span><br><span class="line">    [self.subscription dispose], self.subscription = nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Delegate的使用"><a href="#Delegate的使用" class="headerlink" title="Delegate的使用"></a>Delegate的使用</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//注意：你必须retain这个delegate对象，否则他们将会被释放，你将会得到一个EXC_BAD_ACCESS异常。添加下列私有属性到画廊视图控制器：</span><br><span class="line">@property (nonatomic, strong) id collectionViewDelegate;</span><br><span class="line"></span><br><span class="line">//同时你也需要导入RACDelegateProxy.h，因为他不是ReactiveCocoa的核心部分，不包含在ReactiveCocoa.h中。</span><br><span class="line">RACDelegateProxy *viewControllerDelegate = [[RACDelegateProxy alloc]</span><br><span class="line">                                    initWithProtocol:@protocol(FRPFullSizePhotoViewControllerDelegate)];</span><br><span class="line"></span><br><span class="line">[[viewControllerDelegate rac_signalForSelector:@selector(userDidScroll:toPhotoAtIndex:)     fromProtocol:@protocol(FRPFullSizePhotoViewControllerDelegate)]</span><br><span class="line">        subscribeNext:^(RACTuple *value)&#123;</span><br><span class="line">            @strongify(self);</span><br><span class="line">            [self.collectionView</span><br><span class="line">                scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:[value.second integerValue] inSection:0]</span><br><span class="line">                atScrollPosition:UICollectionViewScrollPositionCenteredVertically</span><br><span class="line">                animated:NO];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">self.collectionViewDelegate = [[RACDelegateProxy alloc] initWithProtocol:@protocol(UICollectionViewDelegate)];</span><br><span class="line"></span><br><span class="line">[[self.collectionViewDelegate rac_signalForSelector:@selector(collectionView:didSelectItemAtIndexPath:)]</span><br><span class="line">        subscribeNext:^(RACTuple *arguments) &#123;</span><br><span class="line">            @strongify(self);</span><br><span class="line">            FRPFullSizePhotoViewController *viewController = [[FRPFullSizePhotoViewController alloc] initWithPhotoModels:self.photosArray currentPhotoIndex:[(NSIndexPath *)arguments.second item]];</span><br><span class="line">            viewController.delegate = (id&lt;FRPFullSizePhotoViewControllerDelegate&gt;)viewControllerDelegate;</span><br><span class="line"></span><br><span class="line">            [self.navigationController pushViewController:viewController animated:YES];</span><br><span class="line"></span><br><span class="line">        &#125;];</span><br></pre></td></tr></table></figure>
+
+<h3 id="处理异常，完成执行刷新操作，异常打印日志，执行对应方法"><a href="#处理异常，完成执行刷新操作，异常打印日志，执行对应方法" class="headerlink" title="处理异常，完成执行刷新操作，异常打印日志，执行对应方法"></a>处理异常，完成执行刷新操作，异常打印日志，执行对应方法</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RAC(self, photosArray) = [[[[FRPPhotoImporter importPhotos]</span><br><span class="line">        doCompleted:^&#123;</span><br><span class="line">            @strongify(self);</span><br><span class="line">            [self.collectionView reloadData];</span><br><span class="line">        &#125;] logError] catchTo:[RACSignal empty]];</span><br></pre></td></tr></table></figure>
+
+<h3 id="网络请求处理数据，获取数据返回主线程"><a href="#网络请求处理数据，获取数据返回主线程" class="headerlink" title="网络请求处理数据，获取数据返回主线程"></a>网络请求处理数据，获取数据返回主线程</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+ (RACSignal *)importPhotos &#123;</span><br><span class="line">    NSURLRequest *request = [self popularURLRequest];</span><br><span class="line"></span><br><span class="line">    return [[[[[[NSURLConnection rac_sendAsynchronousRequest:request]</span><br><span class="line">                reduceEach:^id(NSURLResponse *response , NSData *data)&#123;</span><br><span class="line">                    //注意：我们可以用下面的reduceEach:替代使用RACTuple的第一个map:，以便提供编译时检查。</span><br><span class="line">                    return data;</span><br><span class="line">                &#125;]</span><br><span class="line">                deliverOn:[RACScheduler mainThreadScheduler]]</span><br><span class="line">                map:^id (NSData *data) &#123;</span><br><span class="line">                    id results = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];</span><br><span class="line">                    return [[[results[@&quot;photo&quot;] rac_sequence]</span><br><span class="line">                        map:^id (NSDictionary *photoDictionary) &#123;</span><br><span class="line">                            FRPPhotoModel *model = [FRPPhotoModel new];</span><br><span class="line">                            [self configurePhotoModel:model withDictionary:photoDictionary];</span><br><span class="line">                            [self downloadThumbnailForPhotoModel:model];</span><br><span class="line">                            return model;</span><br><span class="line">                        &#125;] array];</span><br><span class="line">                &#125;] publish] autoconnect];</span><br><span class="line">    //信号链条最末端的信号操作publish. publish返回一个RACMulitcastConnection,当信号连接上时，他将订阅该接收信号。autoconnect为我们做的是：当它返回的信号被订阅，连接到 该(订阅背后的)信号（underly signal）。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="信号的信号Signal-of-signals，一个外部信号包含一个内部信号，在输出信号的subscribeNext-块中订阅内部信号，会引起嵌套麻烦。使用flattenMap后会生成一个新的信号，和先前信号平级，订阅会订阅到返回的新信号里的值。map方法也是创建一个新信号，但是会将返回的信号也当做值，这样就得不到真正需要的值了。"><a href="#信号的信号Signal-of-signals，一个外部信号包含一个内部信号，在输出信号的subscribeNext-块中订阅内部信号，会引起嵌套麻烦。使用flattenMap后会生成一个新的信号，和先前信号平级，订阅会订阅到返回的新信号里的值。map方法也是创建一个新信号，但是会将返回的信号也当做值，这样就得不到真正需要的值了。" class="headerlink" title="信号的信号Signal of signals，一个外部信号包含一个内部信号，在输出信号的subscribeNext:块中订阅内部信号，会引起嵌套麻烦。使用flattenMap后会生成一个新的信号，和先前信号平级，订阅会订阅到返回的新信号里的值。map方法也是创建一个新信号，但是会将返回的信号也当做值，这样就得不到真正需要的值了。"></a>信号的信号Signal of signals，一个外部信号包含一个内部信号，在输出信号的subscribeNext:块中订阅内部信号，会引起嵌套麻烦。使用flattenMap后会生成一个新的信号，和先前信号平级，订阅会订阅到返回的新信号里的值。map方法也是创建一个新信号，但是会将返回的信号也当做值，这样就得不到真正需要的值了。</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside] flattenMap:^RACStream *(id value) &#123;</span><br><span class="line">    return [self signInSignal];</span><br><span class="line">&#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">    //x</span><br><span class="line">    NSLog(@&quot;Sign in result: %@&quot;, x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h3 id="不同信号顺序链接，程序需要等待前一个信号发出完成事件（sendCompleted），然后再订阅下一个信号（then）"><a href="#不同信号顺序链接，程序需要等待前一个信号发出完成事件（sendCompleted），然后再订阅下一个信号（then）" class="headerlink" title="不同信号顺序链接，程序需要等待前一个信号发出完成事件（sendCompleted），然后再订阅下一个信号（then）"></a>不同信号顺序链接，程序需要等待前一个信号发出完成事件（sendCompleted），然后再订阅下一个信号（then）</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">- (RACSignal *)requestAccessToTwitterSignal</span><br><span class="line">&#123;</span><br><span class="line">    // 定义一个错误，如果用户拒绝访问则发送</span><br><span class="line">    NSError *accessError = [NSError errorWithDomain:RWTwitterInstantDomain code:RWTwitterInstantErrorAccessDenied userInfo:nil];</span><br><span class="line"></span><br><span class="line">    // 创建并返回信号</span><br><span class="line">    @weakify(self)</span><br><span class="line">    return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line"></span><br><span class="line">        // 请求访问twitter</span><br><span class="line">        @strongify(self)</span><br><span class="line">        [self.accountStore requestAccessToAccountsWithType:self.twitterAccountType</span><br><span class="line">                                                   options:nil</span><br><span class="line">                                                completion:^(BOOL granted, NSError *error) &#123;</span><br><span class="line">                                                    // 处理响应</span><br><span class="line">                                                    if (!granted)</span><br><span class="line">                                                    &#123;</span><br><span class="line">                                                        [subscriber sendError:accessError];</span><br><span class="line">                                                    &#125;</span><br><span class="line">                                                    else</span><br><span class="line">                                                    &#123;</span><br><span class="line">                                                        [subscriber sendNext:nil];</span><br><span class="line">                                                        [subscriber sendCompleted];</span><br><span class="line">                                                    &#125;</span><br><span class="line">                                                &#125;];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//throttle可以避免连续输入造成的不必要的请求，then会忽略前一个信号的值，底层的实现是先过滤之前信号发的值，再使用concat连接then返回的信号。</span><br><span class="line">[[[[[[[self requestAccessToTwitterSignal]</span><br><span class="line">      then:^RACSignal *&#123;</span><br><span class="line">          @strongify(self)</span><br><span class="line">          return self.searchText.rac_textSignal;</span><br><span class="line">      &#125;]</span><br><span class="line">     filter:^BOOL(NSString *text) &#123;</span><br><span class="line">         @strongify(self)</span><br><span class="line">         return [self isValidSearchText:text];</span><br><span class="line">     &#125;]</span><br><span class="line">    throttle:0.5]</span><br><span class="line">   flattenMap:^RACStream *(NSString *text) &#123;</span><br><span class="line">       @strongify(self)</span><br><span class="line">       //flattenMap来将每个next事件映射到一个新的被订阅的信号</span><br><span class="line">       return [self signalForSearchWithText:text];</span><br><span class="line">   &#125;]</span><br><span class="line">  deliverOn:[RACScheduler mainThreadScheduler]]</span><br><span class="line"> subscribeNext:^(NSDictionary *jsonSearchResult) &#123;</span><br><span class="line">     NSArray *statuses = jsonSearchResult[@&quot;statuses&quot;];</span><br><span class="line">     NSArray *tweets = [statuses linq_select:^id(id tweet) &#123;</span><br><span class="line">         return [RWTweet tweetWithStatus:tweet];</span><br><span class="line">     &#125;];</span><br><span class="line">     [self.resultsViewController displayTweets:tweets];</span><br><span class="line"> &#125; error:^(NSError *error) &#123;</span><br><span class="line">     NSLog(@&quot;An error occurred: %@&quot;, error);</span><br><span class="line"> &#125;];</span><br><span class="line"> - (RACSignal *)signalForSearchWithText:(NSString *)text &#123; </span><br><span class="line">    // 1 - define the errors </span><br><span class="line">    NSError *noAccountsError = [NSError errorWithDomain:RWTwitterInstantDomain </span><br><span class="line">                                                   code:RWTwitterInstantErrorNoTwitterAccounts </span><br><span class="line">                                               userInfo:nil]; </span><br><span class="line">    NSError *invalidResponseError = [NSError errorWithDomain:RWTwitterInstantDomain </span><br><span class="line">                                                        code:RWTwitterInstantErrorInvalidResponse </span><br><span class="line">                                                        userInfo:nil]; </span><br><span class="line">    @weakify(self) </span><br><span class="line">    return [RACSignal createSignal:^RACDisposable *(id subscriber) &#123; </span><br><span class="line">        @strongify(self); </span><br><span class="line">        SLRequest *request = [self requestforTwitterSearchWithText:text]; </span><br><span class="line">        NSArray *twitterAccounts = [self.accountStore accountsWithAccountType:self.twitterAccountType];         if (twitterAccounts.count == 0) &#123; </span><br><span class="line">            [subscriber sendError:noAccountsError]; </span><br><span class="line">        &#125; else &#123; </span><br><span class="line">            [request setAccount:[twitterAccounts lastObject]]; </span><br><span class="line">        [request performRequestWithHandler: ^(NSData *responseData, </span><br><span class="line">                NSHTTPURLResponse *urlResponse, NSError *error) &#123; </span><br><span class="line">            if (urlResponse.statusCode == 200) &#123; </span><br><span class="line">                NSDictionary *timelineData = [NSJSONSerialization JSONObjectWithData:responseData </span><br><span class="line">                                                options:NSJSONReadingAllowFragments </span><br><span class="line">                                                  error:nil]; </span><br><span class="line">                [subscriber sendNext:timelineData]; </span><br><span class="line">                [subscriber sendCompleted]; </span><br><span class="line">            &#125; else &#123; </span><br><span class="line">                [subscriber sendError:invalidResponseError]; </span><br><span class="line">            &#125; </span><br><span class="line">        &#125;]; </span><br><span class="line">    &#125; </span><br><span class="line">    return nil; </span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/ming1016/study/blob/master/pic/CompletePipeline.png?raw=true" alt="不同信号顺序链接"></p>
+<h3 id="异步加载图片"><a href="#异步加载图片" class="headerlink" title="异步加载图片"></a>异步加载图片</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-(RACSignal *)signalForLoadingImage:(NSString *)imageUrl &#123;</span><br><span class="line"></span><br><span class="line">    RACScheduler *scheduler = [RACScheduler</span><br><span class="line">                               schedulerWithPriority:RACSchedulerPriorityBackground];</span><br><span class="line"></span><br><span class="line">    return [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];</span><br><span class="line">        UIImage *image = [UIImage imageWithData:data];</span><br><span class="line">        [subscriber sendNext:image];</span><br><span class="line">        [subscriber sendCompleted];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;] subscribeOn:scheduler];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cell.twitterAvatarView.image = nil;</span><br><span class="line">[[[self signalForLoadingImage:tweet.profileImageUrl]</span><br><span class="line">  deliverOn:[RACScheduler mainThreadScheduler]]</span><br><span class="line">  subscribeNext:^(UIImage *image) &#123;</span><br><span class="line">   cell.twitterAvatarView.image = image;</span><br><span class="line">  &#125;];</span><br></pre></td></tr></table></figure>
+
+<h3 id="观察viewModel里的tableView的数据键值和全部读取键值，只要有一个有新值就会调用"><a href="#观察viewModel里的tableView的数据键值和全部读取键值，只要有一个有新值就会调用" class="headerlink" title="观察viewModel里的tableView的数据键值和全部读取键值，只要有一个有新值就会调用"></a>观察viewModel里的tableView的数据键值和全部读取键值，只要有一个有新值就会调用</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@weakify(self);</span><br><span class="line">[[[RACSignal merge: @[RACObserve(self.viewModel,  tweets), </span><br><span class="line">                     RACObserve(self.viewModel,  allTweetsLoaded)]]</span><br><span class="line">    bufferWithTime: 0 onScheduler: [RACScheduler mainThreadScheduler]]</span><br><span class="line">    subscribeNext: ^(id value) &#123;</span><br><span class="line">        @strongify(self);</span><br><span class="line">        [self.tableView reloadData];</span><br><span class="line">    &#125;];</span><br><span class="line">//bufferWithTime设置为0是为了避免同一时刻两个值被同时设置新值产生了table进行了两次reloadData</span><br></pre></td></tr></table></figure>
+
+<h3 id="封装hook方法，某个selector被调用时，再执行一段指定代码和hook一样。"><a href="#封装hook方法，某个selector被调用时，再执行一段指定代码和hook一样。" class="headerlink" title="封装hook方法，某个selector被调用时，再执行一段指定代码和hook一样。"></a>封装hook方法，某个selector被调用时，再执行一段指定代码和hook一样。</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@weakify(self);</span><br><span class="line">[[tableView rac_signalForSelector:@selector(layoutSubviews)]subscribeNext:^(id x) &#123;</span><br><span class="line">    @strongify(self);</span><br><span class="line">    [self doSomethingBeforeTableViewLayoutSubviews];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用RACCommand来实现按钮的状态根据输入邮箱判断邮箱是否非法还有提交到服务器后出错处理等"><a href="#使用RACCommand来实现按钮的状态根据输入邮箱判断邮箱是否非法还有提交到服务器后出错处理等" class="headerlink" title="使用RACCommand来实现按钮的状态根据输入邮箱判断邮箱是否非法还有提交到服务器后出错处理等"></a>使用RACCommand来实现按钮的状态根据输入邮箱判断邮箱是否非法还有提交到服务器后出错处理等</h3><p>Demo的github地址：<a href="https://github.com/olegam/RACCommandExample" target="_blank" rel="noopener">https://github.com/olegam/RACCommandExample</a></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">- (void)bindWithViewModel &#123;     </span><br><span class="line">  RAC(self.viewModel, email) =self.emailTextField.rac_textSignal;   </span><br><span class="line">  self.subscribeButton.rac_command = self.viewModel.subscribeCommand;     </span><br><span class="line">  RAC(self.statusLabel, text) =RACObserve(self.viewModel, statusMessage);   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@interface SubscribeViewModel :NSObject    </span><br><span class="line">  @property(nonatomic, strong)RACCommand *subscribeCommand;  // writeto this property  </span><br><span class="line">  @property(nonatomic, strong) NSString *email;  // read from this property  </span><br><span class="line">  @property(nonatomic, strong) NSString *statusMessage;    </span><br><span class="line">@end  </span><br><span class="line"></span><br><span class="line">#import &quot;SubscribeViewModel.h&quot;  </span><br><span class="line">#import &quot;AFHTTPRequestOperationManager+RACSupport.h&quot;  </span><br><span class="line">#import&quot;NSString+EmailAdditions.h&quot;  </span><br><span class="line"></span><br><span class="line">static NSString *const kSubscribeURL =@&quot;https://reactivetest.apiary.io/subscribers&quot;;  </span><br><span class="line"></span><br><span class="line">@interface SubscribeViewModel ()  </span><br><span class="line">@property(nonatomic, strong) RACSignal*emailValidSignal;  </span><br><span class="line">@end  </span><br><span class="line"></span><br><span class="line">@implementation SubscribeViewModel  </span><br><span class="line"></span><br><span class="line">- (id)init &#123;  </span><br><span class="line">       self= [super init];  </span><br><span class="line">       if(self) &#123;  </span><br><span class="line">            [self mapSubscribeCommandStateToStatusMessage];  </span><br><span class="line">       &#125;  </span><br><span class="line">       returnself;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">-(void)mapSubscribeCommandStateToStatusMessage &#123;  </span><br><span class="line">       RACSignal *startedMessageSource = [self.subscribeCommand.executionSignals map:^id(RACSignal *subscribeSignal) &#123;  </span><br><span class="line">              return NSLocalizedString(@&quot;Sending request...&quot;, nil);  </span><br><span class="line">       &#125;];  </span><br><span class="line"></span><br><span class="line">       RACSignal *completedMessageSource = [self.subscribeCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) &#123;  </span><br><span class="line">              return[[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) &#123;  </span><br><span class="line">                     return event.eventType == RACEventTypeCompleted;  </span><br><span class="line">              &#125;] map:^id(id value) &#123;  </span><br><span class="line">                     return NSLocalizedString(@&quot;Thanks&quot;, nil);  </span><br><span class="line">              &#125;];  </span><br><span class="line">       &#125;];  </span><br><span class="line"></span><br><span class="line">       RACSignal*failedMessageSource = [[self.subscribeCommand.errors subscribeOn:[RACSchedulermainThreadScheduler]] map:^id(NSError *error) &#123;  </span><br><span class="line">              return NSLocalizedString(@&quot;Error :(&quot;, nil);  </span><br><span class="line">       &#125;];  </span><br><span class="line"></span><br><span class="line">       RAC(self,statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">- (RACCommand *)subscribeCommand &#123;  </span><br><span class="line">       if(!_subscribeCommand) &#123;  </span><br><span class="line">              @weakify(self);  </span><br><span class="line">              _subscribeCommand = [[RACCommand alloc] initWithEnabled:self.emailValidSignal signalBlock:^RACSignal *(id input) &#123;  </span><br><span class="line">                     @strongify(self);  </span><br><span class="line">                     return [SubscribeViewModel postEmail:self.email];  </span><br><span class="line">              &#125;];  </span><br><span class="line">       &#125;  </span><br><span class="line">       return _subscribeCommand;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">+ (RACSignal *)postEmail:(NSString *)email&#123;  </span><br><span class="line">       AFHTTPRequestOperationManager*manager = [AFHTTPRequestOperationManager manager];  </span><br><span class="line">       manager.requestSerializer= [AFJSONRequestSerializer new];  </span><br><span class="line">       NSDictionary*body = @&#123;@&quot;email&quot;: email ?: @&quot;&quot;&#125;;  </span><br><span class="line">       return [[[manager rac_POST:kSubscribeURL parameters:body] logError] replayLazily];  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">- (RACSignal *)emailValidSignal &#123;  </span><br><span class="line">       if(!_emailValidSignal) &#123;  </span><br><span class="line">              _emailValidSignal= [RACObserve(self, email) map:^id(NSString *email) &#123;  </span><br><span class="line">                     return@([email isValidEmail]);  </span><br><span class="line">              &#125;];  </span><br><span class="line">       &#125;  </span><br><span class="line">       return _emailValidSignal;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<h3 id="替换Delegate，直接使用RACSubject"><a href="#替换Delegate，直接使用RACSubject" class="headerlink" title="替换Delegate，直接使用RACSubject"></a>替换Delegate，直接使用RACSubject</h3><h1 id="RAC内存管理"><a href="#RAC内存管理" class="headerlink" title="RAC内存管理"></a>RAC内存管理</h1><p>RAC会维护一个全局的信号集合，一个或多于一个订阅者就可用，所有订阅者都被移除了，信号就被释放了。</p>
+<h1 id="RAC需要注意的内存问题"><a href="#RAC需要注意的内存问题" class="headerlink" title="RAC需要注意的内存问题"></a>RAC需要注意的内存问题</h1><h2 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123; //1</span><br><span class="line">        MTModel *model = [[MTModel alloc] init]; // MTModel有一个名为的title的属性</span><br><span class="line">        [subscriber sendNext:model];</span><br><span class="line">        [subscriber sendCompleted];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line">    self.flattenMapSignal = [signal flattenMap:^RACStream *(MTModel *model) &#123; //2</span><br><span class="line">        return RACObserve(model, title);</span><br><span class="line">    &#125;];</span><br><span class="line">    [self.flattenMapSignal subscribeNext:^(id x) &#123; //3</span><br><span class="line">        NSLog(@&quot;subscribeNext - %@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的RACObserve会引起引用不释放的问题，通过RACObserve的定义来看看，里面会对self进行持有。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#define RACObserve(TARGET, KEYPATH) \</span><br><span class="line">    (&#123; \</span><br><span class="line">        _Pragma(&quot;clang diagnostic push&quot;) \</span><br><span class="line">        _Pragma(&quot;clang diagnostic ignored \&quot;-Wreceiver-is-weak\&quot;&quot;) \</span><br><span class="line">        __weak id target_ = (TARGET); \</span><br><span class="line">        [target_ rac_valuesForKeyPath:@keypath(TARGET, KEYPATH) observer:self]; \</span><br><span class="line">        _Pragma(&quot;clang diagnostic pop&quot;) \</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h2><p>对subject进行map这样的操作，这时就需要sendCompleted</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    RACSubject *subject = [RACSubject subject]; </span><br><span class="line">    [subject.rac_willDeallocSignal subscribeCompleted:^&#123; </span><br><span class="line">        NSLog(@&quot;subject dealloc&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [[subject map:^id(NSNumber *value) &#123; </span><br><span class="line">        return @([value integerValue] * 3);</span><br><span class="line">    &#125;] subscribeNext:^(id x) &#123; </span><br><span class="line">        NSLog(@&quot;next = %@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line">    [subject sendNext:@1]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是为什么signal进行map操作，不sendCompleted而不会内存泄漏呢。因为调到bind的比如map、filter、merge、combineLatest、flattenMap等操作如果是RACSubject这样会持有订阅者的信号会产生内存泄漏需要sendCompleted。可以先看看bind的实现</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (RACSignal *)bind:(RACStreamBindBlock (^)(void))block &#123;</span><br><span class="line">    NSCParameterAssert(block != NULL);</span><br><span class="line">    /*</span><br><span class="line">     * -bind: should:</span><br><span class="line">     * </span><br><span class="line">     * 1. Subscribe to the original signal of values.</span><br><span class="line">     * 2. Any time the original signal sends a value, transform it using the binding block.</span><br><span class="line">     * 3. If the binding block returns a signal, subscribe to it, and pass all of its values through to the subscriber as they&apos;re received.</span><br><span class="line">     * 4. If the binding block asks the bind to terminate, complete the _original_ signal.</span><br><span class="line">     * 5. When _all_ signals complete, send completed to the subscriber.</span><br><span class="line">     * </span><br><span class="line">     * If any signal sends an error at any point, send that to the subscriber.</span><br><span class="line">     */</span><br><span class="line">    return [[RACSignal createSignal:^(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        RACStreamBindBlock bindingBlock = block();</span><br><span class="line">        NSMutableArray *signals = [NSMutableArray arrayWithObject:self];</span><br><span class="line">        // 此处省略了80行代码</span><br><span class="line">        // ...</span><br><span class="line">    &#125;] setNameWithFormat:@&quot;[%@] -bind:&quot;, self.name];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>didSubscribe的开头，就创建了一个数组signals，并且持有了self，也就是源信号，也就是订阅者持有了信号，如果是Subject那么这种信号又会持有订阅者，这样就形成了循环引用。</p>
+<p>下面看看sendCompleted如何修复的内存泄漏</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void (^completeSignal)(RACSignal *, RACDisposable *) = ^(RACSignal *signal, RACDisposable *finishedDisposable) &#123;</span><br><span class="line">    BOOL removeDisposable = NO;</span><br><span class="line">    @synchronized (signals) &#123;</span><br><span class="line">        [signals removeObject:signal]; //1</span><br><span class="line">        if (signals.count == 0) &#123;</span><br><span class="line">            [subscriber sendCompleted]; //2</span><br><span class="line">            [compoundDisposable dispose]; //3</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            removeDisposable = YES;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (removeDisposable) [compoundDisposable removeDisposable:finishedDisposable]; //4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>从signals这个数组中移除传入的signal，也就是让订阅的signal不会持有subject这种信号。</p>
+<p>还有replay这样的操作，因为这个方法返回的是一个RACReplaySubject</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">    [subscriber sendNext:@1];</span><br><span class="line">    [subscriber sendCompleted]; // 保证源信号发送完成</span><br><span class="line">    return nil;</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">RACSignal *replaySignal = [signal replay]; // 这里返回的其实是一个RACReplaySubject</span><br><span class="line"></span><br><span class="line">[[replaySignal map:^id(NSNumber *value) &#123;</span><br><span class="line">    return @([value integerValue] * 3);</span><br><span class="line">&#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot;subscribeNext - %@&quot;, x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h1 id="热信号冷信号"><a href="#热信号冷信号" class="headerlink" title="热信号冷信号"></a>热信号冷信号</h1><ul>
+<li>热信号是主动的，不订阅也能够按时发送。冷信号是被动的，只有订阅才会发送。</li>
+<li>热信号可以有多个订阅者。冷信号只能够一对一，有不同订阅者，消息会从新完整发送。</li>
+</ul>
+<h1 id="RAC的API手册"><a href="#RAC的API手册" class="headerlink" title="RAC的API手册"></a>RAC的API手册</h1><h2 id="常见类"><a href="#常见类" class="headerlink" title="常见类"></a>常见类</h2><h3 id="RACSiganl-信号类。"><a href="#RACSiganl-信号类。" class="headerlink" title="RACSiganl 信号类。"></a>RACSiganl 信号类。</h3><ul>
+<li>RACEmptySignal ：空信号，用来实现 RACSignal 的 +empty 方法；</li>
+<li>RACReturnSignal ：一元信号，用来实现 RACSignal 的 +return: 方法；</li>
+<li>RACDynamicSignal ：动态信号，使用一个 block - 来实现订阅行为，我们在使用 RACSignal 的 +createSignal: 方法时创建的就是该类的实例；</li>
+<li>RACErrorSignal ：错误信号，用来实现 RACSignal 的 +error: 方法；</li>
+<li>RACChannelTerminal ：通道终端，代表 RACChannel 的一个终端，用来实现双向绑定。</li>
+</ul>
+<h3 id="RACSubscriber-订阅者"><a href="#RACSubscriber-订阅者" class="headerlink" title="RACSubscriber 订阅者"></a>RACSubscriber 订阅者</h3><h3 id="RACDisposable-用于取消订阅或者清理资源，当信号发送完成或者发送错误的时候，就会自动触发它。"><a href="#RACDisposable-用于取消订阅或者清理资源，当信号发送完成或者发送错误的时候，就会自动触发它。" class="headerlink" title="RACDisposable 用于取消订阅或者清理资源，当信号发送完成或者发送错误的时候，就会自动触发它。"></a>RACDisposable 用于取消订阅或者清理资源，当信号发送完成或者发送错误的时候，就会自动触发它。</h3><ul>
+<li>RACSerialDisposable ：作为 disposable 的容器使用，可以包含一个 disposable 对象，并且允许将这个 disposable 对象通过原子操作交换出来；</li>
+<li>RACKVOTrampoline ：代表一次 KVO 观察，并且可以用来停止观察；</li>
+<li>RACCompoundDisposable ：它可以包含多个 disposable 对象，并且支持手动添加和移除 disposable 对象</li>
+<li>RACScopedDisposable ：当它被 dealloc 的时候调用本身的 -dispose 方法。</li>
+</ul>
+<h3 id="RACSubject-信号提供者，自己可以充当信号，又能发送信号。订阅后发送"><a href="#RACSubject-信号提供者，自己可以充当信号，又能发送信号。订阅后发送" class="headerlink" title="RACSubject 信号提供者，自己可以充当信号，又能发送信号。订阅后发送"></a>RACSubject 信号提供者，自己可以充当信号，又能发送信号。订阅后发送</h3><ul>
+<li>RACGroupedSignal ：分组信号，用来实现 RACSignal 的分组功能；</li>
+<li>RACBehaviorSubject ：重演最后值的信号，当被订阅时，会向订阅者发送它最后接收到的值；</li>
+<li>RACReplaySubject ：重演信号，保存发送过的值，当被订阅时，会向订阅者重新发送这些值。可以先发送后订阅</li>
+</ul>
+<h3 id="RACTuple-元组类-类似NSArray-用来包装值"><a href="#RACTuple-元组类-类似NSArray-用来包装值" class="headerlink" title="RACTuple 元组类,类似NSArray,用来包装值."></a>RACTuple 元组类,类似NSArray,用来包装值.</h3><h3 id="RACSequence-RAC中的集合类"><a href="#RACSequence-RAC中的集合类" class="headerlink" title="RACSequence RAC中的集合类"></a>RACSequence RAC中的集合类</h3><h3 id="RACCommand-RAC中用于处理事件的类，可以把事件如何处理-事件中的数据如何传递，包装到这个类中，他可以很方便的监控事件的执行过程。"><a href="#RACCommand-RAC中用于处理事件的类，可以把事件如何处理-事件中的数据如何传递，包装到这个类中，他可以很方便的监控事件的执行过程。" class="headerlink" title="RACCommand RAC中用于处理事件的类，可以把事件如何处理,事件中的数据如何传递，包装到这个类中，他可以很方便的监控事件的执行过程。"></a>RACCommand RAC中用于处理事件的类，可以把事件如何处理,事件中的数据如何传递，包装到这个类中，他可以很方便的监控事件的执行过程。</h3><h3 id="RACMulticastConnection-用于当一个信号，被多次订阅时，为了保证创建信号时，避免多次调用创建信号中的block，造成副作用，可以使用这个类处理。"><a href="#RACMulticastConnection-用于当一个信号，被多次订阅时，为了保证创建信号时，避免多次调用创建信号中的block，造成副作用，可以使用这个类处理。" class="headerlink" title="RACMulticastConnection 用于当一个信号，被多次订阅时，为了保证创建信号时，避免多次调用创建信号中的block，造成副作用，可以使用这个类处理。"></a>RACMulticastConnection 用于当一个信号，被多次订阅时，为了保证创建信号时，避免多次调用创建信号中的block，造成副作用，可以使用这个类处理。</h3><h3 id="RACScheduler-RAC中的队列，用GCD封装的。"><a href="#RACScheduler-RAC中的队列，用GCD封装的。" class="headerlink" title="RACScheduler RAC中的队列，用GCD封装的。"></a>RACScheduler RAC中的队列，用GCD封装的。</h3><ul>
+<li>RACImmediateScheduler ：立即执行调度的任务，这是唯一一个支持同步执行的调度器；</li>
+<li>RACQueueScheduler ：一个抽象的队列调度器，在一个 GCD 串行列队中异步调度所有任务；</li>
+<li>RACTargetQueueScheduler ：继承自 RACQueueScheduler ，在一个以一个任意的 GCD 队列为 target 的串行队列中异步调度所有任务；</li>
+<li>RACSubscriptionScheduler ：一个只用来调度订阅的调度器。</li>
+</ul>
+<h2 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h2><ul>
+<li>rac_signalForSelector : 代替代理</li>
+<li>rac_valuesAndChangesForKeyPath: KVO</li>
+<li>rac_signalForControlEvents:监听事件</li>
+<li>rac_addObserverForName 代替通知</li>
+<li>rac_textSignal：监听文本框文字改变</li>
+<li>rac_liftSelector:withSignalsFromArray:Signals:当传入的Signals(信号数组)，每一个signal都至少sendNext过一次，就会去触发第一个selector参数的方法。</li>
+</ul>
+<h2 id="常见宏"><a href="#常见宏" class="headerlink" title="常见宏"></a>常见宏</h2><ul>
+<li>RAC(TARGET, [KEYPATH, [NIL_VALUE]])：用于给某个对象的某个属性绑定</li>
+<li>RACObserve(self, name) ：监听某个对象的某个属性,返回的是信号。</li>
+<li>@weakify(Obj)和@strongify(Obj)</li>
+<li>RACTuplePack ：把数据包装成RACTuple（元组类）</li>
+<li>RACTupleUnpack：把RACTuple（元组类）解包成对应的数据</li>
+<li>RACChannelTo 用于双向绑定的一个终端</li>
+</ul>
+<h2 id="常用操作方法"><a href="#常用操作方法" class="headerlink" title="常用操作方法"></a>常用操作方法</h2><ul>
+<li>flattenMap map 用于把源信号内容映射成新的内容。</li>
+<li>concat 组合 按一定顺序拼接信号，当多个信号发出的时候，有顺序的接收信号</li>
+<li>then 用于连接两个信号，当第一个信号完成，才会连接then返回的信号。</li>
+<li>merge 把多个信号合并为一个信号，任何一个信号有新值的时候就会调用</li>
+<li>zipWith 把两个信号压缩成一个信号，只有当两个信号同时发出信号内容时，并且把两个信号的内容合并成一个元组，才会触发压缩流的next事件。</li>
+<li>combineLatest:将多个信号合并起来，并且拿到各个信号的最新的值,必须每个合并的signal至少都有过一次sendNext，才会触发合并的信号。</li>
+<li>reduce聚合:用于信号发出的内容是元组，把信号发出元组的值聚合成一个值</li>
+<li>filter:过滤信号，使用它可以获取满足条件的信号.</li>
+<li>ignore:忽略完某些值的信号.</li>
+<li>distinctUntilChanged:当上一次的值和当前的值有明显的变化就会发出信号，否则会被忽略掉。</li>
+<li>take:从开始一共取N次的信号</li>
+<li>takeLast:取最后N次的信号,前提条件，订阅者必须调用完成，因为只有完成，就知道总共有多少信号.</li>
+<li>takeUntil:(RACSignal *):获取信号直到某个信号执行完成</li>
+<li>skip:(NSUInteger):跳过几个信号,不接受。</li>
+<li>switchToLatest:用于signalOfSignals（信号的信号），有时候信号也会发出信号，会在signalOfSignals中，获取signalOfSignals发送的最新信号。</li>
+<li>doNext: 执行Next之前，会先执行这个Block</li>
+<li>doCompleted: 执行sendCompleted之前，会先执行这个Block</li>
+<li>timeout：超时，可以让一个信号在一定的时间后，自动报错。</li>
+<li>interval 定时：每隔一段时间发出信号</li>
+<li>delay 延迟发送next。</li>
+<li>retry重试 ：只要失败，就会重新执行创建信号中的block,直到成功.</li>
+<li>replay重放：当一个信号被多次订阅,反复播放内容</li>
+<li>throttle节流:当某个信号发送比较频繁时，可以使用节流，在某一段时间不发送信号内容，过了一段时间获取信号的最新内容发出。</li>
+</ul>
+<h2 id="UI-Category（常用汇总）"><a href="#UI-Category（常用汇总）" class="headerlink" title="UI - Category（常用汇总）"></a>UI - Category（常用汇总）</h2><h3 id="rac-prepareForReuseSignal：-需要复用时用"><a href="#rac-prepareForReuseSignal：-需要复用时用" class="headerlink" title="rac_prepareForReuseSignal： 需要复用时用"></a>rac_prepareForReuseSignal： 需要复用时用</h3><ul>
+<li>相关UI: MKAnnotationView、UICollectionReusableView、UITableViewCell、UITableViewHeaderFooterView</li>
+</ul>
+<h3 id="rac-buttonClickedSignal：点击事件触发信号"><a href="#rac-buttonClickedSignal：点击事件触发信号" class="headerlink" title="rac_buttonClickedSignal：点击事件触发信号"></a>rac_buttonClickedSignal：点击事件触发信号</h3><ul>
+<li>相关UI：UIActionSheet、UIAlertView</li>
+</ul>
+<h3 id="rac-command：button类、刷新类相关命令替换"><a href="#rac-command：button类、刷新类相关命令替换" class="headerlink" title="rac_command：button类、刷新类相关命令替换"></a>rac_command：button类、刷新类相关命令替换</h3><ul>
+<li>相关UI：UIBarButtonItem、UIButton、UIRefreshControl</li>
+</ul>
+<h3 id="rac-signalForControlEvents-control-event-触发"><a href="#rac-signalForControlEvents-control-event-触发" class="headerlink" title="rac_signalForControlEvents: control event 触发"></a>rac_signalForControlEvents: control event 触发</h3><ul>
+<li>相关UI：UIControl</li>
+</ul>
+<h3 id="rac-gestureSignal-UIGestureRecognizer-事件处理信号"><a href="#rac-gestureSignal-UIGestureRecognizer-事件处理信号" class="headerlink" title="rac_gestureSignal UIGestureRecognizer 事件处理信号"></a>rac_gestureSignal UIGestureRecognizer 事件处理信号</h3><ul>
+<li>相关UI：UIGestureRecognizer</li>
+</ul>
+<h3 id="rac-imageSelectedSignal-选择图片的信号"><a href="#rac-imageSelectedSignal-选择图片的信号" class="headerlink" title="rac_imageSelectedSignal 选择图片的信号"></a>rac_imageSelectedSignal 选择图片的信号</h3><ul>
+<li>相关UI：UIImagePickerController</li>
+</ul>
+<h3 id="rac-textSignal"><a href="#rac-textSignal" class="headerlink" title="rac_textSignal"></a>rac_textSignal</h3><ul>
+<li>相关UI：UITextField、UITextView</li>
+</ul>
+<h3 id="可实现双向绑定的相关API"><a href="#可实现双向绑定的相关API" class="headerlink" title="可实现双向绑定的相关API"></a>可实现双向绑定的相关API</h3><ul>
+<li>rac_channelForControlEvents: key: nilValue:</li>
+<li>相关UI：UIControl类</li>
+<li>rac_newDateChannelWithNilValue:</li>
+<li>相关UI：UIDatePicker</li>
+<li>rac_newSelectedSegmentIndexChannelWithNilValue:</li>
+<li>相关UI：UISegmentedControl</li>
+<li>rac_newValueChannelWithNilValue:</li>
+<li>相关UI：UISlider、UIStepper</li>
+<li>rac_newOnChannel</li>
+<li>相关UI：UISwitch</li>
+<li>rac_newTextChannel</li>
+<li>相关UI：UITextField</li>
+</ul>
+<h2 id="Foundation-Category-（常用汇总）"><a href="#Foundation-Category-（常用汇总）" class="headerlink" title="Foundation - Category （常用汇总）"></a>Foundation - Category （常用汇总）</h2><h3 id="NSData"><a href="#NSData" class="headerlink" title="NSData"></a>NSData</h3><ul>
+<li>rac_readContentsOfURL: options: scheduler: 比oc多出线程设置</li>
+</ul>
+<h3 id="NSDictionary"><a href="#NSDictionary" class="headerlink" title="NSDictionary"></a>NSDictionary</h3><ul>
+<li>rac_sequence</li>
+<li>rac_keySequence key 集合</li>
+<li>rac_valueSequence value 集合</li>
+</ul>
+<h3 id="NSArray"><a href="#NSArray" class="headerlink" title="NSArray"></a>NSArray</h3><ul>
+<li>rac_sequence 信号集合</li>
+</ul>
+<h3 id="NSFileHandle"><a href="#NSFileHandle" class="headerlink" title="NSFileHandle"></a>NSFileHandle</h3><ul>
+<li>rac_readInBackground 后台线程读取</li>
+</ul>
+<h3 id="NSInvocation"><a href="#NSInvocation" class="headerlink" title="NSInvocation"></a>NSInvocation</h3><ul>
+<li>rac_setArgument: atIndex: 设置参数</li>
+<li>rac_argumentAtIndex 取某个参数</li>
+<li>rac_returnValue 所关联方法的返回值</li>
+</ul>
+<h3 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h3><ul>
+<li>rac_addObserverForName: object:注册通知</li>
+</ul>
+<h3 id="NSObject"><a href="#NSObject" class="headerlink" title="NSObject"></a>NSObject</h3><ul>
+<li>rac_willDeallocSignal 对象销毁时发动的信号</li>
+<li>rac_description debug用</li>
+<li>rac_observeKeyPath: options: observer: block:监听某个事件</li>
+<li>rac_liftSelector: withSignals: 全部信号都next在执行</li>
+<li>rac_signalForSelector: 代替某个方法</li>
+<li>rac_signalForSelector:(SEL)selector fromProtocol:代替代理</li>
+</ul>
+<h3 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h3><ul>
+<li>rac_keyPathComponents 获取一个路径所有的部分</li>
+<li>rac_keyPathByDeletingLastKeyPathComponent 删除路径最后一部分</li>
+<li>rac_keyPathByDeletingFirstKeyPathComponent 删除路径第一部分</li>
+<li>rac_readContentsOfURL: usedEncoding: scheduler: 比之OC多线程调用</li>
+<li>rac_sequence</li>
+</ul>
+<h3 id="NSURLConnection"><a href="#NSURLConnection" class="headerlink" title="NSURLConnection"></a>NSURLConnection</h3><ul>
+<li>rac_sendAsynchronousRequest 发起异步请求</li>
+</ul>
+<h3 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h3><ul>
+<li>rac_channelTerminalForKey 用于双向绑定，此乃一</li>
+</ul>
+<h3 id="NSEnumerator"><a href="#NSEnumerator" class="headerlink" title="NSEnumerator"></a>NSEnumerator</h3><ul>
+<li>rac_sequence</li>
+</ul>
+<h3 id="NSIndexSet"><a href="#NSIndexSet" class="headerlink" title="NSIndexSet"></a>NSIndexSet</h3><ul>
+<li>rac_sequence</li>
+</ul>
+<h3 id="NSOrderedSet"><a href="#NSOrderedSet" class="headerlink" title="NSOrderedSet"></a>NSOrderedSet</h3><ul>
+<li>rac_sequence</li>
+</ul>
+<h3 id="NSSet"><a href="#NSSet" class="headerlink" title="NSSet"></a>NSSet</h3><ul>
+<li>rac_sequence</li>
+</ul>
+<h1 id="RAC图片版的API手册"><a href="#RAC图片版的API手册" class="headerlink" title="RAC图片版的API手册"></a>RAC图片版的API手册</h1><h2 id="ReactiveCocoa-Objective-C"><a href="#ReactiveCocoa-Objective-C" class="headerlink" title="ReactiveCocoa Objective-C"></a>ReactiveCocoa Objective-C</h2><p><img src="https://github.com/ming1016/study/blob/master/pic/ReactiveCocoaOC.png?raw=true" alt="ReactiveCocoaObjective-C"></p>
+<h2 id="ReactiveCocoa-Swift"><a href="#ReactiveCocoa-Swift" class="headerlink" title="ReactiveCocoa Swift"></a>ReactiveCocoa Swift</h2><p><img src="https://github.com/ming1016/study/blob/master/pic/ReactiveCocoaSwift.png?raw=true" alt="ReactiveCocoaSwift"></p>
+<h2 id="RXSwift"><a href="#RXSwift" class="headerlink" title="RXSwift"></a>RXSwift</h2><p><img src="https://github.com/ming1016/study/blob/master/pic/RXSwift.png?raw=true" alt="RXSwift"></p>
+<h1 id="本文参考整理自"><a href="#本文参考整理自" class="headerlink" title="本文参考整理自"></a>本文参考整理自</h1><ul>
+<li>ReactiveCocoa Tutorial – The Definitive Introduction: Part 1/2 <a href="https://www.raywenderlich.com/62699/reactivecocoa-tutorial-pt1" target="_blank" rel="noopener">https://www.raywenderlich.com/62699/reactivecocoa-tutorial-pt1</a></li>
+<li>ReactiveCocoa Tutorial – The Definitive Introduction: Part 2/2 <a href="https://www.raywenderlich.com/62796/reactivecocoa-tutorial-pt2" target="_blank" rel="noopener">https://www.raywenderlich.com/62796/reactivecocoa-tutorial-pt2</a></li>
+<li>iOS的函数响应型编程 <a href="https://www.gitbook.com/book/kevinhm/functionalreactiveprogrammingonios/details" target="_blank" rel="noopener">https://www.gitbook.com/book/kevinhm/functionalreactiveprogrammingonios/details</a></li>
+<li>ReactiveCocoa Essentials: Understanding and Using RACCommand <a href="https://codeblog.shape.dk/blog/2013/12/05/reactivecocoa-essentials-understanding-and-using-raccommand/" target="_blank" rel="noopener">https://codeblog.shape.dk/blog/2013/12/05/reactivecocoa-essentials-understanding-and-using-raccommand/</a></li>
+<li>iOS ReactiveCocoa 最全常用API整理（可做为手册查询）<a href="https://www.cocoachina.com/ios/20160729/17236.html" target="_blank" rel="noopener">https://www.cocoachina.com/ios/20160729/17236.html</a></li>
+<li>ReactiveCocoa和RXSwift速查表 <a href="https://valiantcat.com/2016/07/22/ReactiveCocoa和RXSwift速查表/" target="_blank" rel="noopener">https://valiantcat.com/2016/07/22/ReactiveCocoa和RXSwift速查表/</a></li>
+<li>ReactiveCocoa中潜在的内存泄漏及解决方案<a href="https://tech.meituan.com/potential-memory-leak-in-reactivecocoa.html?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">https://tech.meituan.com/potential-memory-leak-in-reactivecocoa.html?from=timeline&amp;isappinstalled=0</a></li>
+<li><a href="https://github.com/ming1016/study/wiki" target="_blank" rel="noopener">ming1016</a></li>
+</ul>
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/program//clang-llvm/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">深入剖析-iOS-编译-Clang---LLVM</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/program//gpu/">
+                <span class="level-item">GPU处理图像</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/program//ios-han/';
+        this.page.identifier = 'program//ios-han/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        93
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/Accomplice/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/post-images/dxkcy.jpg" alt="超时空从犯">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T02:18:06.000Z">2019-07-18</time></div>
+                    <a href="/Accomplice/" class="has-link-black-ter is-size-6">超时空从犯</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/label/">label</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/ddos/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T07:26:43.000Z">2019-07-14</time></div>
+                    <a href="/ddos/" class="has-link-black-ter is-size-6">DDoS（分布式拒绝服务）攻击是无解的吗？</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/program/JavaScript/node/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/15/5d2c49fe7e01233711.jpg" alt="Node.js">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-13T16:06:04.000Z">2019-07-14</time></div>
+                    <a href="/program/JavaScript/node/" class="has-link-black-ter is-size-6">Node.js</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/blog/">
+            <span class="level-start">
+                <span class="level-item">blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/label/">
+            <span class="level-start">
+                <span class="level-item">label</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/notes/">
+            <span class="level-start">
+                <span class="level-item">notes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">22</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/program/">
+            <span class="level-start">
+                <span class="level-item">program</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">56</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS函数响应式编程以及ReactiveCocoa的使用" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
