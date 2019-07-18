@@ -15,7 +15,7 @@
 <meta property="og:description" content="写于开始之前笔者即将开始写一个系列的《Python札记》。本系列的札记主要是自学齐伟老师《跟老齐学Python轻松入门》一书整理而来。书第一遍断断续续花了5个月，第二遍边看边整理，保守3个月。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
-<meta property="og:updated_time" content="2019-07-18T16:00:32.573Z">
+<meta property="og:updated_time" content="2019-07-18T16:16:08.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Python札记》1_列表list">
 <meta name="twitter:description" content="写于开始之前笔者即将开始写一个系列的《Python札记》。本系列的札记主要是自学齐伟老师《跟老齐学Python轻松入门》一书整理而来。书第一遍断断续续花了5个月，第二遍边看边整理，保守3个月。">
@@ -245,7 +245,28 @@
 <li>通过步长-1进行反转，[::-1]</li>
 <li>通过<code>reversed()</code>进行反转，得到的是<strong>可迭代对象</strong>，并且将迭代对象转为为<code>列表显示</code></li>
 </ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 反转1</span></span><br><span class="line">print(lst[::<span class="hljs-number">-1</span>])  <span class="hljs-comment"># 通过步长为-1进行反转</span></span><br><span class="line">print(lst)   <span class="hljs-comment"># 不影响原来对象</span></span><br><span class="line">[<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 反转2</span></span><br><span class="line">print(list(reversed(lst)))  <span class="hljs-comment"># 通过reversed函数进行反转</span></span><br><span class="line">[<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]</span><br><span class="line"></span><br><span class="line">print(list(reversed(<span class="hljs-string">'abcde'</span>)))    <span class="hljs-comment"># 对字符串进行反转，列表显示</span></span><br><span class="line">[<span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">* * *</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">### 二、操作列表 </span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#### 基本操作 </span></span><br><span class="line"></span><br><span class="line">  * len()：求长度</span><br><span class="line">  * + ：连接两个序列</span><br><span class="line">  * *：复制序列</span><br><span class="line">  * <span class="hljs-keyword">in</span>：判断元素是否在列表中</span><br><span class="line">  * max()、min()：按照元素的字典顺序进行排序</span><br><span class="line"></span><br><span class="line">**<span class="hljs-number">1</span>、修改元素**</span><br><span class="line"></span><br><span class="line">&gt; **列表**中的元素可以进行**修改**，但是字符串中的不能进行修改。列表中修改的时候，直接通过索引号进行指定： </span><br><span class="line"></span><br><span class="line">```Python</span><br><span class="line">lst[<span class="hljs-number">2</span>] = <span class="hljs-number">7</span>   <span class="hljs-comment"># 指定第三个元素为7</span></span><br><span class="line">print(lst)</span><br><span class="line"></span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">**<span class="hljs-number">2</span>、增加元素**  </span><br><span class="line">追加元素的方法有两种，都是追加在**末尾**</span><br><span class="line"></span><br><span class="line">  * append()函数进行追加</span><br><span class="line">  * 切片的方式进行追加：a[len(a):] = [ x ]</span><br><span class="line"></span><br><span class="line">```Python</span><br><span class="line">lst.append(<span class="hljs-number">8</span>)  </span><br><span class="line">lst[len(lst):] = [<span class="hljs-number">8</span>]</span><br><span class="line">print(lst)</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]   <span class="hljs-comment"># 例子承接上面，第三个元素为7，不是3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 反转1</span></span><br><span class="line">print(lst[::<span class="hljs-number">-1</span>])  <span class="hljs-comment"># 通过步长为-1进行反转</span></span><br><span class="line">print(lst)   <span class="hljs-comment"># 不影响原来对象</span></span><br><span class="line">[<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 反转2</span></span><br><span class="line">print(list(reversed(lst)))  <span class="hljs-comment"># 通过reversed函数进行反转</span></span><br><span class="line">[<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]</span><br><span class="line"></span><br><span class="line">print(list(reversed(<span class="hljs-string">'abcde'</span>)))    <span class="hljs-comment"># 对字符串进行反转，列表显示</span></span><br><span class="line">[<span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二、操作列表"><a href="#二、操作列表" class="headerlink" title="二、操作列表"></a>二、操作列表</h3><h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li>len()：求长度</li>
+<li>+：连接两个序列</li>
+<li>*：复制序列</li>
+<li>in：判断元素是否在列表中</li>
+<li>max()、min()：按照元素的字典顺序进行排序</li>
+</ul>
+<p><strong>1、修改元素</strong></p>
+<blockquote>
+<p><strong>列表</strong>中的元素可以进行<strong>修改</strong>，但是字符串中的不能进行修改。列表中修改的时候，直接通过索引号进行指定： </p>
+</blockquote>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lst[<span class="hljs-number">2</span>] = <span class="hljs-number">7</span>   <span class="hljs-comment"># 指定第三个元素为7</span></span><br><span class="line">print(lst)</span><br><span class="line"></span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、增加元素</strong><br>追加元素的方法有两种，都是追加在<strong>末尾</strong></p>
+<ul>
+<li>append()函数进行追加</li>
+<li>切片的方式进行追加：a[len(a):] = [ x ]</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lst.append(<span class="hljs-number">8</span>)  </span><br><span class="line">lst[len(lst):] = [<span class="hljs-number">8</span>]</span><br><span class="line">print(lst)</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]   <span class="hljs-comment"># 例子承接上面，第三个元素为7，不是3</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -529,7 +550,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        96
+                        95
                     </p>
                 </div>
             </div>
@@ -757,25 +778,6 @@
             
             <a href="/python3-notes02/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://img3.doubanio.com/view/subject/l/public/s28504762.jpg" alt="《`Python`札记》2_IO文件操作">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T15:06:54.000Z">2019-07-18</time></div>
-                    <a href="/python3-notes02/" class="has-link-black-ter is-size-6">《`Python`札记》2_IO文件操作</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes02/" class="media-left">
-                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》2_IO文件操作">
                 </p>
             </a>
@@ -841,6 +843,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
                     <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -925,7 +946,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>

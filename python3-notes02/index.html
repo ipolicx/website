@@ -15,7 +15,7 @@
 <meta property="og:description" content="在编程工作中，时常需要对各种文件进行操作。读写文件是最常见的IO编程，Python中内置了读写文件的函数。读写文件是请求系统打开一个文件对象，通常称为文件描述符；然后通过操作系统提供的接口从这个文件对象中读取数据，或者将数据写入文件对象。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
-<meta property="og:updated_time" content="2019-07-18T15:26:57.597Z">
+<meta property="og:updated_time" content="2019-07-18T16:35:31.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Python札记》2_IO文件操作">
 <meta name="twitter:description" content="在编程工作中，时常需要对各种文件进行操作。读写文件是最常见的IO编程，Python中内置了读写文件的函数。读写文件是请求系统打开一个文件对象，通常称为文件描述符；然后通过操作系统提供的接口从这个文件对象中读取数据，或者将数据写入文件对象。">
@@ -185,7 +185,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1502 个字)
+                    10 分钟 读完 (大约 1522 个字)
                 </span>
                 
                 
@@ -211,102 +211,123 @@
 <h3 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h3><p>打开文件使用<code>open()</code>函数，用读的模式打开返回的是文件对象，它是可迭代的；如果不存在就会报错<code>IOError</code>，标准的语法为： </p>
 <p><code>open(name[,mode[,buffering]])</code></p>
 <p>open函数的文件名是必须的，模式和缓冲参数是可选： </p>
-<pre><code>f = open(&apos;c:\text\a.txt&apos;，&apos;r&apos;)  # 用读的模式打开</code></pre><h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><p>文件使用完毕必须关闭，因为文件对象会占用操作系统的资源，调用close()函数关闭文件 </p>
-<pre><code>f.close()</code></pre><p>如果读写文件出错，close()函数就不会被调用执行。为了保证文件能够正确关闭文件，使用<code>try...finally</code>实现： </p>
-<pre><code>try:
-    f = open(&apos;/path/to/file&apos;, &apos;r&apos;)
-    print(f.read())
-finally:
-    if f:
-        f.close()</code></pre><h3 id="不同模式"><a href="#不同模式" class="headerlink" title="不同模式"></a>不同模式</h3><p>文件打开模式<code>r、w、a</code>对应基本的<code>只读、只写、追加模式</code>；<code>b、t、+、U</code>对应二进制模式、文本模式、读写模式、通用换行符。 </p>
-<p>英文中文文件是否存在是否清空打开位置</p>
-<p>r<br>只读<br>报错<br>不<br>文件开头 </p>
-<p>r+<br>读+写<br>报错<br>不<br>文件开头 </p>
-<p>w<br>只写<br>创建<br>清空<br>文件开头 </p>
-<p>w+<br>写+读<br>创建<br>清空<br>文件开头 </p>
-<p>a<br>追加写<br>创建<br>不<br>文件结尾 </p>
-<p>a+<br>追加写+读<br>创建<br>不<br>文件结尾 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="hljs-string">'c:\text\a.txt'</span>，<span class="hljs-string">'r'</span>)  <span class="hljs-comment"># 用读的模式打开</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><p>文件使用完毕必须关闭，因为文件对象会占用操作系统的资源，调用close()函数关闭文件 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<p>如果读写文件出错，close()函数就不会被调用执行。为了保证文件能够正确关闭文件，使用<code>try...finally</code>实现： </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">try</span>:</span><br><span class="line">    f = open(<span class="hljs-string">'/path/to/file'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line">    print(f.read())</span><br><span class="line"><span class="hljs-keyword">finally</span>:</span><br><span class="line">    <span class="hljs-keyword">if</span> f:</span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="不同模式"><a href="#不同模式" class="headerlink" title="不同模式"></a>不同模式</h3><p>文件打开模式<code>r、w、a</code>对应基本的<code>只读、只写、追加模式</code>；<code>b、t、+、U</code>对应二进制模式、文本模式、读写模式、通用换行符。 </p>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>文件是否存在</th>
+<th>是否清空</th>
+<th>打开位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>只读</td>
+<td>报错</td>
+<td>不</td>
+<td>文件开头</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>读+写</td>
+<td>报错</td>
+<td>不</td>
+<td>文件开头</td>
+</tr>
+<tr>
+<td>w</td>
+<td>只写</td>
+<td>创建</td>
+<td>清空</td>
+<td>文件开头</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>写+读</td>
+<td>创建</td>
+<td>清空</td>
+<td>文件开头</td>
+</tr>
+<tr>
+<td>a</td>
+<td>追加写</td>
+<td>创建</td>
+<td>不</td>
+<td>文件结尾</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>追加写+读</td>
+<td>创建</td>
+<td>不</td>
+<td>文件结尾</td>
+</tr>
+</tbody></table>
 <h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p>读取文件对象有3种方式：<code>read</code>、 <code>readline</code>、<code>readlines</code>，每种方法接受一个变量以限制每次读取的数据量。3种方法都会把每行末尾的<code>\n</code>读进来，通过<code>strip()</code>进行去除空格。 </p>
-<pre><code>file = open(&apos;/home/ubuntu/PycharmProjects/test.txt&apos;, &apos;w&apos;)
-print(file)   
-file.close()
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span>, <span class="hljs-string">'w'</span>)</span><br><span class="line">print(file)   </span><br><span class="line">file.close()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 结果显示为文件对象，用于读操作</span></span><br><span class="line">&lt;_io.TextIOWrapper name=<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span> mode=<span class="hljs-string">'w'</span> encoding=<span class="hljs-string">'UTF-8'</span>&gt;</span><br></pre></td></tr></table></figure>
 
-# 结果显示为文件对象，用于读操作
-&lt;_io.TextIOWrapper name=&apos;/home/ubuntu/PycharmProjects/test.txt&apos; mode=&apos;w&apos; encoding=&apos;UTF-8&apos;&gt;</code></pre><h4 id="以test-txt文件为例"><a href="#以test-txt文件为例" class="headerlink" title="以test.txt文件为例"></a>以test.txt文件为例</h4><pre><code>Hello python
-this is a test file
 
-count = 0 
-sum = 0
-while count &lt; 3:
-    sum += 1
-    print(&quot;hello linux)&quot;
-    count += 1
-print(&quot;hello python&quot;)</code></pre><p><strong>1、read</strong><br>每次读取整个文件，将文件内容放入一个<code>字符串</code>中。如果文件较大，用<code>read(size)</code>，指定每次最多读取size个字节。 </p>
-<pre><code>file = open(&apos;/home/ubuntu/PycharmProjects/test.txt&apos;, &apos;r&apos;)
-res1 = file.read()
-file.close()</code></pre><p><strong>结果</strong>： </p>
-<pre><code>Hello python
-this is a test file
 
-count = 0 
-sum = 0
-while count &lt; 3:
-    sum += 1
-    print(&quot;hello linux)&quot;
-    count += 1
-print(&quot;hello python&quot;)          # str形式</code></pre><p><strong>2、readline</strong><br>每次只读取一行数据，相比较于<code>readlines</code>慢，读取时候占用内存小，适合于大文件，返回的是<code>字符串</code>对象。如果对同一个文件进行多次读取，将会在上次的基础上再进行读取下一行。 </p>
-<pre><code>file = open(&apos;/home/ubuntu/PycharmProjects/test.txt&apos;, &apos;r&apos;)
+<h4 id="以test-txt文件为例"><a href="#以test-txt文件为例" class="headerlink" title="以test.txt文件为例"></a>以test.txt文件为例</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Hello python</span><br><span class="line">this <span class="hljs-keyword">is</span> a test file</span><br><span class="line"></span><br><span class="line">count = <span class="hljs-number">0</span> </span><br><span class="line">sum = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">3</span>:</span><br><span class="line">    sum += <span class="hljs-number">1</span></span><br><span class="line">    print(<span class="hljs-string">"hello linux)"</span></span><br><span class="line">    count += <span class="hljs-number">1</span></span><br><span class="line">print(<span class="hljs-string">"hello python"</span>)</span><br></pre></td></tr></table></figure>
 
-res2 = file.readline()
-res2 = file.readline()
-res2 = file.readline()   # 空行也算
-res2 = file.readline()
-print(res2)
-file.close()</code></pre><p><strong>结果</strong></p>
-<pre><code>count = 0    # 结果为第四行的数据，具体看test文件   str形式</code></pre><p><strong>3、readlines</strong><br>读取全部文件内容，自动将文件分成一个行的列表，可用于<code>for...in...</code>迭代获取里面的每个数据。<code>适合读取配置文件</code></p>
-<pre><code>file = open(&apos;/home/ubuntu/PycharmProjects/test.txt&apos;, &apos;r&apos;)
-res3 = file.readlines()
-print(res3)
-file.close()</code></pre><p><strong>结果</strong>： </p>
-<pre><code>[&apos;Hello python\n&apos;, &apos;this is a test file\n&apos;, &apos;\n&apos;, &apos;count = 0 \n&apos;, &apos;sum = 0\n&apos;, &apos;while count &lt; 3:\n&apos;, &apos;    sum += 1\n&apos;, &apos;    print(&quot;hello linux)&quot;\n&apos;, &apos;    count += 1\n&apos;, &apos;print(&quot;hello python&quot;)\n&apos;]    # list形式</code></pre><p>去掉空行，并用<code>for...in...</code>进行遍历 </p>
-<pre><code>file = open(&apos;/home/ubuntu/PycharmProjects/test.txt&apos;, &apos;r&apos;)
-res3 = file.readlines()
-for i in res3:
-    print(i.strip())    # 去掉空格
-file.close()</code></pre><p><strong>结果</strong>： </p>
-<pre><code>Hello python
-this is a test file
+<p><strong>1、read</strong><br>每次读取整个文件，将文件内容放入一个<code>字符串</code>中。如果文件较大，用<code>read(size)</code>，指定每次最多读取size个字节。 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line">res1 = file.read()</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
 
-count = 0
-sum = 0
-while count &lt; 3:
-sum += 1
-print(&quot;hello linux&quot;)
-count += 1
-print(&quot;hello python&quot;)</code></pre><h3 id="with-open-…-as-f"><a href="#with-open-…-as-f" class="headerlink" title="with open(…) as f"></a>with open(…) as f</h3><p>Python中引入了<code>with</code>语句来自动调用<code>close()</code>方法；传入<code>encoding</code>和<code>errors</code>参数处理编码问题 </p>
-<pre><code>with open(&apos;/path/to/file&apos;, &apos;r&apos;, encoding=&apos;gbk&apos;, errors=&apos;ignore&apos;) as f:    # 写入特定编码的文件，传入encoding和error参数
-    print(f.read())    # 不必再调用close方法</code></pre><p><strong>题目</strong>： </p>
+
+
+<p><strong>结果</strong>： </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Hello python</span><br><span class="line">this <span class="hljs-keyword">is</span> a test file</span><br><span class="line"></span><br><span class="line">count = <span class="hljs-number">0</span> </span><br><span class="line">sum = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">3</span>:</span><br><span class="line">    sum += <span class="hljs-number">1</span></span><br><span class="line">    print(<span class="hljs-string">"hello linux)"</span></span><br><span class="line">    count += <span class="hljs-number">1</span></span><br><span class="line">print(<span class="hljs-string">"hello python"</span>)          <span class="hljs-comment"># str形式</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2、readline</strong><br>每次只读取一行数据，相比较于<code>readlines</code>慢，读取时候占用内存小，适合于大文件，返回的是<code>字符串</code>对象。如果对同一个文件进行多次读取，将会在上次的基础上再进行读取下一行。 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line"></span><br><span class="line">res2 = file.readline()</span><br><span class="line">res2 = file.readline()</span><br><span class="line">res2 = file.readline()   <span class="hljs-comment"># 空行也算</span></span><br><span class="line">res2 = file.readline()</span><br><span class="line">print(res2)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果</strong></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count = <span class="hljs-number">0</span>    <span class="hljs-comment"># 结果为第四行的数据，具体看test文件   str形式</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3、readlines</strong><br>读取全部文件内容，自动将文件分成一个行的列表，可用于<code>for...in...</code>迭代获取里面的每个数据。<code>适合读取配置文件</code></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line">res3 = file.readlines()</span><br><span class="line">print(res3)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果</strong>： </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="hljs-string">'Hello python\n'</span>, <span class="hljs-string">'this is a test file\n'</span>, <span class="hljs-string">'\n'</span>, <span class="hljs-string">'count = 0 \n'</span>, <span class="hljs-string">'sum = 0\n'</span>, <span class="hljs-string">'while count &lt; 3:\n'</span>, <span class="hljs-string">'    sum += 1\n'</span>, <span class="hljs-string">'    print("hello linux)"\n'</span>, <span class="hljs-string">'    count += 1\n'</span>, <span class="hljs-string">'print("hello python")\n'</span>]    <span class="hljs-comment"># list形式</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>去掉空行，并用<code>for...in...</code>进行遍历 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="hljs-string">'/home/ubuntu/PycharmProjects/test.txt'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line">res3 = file.readlines()</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> res3:</span><br><span class="line">    print(i.strip())    <span class="hljs-comment"># 去掉空格</span></span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>结果</strong>： </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Hello python</span><br><span class="line">this <span class="hljs-keyword">is</span> a test file</span><br><span class="line"></span><br><span class="line">count = <span class="hljs-number">0</span></span><br><span class="line">sum = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">3</span>:</span><br><span class="line">sum += <span class="hljs-number">1</span></span><br><span class="line">print(<span class="hljs-string">"hello linux"</span>)</span><br><span class="line">count += <span class="hljs-number">1</span></span><br><span class="line">print(<span class="hljs-string">"hello python"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="with-open-…-as-f"><a href="#with-open-…-as-f" class="headerlink" title="with open(…) as f"></a>with open(…) as f</h3><p>Python中引入了<code>with</code>语句来自动调用<code>close()</code>方法；传入<code>encoding</code>和<code>errors</code>参数处理编码问题 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/path/to/file'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'gbk'</span>, errors=<span class="hljs-string">'ignore'</span>) <span class="hljs-keyword">as</span> f:    <span class="hljs-comment"># 写入特定编码的文件，传入encoding和error参数</span></span><br><span class="line">    print(f.read())    <span class="hljs-comment"># 不必再调用close方法</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>题目</strong>： </p>
 <p>两个文件中，每个有多行的IP地址，找出两个文件中相同的IP地址 </p>
-<pre><code>import bisect
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">with</span> open(<span class="hljs-string">'test1.txt'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f1:</span><br><span class="line">    list1 = f1.readlines()</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(list1)):</span><br><span class="line">    list1[i] = list1[i].strip(<span class="hljs-string">'\n'</span>)</span><br><span class="line"><span class="hljs-keyword">with</span> open(<span class="hljs-string">'test2.txt'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f2:</span><br><span class="line">    list2 = f2.readlines()</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(list2)):</span><br><span class="line">    list2[i] = list2[i].strip(<span class="hljs-string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">list2.sort()</span><br><span class="line">length_2 = len(list2)</span><br><span class="line">same_data = []</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> list1:</span><br><span class="line">    pos = bisect.bisect_left(list2, i)</span><br><span class="line">    <span class="hljs-keyword">if</span> pos &lt; len(list2) <span class="hljs-keyword">and</span> list2[pos] == i:</span><br><span class="line">        same_data.append(i)</span><br><span class="line">same_data = list(set(same_data))</span><br><span class="line">print(same_data)</span><br></pre></td></tr></table></figure>
 
-with open(&apos;test1.txt&apos;, &apos;r&apos;) as f1:
-    list1 = f1.readlines()
-for i in range(0, len(list1)):
-    list1[i] = list1[i].strip(&apos;\n&apos;)
-with open(&apos;test2.txt&apos;, &apos;r&apos;) as f2:
-    list2 = f2.readlines()
-for i in range(0, len(list2)):
-    list2[i] = list2[i].strip(&apos;\n&apos;)
-
-list2.sort()
-length_2 = len(list2)
-same_data = []
-for i in list1:
-    pos = bisect.bisect_left(list2, i)
-    if pos &lt; len(list2) and list2[pos] == i:
-        same_data.append(i)
-same_data = list(set(same_data))
-print(same_data)</code></pre><hr>
+<hr>
 <h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>写文件用<code>write()</code>和<code>writelines()</code>来进行操作，用法同<code>read</code>和<code>readlines</code>对应。 </p>
 <p>write()方法是将<code>字符串</code>写入到文件中。 </p>
 <ul>
@@ -314,51 +335,31 @@ print(same_data)</code></pre><hr>
 <li>a模式从结尾追加文件</li>
 </ul>
 <p>writelines()方法是针对<code>列表</code>的操作。它接收一个字符串列表作为参数，将他们写入到文件中，换行符不会自动的加入，因此，需要显式的加入换行符。 </p>
-<pre><code>f1 = open(&apos;test1.txt&apos;, &apos;w&apos;)
-f1.writelines([&quot;1&quot;, &quot;2&quot;, &quot;3&quot;])   # 内容为:123
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f1 = open(<span class="hljs-string">'test1.txt'</span>, <span class="hljs-string">'w'</span>)</span><br><span class="line">f1.writelines([<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>])   <span class="hljs-comment"># 内容为:123</span></span><br><span class="line"></span><br><span class="line">f1 = open(<span class="hljs-string">'test1.txt'</span>, <span class="hljs-string">'w'</span>)</span><br><span class="line">f1.writelines([<span class="hljs-string">"1\n"</span>, <span class="hljs-string">"2\n"</span>, <span class="hljs-string">"3\n"</span>]) </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#    1</span></span><br><span class="line"><span class="hljs-comment">#    2        </span></span><br><span class="line"><span class="hljs-comment">#    3</span></span><br></pre></td></tr></table></figure>
 
-f1 = open(&apos;test1.txt&apos;, &apos;w&apos;)
-f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;]) 
-
-#    1
-#    2        
-#    3</code></pre><hr>
+<hr>
 <h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><ul>
-<li><p>ASCII: </p>
+<li>ASCII:</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 最早密码本，只包含字母、数字、特殊字符</span><br><span class="line">- 一个字符一个字节</span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
-<li>最早密码本，只包含字母、数字、特殊字符</li>
-<li>一个字符一个字节</li>
+<li>Unicode </li>
 </ul>
-</li>
-</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 万国码</span><br><span class="line">- 一个字符需要<span class="hljs-number">4</span>个字节</span><br><span class="line">- 浪费资源</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>Unicode </p>
+<li>utf-8</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 最小用<span class="hljs-number">8</span>位也就是一个字节表示一个字符</span><br><span class="line">- 字母：一个字节，映射ASCII码</span><br><span class="line">- 欧洲的文字：两个字节</span><br><span class="line">- 中文：三个字节</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>万国码</li>
-<li>一个字符需要4个字节</li>
-<li>浪费资源</li>
+<li>gbk</li>
 </ul>
-</li>
-</ul>
-<ul>
-<li><p>utf-8 </p>
-<ul>
-<li>最小用8位也就是一个字节表示一个字符</li>
-<li>字母：一个字节，映射ASCII码</li>
-<li>欧洲的文字：两个字节</li>
-<li>中文：三个字节</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>gbk </p>
-<ul>
-<li>国标：每个国家都有自己的国标</li>
-<li>字母：一个字节，映射ASCII码</li>
-<li>中文：两个字节</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 国标：每个国家都有自己的国标</span><br><span class="line">- 字母：一个字节，映射ASCII码</span><br><span class="line">- 中文：两个字节</span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -369,7 +370,7 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
 <td><a href="https://www.jianshu.com/c/ab55c73e0037?utm_source=desktop&utm_medium=notes-included-collection" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/18/5d3089f7ad11059224.jpg" alt></a></td>
 </tr>
 </tbody></table>
-
+<br>
             
             <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
             
@@ -434,13 +435,6 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/python3-notes02/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">《`Python`札记》2_IO文件操作</span>
-            </a>
-        </div>
         
         
         <div class="level-end">
@@ -544,7 +538,7 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        96
+                        95
                     </p>
                 </div>
             </div>
@@ -772,25 +766,6 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
             
             <a href="/python3-notes02/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://img3.doubanio.com/view/subject/l/public/s28504762.jpg" alt="《`Python`札记》2_IO文件操作">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T15:06:54.000Z">2019-07-18</time></div>
-                    <a href="/python3-notes02/" class="has-link-black-ter is-size-6">《`Python`札记》2_IO文件操作</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes02/" class="media-left">
-                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》2_IO文件操作">
                 </p>
             </a>
@@ -856,6 +831,25 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
                     <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -940,7 +934,7 @@ f1.writelines([&quot;1\n&quot;, &quot;2\n&quot;, &quot;3\n&quot;])
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
