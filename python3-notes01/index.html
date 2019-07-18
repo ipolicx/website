@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>《`Python`札记》1_列表list - IP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Python札记1_列表list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《`Python`札记》1_列表list">
+<meta property="og:url" content="https://www.policx.com/python3-notes01/index.html">
+<meta property="og:site_name" content="IP">
+<meta property="og:description" content="Python札记1_列表list">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.policx.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-07-18T15:13:06.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《`Python`札记》1_列表list">
+<meta name="twitter:description" content="Python札记1_列表list">
+<meta name="twitter:image" content="https://www.policx.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="《`Python`札记》1_列表list" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-18T14:55:41.000Z">2019-07-18</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 分钟 读完 (大约 2113 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                《`Python`札记》1_列表list
+            
+        </h1>
+        <div class="content">
+            <h1 id="Python札记1-列表list"><a href="#Python札记1-列表list" class="headerlink" title="Python札记1_列表list"></a>Python札记1_列表list</h1><a id="more"></a>
+<h3 id="写于开始之前"><a href="#写于开始之前" class="headerlink" title="写于开始之前"></a>写于开始之前</h3><p>笔者即将开始写一个系列的《<code>Python</code>札记》。本系列的札记主要是自学<code>齐伟</code>老师《跟老齐学<code>Python</code>轻松入门》一书整理而来。书第一遍断断续续花了5个月，第二遍边看边整理，保守3个月。<br><strong>在此深深感谢齐伟老师带我入门<code>Python</code></strong>。<strong>工欲善其事，必先利其器</strong>，本札记的学习环境为：<code>Python3.7.2 + pycharm + jupyter notebook</code>： </p>
+<ul>
+<li><code>Python3</code>取代了<code>Python2</code>，成为主流</li>
+<li>针对<code>Python</code>语言，<code>Pycharm</code>是最好的<code>IDE</code></li>
+<li><code>Jupyter notebook</code>是利用<code>Python</code>进行机器学习的强大利器</li>
+</ul>
+<p><strong>本札记一定会在2个月之内完成</strong>，主要内容包含： </p>
+<ul>
+<li>学习笔记整理</li>
+<li>代码实战练习</li>
+<li>各种练习题</li>
+<li>利用<code>Python</code>实现常用算法 <a href="https://www.jianshu.com/c/7287d92c5db4" target="_blank" rel="noopener">机器学习_Python算法</a></li>
+</ul>
+<p><strong>希望对<code>Python</code>感兴趣的朋友有所帮助，自己也在努力学习中，将来主要方向是：<code>机器学习+数据挖掘+量化投资</code></strong></p>
+<h4 id="良好的开始是成功的一半！Let-s-go-go-go"><a href="#良好的开始是成功的一半！Let-s-go-go-go" class="headerlink" title="良好的开始是成功的一半！Let`s go go go!!!"></a>良好的开始是成功的一半！Let`s go go go!!!</h4><hr>
+<blockquote>
+<p>列表是<code>Python</code>中使用非常广泛的一种对象，用方括号<code>[ ]</code>来表示。括号里面可以是数字，字符串或者<code>True</code>，<code>False</code>的布尔值，或者是多种不同类型的对象，里面也可以嵌套列表。如果列表是空的，用<code>bool()</code>来进行判断，会返回 <code>False</code>。 </p>
+</blockquote>
+<hr>
+<h3 id="一、索引、切片、反转"><a href="#一、索引、切片、反转" class="headerlink" title="一、索引、切片、反转"></a>一、索引、切片、反转</h3><p>列表和字符串一样，都是序列，里面的元素是有序的，也有索引和切片。索引<code>index</code>左边从<code>0</code>开始，右边从<code>-1</code>开始，<code>index()</code>函数可以查看某个元素的索引编号。 </p>
+<p><strong>索引</strong></p>
+<ul>
+<li><p>左边0开始，右边-1开始</p>
+</li>
+<li><p>通过<code>index()</code>函数查看索引编号</p>
+<h1 id="lang-‘python’-‘java’-‘html’"><a href="#lang-‘python’-‘java’-‘html’" class="headerlink" title="lang = [‘python’, ‘java’, ‘html’]"></a>lang = [‘python’, ‘java’, ‘html’]</h1><h1 id="lang-index-‘python’"><a href="#lang-index-‘python’" class="headerlink" title="lang.index(‘python’)"></a>lang.index(‘python’)</h1><p>0  # 索引从0开始</p>
+<h1 id="lang-index-‘html’"><a href="#lang-index-‘html’" class="headerlink" title="lang.index(‘html’)"></a>lang.index(‘html’)</h1><p>2</p>
+</li>
+</ul>
+<p><strong>切片</strong></p>
+<ul>
+<li><p>索引左边从0开始，右边-1开始</p>
+</li>
+<li><p>含头不含尾</p>
+</li>
+<li><p>步长可正可负</p>
+<p>lst = [1, 2, 3, 4, 5, 6]<br>print(lst[:])     #  相当于是复制 lst<br>[1, 2, 3, 4, 5, 6]<br>print(lst[::2])  #  步长是2    [开始:结束:步长]<br>[1, 3, 5]<br>print(lst[-3:-1])</p>
+<p>lst = [1,2,3,4,5,6]<br>print(lst[1:5:2])     # 常规用法<br>print(lst[-5:-2:2])   # 标号-5代表的是元素2，标号-2代表的是5，步长为2<br>print(lst[-5:4:2])<br>print(lst[1:-2:2])<br>[2,4]</p>
+</li>
+</ul>
+<p><strong>反转</strong></p>
+<ul>
+<li><p>通过步长-1进行反转，[::-1]</p>
+</li>
+<li><p>通过<code>reversed()</code>进行反转，得到的是<strong>可迭代对象</strong>，并且将迭代对象转为为<code>列表显示</code></p>
+<h1 id="反转1"><a href="#反转1" class="headerlink" title="反转1"></a>反转1</h1><p>print(lst[::-1])  # 通过步长为-1进行反转<br>print(lst)   # 不影响原来对象<br>[6, 5, 4, 3, 2, 1]<br>[1, 2, 3, 4, 5, 6]</p>
+<h1 id="反转2"><a href="#反转2" class="headerlink" title="反转2"></a>反转2</h1><p>print(list(reversed(lst)))  # 通过reversed函数进行反转<br>[6,5,4,3,2,1]</p>
+<p>print(list(reversed(‘abcde’)))    # 对字符串进行反转，列表显示<br>[‘e’, ‘d’, ‘c’, ‘b’, ‘a’]</p>
+</li>
+</ul>
+<hr>
+<h3 id="二、操作列表"><a href="#二、操作列表" class="headerlink" title="二、操作列表"></a>二、操作列表</h3><h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li>len()：求长度</li>
+<li><ul>
+<li>：连接两个序列</li>
+</ul>
+</li>
+<li>*：复制序列</li>
+<li>in：判断元素是否在列表中</li>
+<li>max()、min()：按照元素的字典顺序进行排序</li>
+</ul>
+<p><strong>1、修改元素</strong></p>
+<blockquote>
+<p><strong>列表</strong>中的元素可以进行<strong>修改</strong>，但是字符串中的不能进行修改。列表中修改的时候，直接通过索引号进行指定： </p>
+</blockquote>
+<pre><code>lst[2] = 7   # 指定第三个元素为7
+print(lst)
+
+[1, 2, 7, 4, 5, 6]</code></pre><p><strong>2、增加元素</strong><br>追加元素的方法有两种，都是追加在<strong>末尾</strong></p>
+<ul>
+<li><p>append()函数进行追加</p>
+</li>
+<li><p>切片的方式进行追加：a[len(a):] = [ x ]</p>
+<p>lst.append(8)<br>lst[len(lst):] = [8]<br>print(lst)<br>[1, 2, 7, 4, 5, 6, 8]   # 例子承接上面，第三个元素为7，不是3</p>
+</li>
+</ul>
+<p><strong>3、列表函数</strong></p>
+<p>函数作用</p>
+<p>append<br>将单个元素追加到列表的<strong>最右边</strong>，即末尾部分；<br><strong>list[len(list):] = [x]</strong>，x是待追加的元素；<br><strong>没有返回值None</strong></p>
+<p>extend<br>将<strong>两个列表进行合并</strong>，扩充列表的作用；<br>参数必须是<strong>可迭代对象</strong>；<br><strong>list[len(list):] = L</strong>，L是待并入的列表；<br>完成追加过程，列表L不变，list发生变化；<br><strong>没有返回值None</strong></p>
+<p>insert<br>指定位置添加元素<br>格式：list.insert(i,x)，i是插入的位置，x是待追加元素 ；<br>i如果是0，相当于是插在首位；i如果是len(list)，相当于是插在最后面，则等价于append()函数 </p>
+<pre><code># extend()函数
+lst = [1, 2, 7, 4, 5, 6, 8]
+print(id(lst))   # 查看lst的内存地址
+lst1 = [&apos;python&apos;, &apos;java&apos;, &apos;html&apos;]
+lst.extend(lst1)
+print(id(lst))   # 查看追加列表之后的内存地址，与原来系相同的
+print(&quot;lst:&quot;, lst)
+print(&quot;lst1:&quot;, lst1)
+
+2435334264968
+2435334264968
+lst: [1, 2, 7, 4, 5, 6, 8, &apos;python&apos;, &apos;java&apos;, &apos;html&apos;]
+lst1: [&apos;python&apos;, &apos;java&apos;, &apos;html&apos;]
+
+# append与extend区别
+lst1 = [1, 2, 3]
+lst2 = [&apos;python&apos;, &apos;html&apos;, &apos;java&apos;]
+lst1.append(lst2)
+print(lst1)
+[1, 2, 3, [&apos;python&apos;, &apos;html&apos;, &apos;java&apos;]]   # 整建制，将lst2当做一个整体
+
+lst1 = [1, 2, 3]
+lst2 = [&apos;python&apos;, &apos;html&apos;, &apos;java&apos;]
+lst1.extend(lst2)
+print(lst1)
+[1, 2, 3, &apos;python&apos;, &apos;html&apos;, &apos;java&apos;]   # 个体化，将lst2的每个元素进行追加</code></pre><p><strong>结论：</strong></p>
+<ul>
+<li>列表是可以进行<strong>修改</strong>的，原地修改</li>
+<li>append是将一个元素加到列表的末尾，<strong>整建制追加</strong></li>
+<li>extend将两个列表进行合并，<strong>个体化扩编</strong></li>
+<li>extend方法执行之后，<strong>内存中id不变</strong>，只是在该id上的内容发生了变化</li>
+<li>insert()函数中的i如果超过最大索引值，则自动追加到末尾，相当于是append()函数的作用</li>
+<li>三种方法均是原地修改，无返回值</li>
+</ul>
+<hr>
+<p>函数作用</p>
+<p>count<br>查看元素重复出现的次数<br><strong>如果不存在，返回0</strong>，而不是报错 </p>
+<p>index<br>查看索引编号，不存在则报错<br>检索的是元素<strong>第一次</strong>出现的位置 </p>
+<p>remove<br>删除元素，原地修改，无返回值；<br>list.remove(x)：如果x不存在，则会报错；<br>如果x出现多次，<strong>删除第一个x，剩下不变</strong></p>
+<p>pop<br>pop([i]):参数是可选的；<br>为空，<strong>默认删除最后一个</strong>，并且将该元素作为返回值；<br>如果不为空，<strong>可删除索引为i的元素</strong>，并且将该元素作为返回值 </p>
+<p>reverse<br>原地反转，没有生成新的列表，没有返回值 </p>
+<p>reversed<br>类似reverse，区别：生成的列表能够<strong>用于迭代</strong></p>
+<p><strong>remove和pop的区别</strong></p>
+<ul>
+<li><p>remove 没有返回值，pop有返回值</p>
+</li>
+<li><p>remove的参数是元素，pop的参数是索引</p>
+<p>lst1 = [1, 2, 3, 4, 5, 6]<br>lst1.remove(2)<br>print(lst1)</p>
+<h1 id="lst1-remove-7"><a href="#lst1-remove-7" class="headerlink" title="lst1.remove(7)"></a>lst1.remove(7)</h1><h1 id="print-lst1-ValueError-list-remove-x-x-not-in-list"><a href="#print-lst1-ValueError-list-remove-x-x-not-in-list" class="headerlink" title="print(lst1)   ValueError: list.remove(x): x not in list"></a>print(lst1)   ValueError: list.remove(x): x not in list</h1><p>lst1.pop(2)<br>print(lst1)</p>
+<p>[1, 3, 4, 5, 6]   # 将元素2删除掉<br>[1, 3, 5, 6]      #  将索引为2的元素3删除掉，本步骤是接在上面的执行，即在列表[1, 3, 4, 5, 6] 中删除4</p>
+<h1 id="关于反转"><a href="#关于反转" class="headerlink" title="关于反转"></a>关于反转</h1><p>lst = [1, 2, 3, 4, 5]<br>print(lst[::-1])   # 反转实现1<br>print(lst)          # 原来的列表对象不改变<br>lst.reverse()    # 反转实现2<br>print(lst)          # 原来的列表变成反转之后的新列表<br>lst1= reversed(lst)<br>print(lst1)       # lst1是一个列表反转迭代器对象：&lt;list_reverseiterator object at 0x00000233C677F320&gt;<br>print(list(lst1))    # 用list函数显示lst1的内容</p>
+</li>
+</ul>
+<hr>
+<p>函数作用</p>
+<p>sort<br>排序函数，用于<code>列表list</code>中，<strong>原地修改没有返回值</strong>；<br><strong>默认从小到大</strong>；将<strong>reverse=True</strong>则变成从大到小排序<br>sort(self, /, *, key=None, reverse=False) </p>
+<p>sorted<br>对<code>所有可迭代对象</code>进行操作，返回一个新的 <code>list</code>，不是在原来的list上进行操作<br>sorted(iterable[, cmp[, key[, reverse]]]) </p>
+<pre><code># sort()
+lst = [1, 4, 5, 8, 2, 6, 3]
+lst.sort()
+print(lst)
+lst1 = [&apos;python&apos;, ‘Java’, &apos;html&apos;, &apos;c&apos;, &apos;php&apos;]
+lst1.sort(key=len)  # 列表中的字符串进行排序；如果长度相同，则按照出现的先后顺序
+print(lst1)
+
+[1, 2, 3, 4, 5, 6, 8]
+[&apos;c&apos;, &apos;php&apos;, &apos;Java&apos;, &apos;html&apos;, &apos;python&apos;]
+
+# sorted()
+lst = [1, 4, 5, 8, 2, 6, 3]
+lst1 = sorted(lst)
+print(lst)  # 原对象不变
+print(lst1) # 新列表为排序后的对象
+
+lst2 =[(&apos;python&apos;, &apos;A&apos;),(&apos;java&apos;, &apos;C&apos;),(&apos;c&apos;, &apos;D&apos;),(&apos;php&apos;, &apos;B&apos;)]
+lst3 = sorted(lst2, key=lambda x: x[1])   # 由元组构成的复合列表，按照元组的第二个元素进行排序，通过匿名函数lamba()
+print(lst3)
+[(&apos;python&apos;, &apos;A&apos;), (&apos;php&apos;, &apos;B&apos;), (&apos;java&apos;, &apos;C&apos;), (&apos;c&apos;, &apos;D&apos;)]
+
+lst4 = sorted(lst2, key=lambda x: len(x[0]))   # 通过元组中第一个元素的长度进行排序
+print(lst4)
+[(&apos;c&apos;, &apos;D&apos;), (&apos;php&apos;, &apos;B&apos;), (&apos;java&apos;, &apos;C&apos;), (&apos;python&apos;, &apos;A&apos;)]</code></pre><h4 id="自定义类中的元素进行排序"><a href="#自定义类中的元素进行排序" class="headerlink" title="自定义类中的元素进行排序"></a>自定义类中的元素进行排序</h4><pre><code>class Student:
+    def __init__(self, name, age, grade):
+        self.name =  name
+        self.age = age
+        self.grade = grade
+
+    def __repr__(self):
+        return  repr((self.name, self.grade, self.age))
+
+students_objects = [
+    Student(&apos;Tom&apos;, &apos;B&apos;, 12),
+    Student(&apos;xiaoming&apos;,&apos;A&apos;,17),
+    Student(&apos;xiaohong&apos;, &apos;C&apos;, 12),
+    Student(&apos;Peter&apos;, &apos;D&apos;, 8),
+]
+
+lst5 = sorted(students_objects, key=lambda t:t.age)   # 自定义类中，按照年龄进行排序
+print(lst5)
+lst6 = sorted(students_objects, key=lambda t:(t.age, t.grade))   # 使用元组，先根据年龄排序，若年龄相同按照grade排序
+print(lst6)
+
+[(&apos;xiaoming&apos;, 17, &apos;A&apos;), (&apos;Tom&apos;, 12, &apos;B&apos;), (&apos;xiaohong&apos;, 12, &apos;C&apos;), (&apos;Peter&apos;, 8, &apos;D&apos;)]
+[(&apos;xiaoming&apos;, 17, &apos;A&apos;), (&apos;Tom&apos;, 12, &apos;B&apos;), (&apos;xiaohong&apos;, 12, &apos;C&apos;), (&apos;Peter&apos;, 8, &apos;D&apos;)]</code></pre><table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.jianshu.com/c/ab55c73e0037?utm_source=desktop&utm_medium=notes-included-collection" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/18/5d3089f7ad11059224.jpg" alt></a></td>
+</tr>
+</tbody></table>
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/python3-notes02/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">《`Python`札记》2_IO文件操作</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/Accomplice/">
+                <span class="level-item">超时空从犯</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/python3-notes01/';
+        this.page.identifier = 'python3-notes01/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        95
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/python3-notes02/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="《`Python`札记》2_IO文件操作">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T15:06:54.000Z">2019-07-18</time></div>
+                    <a href="/python3-notes02/" class="has-link-black-ter is-size-6">《`Python`札记》2_IO文件操作</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes01/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="《`Python`札记》1_列表list">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T14:55:41.000Z">2019-07-18</time></div>
+                    <a href="/python3-notes01/" class="has-link-black-ter is-size-6">《`Python`札记》1_列表list</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Accomplice/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/post-images/dxkcy.jpg" alt="超时空从犯">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T02:18:06.000Z">2019-07-18</time></div>
+                    <a href="/Accomplice/" class="has-link-black-ter is-size-6">超时空从犯</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/label/">label</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/spider/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/blog/">
+            <span class="level-start">
+                <span class="level-item">blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/label/">
+            <span class="level-start">
+                <span class="level-item">label</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/notes/">
+            <span class="level-start">
+                <span class="level-item">notes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">22</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/program/">
+            <span class="level-start">
+                <span class="level-item">program</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">56</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="《`Python`札记》1_列表list" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
