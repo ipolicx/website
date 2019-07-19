@@ -2,25 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler - IP</title>
+<title>iOS静态库 - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
-<meta name="keywords" content="">
+    <meta name="description" content="回顾下iOS静态库 【.a 和framework】">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
-<meta property="og:url" content="https://www.policx.com/program//block-callback/index.html">
+<meta property="og:title" content="iOS静态库">
+<meta property="og:url" content="https://www.policx.com/framework/index.html">
 <meta property="og:site_name" content="IP">
-<meta property="og:description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
+<meta property="og:description" content="回顾下iOS静态库 【.a 和framework】">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500">
-<meta property="og:updated_time" content="2019-07-18T06:22:40.947Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
+<meta property="og:updated_time" content="2019-07-19T16:48:24.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
-<meta name="twitter:description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
-<meta name="twitter:image" content="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+<meta name="twitter:title" content="iOS静态库">
+<meta name="twitter:description" content="回顾下iOS静态库 【.a 和framework】">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
 
 
 
@@ -115,7 +114,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler" height="28">
+                <img src="/images/logo.gif" alt="iOS静态库" height="28">
             
             </a>
         </div>
@@ -168,7 +167,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg" alt="iOS静态库">
         </span>
     </div>
     
@@ -176,17 +175,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-02-06T11:07:03.000Z">2017-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-07-19T16:36:14.000Z">2019-07-20</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1660 个字)
+                    20 分钟 读完 (大约 3025 个字)
                 </span>
                 
                 
@@ -200,72 +195,150 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler
+                iOS静态库
             
         </h1>
         <div class="content">
-            <p>iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。</p>
-<a id="more"></a>
-<p>我们作为开发者去集成一个 Lib （也可以叫轮子、SDK、下文统一叫 Lib）时，我们会发现我们遇到的 <code>Block</code>， 按照功能的角度划分，其实可以分为这几种：</p>
-<ul>
-<li>Lib 通知开发者，Lib操作已经完成。一般命名为 Callback</li>
-<li>开发者通知 Lib，开发者的操作已经完成。一般可以命名为 CompletionHandler。</li>
-</ul>
-<p>这两处的区别： 前者是 “Block 的执行”，后者是 “Block 的填充”。</p>
-<p><code>Callback vs CompletionHandler</code> 命名与功能的差别，Apple 也没有明确的编码规范指出过，只不过如果按照“执行与填充”的功能划分的话，<code>callback</code>与 <code>completionHandler</code> 的命名可以区分开来对待。同时也方便调用者理解 block 的功能。但总体来说，Apple 官方的命名中，“Block 填充“这个功能一般都会命名为 “completionHandler”，“Block 执行”这个功能大多命名为了“callback” ，也有少部分命名为了 “completionHandler”。</p>
-<p>比如：</p>
-<p>NSURLSession 中，下面的函数将 “callback” 命名为了 “completionHandler”：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (NSURLSessionDataTask *)dataTaskWithURL:(NSURL *)url completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler;</span><br></pre></td></tr></table></figure>
-
-<p>我们常常见到 <code>CompletionHandler</code> 被用到了第一种场景，而第一种场景“Block 执行”命名为 Callback 则更合适。</p>
-<blockquote>
-<p>不是所有 Block 都适合叫做 CompletionHandler</p>
+            <blockquote>
+<p>回顾下iOS静态库 【.a 和framework】</p>
 </blockquote>
-<p>一般情况下，CompletionHandler 的设计往往考虑到多线程操作，于是，你就完全可以异步操作，然后在线程结束时执行该 CompletionHandler，下文的例子中会讲述下 CompletionHandler 方式在多线程场景下的一些优势。</p>
-<h3 id="CompletionHandler-Delegate-组合"><a href="#CompletionHandler-Delegate-组合" class="headerlink" title="CompletionHandler + Delegate 组合"></a>CompletionHandler + Delegate 组合</h3><p>在 iOS10 中新增加的 <code>UserNotificaitons</code> 中大量使用了这种 Block，比如：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)userNotificationCenter:(UNUserNotificationCenter *)center </span><br><span class="line">didReceiveNotificationResponse:(UNNotificationResponse *)response </span><br><span class="line">        withCompletionHandler:(void (^)(void))completionHandler;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
-<p><a href="https://developer.apple.com/reference/usernotifications/unusernotificationcenterdelegate/1649501-usernotificationcenter?language=objc" target="_blank" rel="noopener">文档</a> 对 completionHandler 的注释是这样的：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The block to execute when you have finished processing the user’s response. You must execute this block from your method and should call it as quickly as possible. The block has no return value or parameters.</span><br></pre></td></tr></table></figure>
 
-<p>同样在这里也有应用：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task</span><br><span class="line">didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge</span><br><span class="line">completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler;</span><br></pre></td></tr></table></figure>
+<h2 id="一、什么是库？"><a href="#一、什么是库？" class="headerlink" title="一、什么是库？"></a>一、什么是库？</h2><p>库是共享程序代码的方式。 </p>
+<p>库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。<br>iOS中的静态库有 .a 和 .framework两种形式；动态库有.dylib 和 .framework 形式，后来.dylib动态库又被苹果替换成.tbd的形式。</p>
+<h2 id="二、静态库与动态库的区别？"><a href="#二、静态库与动态库的区别？" class="headerlink" title="二、静态库与动态库的区别？"></a>二、静态库与动态库的区别？</h2><p>静态库： 链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。 </p>
+<p>动态库： 链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。[ios暂时只允许使用系统动态库]； </p>
+<p>静态库和动态库是相对编译期和运行期的：静态库在程序编译时会被链接到目标代码中，程序运行时将不再需要改静态库；而动态库在程序编译时并不会被链接到目标代码中，只是在程序运行时才被载入，因为在程序运行期间还需要动态库的存在。<br>总结：同一个静态库在不同程序中使用时，每一个程序中都得导入一次，打包时也被打包进去，形成一个程序。而动态库在不同程序中，打包时并没有被打包进去，只在程序运行使用时，才链接载入（如系统的框架如UIKit、Foundation等），所以程序体积会小很多，但是苹果不让使用自己的动态库，否则审核就无法通过。</p>
+<h2 id="三、iOS里静态库形式？"><a href="#三、iOS里静态库形式？" class="headerlink" title="三、iOS里静态库形式？"></a>三、iOS里静态库形式？</h2><p>.a和.framework </p>
+<h2 id="四、iOS里动态库形式？"><a href="#四、iOS里动态库形式？" class="headerlink" title="四、iOS里动态库形式？"></a>四、iOS里动态库形式？</h2><p>.dylib和.framework </p>
+<h2 id="五、framework为什么既是静态库又是动态库？"><a href="#五、framework为什么既是静态库又是动态库？" class="headerlink" title="五、framework为什么既是静态库又是动态库？"></a>五、framework为什么既是静态库又是动态库？</h2><p>系统的.framework是动态库，我们自己建立的.framework是静态库。 </p>
+<h2 id="六、a与-framework有什么区别？"><a href="#六、a与-framework有什么区别？" class="headerlink" title="六、a与.framework有什么区别？"></a>六、a与.framework有什么区别？</h2><p>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件。 </p>
+<p>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。 </p>
+<p>.a + .h + sourceFile = .framework。 </p>
+<p>建议用.framework. </p>
+<h2 id="七、为什么要使用静态库？"><a href="#七、为什么要使用静态库？" class="headerlink" title="七、为什么要使用静态库？"></a>七、为什么要使用静态库？</h2><p>方便共享代码，便于合理使用。 </p>
+<p>实现iOS程序的模块化。可以把固定的业务模块化成静态库。 </p>
+<p>和别人分享你的代码库，但不想让别人看到你代码的实现。 </p>
+<p>开发第三方sdk的需要。 </p>
+<h2 id="八、制作静态库时的几点注意："><a href="#八、制作静态库时的几点注意：" class="headerlink" title="八、制作静态库时的几点注意："></a>八、制作静态库时的几点注意：</h2><p>1注意理解：无论是.a静态库还.framework静态库，我们需要的都是二进制文件+.h+其它资源文件的形式，不同的是，.a本身就是二进制文件，需要我们自己配上.h和其它文件才能使用，而.framework本身已经包含了.h和其它文件，可以直接使用。 </p>
+<p>2图片资源的处理：两种静态库，一般都是把图片文件单独的放在一个.bundle文件中，一般.bundle的名字和.a或.framework的名字相同。.bundle文件很好弄，新建一个文件夹，把它改名为.bundle就可以了，右键，显示包内容可以向其中添加图片资源。 </p>
+<p>3category是我们实际开发项目中经常用到的，把category打成静态库是没有问题的，但是在用这个静态库的工程中，调用category中的方法时会有找不到该方法的运行时错误（selector not recognized），解决办法是：在使用静态库的工程中配置other linker flags的值为-ObjC。 </p>
+<p>4如果一个静态库很复杂，需要暴露的.h比较多的话，就可以在静态库的内部创建一个.h文件（一般这个.h文件的名字和静态库的名字相同），然后把所有需要暴露出来的.h文件都集中放在这个.h文件中，而那些原本需要暴露的.h都不需要再暴露了，只需要把.h暴露出来就可以了。 </p>
+<h2 id="九、创建-a静态库"><a href="#九、创建-a静态库" class="headerlink" title="九、创建.a静态库"></a>九、创建.a静态库</h2><p>第一步，新建工程。一般使用工程名就使用库的名称，比如我这里用LIB来创建静态库，我的工程名就取名为LIB，创建的.a静态库就是LIB.a。</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/193950_FPAj_2602883.png" alt></p>
+<p>第二步，删除.m文件，保留.h文件， 一般静态库都有一个总的.h文件，方便外部导入头文件。然后导入需要打包的源文件。</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/195814_9613_2602883.png" alt></p>
+<p>第三步，先用真机，编译一次，再用模拟器编译一次。就可以生成.a文件（必须先用真机要不然，不能生成）。</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/200424_25Gd_2602883.png" alt></p>
+<p>第四步，Xcode生成的.a文件默认没有导出.h文件。需要自己添加。</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/200939_IIFO_2602883.png" alt></p>
+<p>第五步，导出Products静态库的配置（其实不用设置此步骤，如果真机编译的话，生成导出的时候系统默认会变成Releasse[但是模拟器不会（如果不改这里 得需要把Debug设置为NO）]）</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/202827_odLy_2602883.png" alt></p>
+<p>注意：如果第五步中，不将Build Configuration改为Release,则打包出来的静态库会存于【Debug-iphoneos】和【Debug-iphonesimulator】两个文件夹下。<br>我们一般都使用Release模式，因为程序最终发布之后是Release版的，所以静态库也是在Release模式下使用。</p>
+<p>第六步，合成模拟器的架构【默认：模拟器编译只会生成对应的1种架构，真机编译会合成两种架构】</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/203414_3pSs_2602883.png" alt></p>
+<p>如果第六步这里，设置为YES，那么编译出来的.a静态库就只包含当前设备的架构。</p>
+<p>举个例子：如果我们选择iPhone 5模拟器【Command+B】编译，则编译出来的.a静态库只能用iPhone4s<del>5模拟器跑程序， 用iPhone5s</del>6plus，则会报找不到x86_64的libFMDB库。</p>
+<p>设置为 NO 之后，【Command+B】不管选择哪个【模拟器】，则都会把【386   : 32位架构   4S ~ 5】【x86_64 : 64位架构   5S ~ 现在的机型】的架构都打包合并。</p>
+<p>【注】【真机】不设置 [Build Active Architecture Only] 也默认会自动合并的armv7 和amr64架构 。但是 armv7s架构被苹果放弃了，真机要想合并armv7s的话需要进行如下操作再编译。（其实没必要设置这个）</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0329/233333_H7EK_2602883.png" alt></p>
+<p>第七步，合并架构【真机和模拟器】</p>
+<p>真机和模拟器合并: lipo -create 静态库1.a（路径） 静态库2.a（路径） -output 新静态库.a   </p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/001609_7PSY_2602883.png" alt></p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/001915_UpFg_2602883.png" alt></p>
+<p>第八步，资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件与本地文件重名被覆盖, 导致加载资源文件出错【注：要加载bundel路径】</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/003854_4IX6_2602883.png" alt></p>
+<p> 一. 经典报错:</p>
+<p> 找不到符号在XX架构上</p>
+<p> Undefined symbols for architecture x86_64(armv7/armv7s/amr64/i386)</p>
+<p> 二. 架构的分类</p>
+<p> 1、模拟器架构: 2种</p>
+<pre><code>i386   : 32位架构  4S ~ 5
 
-<p>还有另外一个也非常普遍的例子（Delegate 方式使用URLSession 时候必不可少的 4个代理函数之一 ）</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask</span><br><span class="line">                                didReceiveResponse:(NSURLResponse *)response</span><br><span class="line">                                 completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler;</span><br></pre></td></tr></table></figure>
+x86_64 : 64位架构   5S ~ 现在的机型</code></pre><p> 2、真机架构: 3种</p>
+<pre><code>armv7 : 32位架构    3GS ~ 4S
 
-<p>在代理方法实现代码里面，若是不执行 completionHandler(NSURLSessionResponseAllow) 话，http请求就终止了。</p>
-<h3 id="CompletionHandler-Block-组合"><a href="#CompletionHandler-Block-组合" class="headerlink" title="CompletionHandler + Block 组合"></a>CompletionHandler + Block 组合</h3><p>函数中将函数作为参数或者返回值，就叫做高阶函数。</p>
-<p>按照这种定义，Block 中将 Block 作为参数，这也就是高阶函数。</p>
-<p>结合实际的应用场景来看一个例子：</p>
-<p>如果有这样一个需求：</p>
-<p>拿我之前的一个 IM 项目 ChatKit-OC （开源的，下面简称 ChatKit）为例，当你的应用想要集成一个 IM 服务时，可能这时候，你的 APP 已经上架了，已经有自己的注册、登录等流程了。用 ChatKit 进行聊天很简单，只需要给 ChatKit 一个 id 就够了。聊天是正常了，但是双方只能看到一个id，这样体验很不好。但是如何展示头像、昵称呢？于是就设计了这样一个接口，-setFetchProfilesBlock: 。</p>
-<p>这是上层（APP）提供用户信息的 Block，由于 ChatKit 并不关心业务逻辑信息，比如用户昵称，用户头像等。用户可以通过 ChatKit 单例向 ChatKit 注入一个用户信息内容提供 Block，通过这个用户信息提供 Block，ChatKit 才能够正确的进行业务逻辑数据的绘制。</p>
-<p>示意图如下：<br> <img src="https://camo.githubusercontent.com/3a7069e9ce6d8ddc07b2b300716dd17f46579e01/687474703a2f2f7777322e73696e61696d672e636e2f6c617267652f38303162373830616a773166386168383835796e306a323065373062773735342e6a7067" alt><br>具体实现如下：</p>
-<p>方法定义如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">*  @brief The block to execute with the users&apos; information for the userIds. Always execute this block at some point when fetching profiles completes on main thread. Specify users&apos; information how you want ChatKit to show.</span><br><span class="line">*  @attention If you fetch users fails, you should reture nil, meanwhile, give the error reason.</span><br><span class="line">*/</span><br><span class="line">typedef void(^LCCKFetchProfilesCompletionHandler)(NSArray&lt;id&lt;LCCKUserDelegate&gt;&gt; *users, NSError *error);</span><br><span class="line"></span><br><span class="line">/*!</span><br><span class="line">*  @brief When LeanCloudChatKit wants to fetch profiles, this block will be invoked.</span><br><span class="line">*  @param userIds User ids</span><br><span class="line">*  @param completionHandler The block to execute with the users&apos; information for the userIds. Always execute this block at some point during your implementation of this method on main thread. Specify users&apos; information how you want ChatKit to show.</span><br><span class="line">*/</span><br><span class="line">typedef void(^LCCKFetchProfilesBlock)(NSArray&lt;NSString *&gt; *userIds, LCCKFetchProfilesCompletionHandler completionHandler);</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) LCCKFetchProfilesBlock fetchProfilesBlock;</span><br><span class="line"></span><br><span class="line">/*!</span><br><span class="line">*  @brief Add the ablitity to fetch profiles.</span><br><span class="line">*  @attention  You must get peer information by peer id with a synchronous implementation.</span><br><span class="line">*              If implemeted, this block will be invoked automatically by LeanCloudChatKit for fetching peer profile.</span><br><span class="line">*/</span><br><span class="line">- (void)setFetchProfilesBlock:(LCCKFetchProfilesBlock)fetchProfilesBlock;</span><br></pre></td></tr></table></figure>
+armv7s: 特殊的架构   5 ~ 5C   (此架构有问题, 有的程序变得更快, 有的程序变得更慢)
 
-<p>用法如下所示：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#warning 注意：setFetchProfilesBlock 方法必须实现，如果不实现，ChatKit将无法显示用户头像、用户昵称。以下方法循环模拟了通过 userIds 同步查询 users 信息的过程，这里需要替换为 App 的 API 同步查询</span><br><span class="line">   [[LCChatKit sharedInstance] setFetchProfilesBlock:^(NSArray&lt;NSString *&gt; *userIds,</span><br><span class="line">                            LCCKFetchProfilesCompletionHandler completionHandler) &#123;</span><br><span class="line">        if (userIds.count == 0) &#123;</span><br><span class="line">            NSInteger code = 0;</span><br><span class="line">            NSString *errorReasonText = @&quot;User ids is nil&quot;;</span><br><span class="line">            NSDictionary *errorInfo = @&#123;</span><br><span class="line">                                        @&quot;code&quot;:@(code),</span><br><span class="line">                                        NSLocalizedDescriptionKey : errorReasonText,</span><br><span class="line">                                        &#125;;</span><br><span class="line">            NSError *error = [NSError errorWithDomain:NSStringFromClass([self class])</span><br><span class="line">                                                 code:code</span><br><span class="line">                                             userInfo:errorInfo];</span><br><span class="line">            </span><br><span class="line">            !completionHandler ?: completionHandler(nil, error);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        NSMutableArray *users = [NSMutableArray arrayWithCapacity:userIds.count];</span><br><span class="line">#warning 注意：以下方法循环模拟了通过 userIds 同步查询 users 信息的过程，这里需要替换为 App 的 API 同步查询</span><br><span class="line">        </span><br><span class="line">        [userIds enumerateObjectsUsingBlock:^(NSString *_Nonnull clientId, NSUInteger idx,</span><br><span class="line">                                              BOOL *_Nonnull stop) &#123;</span><br><span class="line">            NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;peerId like %@&quot;, clientId];</span><br><span class="line">            //这里的LCCKContactProfiles，LCCKProfileKeyPeerId都为事先的宏定义，</span><br><span class="line">            NSArray *searchedUsers = [LCCKContactProfiles filteredArrayUsingPredicate:predicate];</span><br><span class="line">            if (searchedUsers.count &gt; 0) &#123;</span><br><span class="line">                NSDictionary *user = searchedUsers[0];</span><br><span class="line">                NSURL *avatarURL = [NSURL URLWithString:user[LCCKProfileKeyAvatarURL]];</span><br><span class="line">                LCCKUser *user_ = [LCCKUser userWithUserId:user[LCCKProfileKeyPeerId]</span><br><span class="line">                                                      name:user[LCCKProfileKeyName]</span><br><span class="line">                                                 avatarURL:avatarURL</span><br><span class="line">                                                  clientId:clientId];</span><br><span class="line">                [users addObject:user_];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //注意：如果网络请求失败，请至少提供 ClientId！</span><br><span class="line">                LCCKUser *user_ = [LCCKUser userWithClientId:clientId];</span><br><span class="line">                [users addObject:user_];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;];</span><br><span class="line">        // 模拟网络延时，3秒</span><br><span class="line">        //         sleep(3);</span><br><span class="line">        </span><br><span class="line">#warning 重要：completionHandler 这个 Bock 必须执行，需要在你**获取到用户信息结束**后，将信息传给该Block！</span><br><span class="line">        !completionHandler ?: completionHandler([users copy], nil);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存寻址不同</p>
+<p> 三. 如何查看静态库架构</p>
+<p> 找到Products文件夹, 如果.a文件是黑色, 右键打开 到 Products文件夹</p>
+<p>终端中 lipo -info</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/001126_3M3b_2602883.png" alt> </p>
+<p> Generic iOS Device编译出来的OS可用, 有2种架构:armv7/ arm64 （不包含armv7s: 特殊的架构）</p>
+<p> iPhone6S模拟器编译出来的: x86_64</p>
+<p> iPhone4S模拟器编译出来的: i386</p>
+<p> (不设置Build Active Architecture Only的情况下真机编译2种架构, 模拟器编译:对应的1种架构)</p>
+<p> 四. 合成架构</p>
+<p> 一般来说, 只需要前两步即可</p>
+<ol>
+<li><p>模拟器架构的合成: Target –&gt; Build Settings –&gt; Build Active Architecture Only(是否只编译当前架构) –&gt; Debug 改为NO(改为NO, 模拟器就可以直接合成2种架构)</p>
+</li>
+<li><p>真机和模拟器合并: lipo -create 静态库1.a 静态库2.a -output 新静态库.a </p>
+</li>
+<li><ul>
+<li><p>armv7s这个架构, 在2014年10月份的xcode版本更新中, 取消了默认导出此架构. 可以不用支持此架构. </p>
+<p>如果要支持, 需要手动添加3个架构.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>五. Debug和Release版本</p>
+<p> 一般来说, 我们应该发布的是release版本.</p>
+<p> debug:调试版本, 系统本身也会有一些调试代码. 此版本体积会稍大, 运行会稍慢</p>
+<p> release: 发布版本, 系统会去除调试代码, 体积变小, 运行速度变快. 对用户来说没有明显的感觉</p>
+<p> 六. 到底要不要合成多个架构</p>
+<p> 真机和模拟器合成的好处: 调试会非常方便, 缺点是体积会变大(一种架构就占用一部分体积).</p>
+<p> 真机和模拟器不合成的好处:体积小,  缺点是调试稍显麻烦.</p>
+<p> 七. 资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件重名被覆盖, 导致加载资源文件出错</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<h2 id="十、创建framework静态库"><a href="#十、创建framework静态库" class="headerlink" title="十、创建framework静态库"></a>十、创建framework静态库</h2><p>第一步、新建工程。一般使用工程名就使用库的名称</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/004221_Fdey_2602883.png" alt></p>
+<p>第二步、导入需要打包的资源文件，同时把资源文件需要外界访问的.h文件导入到系统推荐的.h中</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/005214_L3wy_2602883.png" alt></p>
+<p>第三步、真机，模拟器编译一下。可能会需要输入AppleID 。导出的文件没有包含.h</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/010821_kGD2_2602883.png" alt></p>
+<p>第四步、导出.h</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/011503_xvpa_2602883.png" alt></p>
+<p>第五步、可以查看一下 没合并模拟器架构之前包含几个同.a（可跳过此步）(真机包含两个，模拟器包含一个)</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/015214_YvoK_2602883.png" alt></p>
+<p>第六步、合成架构【同.a五六步详细看上边】</p>
+<p>第七步，合并架构【真机和模拟器】【注意 合并之后的动态/静态库要与原来的名称一致。不然用的时候编译报错】</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/021216_VFpb_2602883.png" alt></p>
+<p>第八步、动态库变静态库【默认是动态】好处是将来使用时不需要设置添加动态库（也就是下边的方法）</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/021900_W6yh_2602883.png" alt></p>
+<p>最后步、</p>
+<p>Framework制作后, 默认是动态库. 使用时, 需要设置一下: Tarteg –&gt; General –&gt; Embedded Binaries –&gt; 需要添加对应的动态库 【注意 要是制作的时候更改为静态库的话，就不用执行此方法】</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0330/014201_OoXJ_2602883.png" alt></p>
+<p>谢谢。 </p>
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://my.oschina.net/kaqijiang/blog/649632" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d31f2248a6d167501.jpg" alt></a></td>
+</tr>
+</tbody></table>
+<br>
 
-<p>对于以上 Fetch 方法的这种应用场景，其实用方法的返回值也可以实现，但是与 CompletionHandler 相比，无法自由切换线程是个弊端。</p>
-<hr>
-<p>Posted by <a href="https://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
-<p align="center"><a href="https://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="https://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a>
 
-</p>
             
             <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
             
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags//"></a>
-                </div>
-            </div>
         </div>
         
         
@@ -328,17 +401,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/notes/xue/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">下雪了</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/program//iosyoumeng/">
-                <span class="level-item">iOS 友盟分享笔记</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/python3-notes03/">
+                <span class="level-item">python3-notes03</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -354,8 +420,8 @@
         <!-- 
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://www.policx.com/program//block-callback/';
-        this.page.identifier = 'program//block-callback/';
+        this.page.url = 'https://www.policx.com/framework/';
+        this.page.identifier = 'framework/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1303,7 +1369,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS静态库" height="28">
                     
                 </a>
                 <p class="is-size-7">

@@ -2,25 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler - IP</title>
+<title>python3-notes03 - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
-<meta name="keywords" content="">
+    <meta name="description" content="字符串基本操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
-<meta property="og:url" content="https://www.policx.com/program//block-callback/index.html">
+<meta property="og:title" content="python3-notes03">
+<meta property="og:url" content="https://www.policx.com/python3-notes03/index.html">
 <meta property="og:site_name" content="IP">
-<meta property="og:description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
+<meta property="og:description" content="字符串基本操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500">
-<meta property="og:updated_time" content="2019-07-18T06:22:40.947Z">
+<meta property="og:image" content="https://www.policx.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-07-19T02:38:03.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
-<meta name="twitter:description" content="iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。">
-<meta name="twitter:image" content="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+<meta name="twitter:title" content="python3-notes03">
+<meta name="twitter:description" content="字符串基本操作">
+<meta name="twitter:image" content="https://www.policx.com/images/og_image.png">
 
 
 
@@ -115,7 +114,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler" height="28">
+                <img src="/images/logo.gif" alt="python3-notes03" height="28">
             
             </a>
         </div>
@@ -166,27 +165,17 @@
             <div class="columns">
                 <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
-    <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
-        </span>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-02-06T11:07:03.000Z">2017-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-07-19T02:37:18.000Z">2019-07-19</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1660 个字)
+                    3 分钟 读完 (大约 472 个字)
                 </span>
                 
                 
@@ -200,72 +189,45 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler
+                python3-notes03
             
         </h1>
         <div class="content">
-            <p>iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。</p>
+            <p>字符串基本操作</p>
 <a id="more"></a>
-<p>我们作为开发者去集成一个 Lib （也可以叫轮子、SDK、下文统一叫 Lib）时，我们会发现我们遇到的 <code>Block</code>， 按照功能的角度划分，其实可以分为这几种：</p>
+
+<p>字符串是一种序列，序列常见的公有操作：</p>
+<p>len() :求长度</p>
 <ul>
-<li>Lib 通知开发者，Lib操作已经完成。一般命名为 Callback</li>
-<li>开发者通知 Lib，开发者的操作已经完成。一般可以命名为 CompletionHandler。</li>
+<li>：两个序列相加</li>
 </ul>
-<p>这两处的区别： 前者是 “Block 的执行”，后者是 “Block 的填充”。</p>
-<p><code>Callback vs CompletionHandler</code> 命名与功能的差别，Apple 也没有明确的编码规范指出过，只不过如果按照“执行与填充”的功能划分的话，<code>callback</code>与 <code>completionHandler</code> 的命名可以区分开来对待。同时也方便调用者理解 block 的功能。但总体来说，Apple 官方的命名中，“Block 填充“这个功能一般都会命名为 “completionHandler”，“Block 执行”这个功能大多命名为了“callback” ，也有少部分命名为了 “completionHandler”。</p>
-<p>比如：</p>
-<p>NSURLSession 中，下面的函数将 “callback” 命名为了 “completionHandler”：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (NSURLSessionDataTask *)dataTaskWithURL:(NSURL *)url completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler;</span><br></pre></td></tr></table></figure>
+<p>*：序列的重复，相当于是复制<br>in：判断元素是否在序列中<br>max、min：最大/最小值</p>
+<p>字符串格式化输出<br>%s : 占位符，用得少<br>formate(<em>args, *</em>kargs)：完全替代%s的用法<br>前者表示字符串形式；后者表示字典形式<br>“I am {} and {} years old”.format(“Peter”, 26)    # *args形式</p>
+<p>“I am {name} and {age} years old”.format(name=”Peter”, age=26)  #**kargs形式</p>
+<p>判断是否全为字母isalpha<br>isalpha  输出结果bool值<br>“python”.isalpha()</p>
+<p>分隔字符串split<br>利用split()方法得到的结果：列表形式，能够用于for遍历<br>str = “this is python”<br>print(str.splite(“ “))</p>
+<p>注意<br>str = “this is python”<br>print(str.split())    # 默认是空格分割<br>print(str.split(“ “)) # 结果同上<br>print(str.split(“”))  # 报错</p>
+<p>去掉空格 strip()<br>str.strip()：去掉左右的空格<br>str.lstrip()：去掉左边的空格<br>str.rstrip()：去掉右边的空格<br>str = “ hello “<br>print(str.strip())<br>print(str.lstrip())<br>print(str.rstrip())</p>
+<p>注意<br>原来的值没有变化，生成新的字符串</p>
+<p>字符大小写的转变<br>str.upper():全部转化为大写，生成新的字符串<br>str.lower():全部转化为小写<br>str.capatilize():将首字母转化为大写<br>str.title():转化为标题形式，单词首字母大写其余小写。<br>str.isupper():是否全为大写，返回bool值<br>str.islower():是否全为小写<br>str.istitle():是否为标题形式，即字符串中的单词首字母为大写，其他字母小写。</p>
+<p>连接字符串jion()<br>除了+号用于拼接，jion方法也可以用于拼接字符串。<br>str = “<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">www.baidu.com&quot;</a></p>
+<p>a= str.split(“.”)<br>print(a)<br>[“www”,”baidu”,”com”]</p>
+<p>b = “*”.join(a)<br>print(b)</p>
+<p>www<em>baidu</em>com</p>
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://policx.com/" target="_blank" rel="noopener"><img src="https://policx.com/images/avatar.png" alt="policx"></a></td>
+</tr>
+</tbody></table>
 
-<p>我们常常见到 <code>CompletionHandler</code> 被用到了第一种场景，而第一种场景“Block 执行”命名为 Callback 则更合适。</p>
-<blockquote>
-<p>不是所有 Block 都适合叫做 CompletionHandler</p>
-</blockquote>
-<p>一般情况下，CompletionHandler 的设计往往考虑到多线程操作，于是，你就完全可以异步操作，然后在线程结束时执行该 CompletionHandler，下文的例子中会讲述下 CompletionHandler 方式在多线程场景下的一些优势。</p>
-<h3 id="CompletionHandler-Delegate-组合"><a href="#CompletionHandler-Delegate-组合" class="headerlink" title="CompletionHandler + Delegate 组合"></a>CompletionHandler + Delegate 组合</h3><p>在 iOS10 中新增加的 <code>UserNotificaitons</code> 中大量使用了这种 Block，比如：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)userNotificationCenter:(UNUserNotificationCenter *)center </span><br><span class="line">didReceiveNotificationResponse:(UNNotificationResponse *)response </span><br><span class="line">        withCompletionHandler:(void (^)(void))completionHandler;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://developer.apple.com/reference/usernotifications/unusernotificationcenterdelegate/1649501-usernotificationcenter?language=objc" target="_blank" rel="noopener">文档</a> 对 completionHandler 的注释是这样的：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The block to execute when you have finished processing the user’s response. You must execute this block from your method and should call it as quickly as possible. The block has no return value or parameters.</span><br></pre></td></tr></table></figure>
-
-<p>同样在这里也有应用：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task</span><br><span class="line">didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge</span><br><span class="line">completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler;</span><br></pre></td></tr></table></figure>
-
-<p>还有另外一个也非常普遍的例子（Delegate 方式使用URLSession 时候必不可少的 4个代理函数之一 ）</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask</span><br><span class="line">                                didReceiveResponse:(NSURLResponse *)response</span><br><span class="line">                                 completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler;</span><br></pre></td></tr></table></figure>
-
-<p>在代理方法实现代码里面，若是不执行 completionHandler(NSURLSessionResponseAllow) 话，http请求就终止了。</p>
-<h3 id="CompletionHandler-Block-组合"><a href="#CompletionHandler-Block-组合" class="headerlink" title="CompletionHandler + Block 组合"></a>CompletionHandler + Block 组合</h3><p>函数中将函数作为参数或者返回值，就叫做高阶函数。</p>
-<p>按照这种定义，Block 中将 Block 作为参数，这也就是高阶函数。</p>
-<p>结合实际的应用场景来看一个例子：</p>
-<p>如果有这样一个需求：</p>
-<p>拿我之前的一个 IM 项目 ChatKit-OC （开源的，下面简称 ChatKit）为例，当你的应用想要集成一个 IM 服务时，可能这时候，你的 APP 已经上架了，已经有自己的注册、登录等流程了。用 ChatKit 进行聊天很简单，只需要给 ChatKit 一个 id 就够了。聊天是正常了，但是双方只能看到一个id，这样体验很不好。但是如何展示头像、昵称呢？于是就设计了这样一个接口，-setFetchProfilesBlock: 。</p>
-<p>这是上层（APP）提供用户信息的 Block，由于 ChatKit 并不关心业务逻辑信息，比如用户昵称，用户头像等。用户可以通过 ChatKit 单例向 ChatKit 注入一个用户信息内容提供 Block，通过这个用户信息提供 Block，ChatKit 才能够正确的进行业务逻辑数据的绘制。</p>
-<p>示意图如下：<br> <img src="https://camo.githubusercontent.com/3a7069e9ce6d8ddc07b2b300716dd17f46579e01/687474703a2f2f7777322e73696e61696d672e636e2f6c617267652f38303162373830616a773166386168383835796e306a323065373062773735342e6a7067" alt><br>具体实现如下：</p>
-<p>方法定义如下：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line">*  @brief The block to execute with the users&apos; information for the userIds. Always execute this block at some point when fetching profiles completes on main thread. Specify users&apos; information how you want ChatKit to show.</span><br><span class="line">*  @attention If you fetch users fails, you should reture nil, meanwhile, give the error reason.</span><br><span class="line">*/</span><br><span class="line">typedef void(^LCCKFetchProfilesCompletionHandler)(NSArray&lt;id&lt;LCCKUserDelegate&gt;&gt; *users, NSError *error);</span><br><span class="line"></span><br><span class="line">/*!</span><br><span class="line">*  @brief When LeanCloudChatKit wants to fetch profiles, this block will be invoked.</span><br><span class="line">*  @param userIds User ids</span><br><span class="line">*  @param completionHandler The block to execute with the users&apos; information for the userIds. Always execute this block at some point during your implementation of this method on main thread. Specify users&apos; information how you want ChatKit to show.</span><br><span class="line">*/</span><br><span class="line">typedef void(^LCCKFetchProfilesBlock)(NSArray&lt;NSString *&gt; *userIds, LCCKFetchProfilesCompletionHandler completionHandler);</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) LCCKFetchProfilesBlock fetchProfilesBlock;</span><br><span class="line"></span><br><span class="line">/*!</span><br><span class="line">*  @brief Add the ablitity to fetch profiles.</span><br><span class="line">*  @attention  You must get peer information by peer id with a synchronous implementation.</span><br><span class="line">*              If implemeted, this block will be invoked automatically by LeanCloudChatKit for fetching peer profile.</span><br><span class="line">*/</span><br><span class="line">- (void)setFetchProfilesBlock:(LCCKFetchProfilesBlock)fetchProfilesBlock;</span><br></pre></td></tr></table></figure>
-
-<p>用法如下所示：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#warning 注意：setFetchProfilesBlock 方法必须实现，如果不实现，ChatKit将无法显示用户头像、用户昵称。以下方法循环模拟了通过 userIds 同步查询 users 信息的过程，这里需要替换为 App 的 API 同步查询</span><br><span class="line">   [[LCChatKit sharedInstance] setFetchProfilesBlock:^(NSArray&lt;NSString *&gt; *userIds,</span><br><span class="line">                            LCCKFetchProfilesCompletionHandler completionHandler) &#123;</span><br><span class="line">        if (userIds.count == 0) &#123;</span><br><span class="line">            NSInteger code = 0;</span><br><span class="line">            NSString *errorReasonText = @&quot;User ids is nil&quot;;</span><br><span class="line">            NSDictionary *errorInfo = @&#123;</span><br><span class="line">                                        @&quot;code&quot;:@(code),</span><br><span class="line">                                        NSLocalizedDescriptionKey : errorReasonText,</span><br><span class="line">                                        &#125;;</span><br><span class="line">            NSError *error = [NSError errorWithDomain:NSStringFromClass([self class])</span><br><span class="line">                                                 code:code</span><br><span class="line">                                             userInfo:errorInfo];</span><br><span class="line">            </span><br><span class="line">            !completionHandler ?: completionHandler(nil, error);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        NSMutableArray *users = [NSMutableArray arrayWithCapacity:userIds.count];</span><br><span class="line">#warning 注意：以下方法循环模拟了通过 userIds 同步查询 users 信息的过程，这里需要替换为 App 的 API 同步查询</span><br><span class="line">        </span><br><span class="line">        [userIds enumerateObjectsUsingBlock:^(NSString *_Nonnull clientId, NSUInteger idx,</span><br><span class="line">                                              BOOL *_Nonnull stop) &#123;</span><br><span class="line">            NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;peerId like %@&quot;, clientId];</span><br><span class="line">            //这里的LCCKContactProfiles，LCCKProfileKeyPeerId都为事先的宏定义，</span><br><span class="line">            NSArray *searchedUsers = [LCCKContactProfiles filteredArrayUsingPredicate:predicate];</span><br><span class="line">            if (searchedUsers.count &gt; 0) &#123;</span><br><span class="line">                NSDictionary *user = searchedUsers[0];</span><br><span class="line">                NSURL *avatarURL = [NSURL URLWithString:user[LCCKProfileKeyAvatarURL]];</span><br><span class="line">                LCCKUser *user_ = [LCCKUser userWithUserId:user[LCCKProfileKeyPeerId]</span><br><span class="line">                                                      name:user[LCCKProfileKeyName]</span><br><span class="line">                                                 avatarURL:avatarURL</span><br><span class="line">                                                  clientId:clientId];</span><br><span class="line">                [users addObject:user_];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //注意：如果网络请求失败，请至少提供 ClientId！</span><br><span class="line">                LCCKUser *user_ = [LCCKUser userWithClientId:clientId];</span><br><span class="line">                [users addObject:user_];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;];</span><br><span class="line">        // 模拟网络延时，3秒</span><br><span class="line">        //         sleep(3);</span><br><span class="line">        </span><br><span class="line">#warning 重要：completionHandler 这个 Bock 必须执行，需要在你**获取到用户信息结束**后，将信息传给该Block！</span><br><span class="line">        !completionHandler ?: completionHandler([users copy], nil);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
-
-<p>对于以上 Fetch 方法的这种应用场景，其实用方法的返回值也可以实现，但是与 CompletionHandler 相比，无法自由切换线程是个弊端。</p>
-<hr>
-<p>Posted by <a href="https://weibo.com/luohanchenyilong/" target="_blank" rel="noopener">微博@iOS程序犭袁</a><br>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">Creative Commons BY-NC-ND 3.0</a></p>
-<p align="center"><a href="https://weibo.com/u/1692391497?s=6uyXnP" target="_blank"><img border="0" src="https://service.t.sina.com.cn/widget/qmd/1692391497/b46c844b/1.png"></a>
-
-</p>
             
             <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
             
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags//"></a>
-                </div>
-            </div>
         </div>
         
         
@@ -329,16 +291,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/notes/xue/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/framework/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">下雪了</span>
+                <span class="level-item">iOS静态库</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/program//iosyoumeng/">
-                <span class="level-item">iOS 友盟分享笔记</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/python3-notes02/">
+                <span class="level-item">《Python札记》2_IO文件操作</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -354,8 +316,8 @@
         <!-- 
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://www.policx.com/program//block-callback/';
-        this.page.identifier = 'program//block-callback/';
+        this.page.url = 'https://www.policx.com/python3-notes03/';
+        this.page.identifier = 'python3-notes03/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1303,7 +1265,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="python3-notes03" height="28">
                     
                 </a>
                 <p class="is-size-7">
