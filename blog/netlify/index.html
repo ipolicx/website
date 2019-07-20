@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Hexo+Github+Netlify部署个人博客 - IP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Netlify 是一个提供静态资源网络托管的综合平台，提供CI服务，能够将托管 GitHub，GitLab 等网站上的 Jekyll，Hexo，Hugo 等代码自动编译并生成静态网站。使用github分支和netlify服务的方式部署hexo，搭建一套可跨平台、可多人写作,随时随地发布编辑文字,可被百度收录,可自定域名,免费HTTPS的博客系统！！">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+Github+Netlify部署个人博客">
+<meta property="og:url" content="https://www.policx.com/blog/netlify/index.html">
+<meta property="og:site_name" content="IP">
+<meta property="og:description" content="Netlify 是一个提供静态资源网络托管的综合平台，提供CI服务，能够将托管 GitHub，GitLab 等网站上的 Jekyll，Hexo，Hugo 等代码自动编译并生成静态网站。使用github分支和netlify服务的方式部署hexo，搭建一套可跨平台、可多人写作,随时随地发布编辑文字,可被百度收录,可自定域名,免费HTTPS的博客系统！！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dwhs7eit3h8mr.cloudfront.net/assets/images/7121d6e902e13f3cbdcdd802a691d99a/netlify.gif">
+<meta property="og:updated_time" content="2019-07-18T06:25:47.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo+Github+Netlify部署个人博客">
+<meta name="twitter:description" content="Netlify 是一个提供静态资源网络托管的综合平台，提供CI服务，能够将托管 GitHub，GitLab 等网站上的 Jekyll，Hexo，Hugo 等代码自动编译并生成静态网站。使用github分支和netlify服务的方式部署hexo，搭建一套可跨平台、可多人写作,随时随地发布编辑文字,可被百度收录,可自定域名,免费HTTPS的博客系统！！">
+<meta name="twitter:image" content="https://dwhs7eit3h8mr.cloudfront.net/assets/images/7121d6e902e13f3cbdcdd802a691d99a/netlify.gif">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="Hexo+Github+Netlify部署个人博客" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://dwhs7eit3h8mr.cloudfront.net/assets/images/7121d6e902e13f3cbdcdd802a691d99a/netlify.gif" alt="Hexo+Github+Netlify部署个人博客">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-01T13:08:57.000Z">2019-05-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/blog/">blog</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2574 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Hexo+Github+Netlify部署个人博客
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://www.netlify.com" target="_blank" rel="noopener">Netlify</a> 是一个提供静态资源网络托管的综合平台，提供CI服务，能够将托管 GitHub，GitLab 等网站上的 Jekyll，Hexo，Hugo 等代码自动编译并生成静态网站。使用github分支和netlify服务的方式部署hexo，搭建一套可跨平台、可多人写作,随时随地发布编辑文字,可被百度收录,可自定域名,免费HTTPS的博客系统！！</p>
+<a id="more"></a>
+
+<h1 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h1><blockquote>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
+<p>更多基础知识可参考<a href="https://hexo.io" target="_blank" rel="noopener">hexo官网</a>，本篇文章的重点是介绍部署的技巧。如果已掌握hexo的基础知识，可直接<a href="#bushu">跳到部署章节</a>进行浏览。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装hexo之前需要安装一下环境：</p>
+<ul>
+<li><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a></li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p>安装完node后由于npm是自带的，可能版本有些落后，需要先将自身升级一下。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install npm</span><br></pre></td></tr></table></figure>
+
+<p>由于国内互联网环境，导致npm下载失败，可使用npm淘宝镜像cnpm</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>如遇到npm下载组件失败时，可使用cnpm进行下载，只需将npm替换为cnpm，下方代码将继续使用npm，请根据自身网络环境选择适合的使用。<br>以上环境如果没有问题，下面就开始安装hexo了</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>之后在命令行中测试输入</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo version</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建个人站点"><a href="#创建个人站点" class="headerlink" title="创建个人站点"></a>创建个人站点</h1><p>安装hexo完成后，接下来我们就该使用hexo来创建自己的个人站点了。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;  <span class="hljs-comment">#使用hexo命令在指定的&lt;folder&gt;文件夹下初始化创建一个博客项目</span></span><br><span class="line"><span class="hljs-built_in">cd</span> &lt;folder&gt;         <span class="hljs-comment">#进入创建好的项目目录</span></span><br><span class="line">npm install         <span class="hljs-comment">#使用npm安装所需依赖。</span></span><br></pre></td></tr></table></figure>
+
+<p>新建完成后详细的目录含义以及配置教程，请参阅<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网</a>文档的介绍本篇文章暂不赘述。<br>上面代码执行完毕之后，我们就已经创建好了一个自己的个人博客了，下面我们只需要使用hexo的命令工具生成博客并用自带的服务器模块启动，预览下我们的博客。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="hljs-comment">#清理各种缓存和旧文件</span></span><br><span class="line">hexo g     <span class="hljs-comment">#生成静态文件</span></span><br><span class="line">hexo s     <span class="hljs-comment">#开启服务器预览</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完 <code>hexo s</code> 后命令行窗口将提示您如下信息</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN  ========================= ATTENTION! ==========================</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN   NexT repository is moving here: https://github.com/theme-next</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN   It<span class="hljs-string">'s rebase to v6.0.0 and future maintenance will resume there</span></span><br><span class="line"><span class="hljs-string">WARN  ===============================================================</span></span><br><span class="line"><span class="hljs-string">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+
+<p>其中服务器预览地址就是 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a><br>至此，我们的个人博客创建好了，下面我们就来进入部署环节。<br><img src="https://githubpage-1255710107.cos.ap-shanghai.myqcloud.com/static/images/KNN/hexo.png" alt></p>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>进入这里才是我们的重点环节，因为对于hexo来说入门级的教程遍布满网，随便搜一下到处都是，但是涉及到一些关键的环节，或者是高级点的教程用法，就很少，官网文档也介绍的含糊其辞，以至于有些地方我们都搞错了用法，甚至根本就不晓得怎么去用。<br>那么这里针对部署，我进行重点介绍，并且以我本身的博客实战部署经验为案例，来讲解hexo的高级部署方式，打造可跨平台，多人写作编辑文章，可CDN加速，可HTTPS，可百度收录，可自定义域名，无需备案，无需一分钱费用的部署方案。<br>接下来我分步骤的跟大家来介绍我的部署方案。</p>
+<h2 id="什么是部署"><a href="#什么是部署" class="headerlink" title="什么是部署"></a>什么是部署</h2><p>经过第一个章节，我们知道，当我们使用 <code>hexo g</code> 和 <code>hexo s</code> 命令生成并开启服务后，我们本地访问的测试域名实际是指向了我们当前目录下的 public 目录，也就是说 <code>hexo g</code> 命令生成的静态文件就是 public 目录下的文件，部署的过程就是将这个 public 目录下的文件放到我们的服务器上这样就完成了部署。</p>
+<h2 id="为什么选择netlify服务部署"><a href="#为什么选择netlify服务部署" class="headerlink" title="为什么选择netlify服务部署"></a>为什么选择netlify服务部署</h2><p>Netlify 有如下的功能: </p>
+<ul>
+<li>能够托管服务，免费 CDN</li>
+<li>能够绑定自定义域名</li>
+<li>能够启用免费的TLS证书，启用HTTPS</li>
+<li>支持自动构建</li>
+<li>提供 Webhooks 和 API</li>
+</ul>
+<h2 id="使用-Netlify"><a href="#使用-Netlify" class="headerlink" title="使用 Netlify"></a>使用 Netlify</h2><p>首先使用你的 GitHub 账号登陆 Netlify，登陆后进入空间管理中心，，点击<code>New site from git</code>按钮开始部署你的博客： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_14-52-50.png" alt="2019-01-18_14-52-50"></p>
+<p>然后根据自己的托管平台，可以选择GitHub、GitLab或者BitBucket（这里以 GitHub 为例）： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_14-50-39.png" alt="2019-01-18_14-50-39"></p>
+<p>点击GitHub之后会弹出一个让你授权的窗口，给 Netlify 授权后，就会自动读取你 GitHub 的仓库： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_14-55-21.png" alt="2019-01-18_14-55-21"></p>
+<p>选择仓库后，Netlify 会自动识别到 hexo，并填入相关信息，这时候只要无脑点击 <code>Deploy site</code>就可以： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_14-56-17.png" alt="2019-01-18_14-56-17"></p>
+<p>稍等一段时间就可以看到你的博客已经部署成功，并且给你分配了一个二级域名（先记下这个二级域名）： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_15-10-43.png" alt="2019-01-18_15-10-43"></p>
+<p>如果你要绑定自己买的域名，就直接点击第二步<code>Set up custom domain</code>。添加自定义域名，先添加不带www的域名作为主域名，它会自动添加一个<code>www.domain.cc</code>重定向到<code>domain.cc</code>： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_16-07-52.png" alt="2019-01-18_16-07-52"></p>
+<p>设置完，Netlify 会提示你去域名DNS解析处，修改域名的CNAME记录： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_16-12-31.png" alt="2019-01-18_16-12-31"></p>
+<p>去你的 DNS 解析提供商里面，将 CNAME 记录值更改为 Netlify 给你的二级域名： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_16-15-39.png" alt="2019-01-18_16-15-39"></p>
+<p>修改完，就可以看到 Netlify 状态更新： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_16-16-51.png" alt="2019-01-18_16-16-51"></p>
+<p>Netlify默认会启用 HTTPS，而且不能关闭，如果你没有证书，它会帮你去Let’s Encrypt申请免费的证书，当然你也可以自己申请证书，以阿里免费的 ssl 证书为例，下载证书证书时选服务器类型为Apache的证书，Netlify 配置填写如下： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_20-08-31.png" alt="2019-01-18_20-08-31"></p>
+<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><p>上面流程走完，其实已经可以自动化部署，只要 push 了代码，就会自动更新，你可以在下面地方查看部署的信息： </p>
+<p><img src="https://tc9011.com/assets/images/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/2019-01-18_20-24-23.png" alt="2019-01-18_20-24-23"></p>
+<p>如果你不想用 Netlify 的服务，也可以用 [Circle][14] 的服务，它和 GitHub 关联，提供 CI 服务。你需要做的事在根目录下新建一个<code>.circle</code>文件夹，里面新建一个<code>config.yml</code>文件（注意把相关信息替换成自己的）： </p>
+<pre><code># Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - add_ssh_keys:
+          fingerprints:
+            - &quot;你的 ssh key的fingerprints&quot;
+      - run: git config --global user.email &quot;user@domain.com&quot;
+      - run: git config --global user.name &quot;user&quot;
+      - run: npm install
+      - run: sudo npm install hexo-cli -g
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: hexo clean
+      - run: hexo g
+      - run: hexo d</code></pre><p>这时候，你只要提交代码到这个仓库，circle 就会帮你自动部署了。 </p>
+<hr>
+<ul>
+<li><a href="https://tc9011.com/2019/01/18/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%8F%8A%E9%83%A8%E7%BD%B2%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_blank" rel="noopener">手把手教你使用Netlify部署博客及部署自动化</a></li>
+<li><a href="https://www.yuhuizhen.com/2018/08/25/hexo-learn.html" target="_blank" rel="noopener">hexo高级部署教程,利用github+netlify部署</a></li>
+</ul>
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Hexo/">Hexo</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/news/2019/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">WWDC 2019</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/blog/hexo-theme-icarus/">
+                <span class="level-item">hexo-theme-icarus</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/blog/netlify/';
+        this.page.identifier = 'blog/netlify/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        103
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是Hexo">
+        <span class="has-mr-6">1</span>
+        <span>什么是Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装">
+        <span class="has-mr-6">2</span>
+        <span>安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建个人站点">
+        <span class="has-mr-6">3</span>
+        <span>创建个人站点</span>
+        </a></li><li>
+        <a class="is-flex" href="#部署">
+        <span class="has-mr-6">4</span>
+        <span>部署</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是部署">
+        <span class="has-mr-6">4.1</span>
+        <span>什么是部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#为什么选择netlify服务部署">
+        <span class="has-mr-6">4.2</span>
+        <span>为什么选择netlify服务部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用-Netlify">
+        <span class="has-mr-6">4.3</span>
+        <span>使用 Netlify</span>
+        </a></li><li>
+        <a class="is-flex" href="#自动化部署">
+        <span class="has-mr-6">4.4</span>
+        <span>自动化部署</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes07/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》7_深入理解赋值和深、浅拷贝(更新)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T02:38:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes07/" class="has-link-black-ter is-size-6">《Python札记》7_深入理解赋值和深、浅拷贝(更新)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes06/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》6_字典">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes03/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》5_列表与字符串">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T22:49:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》5_列表与字符串</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes03/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》4_元组tuple">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T02:38:18.000Z">2019-07-19</time></div>
+                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》4_元组tuple</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/blog/">
+            <span class="level-start">
+                <span class="level-item">blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/label/">
+            <span class="level-start">
+                <span class="level-item">label</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/notes/">
+            <span class="level-start">
+                <span class="level-item">notes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">22</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/program/">
+            <span class="level-start">
+                <span class="level-item">program</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">66</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">17</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="Hexo+Github+Netlify部署个人博客" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
