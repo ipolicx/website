@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>python3-notes03 - IP</title>
+<title>《Python札记》3_字符串基本操作 - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="字符串基本操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python3-notes03">
+<meta property="og:title" content="《Python札记》3_字符串基本操作">
 <meta property="og:url" content="https://www.policx.com/python3-notes03/index.html">
 <meta property="og:site_name" content="IP">
 <meta property="og:description" content="字符串基本操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.policx.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-19T02:38:03.702Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
+<meta property="og:updated_time" content="2019-07-20T11:10:46.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python3-notes03">
+<meta name="twitter:title" content="《Python札记》3_字符串基本操作">
 <meta name="twitter:description" content="字符串基本操作">
-<meta name="twitter:image" content="https://www.policx.com/images/og_image.png">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
 
 
 
@@ -114,7 +114,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="python3-notes03" height="28">
+                <img src="/images/logo.gif" alt="《Python札记》3_字符串基本操作" height="28">
             
             </a>
         </div>
@@ -165,6 +165,12 @@
             <div class="columns">
                 <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》3_字符串基本操作">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -175,7 +181,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 472 个字)
+                    3 分钟 读完 (大约 493 个字)
                 </span>
                 
                 
@@ -189,31 +195,62 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                python3-notes03
+                《Python札记》3_字符串基本操作
             
         </h1>
         <div class="content">
-            <p>字符串基本操作</p>
-<a id="more"></a>
-
-<p>字符串是一种序列，序列常见的公有操作：</p>
-<p>len() :求长度</p>
+            <h2 id="字符串基本操作"><a href="#字符串基本操作" class="headerlink" title="字符串基本操作"></a>字符串基本操作</h2><a id="more"></a>
+<p>字符串是一种序列，序列常见的公有操作： </p>
 <ul>
+<li>len() :求长度</li>
+<li><ul>
 <li>：两个序列相加</li>
 </ul>
-<p>*：序列的重复，相当于是复制<br>in：判断元素是否在序列中<br>max、min：最大/最小值</p>
-<p>字符串格式化输出<br>%s : 占位符，用得少<br>formate(<em>args, *</em>kargs)：完全替代%s的用法<br>前者表示字符串形式；后者表示字典形式<br>“I am {} and {} years old”.format(“Peter”, 26)    # *args形式</p>
-<p>“I am {name} and {age} years old”.format(name=”Peter”, age=26)  #**kargs形式</p>
-<p>判断是否全为字母isalpha<br>isalpha  输出结果bool值<br>“python”.isalpha()</p>
-<p>分隔字符串split<br>利用split()方法得到的结果：列表形式，能够用于for遍历<br>str = “this is python”<br>print(str.splite(“ “))</p>
-<p>注意<br>str = “this is python”<br>print(str.split())    # 默认是空格分割<br>print(str.split(“ “)) # 结果同上<br>print(str.split(“”))  # 报错</p>
-<p>去掉空格 strip()<br>str.strip()：去掉左右的空格<br>str.lstrip()：去掉左边的空格<br>str.rstrip()：去掉右边的空格<br>str = “ hello “<br>print(str.strip())<br>print(str.lstrip())<br>print(str.rstrip())</p>
-<p>注意<br>原来的值没有变化，生成新的字符串</p>
-<p>字符大小写的转变<br>str.upper():全部转化为大写，生成新的字符串<br>str.lower():全部转化为小写<br>str.capatilize():将首字母转化为大写<br>str.title():转化为标题形式，单词首字母大写其余小写。<br>str.isupper():是否全为大写，返回bool值<br>str.islower():是否全为小写<br>str.istitle():是否为标题形式，即字符串中的单词首字母为大写，其他字母小写。</p>
-<p>连接字符串jion()<br>除了+号用于拼接，jion方法也可以用于拼接字符串。<br>str = “<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">www.baidu.com&quot;</a></p>
-<p>a= str.split(“.”)<br>print(a)<br>[“www”,”baidu”,”com”]</p>
-<p>b = “*”.join(a)<br>print(b)</p>
-<p>www<em>baidu</em>com</p>
+</li>
+<li>*：序列的重复，相当于是复制</li>
+<li>in：判断元素是否在序列中</li>
+<li>max、min：最大/最小值</li>
+</ul>
+<hr>
+<h3 id="字符串格式化输出"><a href="#字符串格式化输出" class="headerlink" title="字符串格式化输出"></a>字符串格式化输出</h3><p>%s : 占位符，用得少 </p>
+<p>formate(<em>args, *</em>kargs)：完全替代<code>%s</code>的用法 </p>
+<p>前者表示<code>字符串</code>形式；后者表示<code>字典</code>形式 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">"I am &#123;&#125; and &#123;&#125; years old"</span>.format(<span class="hljs-string">"Peter"</span>, <span class="hljs-number">26</span>)    <span class="hljs-comment"># *args形式</span></span><br><span class="line">    </span><br><span class="line"><span class="hljs-string">"I am &#123;name&#125; and &#123;age&#125; years old"</span>.format(name=<span class="hljs-string">"Peter"</span>, age=<span class="hljs-number">26</span>)  <span class="hljs-comment">#**kargs形式</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="判断是否全为字母isalpha"><a href="#判断是否全为字母isalpha" class="headerlink" title="判断是否全为字母isalpha"></a>判断是否全为字母isalpha</h3><p>isalpha 输出结果bool值 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;python&quot;.isalpha()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="分隔字符串split"><a href="#分隔字符串split" class="headerlink" title="分隔字符串split"></a>分隔字符串split</h3><p>利用<code>split()</code>方法得到的结果：<strong>列表形式</strong>，能够用于<code>for</code>遍历 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="hljs-string">"this is python"</span></span><br><span class="line">print(str.splite(<span class="hljs-string">" "</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong><em>注意</em></strong></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="hljs-string">"this is python"</span></span><br><span class="line">print(str.split())    <span class="hljs-comment"># 默认是空格分割</span></span><br><span class="line">print(str.split(<span class="hljs-string">" "</span>)) <span class="hljs-comment"># 结果同上</span></span><br><span class="line">print(str.split(<span class="hljs-string">""</span>))  <span class="hljs-comment"># 报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="去掉空格-strip"><a href="#去掉空格-strip" class="headerlink" title="去掉空格 strip()"></a>去掉空格 strip()</h3><p>str.strip()：去掉左右的空格 </p>
+<p>str.lstrip()：去掉左边的空格 </p>
+<p>str.rstrip()：去掉右边的空格 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="hljs-string">" hello "</span></span><br><span class="line">print(str.strip())</span><br><span class="line">print(str.lstrip())</span><br><span class="line">print(str.rstrip())</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>注意</em></strong><br>原来的值没有变化，生成新的字符串 </p>
+<hr>
+<h3 id="字符大小写的转变"><a href="#字符大小写的转变" class="headerlink" title="字符大小写的转变"></a>字符大小写的转变</h3><p>Str.upper():全部转化为大写，生成新的字符串 </p>
+<p>str.lower():全部转化为小写 </p>
+<p>str.capatilize():将首字母转化为大写 </p>
+<p>Str.title():转化为标题形式，单词首字母大写其余小写。 </p>
+<p>str.isupper():是否全为大写，返回bool值 </p>
+<p>str.islower():是否全为小写 </p>
+<p>str.istitle():是否为标题形式，即字符串中的单词首字母为大写，其他字母小写。 </p>
+<hr>
+<h3 id="连接字符串jion"><a href="#连接字符串jion" class="headerlink" title="连接字符串jion()"></a>连接字符串jion()</h3><p>除了+号用于拼接，jion方法也可以用于拼接字符串。 </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="hljs-string">"www.baidu.com"</span></span><br><span class="line"></span><br><span class="line">a= str.split(<span class="hljs-string">"."</span>)</span><br><span class="line">print(a)</span><br><span class="line">[<span class="hljs-string">"www"</span>,<span class="hljs-string">"baidu"</span>,<span class="hljs-string">"com"</span>]</span><br><span class="line"></span><br><span class="line">b = <span class="hljs-string">"*"</span>.join(a)</span><br><span class="line">print(b)</span><br><span class="line"></span><br><span class="line">www*baidu*com</span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -221,7 +258,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://policx.com/" target="_blank" rel="noopener"><img src="https://policx.com/images/avatar.png" alt="policx"></a></td>
+<td><a href="https://www.jianshu.com/c/ab55c73e0037?utm_source=desktop&utm_medium=notes-included-collection" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d32f16d5b0bf92604.jpg" alt></a></td>
 </tr>
 </tbody></table>
 
@@ -665,14 +702,14 @@
             
             <a href="/python3-notes03/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python3-notes03">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》3_字符串基本操作">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T02:37:18.000Z">2019-07-19</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">python3-notes03</a>
+                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》3_字符串基本操作</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1265,7 +1302,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="python3-notes03" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="《Python札记》3_字符串基本操作" height="28">
                     
                 </a>
                 <p class="is-size-7">
