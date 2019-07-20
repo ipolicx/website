@@ -4,7 +4,14 @@
   <url>
     <loc>https://www.policx.com/framework/</loc>
     
-    <lastmod>2019-07-19T16:48:24.581Z</lastmod>
+    <lastmod>2019-07-20T10:31:40.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/dota/</loc>
+    
+    <lastmod>2019-07-20T10:31:38.436Z</lastmod>
     
   </url>
   
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/front-matter/</loc>
+    <loc>https://www.policx.com/blog/netlify/</loc>
     
     <lastmod>2019-07-18T06:25:47.037Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/blog/netlify/</loc>
+    <loc>https://www.policx.com/front-matter/</loc>
     
     <lastmod>2019-07-18T06:25:47.037Z</lastmod>
     
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/news/BitTorrent/</loc>
+    <loc>https://www.policx.com/ddos/</loc>
     
     <lastmod>2019-07-18T06:25:40.127Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/ddos/</loc>
+    <loc>https://www.policx.com/news/BitTorrent/</loc>
     
     <lastmod>2019-07-18T06:25:40.127Z</lastmod>
     
@@ -86,6 +93,13 @@
   </url>
   
   <url>
+    <loc>https://www.policx.com/news/2016/</loc>
+    
+    <lastmod>2019-07-18T06:25:40.126Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.policx.com/news/2015/</loc>
     
     <lastmod>2019-07-18T06:25:40.126Z</lastmod>
@@ -100,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/news/2016/</loc>
+    <loc>https://www.policx.com/news/2018/</loc>
     
     <lastmod>2019-07-18T06:25:40.126Z</lastmod>
     
@@ -108,13 +122,6 @@
   
   <url>
     <loc>https://www.policx.com/news/2019/</loc>
-    
-    <lastmod>2019-07-18T06:25:40.126Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/news/2018/</loc>
     
     <lastmod>2019-07-18T06:25:40.126Z</lastmod>
     
@@ -142,14 +149,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/linktrust/</loc>
+    <loc>https://www.policx.com/notes/macbook/</loc>
     
     <lastmod>2019-07-18T06:23:54.036Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/macbook/</loc>
+    <loc>https://www.policx.com/notes/linktrust/</loc>
     
     <lastmod>2019-07-18T06:23:54.036Z</lastmod>
     
@@ -163,21 +170,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/juanshi/</loc>
-    
-    <lastmod>2019-07-18T06:23:38.164Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/notes/jianpan/</loc>
-    
-    <lastmod>2019-07-18T06:23:38.164Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/notes/kindle/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
@@ -191,7 +184,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/partner/</loc>
+    <loc>https://www.policx.com/notes/juanshi/</loc>
+    
+    <lastmod>2019-07-18T06:23:38.164Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/notes/kindle/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
@@ -205,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/training/</loc>
+    <loc>https://www.policx.com/notes/partner/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/sjz/</loc>
+    <loc>https://www.policx.com/notes/training/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
@@ -226,7 +226,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/xue/</loc>
+    <loc>https://www.policx.com/notes/sjz/</loc>
+    
+    <lastmod>2019-07-18T06:23:38.164Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/notes/wjx/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
@@ -240,7 +247,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/notes/wjx/</loc>
+    <loc>https://www.policx.com/notes/xue/</loc>
     
     <lastmod>2019-07-18T06:23:38.164Z</lastmod>
     
@@ -268,6 +275,13 @@
   </url>
   
   <url>
+    <loc>https://www.policx.com/notes/beijing/</loc>
+    
+    <lastmod>2019-07-18T06:23:38.163Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.policx.com/notes/banjia/</loc>
     
     <lastmod>2019-07-18T06:23:38.163Z</lastmod>
@@ -276,13 +290,6 @@
   
   <url>
     <loc>https://www.policx.com/notes/AppleSupport/</loc>
-    
-    <lastmod>2019-07-18T06:23:38.163Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/notes/beijing/</loc>
     
     <lastmod>2019-07-18T06:23:38.163Z</lastmod>
     
@@ -310,20 +317,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/objc-runtime/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/pou-xi/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.950Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/uicollectionview/</loc>
     
     <lastmod>2019-07-18T06:22:40.950Z</lastmod>
@@ -332,6 +325,20 @@
   
   <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/uiview/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.950Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/%EF%A3%BF/objc-runtime/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.950Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/%EF%A3%BF/pou-xi/</loc>
     
     <lastmod>2019-07-18T06:22:40.950Z</lastmod>
     
@@ -359,13 +366,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/javascriptcore/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.949Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/ji-chu-ji-he-lei/</loc>
     
     <lastmod>2019-07-18T06:22:40.949Z</lastmod>
@@ -373,7 +373,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/jian-ce/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/javascriptcore/</loc>
     
     <lastmod>2019-07-18T06:22:40.949Z</lastmod>
     
@@ -394,6 +394,13 @@
   </url>
   
   <url>
+    <loc>https://www.policx.com/program/%EF%A3%BF/jian-ce/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.949Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/http/</loc>
     
     <lastmod>2019-07-18T06:22:40.948Z</lastmod>
@@ -401,14 +408,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/ios-bing-fa/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/ios-design-pattern/</loc>
     
     <lastmod>2019-07-18T06:22:40.948Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/ios-design-pattern/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/ios-bing-fa/</loc>
     
     <lastmod>2019-07-18T06:22:40.948Z</lastmod>
     
@@ -457,13 +464,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/GCD/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/UIMenuController/</loc>
     
     <lastmod>2019-07-18T06:22:40.947Z</lastmod>
@@ -478,21 +478,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/block/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/cfrunloop/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/camera/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/%EF%A3%BF/block/</loc>
     
     <lastmod>2019-07-18T06:22:40.947Z</lastmod>
     
@@ -507,6 +500,13 @@
   
   <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/framework/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/%EF%A3%BF/cfrunloop/</loc>
     
     <lastmod>2019-07-18T06:22:40.947Z</lastmod>
     
@@ -534,14 +534,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/3Dtouch/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/GCD/</loc>
     
-    <lastmod>2019-07-18T06:22:40.946Z</lastmod>
+    <lastmod>2019-07-18T06:22:40.947Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/spider/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/3Dtouch/</loc>
     
     <lastmod>2019-07-18T06:22:40.946Z</lastmod>
     
@@ -556,6 +556,13 @@
   
   <url>
     <loc>https://www.policx.com/program/%EF%A3%BF/KVOcrash/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.946Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/spider/</loc>
     
     <lastmod>2019-07-18T06:22:40.946Z</lastmod>
     
@@ -583,35 +590,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Python/pymongo/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/Markdown/markdown/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/program/Python/mongodb/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/program/Python/django/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.policx.com/program/Python/python-type/</loc>
     
     <lastmod>2019-07-18T06:22:40.944Z</lastmod>
     
@@ -625,7 +604,35 @@
   </url>
   
   <url>
+    <loc>https://www.policx.com/program/Python/mongodb/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/Python/pymongo/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.policx.com/program/Python/pymysql/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/Python/python-type/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.944Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/Python/django/</loc>
     
     <lastmod>2019-07-18T06:22:40.944Z</lastmod>
     
@@ -639,13 +646,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Git/git-del/</loc>
-    
-    <lastmod>2019-07-18T06:22:40.943Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/Git/git/</loc>
     
     <lastmod>2019-07-18T06:22:40.943Z</lastmod>
@@ -653,14 +653,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Linux/centos/</loc>
+    <loc>https://www.policx.com/program/Git/git-del/</loc>
     
     <lastmod>2019-07-18T06:22:40.943Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/JavaScript/node/</loc>
+    <loc>https://www.policx.com/program/Linux/centos/</loc>
     
     <lastmod>2019-07-18T06:22:40.943Z</lastmod>
     
@@ -675,6 +675,13 @@
   
   <url>
     <loc>https://www.policx.com/program/Linux/nginx/</loc>
+    
+    <lastmod>2019-07-18T06:22:40.943Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/JavaScript/node/</loc>
     
     <lastmod>2019-07-18T06:22:40.943Z</lastmod>
     

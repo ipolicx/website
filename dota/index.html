@@ -2,21 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>2018创业记：如何选择合伙人？ - IP</title>
+<title>iOS静态库 - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="2018创业记：如何选择合伙人？">
-<meta property="og:url" content="https://www.policx.com/notes/chuangye/index.html">
+    <meta name="description" content="回顾下iOS静态库 【.a 和framework】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS静态库">
+<meta property="og:url" content="https://www.policx.com/dota/index.html">
 <meta property="og:site_name" content="IP">
+<meta property="og:description" content="回顾下iOS静态库 【.a 和framework】">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/images/20180316/acc1c5196bc7456c9abb0f42c5adf7bc.jpeg">
-<meta property="og:updated_time" content="2019-07-18T06:23:38.164Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
+<meta property="og:updated_time" content="2019-07-20T10:31:38.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018创业记：如何选择合伙人？">
-<meta name="twitter:image" content="https://5b0988e595225.cdn.sohucs.com/images/20180316/acc1c5196bc7456c9abb0f42c5adf7bc.jpeg">
+<meta name="twitter:title" content="iOS静态库">
+<meta name="twitter:description" content="回顾下iOS静态库 【.a 和framework】">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
 
 
 
@@ -111,7 +114,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="2018创业记：如何选择合伙人？" height="28">
+                <img src="/images/logo.gif" alt="iOS静态库" height="28">
             
             </a>
         </div>
@@ -145,10 +148,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -168,7 +167,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://5b0988e595225.cdn.sohucs.com/images/20180316/acc1c5196bc7456c9abb0f42c5adf7bc.jpeg" alt="2018创业记：如何选择合伙人？">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg" alt="iOS静态库">
         </span>
     </div>
     
@@ -176,17 +175,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-03-25T13:02:42.000Z">2018-03-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/notes/">notes</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-07-19T16:36:14.000Z">2019-07-20</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    26 分钟 读完 (大约 3961 个字)
+                    20 分钟 读完 (大约 3025 个字)
                 </span>
                 
                 
@@ -200,53 +195,147 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                2018创业记：如何选择合伙人？
+                iOS静态库
             
         </h1>
         <div class="content">
-            <ul>
-<li><a id="more"></a>
-<h2 id="创业路上危机四伏，如何破局？"><a href="#创业路上危机四伏，如何破局？" class="headerlink" title="创业路上危机四伏，如何破局？"></a>创业路上危机四伏，如何破局？</h2></li>
+            <blockquote>
+<p>回顾下iOS静态库 【.a 和framework】</p>
+</blockquote>
+<a id="more"></a>
+
+
+<h2 id="一、什么是库？"><a href="#一、什么是库？" class="headerlink" title="一、什么是库？"></a>一、什么是库？</h2><p>库是共享程序代码的方式。 </p>
+<p>库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。<br>iOS中的静态库有 .a 和 .framework两种形式；动态库有.dylib 和 .framework 形式，后来.dylib动态库又被苹果替换成.tbd的形式。</p>
+<h2 id="二、静态库与动态库的区别？"><a href="#二、静态库与动态库的区别？" class="headerlink" title="二、静态库与动态库的区别？"></a>二、静态库与动态库的区别？</h2><p>静态库： 链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。 </p>
+<p>动态库： 链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。[ios暂时只允许使用系统动态库]； </p>
+<p>静态库和动态库是相对编译期和运行期的：静态库在程序编译时会被链接到目标代码中，程序运行时将不再需要改静态库；而动态库在程序编译时并不会被链接到目标代码中，只是在程序运行时才被载入，因为在程序运行期间还需要动态库的存在。<br>总结：同一个静态库在不同程序中使用时，每一个程序中都得导入一次，打包时也被打包进去，形成一个程序。而动态库在不同程序中，打包时并没有被打包进去，只在程序运行使用时，才链接载入（如系统的框架如UIKit、Foundation等），所以程序体积会小很多，但是苹果不让使用自己的动态库，否则审核就无法通过。</p>
+<h2 id="三、iOS里静态库形式？"><a href="#三、iOS里静态库形式？" class="headerlink" title="三、iOS里静态库形式？"></a>三、iOS里静态库形式？</h2><p>.a和.framework </p>
+<h2 id="四、iOS里动态库形式？"><a href="#四、iOS里动态库形式？" class="headerlink" title="四、iOS里动态库形式？"></a>四、iOS里动态库形式？</h2><p>.dylib和.framework </p>
+<h2 id="五、framework为什么既是静态库又是动态库？"><a href="#五、framework为什么既是静态库又是动态库？" class="headerlink" title="五、framework为什么既是静态库又是动态库？"></a>五、framework为什么既是静态库又是动态库？</h2><p>系统的.framework是动态库，我们自己建立的.framework是静态库。 </p>
+<h2 id="六、a与-framework有什么区别？"><a href="#六、a与-framework有什么区别？" class="headerlink" title="六、a与.framework有什么区别？"></a>六、a与.framework有什么区别？</h2><p>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件。 </p>
+<p>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。 </p>
+<p>.a + .h + sourceFile = .framework。 </p>
+<p>建议用.framework. </p>
+<h2 id="七、为什么要使用静态库？"><a href="#七、为什么要使用静态库？" class="headerlink" title="七、为什么要使用静态库？"></a>七、为什么要使用静态库？</h2><p>方便共享代码，便于合理使用。 </p>
+<p>实现iOS程序的模块化。可以把固定的业务模块化成静态库。 </p>
+<p>和别人分享你的代码库，但不想让别人看到你代码的实现。 </p>
+<p>开发第三方sdk的需要。 </p>
+<h2 id="八、制作静态库时的几点注意："><a href="#八、制作静态库时的几点注意：" class="headerlink" title="八、制作静态库时的几点注意："></a>八、制作静态库时的几点注意：</h2><p>1注意理解：无论是.a静态库还.framework静态库，我们需要的都是二进制文件+.h+其它资源文件的形式，不同的是，.a本身就是二进制文件，需要我们自己配上.h和其它文件才能使用，而.framework本身已经包含了.h和其它文件，可以直接使用。 </p>
+<p>2图片资源的处理：两种静态库，一般都是把图片文件单独的放在一个.bundle文件中，一般.bundle的名字和.a或.framework的名字相同。.bundle文件很好弄，新建一个文件夹，把它改名为.bundle就可以了，右键，显示包内容可以向其中添加图片资源。 </p>
+<p>3category是我们实际开发项目中经常用到的，把category打成静态库是没有问题的，但是在用这个静态库的工程中，调用category中的方法时会有找不到该方法的运行时错误（selector not recognized），解决办法是：在使用静态库的工程中配置other linker flags的值为-ObjC。 </p>
+<p>4如果一个静态库很复杂，需要暴露的.h比较多的话，就可以在静态库的内部创建一个.h文件（一般这个.h文件的名字和静态库的名字相同），然后把所有需要暴露出来的.h文件都集中放在这个.h文件中，而那些原本需要暴露的.h都不需要再暴露了，只需要把.h暴露出来就可以了。 </p>
+<h2 id="九、创建-a静态库"><a href="#九、创建-a静态库" class="headerlink" title="九、创建.a静态库"></a>九、创建.a静态库</h2><p>第一步，新建工程。一般使用工程名就使用库的名称，比如我这里用LIB来创建静态库，我的工程名就取名为LIB，创建的.a静态库就是LIB.a。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/193950_FPAj_2602883.png" alt></p>
+<p>第二步，删除.m文件，保留.h文件， 一般静态库都有一个总的.h文件，方便外部导入头文件。然后导入需要打包的源文件。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/195814_9613_2602883.png" alt></p>
+<p>第三步，先用真机，编译一次，再用模拟器编译一次。就可以生成.a文件（必须先用真机要不然，不能生成）。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/200424_25Gd_2602883.png" alt></p>
+<p>第四步，Xcode生成的.a文件默认没有导出.h文件。需要自己添加。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/200939_IIFO_2602883.png" alt></p>
+<p>第五步，导出Products静态库的配置（其实不用设置此步骤，如果真机编译的话，生成导出的时候系统默认会变成Releasse[但是模拟器不会（如果不改这里 得需要把Debug设置为NO）]）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/202827_odLy_2602883.png" alt></p>
+<p>注意：如果第五步中，不将Build Configuration改为Release,则打包出来的静态库会存于【Debug-iphoneos】和【Debug-iphonesimulator】两个文件夹下。<br>我们一般都使用Release模式，因为程序最终发布之后是Release版的，所以静态库也是在Release模式下使用。</p>
+<p>第六步，合成模拟器的架构【默认：模拟器编译只会生成对应的1种架构，真机编译会合成两种架构】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/203414_3pSs_2602883.png" alt></p>
+<p>如果第六步这里，设置为YES，那么编译出来的.a静态库就只包含当前设备的架构。</p>
+<p>举个例子：如果我们选择iPhone 5模拟器【Command+B】编译，则编译出来的.a静态库只能用iPhone4s<del>5模拟器跑程序， 用iPhone5s</del>6plus，则会报找不到x86_64的libFMDB库。</p>
+<p>设置为 NO 之后，【Command+B】不管选择哪个【模拟器】，则都会把【386   : 32位架构   4S ~ 5】【x86_64 : 64位架构   5S ~ 现在的机型】的架构都打包合并。</p>
+<p>【注】【真机】不设置 [Build Active Architecture Only] 也默认会自动合并的armv7 和amr64架构 。但是 armv7s架构被苹果放弃了，真机要想合并armv7s的话需要进行如下操作再编译。（其实没必要设置这个）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/233333_H7EK_2602883.png" alt></p>
+<p>第七步，合并架构【真机和模拟器】</p>
+<p>真机和模拟器合并: lipo -create 静态库1.a（路径） 静态库2.a（路径） -output 新静态库.a   </p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001609_7PSY_2602883.png" alt></p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001915_UpFg_2602883.png" alt></p>
+<p>第八步，资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件与本地文件重名被覆盖, 导致加载资源文件出错【注：要加载bundel路径】</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/003854_4IX6_2602883.png" alt></p>
+<p> 一. 经典报错:</p>
+<p> 找不到符号在XX架构上</p>
+<p> Undefined symbols for architecture x86_64(armv7/armv7s/amr64/i386)</p>
+<p> 二. 架构的分类</p>
+<p> 1、模拟器架构: 2种</p>
+<pre><code>i386   : 32位架构  4S ~ 5
+
+x86_64 : 64位架构   5S ~ 现在的机型</code></pre><p> 2、真机架构: 3种</p>
+<pre><code>armv7 : 32位架构    3GS ~ 4S
+
+armv7s: 特殊的架构   5 ~ 5C   (此架构有问题, 有的程序变得更快, 有的程序变得更慢)
+
+amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存寻址不同</p>
+<p> 三. 如何查看静态库架构</p>
+<p> 找到Products文件夹, 如果.a文件是黑色, 右键打开 到 Products文件夹</p>
+<p>终端中 lipo -info</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001126_3M3b_2602883.png" alt> </p>
+<p> Generic iOS Device编译出来的OS可用, 有2种架构:armv7/ arm64 （不包含armv7s: 特殊的架构）</p>
+<p> iPhone6S模拟器编译出来的: x86_64</p>
+<p> iPhone4S模拟器编译出来的: i386</p>
+<p> (不设置Build Active Architecture Only的情况下真机编译2种架构, 模拟器编译:对应的1种架构)</p>
+<p> 四. 合成架构</p>
+<p> 一般来说, 只需要前两步即可</p>
+<ol>
+<li><p>模拟器架构的合成: Target –&gt; Build Settings –&gt; Build Active Architecture Only(是否只编译当前架构) –&gt; Debug 改为NO(改为NO, 模拟器就可以直接合成2种架构)</p>
+</li>
+<li><p>真机和模拟器合并: lipo -create 静态库1.a 静态库2.a -output 新静态库.a </p>
+</li>
+<li><ul>
+<li><p>armv7s这个架构, 在2014年10月份的xcode版本更新中, 取消了默认导出此架构. 可以不用支持此架构. </p>
+<p>如果要支持, 需要手动添加3个架构.</p>
+</li>
 </ul>
-<p>很多朋友在2018年做出了改变，迈出了新的一步。比如身边几位朋友正摩拳擦掌准备创业。然而，看别人创业和自己创业完全是两回事儿，见得再多，自己趟水时也难免有所顾虑。</p>
-<p>在跟他们聊过之后，我们发现了他们普遍面临的一个课题：如何选择合伙人?这是身经百战的连续创业者也很难驾轻就熟的一个课题，今天我们就来一起聊聊。本文将从能不能和朋友一起创业、合伙人应该与我互补还是相似、如何判断双方是否志同道合、如何应对常见的分歧几个部分展开来说。</p>
-<p>风物长宜放眼量，抱持开阔的胸襟、敏锐的判断、坚韧的意志，相信大家能够与志同道合的伙伴一起，越过山丘，携手站上梦想之巅。</p>
-<h2 id="能不能和朋友一起创业？"><a href="#能不能和朋友一起创业？" class="headerlink" title="能不能和朋友一起创业？"></a>能不能和朋友一起创业？</h2><p>在创业初期，创业者选择合伙人往往会从身边的朋友“下手”。</p>
-<p>一起创业可以说是认清一个朋友的最好方式。一篇名为《友谊的代价》的论文，考察了3510个风险投资者，以及他们在1975-2003年间11895个投资项目。</p>
-<p>论文写道，有的人选择与自己能力相当的人合作，比如同是名校毕业；但更多的人选择与自己的熟人合作，比如曾经的同学或同事。结果表明，按能力搭档可以增加投资的成功概率，而找熟人搭档，则会明显降低成功的可能性。</p>
-<p>所有人都喜欢强联系，但关系是关系，工作归工作。现在社会学已经有了足够多的证据说明：对工作来说，同乡会和校友录并不是扩展人脉的好地方。《中国合伙人》这部电影上映后，“千万别跟好朋友合伙开公司”也成了热议话题。电影的最后，三位合伙人分道扬镳，而剧本的原型——新东方的三位创始人也以“分家”收场。</p>
-<p>当然，朋友合伙创业成功的案例也不在少数，况且，长期的伙伴关系更有助于共同面对创业过程中的艰难险阻，团队也更容易在创业初期获得投资人的青睐。如果在寻找合伙人的过程中，你觉得还是某个朋友更适合，那么一定要在合作之前约法三章，考虑到最坏的情况，提前用书面合同的方式确定双方的责权利，用规章制度来约束指导双方的行为，而不是靠人情关系。</p>
-<p>中间一旦觉得发生了问题，你就必须考虑一下能否继续合作下去。其实，很多合作者走不到最后就是因为中间的小问题没有解决，一点一点积累最后爆发出来。</p>
-<p>因此，能否和朋友一起创业这个问题，需要辩证思考。如果朋友间相互了解对方的个性和能力，工作中能做到分工明确，用规章制度来规范双方的行为，及时解决小矛盾，相互照顾，一起分担，共同奋斗，那么创业成功就会成为大概率事件。</p>
-<h2 id="合伙人应该与我互补还是相似？"><a href="#合伙人应该与我互补还是相似？" class="headerlink" title="合伙人应该与我互补还是相似？"></a>合伙人应该与我互补还是相似？</h2><p>一个较为合理的答案是：理念和价值观上要相似，能力和经验上要互补。</p>
-<p>理念和价值观上的相近，可以保证你们在重大原则问题上的判断是比较一致的，不至于出现根本性的冲突。这些重大的原则问题包括企业的战略方向、利益分配机制、做事的基本底线等等。</p>
-<p>在这些问题上出现不同意见，通常很难取得共识。因为个性和价值观的形成，通常都不是一朝一夕的事情，也就是我们常说的“江山易改，本性难移”。如果在创业的艰难环境下，双方还要来磨合这个层面的东西，就会非常痛苦。</p>
-<p>能力和经验上的互补相对更好理解。你擅长产品，他专于研发；你有丰富的运营经验，他则对于商业模式的建立更有心得；你对数字不敏感，他则是投资和财务领域的资深人士。这些都是很好的互补。</p>
-<p>互补可以让你们在具体事情的推进中事半功倍，并建立起对于对方在专业领域的依靠和信任。人不可能是全能的，如果一切未知的领域都需要你自己来摸索，费时费力不说，风险还很大。</p>
-<p>对于相似还是互补这个问题的解读，还可以反向进行。比如你们是能力经验上的相近，而在理念上互补，你可以想象一下是个什么局面，一定是你不会的他也不会，你觉得对的他觉得不对，那就真的很难合作下去了。</p>
-<h2 id="如何判断双方是否志同道合？"><a href="#如何判断双方是否志同道合？" class="headerlink" title="如何判断双方是否志同道合？"></a>如何判断双方是否志同道合？</h2><p>对于这个问题，不同的人可能会给出非常不同的答案。雷军就曾说过，他找人有两个要素：“一要最专业，小米的合伙人都是各管一块，这样能保证整个决策非常快，把业务交给他，要能实打实做出成绩来；二要最合适，主要是指要有创业心态，对所做的事要极度喜欢，有共同的愿景，这样就会有很强的驱动力。”</p>
-<p>雷军说，他在三个月的时间里见了超过100位做硬件的人选，终于找到了负责硬件的联合创始人周光平博士，两人第一次见面就谈了12个小时。</p>
-<p>而周鸿祎表示，他会选择具备这四种素质的合伙人：首先应该有创业精神；其次要有很强的学习能力；第三，要有很好的开放合作心态；此外，还要能自我激励，自我驱动，同样一件事，用打工的心态和用创业的心态做，效果完全不一样。</p>
-<p>虽然答案因人而异，但仍然可以总结出一些判断标准，以下几条可为你选择合伙人时提供参考。</p>
-<h3 id="1、关系有一定的深度和广度，彼此信任"><a href="#1、关系有一定的深度和广度，彼此信任" class="headerlink" title="1、关系有一定的深度和广度，彼此信任"></a>1、关系有一定的深度和广度，彼此信任</h3><p>共事且维持朋友关系多年的创业团队关系更深，有可能经受住紧张和冲突的考验。合伙人未必需要成为最要好的朋友，但如果他们相互喜欢的话事情可能会更好办些。更重要的是，创始人之间应该尊重彼此以及他们给团队带来的不同能力。不信任合伙人的能力会导致手伸过头，还可能会导致控制权之争。在这种窝里斗的情况下大部分的合作关系都无法维系。</p>
-<h3 id="2、了解彼此的优势和劣势，分工明确"><a href="#2、了解彼此的优势和劣势，分工明确" class="headerlink" title="2、了解彼此的优势和劣势，分工明确"></a>2、了解彼此的优势和劣势，分工明确</h3><p>尊重彼此的技能和优势并不意味着创始人就不需要审视合伙人的弱点了。友谊更久自然也会更了解某人的特长和技能。这些不同的技能有助于创始人团队自然地分清责任、角色，在某些情况下还可以分清头衔。根据每一位合伙人的技能明确划分职责，对创业的帮助很大。做事的时候每个人要有独立的角色，但同时永远要对其他合伙人的反馈持开放态度。</p>
-<h3 id="3、确保所有合伙人对成功和失败的定义一致"><a href="#3、确保所有合伙人对成功和失败的定义一致" class="headerlink" title="3、确保所有合伙人对成功和失败的定义一致"></a>3、确保所有合伙人对成功和失败的定义一致</h3><p>韧性最强的创始人不会从财务的角度去衡量自己的初创企业是否成功，相反，他们会从使命的角度去衡量。他们的初创企业只是追求实现使命的手段。但是，并不是所有的创始人都这么看，甚至一开始关注使命的创始人有时候到后面也会转向考虑财务方面的事情。</p>
-<p>有的创始人可能志存高远，为了尽快做大愿意烧很多钱，而有的人希望逐步打磨产品，限制人数规模和保留现金尺度。不仅对成功的认知会影响运营决策，对失败的认知同样会起作用。</p>
-<p>在创业过程中，其中一位合伙人急着退出的故事屡见不鲜，因此这个教训值得一提再提。对于拥有成功企业的创始人来说，避免在这个问题上发生冲突的关键是定期讨论这件事。应该在公司早期就设定好目标，并且对这个话题进行定期复议。</p>
-<h3 id="4、所有合伙人均应对股权分配满意"><a href="#4、所有合伙人均应对股权分配满意" class="headerlink" title="4、所有合伙人均应对股权分配满意"></a>4、所有合伙人均应对股权分配满意</h3><p>哈佛教授Wasserman发现，73%的联合创业团队一般在公司成立30天内就确定了如何进行股权分配。股权分配当然是任何共同创业的人都要首先考虑的事情之一，但事实上在那个时候，没人知道谁干活最卖力，谁对初创企业的贡献最有价值。过早确定股权分配会导致后面发生问题。如果可以的话，最好等到你有机会了解大家一起工作会是什么个情况后再正式分蛋糕。话虽如此，这件事情还是不要拖太久，围绕股权的分歧最好在公司早期就解决掉。</p>
-<h3 id="5、永远要相互支持"><a href="#5、永远要相互支持" class="headerlink" title="5、永远要相互支持"></a>5、永远要相互支持</h3><p>这话听上去似乎太空泛，但是合伙人的关系也可能会反复无常，尤其是在受到不同观点、董事会成员等的影响下。合伙人之间的相互支持可带来信心，确保合伙人和员工都有共同的使命感。</p>
-<p>团队应该早点理解一件事，任何情况下合伙人之间都应该背靠背相互支持，所以合伙人要尽量避免当着员工、董事会等人的面互相拆台，这样能够让公司其他人感觉到他们友情之牢固，让每一位合伙人都能保持镇定，因为他们知道对方一定会支持自己的。</p>
-<h2 id="如何应对常见的分歧？"><a href="#如何应对常见的分歧？" class="headerlink" title="如何应对常见的分歧？"></a>如何应对常见的分歧？</h2><h3 id="1、公司走向的歧见"><a href="#1、公司走向的歧见" class="headerlink" title="1、公司走向的歧见"></a>1、公司走向的歧见</h3><p>在0到1的探索期，公司的走向往往是由合伙人一起决定的。但进入1到100的扩张期，一个年轻企业通常会开始有董事会以及重要的供应、通路伙伴。久而久之，合伙人对于公司未来走向的看法，常常会越来越变得分歧。</p>
-<p>防范这个陷阱要从根源开始：每当CEO有了新的资讯、成长、学习、领悟，应该积极地与合伙人分享，协助他们获得与你类似的成长。同时，你应该把小范围的决策授权出去，让他们也能继续主导公司某一部分的走向。最后，你应该积极管理大家对决策的期望值，新创公司必须在“快”与“好”之间做出平衡，因此决策求的是多数对，而不是样样对。</p>
-<h3 id="2、无法适应制度"><a href="#2、无法适应制度" class="headerlink" title="2、无法适应制度"></a>2、无法适应制度</h3><p>0到1的新创团队求快，因此不会有太多制度。进入1到100阶段，公司势必要开始建立一些管理系统，以在风险与发展中间取得平衡。</p>
-<p>有些习惯了说干就干的合伙人，在此时会产生严重的不适应，时间一长甚至会觉得公司背离了创办的初衷。要解决这个问题，除了及早发现及早辅导外，请他们参与、主导制度的设计，也是协助合伙人适应新制度的方法。</p>
-<h3 id="3、越权管理"><a href="#3、越权管理" class="headerlink" title="3、越权管理"></a>3、越权管理</h3><p>当公司开始有部门、部门主管，合伙人还是习惯看不顺眼就管，容易造成经理人的困扰。更有甚者，造成合伙人对经理人不信任，反而让经理人没有足够的时间、空间去适应、学习。这个问题通常是惯性使然，重点就是要打破它。所以，看到这样的行为要赶快提醒伙伴们注意。</p>
-<h3 id="4、无法跟上公司成长的需要"><a href="#4、无法跟上公司成长的需要" class="headerlink" title="4、无法跟上公司成长的需要"></a>4、无法跟上公司成长的需要</h3><p>在公司快速扩张期，一个3人产品团队可能在一年内成长为30人，而两者之间管理上的不同，常常会让本来擅长技术、产品，但从来没有管理中大型团队经验的合伙人一时间跟不上公司发展的步伐。</p>
-<p>回到扩张前，你应该早早找到好的CTO Mentor，在扩张中，经常鼓励他在管理知识与能力上精进。扩张后，如果他真的无法适应，也比较能够接受去寻找更有经验的CTO，而自己退居部门二把手、三把手。</p>
-<h3 id="5、利益分配"><a href="#5、利益分配" class="headerlink" title="5、利益分配"></a>5、利益分配</h3><p>当公司越来越成功、越赚钱、离IPO越近，股权与利益的问题就会越容易产生。尤其当初的股权分配如果没有彰显每个合伙人的相对价值，那团队中可能酝酿出不良情绪。</p>
-<p>比较好的方法当然是早期就把这个问题解决掉，因为到了后期，你的工具会越来越有限。但也不是没有机会修正，如果有合伙人离开，你可以收回他的股权来重新分配。如果有B、C、D轮增资，你可以跟投资人要求“期权池”(ESOP)，通过发放新的选择权来平衡。最后，如果真的过于集中，负责任的CEO，甚至会拿出自己的股权分配给伙伴们。</p>
-<p>选择合伙人未必有一定之规，创业路上可能遇到的危机也远远不止上述这些，希望这篇文章能对你有所裨益，助你在创业路上少走弯路，也祝愿创业者们在2018年博得好彩头，大鹏一日同风起，扶摇直上九万里。</p>
-<p>本文来源：<a href="https://www.sohu.com/a/225670991_100064845" target="_blank" rel="noopener">联想之星</a></p>
+</li>
+</ol>
+<p>五. Debug和Release版本</p>
+<p> 一般来说, 我们应该发布的是release版本.</p>
+<p> debug:调试版本, 系统本身也会有一些调试代码. 此版本体积会稍大, 运行会稍慢</p>
+<p> release: 发布版本, 系统会去除调试代码, 体积变小, 运行速度变快. 对用户来说没有明显的感觉</p>
+<p> 六. 到底要不要合成多个架构</p>
+<p> 真机和模拟器合成的好处: 调试会非常方便, 缺点是体积会变大(一种架构就占用一部分体积).</p>
+<p> 真机和模拟器不合成的好处:体积小,  缺点是调试稍显麻烦.</p>
+<p> 七. 资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件重名被覆盖, 导致加载资源文件出错</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<h2 id="十、创建framework静态库"><a href="#十、创建framework静态库" class="headerlink" title="十、创建framework静态库"></a>十、创建framework静态库</h2><p>第一步、新建工程。一般使用工程名就使用库的名称</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/004221_Fdey_2602883.png" alt></p>
+<p>第二步、导入需要打包的资源文件，同时把资源文件需要外界访问的.h文件导入到系统推荐的.h中</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/005214_L3wy_2602883.png" alt></p>
+<p>第三步、真机，模拟器编译一下。可能会需要输入AppleID 。导出的文件没有包含.h</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/010821_kGD2_2602883.png" alt></p>
+<p>第四步、导出.h</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/011503_xvpa_2602883.png" alt></p>
+<p>第五步、可以查看一下 没合并模拟器架构之前包含几个同.a（可跳过此步）(真机包含两个，模拟器包含一个)</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/015214_YvoK_2602883.png" alt></p>
+<p>第六步、合成架构【同.a五六步详细看上边】</p>
+<p>第七步，合并架构【真机和模拟器】【注意 合并之后的动态/静态库要与原来的名称一致。不然用的时候编译报错】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/021216_VFpb_2602883.png" alt></p>
+<p>第八步、动态库变静态库【默认是动态】好处是将来使用时不需要设置添加动态库（也就是下边的方法）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/021900_W6yh_2602883.png" alt></p>
+<p>最后步、</p>
+<p>Framework制作后, 默认是动态库. 使用时, 需要设置一下: Tarteg –&gt; General –&gt; Embedded Binaries –&gt; 需要添加对应的动态库 【注意 要是制作的时候更改为静态库的话，就不用执行此方法】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/014201_OoXJ_2602883.png" alt></p>
+<p>谢谢。 </p>
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://my.oschina.net/kaqijiang/blog/649632" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d31f2248a6d167501.jpg" alt></a></td>
+</tr>
+</tbody></table>
+<br>
+
+
 
             
             <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
@@ -314,16 +403,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/program/Python/django/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/framework/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Django部署——uwsgi+Nginx</span>
+                <span class="level-item">再谈iOS静态库</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/program/Markdown/markdown/">
-                <span class="level-item">Markdown 的设计哲学</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/python3-notes03/">
+                <span class="level-item">python3-notes03</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -339,8 +428,8 @@
         <!-- 
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://www.policx.com/notes/chuangye/';
-        this.page.identifier = 'notes/chuangye/';
+        this.page.url = 'https://www.policx.com/dota/';
+        this.page.identifier = 'dota/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -491,77 +580,6 @@
 </div>
     
     
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#创业路上危机四伏，如何破局？">
-        <span class="has-mr-6">1</span>
-        <span>创业路上危机四伏，如何破局？</span>
-        </a></li><li>
-        <a class="is-flex" href="#能不能和朋友一起创业？">
-        <span class="has-mr-6">2</span>
-        <span>能不能和朋友一起创业？</span>
-        </a></li><li>
-        <a class="is-flex" href="#合伙人应该与我互补还是相似？">
-        <span class="has-mr-6">3</span>
-        <span>合伙人应该与我互补还是相似？</span>
-        </a></li><li>
-        <a class="is-flex" href="#如何判断双方是否志同道合？">
-        <span class="has-mr-6">4</span>
-        <span>如何判断双方是否志同道合？</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#1、关系有一定的深度和广度，彼此信任">
-        <span class="has-mr-6">4.1</span>
-        <span>1、关系有一定的深度和广度，彼此信任</span>
-        </a></li><li>
-        <a class="is-flex" href="#2、了解彼此的优势和劣势，分工明确">
-        <span class="has-mr-6">4.2</span>
-        <span>2、了解彼此的优势和劣势，分工明确</span>
-        </a></li><li>
-        <a class="is-flex" href="#3、确保所有合伙人对成功和失败的定义一致">
-        <span class="has-mr-6">4.3</span>
-        <span>3、确保所有合伙人对成功和失败的定义一致</span>
-        </a></li><li>
-        <a class="is-flex" href="#4、所有合伙人均应对股权分配满意">
-        <span class="has-mr-6">4.4</span>
-        <span>4、所有合伙人均应对股权分配满意</span>
-        </a></li><li>
-        <a class="is-flex" href="#5、永远要相互支持">
-        <span class="has-mr-6">4.5</span>
-        <span>5、永远要相互支持</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#如何应对常见的分歧？">
-        <span class="has-mr-6">5</span>
-        <span>如何应对常见的分歧？</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#1、公司走向的歧见">
-        <span class="has-mr-6">5.1</span>
-        <span>1、公司走向的歧见</span>
-        </a></li><li>
-        <a class="is-flex" href="#2、无法适应制度">
-        <span class="has-mr-6">5.2</span>
-        <span>2、无法适应制度</span>
-        </a></li><li>
-        <a class="is-flex" href="#3、越权管理">
-        <span class="has-mr-6">5.3</span>
-        <span>3、越权管理</span>
-        </a></li><li>
-        <a class="is-flex" href="#4、无法跟上公司成长的需要">
-        <span class="has-mr-6">5.4</span>
-        <span>4、无法跟上公司成长的需要</span>
-        </a></li><li>
-        <a class="is-flex" href="#5、利益分配">
-        <span class="has-mr-6">5.5</span>
-        <span>5、利益分配</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
     
     
 <div class="card widget">
@@ -1359,7 +1377,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="2018创业记：如何选择合伙人？" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS静态库" height="28">
                     
                 </a>
                 <p class="is-size-7">

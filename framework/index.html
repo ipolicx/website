@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>iOS静态库 - IP</title>
+<title>再谈iOS静态库 - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="回顾下iOS静态库 【.a 和framework】">
+    <meta name="description" content="1.现在桌面创建文件夹 SHTestSDk 2.打开Xcode,创建一个workspace 流程: Xcode—File—New—Workspace  快捷键 :command +N = 创建项目 3.把创建好的添加到 文件名为 SHTestSDK 里面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS静态库">
+<meta property="og:title" content="再谈iOS静态库">
 <meta property="og:url" content="https://www.policx.com/framework/index.html">
 <meta property="og:site_name" content="IP">
-<meta property="og:description" content="回顾下iOS静态库 【.a 和framework】">
+<meta property="og:description" content="1.现在桌面创建文件夹 SHTestSDk 2.打开Xcode,创建一个workspace 流程: Xcode—File—New—Workspace  快捷键 :command +N = 创建项目 3.把创建好的添加到 文件名为 SHTestSDK 里面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
-<meta property="og:updated_time" content="2019-07-19T16:48:24.581Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d32eb8e91e5a53488.jpg">
+<meta property="og:updated_time" content="2019-07-20T10:31:40.571Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS静态库">
-<meta name="twitter:description" content="回顾下iOS静态库 【.a 和framework】">
-<meta name="twitter:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
+<meta name="twitter:title" content="再谈iOS静态库">
+<meta name="twitter:description" content="1.现在桌面创建文件夹 SHTestSDk 2.打开Xcode,创建一个workspace 流程: Xcode—File—New—Workspace  快捷键 :command +N = 创建项目 3.把创建好的添加到 文件名为 SHTestSDK 里面">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/20/5d32eb8e91e5a53488.jpg">
 
 
 
@@ -114,7 +114,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="iOS静态库" height="28">
+                <img src="/images/logo.gif" alt="再谈iOS静态库" height="28">
             
             </a>
         </div>
@@ -167,7 +167,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg" alt="iOS静态库">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d32eb8e91e5a53488.jpg" alt="再谈iOS静态库">
         </span>
     </div>
     
@@ -175,13 +175,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-19T16:36:14.000Z">2019-07-20</time>
+                <time class="level-item has-text-grey" datetime="2019-07-20T10:21:23.000Z">2019-07-20</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    20 分钟 读完 (大约 3025 个字)
+                    9 分钟 读完 (大约 1371 个字)
                 </span>
                 
                 
@@ -195,134 +195,113 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                iOS静态库
+                再谈iOS静态库
             
         </h1>
         <div class="content">
             <blockquote>
-<p>回顾下iOS静态库 【.a 和framework】</p>
+<p><strong>1.现在桌面创建文件夹 SHTestSDk</strong></p>
+<p><strong>2.打开Xcode,创建一个workspace 流程: Xcode—File—New—Workspace  快捷键 :command +N = 创建项目</strong></p>
+<p><strong>3.把创建好的添加到 文件名为 SHTestSDK 里面</strong></p>
 </blockquote>
 <a id="more"></a>
 
+<p><strong>图1:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105184755387?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图2:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105184821998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图3:创建成功效果</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105184856465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>1、打开SHTestSDK.xcworkspace文件，创建project</strong></p>
+</blockquote>
+<p><strong>图4:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105185857387?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图5:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105190012311?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图6:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105190109683?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图7:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105190206998?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图8:成功效果图</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105190226388?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图9:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105192049338?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图10:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105192106018?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图11:成功效果图</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105192216548?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>1.这里创建一个SHView类，继承于UIView，简单的重写了初始化方法，设置了颜色</strong></p>
+</blockquote>
+<p><strong>图12:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105193022883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>2.设置Build Setting参数 将Build Active  Architecture only设置为NO,</strong></p>
+</blockquote>
+<p><strong>图13:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105193649960?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>3.设置Build Setting参数 在Architectures下增加armv7s</strong></p>
+</blockquote>
+<p><strong>图14:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105193957387?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>4.设置Headers，将要公开的头文件拖到Public下，要隐藏的放到Private或Project下，隐藏的头文件不能被引用,效果图:</strong></p>
+</blockquote>
+<p><strong>图15:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105194240906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>5.在SHTestSDK.h(必须是公开的，否则无法引用)中将所有要公开的.h引入</strong></p>
+</blockquote>
+<p><strong><img src="https://img-blog.csdn.net/20171105194506903?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></strong></p>
+<blockquote>
+<p><strong>6.创建一个Aggregare</strong></p>
+</blockquote>
+<p><strong>图16:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105195124229?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图17:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105195141352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>7.嵌入脚本，选中刚刚创建的Aggregare,然后选中右侧的Build Phases,点击左边的+号，选择New Run Script Phases</strong></p>
+</blockquote>
+<p><strong>图18:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105195424616?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图19:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105195447618?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>8.下面把这段脚本复制进去（格式不要错，格式错编译不通过）</strong></p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Sets the target folders and the final framework product.</span><br><span class="line"># 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME</span><br><span class="line"># 例如: FMK_NAME = &quot;MyFramework&quot;</span><br><span class="line">FMK_NAME=$&#123;PROJECT_NAME&#125;</span><br><span class="line"># Install dir will be the final output to the framework.</span><br><span class="line"># The following line create it in the root folder of the current project.</span><br><span class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products/$&#123;FMK_NAME&#125;.framework</span><br><span class="line"># Working dir will be deleted after the framework creation.</span><br><span class="line">WRK_DIR=build</span><br><span class="line">DEVICE_DIR=$&#123;WRK_DIR&#125;/Release-iphoneos/$&#123;FMK_NAME&#125;.framework</span><br><span class="line">SIMULATOR_DIR=$&#123;WRK_DIR&#125;/Release-iphonesimulator/$&#123;FMK_NAME&#125;.framework</span><br><span class="line"># -configuration $&#123;CONFIGURATION&#125;</span><br><span class="line"># Clean and Building both architectures.</span><br><span class="line">xcodebuild -configuration &quot;Release&quot; -target &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphoneos clean build</span><br><span class="line">xcodebuild -configuration &quot;Release&quot; -target &quot;$&#123;FMK_NAME&#125;&quot; -sdk iphonesimulator clean build</span><br><span class="line"># Cleaning the oldest.</span><br><span class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</span><br><span class="line">then</span><br><span class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">fi</span><br><span class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/&quot; &quot;$&#123;INSTALL_DIR&#125;/&quot;</span><br><span class="line"># Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.</span><br><span class="line">lipo -create &quot;$&#123;DEVICE_DIR&#125;/$&#123;FMK_NAME&#125;&quot; &quot;$&#123;SIMULATOR_DIR&#125;/$&#123;FMK_NAME&#125;&quot; -output &quot;$&#123;INSTALL_DIR&#125;/$&#123;FMK_NAME&#125;&quot;</span><br><span class="line">rm -r &quot;$&#123;WRK_DIR&#125;&quot;</span><br><span class="line">open &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br></pre></td></tr></table></figure>
 
-<h2 id="一、什么是库？"><a href="#一、什么是库？" class="headerlink" title="一、什么是库？"></a>一、什么是库？</h2><p>库是共享程序代码的方式。 </p>
-<p>库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。<br>iOS中的静态库有 .a 和 .framework两种形式；动态库有.dylib 和 .framework 形式，后来.dylib动态库又被苹果替换成.tbd的形式。</p>
-<h2 id="二、静态库与动态库的区别？"><a href="#二、静态库与动态库的区别？" class="headerlink" title="二、静态库与动态库的区别？"></a>二、静态库与动态库的区别？</h2><p>静态库： 链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。 </p>
-<p>动态库： 链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。[ios暂时只允许使用系统动态库]； </p>
-<p>静态库和动态库是相对编译期和运行期的：静态库在程序编译时会被链接到目标代码中，程序运行时将不再需要改静态库；而动态库在程序编译时并不会被链接到目标代码中，只是在程序运行时才被载入，因为在程序运行期间还需要动态库的存在。<br>总结：同一个静态库在不同程序中使用时，每一个程序中都得导入一次，打包时也被打包进去，形成一个程序。而动态库在不同程序中，打包时并没有被打包进去，只在程序运行使用时，才链接载入（如系统的框架如UIKit、Foundation等），所以程序体积会小很多，但是苹果不让使用自己的动态库，否则审核就无法通过。</p>
-<h2 id="三、iOS里静态库形式？"><a href="#三、iOS里静态库形式？" class="headerlink" title="三、iOS里静态库形式？"></a>三、iOS里静态库形式？</h2><p>.a和.framework </p>
-<h2 id="四、iOS里动态库形式？"><a href="#四、iOS里动态库形式？" class="headerlink" title="四、iOS里动态库形式？"></a>四、iOS里动态库形式？</h2><p>.dylib和.framework </p>
-<h2 id="五、framework为什么既是静态库又是动态库？"><a href="#五、framework为什么既是静态库又是动态库？" class="headerlink" title="五、framework为什么既是静态库又是动态库？"></a>五、framework为什么既是静态库又是动态库？</h2><p>系统的.framework是动态库，我们自己建立的.framework是静态库。 </p>
-<h2 id="六、a与-framework有什么区别？"><a href="#六、a与-framework有什么区别？" class="headerlink" title="六、a与.framework有什么区别？"></a>六、a与.framework有什么区别？</h2><p>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件。 </p>
-<p>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。 </p>
-<p>.a + .h + sourceFile = .framework。 </p>
-<p>建议用.framework. </p>
-<h2 id="七、为什么要使用静态库？"><a href="#七、为什么要使用静态库？" class="headerlink" title="七、为什么要使用静态库？"></a>七、为什么要使用静态库？</h2><p>方便共享代码，便于合理使用。 </p>
-<p>实现iOS程序的模块化。可以把固定的业务模块化成静态库。 </p>
-<p>和别人分享你的代码库，但不想让别人看到你代码的实现。 </p>
-<p>开发第三方sdk的需要。 </p>
-<h2 id="八、制作静态库时的几点注意："><a href="#八、制作静态库时的几点注意：" class="headerlink" title="八、制作静态库时的几点注意："></a>八、制作静态库时的几点注意：</h2><p>1注意理解：无论是.a静态库还.framework静态库，我们需要的都是二进制文件+.h+其它资源文件的形式，不同的是，.a本身就是二进制文件，需要我们自己配上.h和其它文件才能使用，而.framework本身已经包含了.h和其它文件，可以直接使用。 </p>
-<p>2图片资源的处理：两种静态库，一般都是把图片文件单独的放在一个.bundle文件中，一般.bundle的名字和.a或.framework的名字相同。.bundle文件很好弄，新建一个文件夹，把它改名为.bundle就可以了，右键，显示包内容可以向其中添加图片资源。 </p>
-<p>3category是我们实际开发项目中经常用到的，把category打成静态库是没有问题的，但是在用这个静态库的工程中，调用category中的方法时会有找不到该方法的运行时错误（selector not recognized），解决办法是：在使用静态库的工程中配置other linker flags的值为-ObjC。 </p>
-<p>4如果一个静态库很复杂，需要暴露的.h比较多的话，就可以在静态库的内部创建一个.h文件（一般这个.h文件的名字和静态库的名字相同），然后把所有需要暴露出来的.h文件都集中放在这个.h文件中，而那些原本需要暴露的.h都不需要再暴露了，只需要把.h暴露出来就可以了。 </p>
-<h2 id="九、创建-a静态库"><a href="#九、创建-a静态库" class="headerlink" title="九、创建.a静态库"></a>九、创建.a静态库</h2><p>第一步，新建工程。一般使用工程名就使用库的名称，比如我这里用LIB来创建静态库，我的工程名就取名为LIB，创建的.a静态库就是LIB.a。</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/193950_FPAj_2602883.png" alt></p>
-<p>第二步，删除.m文件，保留.h文件， 一般静态库都有一个总的.h文件，方便外部导入头文件。然后导入需要打包的源文件。</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/195814_9613_2602883.png" alt></p>
-<p>第三步，先用真机，编译一次，再用模拟器编译一次。就可以生成.a文件（必须先用真机要不然，不能生成）。</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/200424_25Gd_2602883.png" alt></p>
-<p>第四步，Xcode生成的.a文件默认没有导出.h文件。需要自己添加。</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/200939_IIFO_2602883.png" alt></p>
-<p>第五步，导出Products静态库的配置（其实不用设置此步骤，如果真机编译的话，生成导出的时候系统默认会变成Releasse[但是模拟器不会（如果不改这里 得需要把Debug设置为NO）]）</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/202827_odLy_2602883.png" alt></p>
-<p>注意：如果第五步中，不将Build Configuration改为Release,则打包出来的静态库会存于【Debug-iphoneos】和【Debug-iphonesimulator】两个文件夹下。<br>我们一般都使用Release模式，因为程序最终发布之后是Release版的，所以静态库也是在Release模式下使用。</p>
-<p>第六步，合成模拟器的架构【默认：模拟器编译只会生成对应的1种架构，真机编译会合成两种架构】</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/203414_3pSs_2602883.png" alt></p>
-<p>如果第六步这里，设置为YES，那么编译出来的.a静态库就只包含当前设备的架构。</p>
-<p>举个例子：如果我们选择iPhone 5模拟器【Command+B】编译，则编译出来的.a静态库只能用iPhone4s<del>5模拟器跑程序， 用iPhone5s</del>6plus，则会报找不到x86_64的libFMDB库。</p>
-<p>设置为 NO 之后，【Command+B】不管选择哪个【模拟器】，则都会把【386   : 32位架构   4S ~ 5】【x86_64 : 64位架构   5S ~ 现在的机型】的架构都打包合并。</p>
-<p>【注】【真机】不设置 [Build Active Architecture Only] 也默认会自动合并的armv7 和amr64架构 。但是 armv7s架构被苹果放弃了，真机要想合并armv7s的话需要进行如下操作再编译。（其实没必要设置这个）</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0329/233333_H7EK_2602883.png" alt></p>
-<p>第七步，合并架构【真机和模拟器】</p>
-<p>真机和模拟器合并: lipo -create 静态库1.a（路径） 静态库2.a（路径） -output 新静态库.a   </p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/001609_7PSY_2602883.png" alt></p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/001915_UpFg_2602883.png" alt></p>
-<p>第八步，资源包的问题</p>
-<ol>
-<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件与本地文件重名被覆盖, 导致加载资源文件出错【注：要加载bundel路径】</p>
-</li>
-<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
-</li>
-</ol>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/003854_4IX6_2602883.png" alt></p>
-<p> 一. 经典报错:</p>
-<p> 找不到符号在XX架构上</p>
-<p> Undefined symbols for architecture x86_64(armv7/armv7s/amr64/i386)</p>
-<p> 二. 架构的分类</p>
-<p> 1、模拟器架构: 2种</p>
-<pre><code>i386   : 32位架构  4S ~ 5
-
-x86_64 : 64位架构   5S ~ 现在的机型</code></pre><p> 2、真机架构: 3种</p>
-<pre><code>armv7 : 32位架构    3GS ~ 4S
-
-armv7s: 特殊的架构   5 ~ 5C   (此架构有问题, 有的程序变得更快, 有的程序变得更慢)
-
-amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存寻址不同</p>
-<p> 三. 如何查看静态库架构</p>
-<p> 找到Products文件夹, 如果.a文件是黑色, 右键打开 到 Products文件夹</p>
-<p>终端中 lipo -info</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/001126_3M3b_2602883.png" alt> </p>
-<p> Generic iOS Device编译出来的OS可用, 有2种架构:armv7/ arm64 （不包含armv7s: 特殊的架构）</p>
-<p> iPhone6S模拟器编译出来的: x86_64</p>
-<p> iPhone4S模拟器编译出来的: i386</p>
-<p> (不设置Build Active Architecture Only的情况下真机编译2种架构, 模拟器编译:对应的1种架构)</p>
-<p> 四. 合成架构</p>
-<p> 一般来说, 只需要前两步即可</p>
-<ol>
-<li><p>模拟器架构的合成: Target –&gt; Build Settings –&gt; Build Active Architecture Only(是否只编译当前架构) –&gt; Debug 改为NO(改为NO, 模拟器就可以直接合成2种架构)</p>
-</li>
-<li><p>真机和模拟器合并: lipo -create 静态库1.a 静态库2.a -output 新静态库.a </p>
-</li>
-<li><ul>
-<li><p>armv7s这个架构, 在2014年10月份的xcode版本更新中, 取消了默认导出此架构. 可以不用支持此架构. </p>
-<p>如果要支持, 需要手动添加3个架构.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>五. Debug和Release版本</p>
-<p> 一般来说, 我们应该发布的是release版本.</p>
-<p> debug:调试版本, 系统本身也会有一些调试代码. 此版本体积会稍大, 运行会稍慢</p>
-<p> release: 发布版本, 系统会去除调试代码, 体积变小, 运行速度变快. 对用户来说没有明显的感觉</p>
-<p> 六. 到底要不要合成多个架构</p>
-<p> 真机和模拟器合成的好处: 调试会非常方便, 缺点是体积会变大(一种架构就占用一部分体积).</p>
-<p> 真机和模拟器不合成的好处:体积小,  缺点是调试稍显麻烦.</p>
-<p> 七. 资源包的问题</p>
-<ol>
-<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件重名被覆盖, 导致加载资源文件出错</p>
-</li>
-<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
-</li>
-</ol>
-<h2 id="十、创建framework静态库"><a href="#十、创建framework静态库" class="headerlink" title="十、创建framework静态库"></a>十、创建framework静态库</h2><p>第一步、新建工程。一般使用工程名就使用库的名称</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/004221_Fdey_2602883.png" alt></p>
-<p>第二步、导入需要打包的资源文件，同时把资源文件需要外界访问的.h文件导入到系统推荐的.h中</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/005214_L3wy_2602883.png" alt></p>
-<p>第三步、真机，模拟器编译一下。可能会需要输入AppleID 。导出的文件没有包含.h</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/010821_kGD2_2602883.png" alt></p>
-<p>第四步、导出.h</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/011503_xvpa_2602883.png" alt></p>
-<p>第五步、可以查看一下 没合并模拟器架构之前包含几个同.a（可跳过此步）(真机包含两个，模拟器包含一个)</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/015214_YvoK_2602883.png" alt></p>
-<p>第六步、合成架构【同.a五六步详细看上边】</p>
-<p>第七步，合并架构【真机和模拟器】【注意 合并之后的动态/静态库要与原来的名称一致。不然用的时候编译报错】</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/021216_VFpb_2602883.png" alt></p>
-<p>第八步、动态库变静态库【默认是动态】好处是将来使用时不需要设置添加动态库（也就是下边的方法）</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/021900_W6yh_2602883.png" alt></p>
-<p>最后步、</p>
-<p>Framework制作后, 默认是动态库. 使用时, 需要设置一下: Tarteg –&gt; General –&gt; Embedded Binaries –&gt; 需要添加对应的动态库 【注意 要是制作的时候更改为静态库的话，就不用执行此方法】</p>
-<p><img src="http://static.oschina.net/uploads/space/2016/0330/014201_OoXJ_2602883.png" alt></p>
-<p>谢谢。 </p>
+<p><strong>图20:效果图:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105195630552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>9.最后编译，command + B，编译通过在finder中找到framework，拷贝出来</strong></p>
+</blockquote>
+<p><strong>图21:</strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20171105200205893?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></strong></p>
+<p><strong>图22:效果图</strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20171105200256439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></strong></p>
+<blockquote>
+<p><strong>1.把打包好的framework拖到demo里面</strong></p>
+</blockquote>
+<p><strong>图23:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105200838543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<blockquote>
+<p><strong>2.使用SDK，运行demo</strong></p>
+</blockquote>
+<p><strong>图24:</strong></p>
+<p><strong><img src="https://img-blog.csdn.net/20171105201517868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></strong></p>
+<p><img src="https://img-blog.csdn.net/20171105201808604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
+<p><strong>图25:效果图:</strong></p>
+<blockquote>
+<h3 id="注意-以上功能就是SDK-和-demo-相关联好了"><a href="#注意-以上功能就是SDK-和-demo-相关联好了" class="headerlink" title="注意:以上功能就是SDK 和 demo 相关联好了."></a><strong>注意:以上功能就是SDK 和 demo 相关联好了.</strong></h3></blockquote>
+<blockquote>
+<p><strong>1.修改下面SDK中的代码，运行demo就是修改后的效果，然后就可以愉快的在这个工程里面开发调试SDK了，如果我把MyView的颜色设置为yellow，再去运行demo，看一下效果</strong></p>
+</blockquote>
+<p><strong>图26:</strong></p>
+<p><img src="https://img-blog.csdn.net/20171105202155573?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpaHVib2tl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt></p>
 <table>
 <thead>
 <tr>
@@ -330,11 +309,9 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://my.oschina.net/kaqijiang/blog/649632" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d31f2248a6d167501.jpg" alt></a></td>
+<td><a href="https://blog.csdn.net/shihuboke/article/details/78450955" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d32ec7ab346572192.jpg" alt></a></td>
 </tr>
 </tbody></table>
-<br>
-
 
             
             <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
@@ -403,8 +380,8 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/python3-notes03/">
-                <span class="level-item">python3-notes03</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/dota/">
+                <span class="level-item">iOS静态库</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -503,7 +480,7 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        97
+                        98
                     </p>
                 </div>
             </div>
@@ -731,6 +708,25 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
             
             <a href="/framework/" class="media-left">
                 <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d32eb8e91e5a53488.jpg" alt="再谈iOS静态库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T10:21:23.000Z">2019-07-20</time></div>
+                    <a href="/framework/" class="has-link-black-ter is-size-6">再谈iOS静态库</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/dota/" class="media-left">
+                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg" alt="iOS静态库">
                 </p>
             </a>
@@ -738,7 +734,7 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T16:36:14.000Z">2019-07-20</time></div>
-                    <a href="/framework/" class="has-link-black-ter is-size-6">iOS静态库</a>
+                    <a href="/dota/" class="has-link-black-ter is-size-6">iOS静态库</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -798,25 +794,6 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
                     <a href="/python3-notes01/" class="has-link-black-ter is-size-6">《Python札记》1_列表list</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Accomplice/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/post-images/dxkcy.jpg" alt="超时空从犯">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T02:18:06.000Z">2019-07-18</time></div>
-                    <a href="/Accomplice/" class="has-link-black-ter is-size-6">超时空从犯</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/label/">label</a>
                     </p>
                 </div>
             </div>
@@ -899,7 +876,7 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">13</span>
+                    <span class="level-item tag">14</span>
                 </span>
             </a>
         </li>
@@ -1369,7 +1346,7 @@ amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存�
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS静态库" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="再谈iOS静态库" height="28">
                     
                 </a>
                 <p class="is-size-7">
