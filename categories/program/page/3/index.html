@@ -173,6 +173,513 @@
 
     <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-22T23:35:00.000Z">2019-06-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 482 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/80b487807e8d">Python札记13_内建函数zip、enumerate</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p><code>Python</code>中有很多的内建函数， <code>zip()</code>、 <code>enumerate()</code>等</p>
+</blockquote>
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><ul>
+<li>zip用于合并两个对象中的元素，合并的两个元素类型必须是一致的</li>
+<li>如果长度不一致， <strong>采用长度小的</strong></li>
+<li>其参数必须是 <strong>可迭代对象</strong>。</li>
+</ul>
+<p>image.png</p>
+<p>image.png</p>
+<p>image.png</p>
+<p>image.png</p>
+<p><strong>一个例题：通过zip函数实现字典中键、值位置的互换</strong><br>dict1 = {“name”: “Peter”, “lang”: “python”, “city”: “shenzhen”}</p>
+<blockquote>
+<p><code>&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;</code>：通过for遍历出字典中的key-value值，再互换</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dict1 = &#123;&quot;name&quot;: &quot;Peter&quot;, &quot;lang&quot;: &quot;python&quot;, &quot;city&quot;: &quot;shenzhen&quot;&#125;</span><br><span class="line">dict2 = &#123;&#125;</span><br><span class="line">for k,v in dict1.items():   # &amp;#x5148;&amp;#x904D;&amp;#x5386;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x952E;&amp;#x503C;&amp;#x5BF9;</span><br><span class="line">    dict2[v]=k  # &amp;#x5728;&amp;#x65B0;&amp;#x7684;&amp;#x5B57;&amp;#x5178;&amp;#x4E2D;&amp;#xFF0C;&amp;#x5C06;dict1&amp;#x7684;&amp;#x952E;&amp;#x4F5C;&amp;#x4E3A;&amp;#x503C;&amp;#x4FDD;&amp;#x5B58;&amp;#x5728;dict2&amp;#x4E2D;</span><br><span class="line">print(dict2)</span><br><span class="line"></span><br><span class="line">&#123;&apos;Peter&apos;: &apos;name&apos;, &apos;python&apos;: &apos;lang&apos;, &apos;shenzhen&apos;: &apos;city&apos;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方法二：通过zip函数实现</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(zip(dict1.values(),dict1.keys()))</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate()"></a>enumerate()</h4><ul>
+<li>enumerate()是python的内置函数</li>
+<li>enumerate在字典上是 <code>&amp;#x679A;&amp;#x4E3E;&amp;#x3001;&amp;#x5217;&amp;#x4E3E;</code>的意思</li>
+<li>对于一个可迭代的（iterable）/可遍历的对象（如列表、字符串），enumerate将其组成一个索引序列，利用它可以 <code>&amp;#x540C;&amp;#x65F6;&amp;#x83B7;&amp;#x5F97;&amp;#x7D22;&amp;#x5F15;&amp;#x548C;&amp;#x503C;</code></li>
+<li>enumerate多用于在for循环中得到计数</li>
+</ul>
+<blockquote>
+<p>通过一个例子来了解枚举enumerate()函数的功能：取出给定列表中的索引和对应的元素<br>list1 = [“python”, “java”, “php”, “Go”]</p>
+</blockquote>
+<p>方法1：for遍历</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i in range(len(list1)):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br></pre></td></tr></table></figure>
+
+<p>方法二：枚举enumerate</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i, language in enumerate(list1):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br><span class="line"></span><br><span class="line">0 is python</span><br><span class="line">1 is java</span><br><span class="line">2 is php</span><br><span class="line">3 is Go</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>例子：将字符串中的 <code>java</code> 替换成 <code>python</code></strong></p>
+<ul>
+<li>用 <code>enumerate()</code>函数的结果中少了问号，不完美<br>image.png</li>
+</ul>
+<p>用 <code>replace</code>方法解决，完美</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">raw = &quot;Do you love java? java is a good language.&quot;</span><br><span class="line">raw_string = raw.replace(&quot;java&quot;, &quot;python&quot;)</span><br><span class="line">print(raw_string)</span><br></pre></td></tr></table></figure>
+
+
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Git/git-del/" class="image is-7by1">
+            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/12333/20160916155205-650847467.jpg/300" alt="git如何删除已经提交的文件夹">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-09-17T08:02:32.000Z">2018-09-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 190 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Git/git-del/">git如何删除已经提交的文件夹</a>
+            
+        </h1>
+        <div class="content">
+            <p>在上传项目到github时,忘记忽略了某个文件夹.idea,就直接push上去了, 最后意识到了此问题,决定删除掉远程仓库中的.idea文件夹</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Git/git-del/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/python-excel/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="Python利用openpyxl来操作Excel">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-19T08:39:16.000Z">2018-06-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1689 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/python-excel/">Python利用openpyxl来操作Excel</a>
+            
+        </h1>
+        <div class="content">
+            <p>自动化的工作是为了从繁琐重复的劳动中挣脱出来，把精力用在数据分析上。自动化方面python是在好不过了，不过既然要提交报表， 就不免要美观什么的。pandas虽然很强大，但是无法对Excel完全操作，现学vba有点来不及。于是就找到这个openpyxl包，用python来修改Excel。</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/python-excel/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/python-writer/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="python操作excel的包(openpyxl、xlsxwriter)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-17T10:28:27.000Z">2018-06-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 181 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/python-writer/">python操作excel的包(openpyxl、xlsxwriter)</a>
+            
+        </h1>
+        <div class="content">
+            <p>现在支持python操作excel的包有下列这些<br><img src="https://policx.github.io/post-images/1560767425488.png" alt></p>
+<p>官网上最推荐的是openpyxl，其他包支持较老的excel版本。<br><img src="https://policx.github.io/post-images/1560767456846.png" alt><br><img src="https://policx.github.io/post-images/1560767522161.png" alt></p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/python-writer/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/pymongo/" class="image is-7by1">
+            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="python3 与 MongoDB 之间的交互">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-02T07:27:47.000Z">2018-05-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 分钟 读完 (大约 1484 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/pymongo/">python3 与 MongoDB 之间的交互</a>
+            
+        </h1>
+        <div class="content">
+            <p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/pymongo/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/mongodb/" class="image is-7by1">
+            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="MongoDB">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-02T06:11:11.000Z">2018-05-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    30 分钟 读完 (大约 4574 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/mongodb/">MongoDB</a>
+            
+        </h1>
+        <div class="content">
+            <p>MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/mongodb/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/pymysql/" class="image is-7by1">
+            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/9935/20170728175103-650600219.jpg/300" alt="python3 与 MySQL 之间的交互">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-02T03:14:27.000Z">2018-05-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 分钟 读完 (大约 2784 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/pymysql/">python3 与 MySQL 之间的交互</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="什么是-PyMySQL？"><a href="#什么是-PyMySQL？" class="headerlink" title="什么是 PyMySQL？"></a>什么是 PyMySQL？</h2><p>PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。</p>
+<p>PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/pymysql/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program/Python/django-bi-ji/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django笔记">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-04-17T17:00:16.000Z">2018-04-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 745 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program/Python/django-bi-ji/">Django笔记</a>
+            
+        </h1>
+        <div class="content">
+            <p>Django是一个开放源代码的Web应用框架，由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。</p>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program/Python/django-bi-ji/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
     <div class="card-image">
         <a href="/program/Python/django/" class="image is-7by1">
             <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django部署——uwsgi+Nginx">
@@ -289,498 +796,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Python/python-type/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="数据类型和变量">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-28T20:28:19.000Z">2018-03-01</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    19 分钟 读完 (大约 2881 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Python/python-type/">数据类型和变量</a>
-            
-        </h1>
-        <div class="content">
-            <p>Python 数据类型和变量</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python-type/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Python/python/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.pexels.com/photos/34676/pexels-photo.jpg?auto=format%2Ccompress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="字典、列表、数组和字符串">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-16T04:28:24.000Z">2018-02-16</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 376 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Python/python/">字典、列表、数组和字符串</a>
-            
-        </h1>
-        <div class="content">
-            <p>Python 字典、列表、数组和字符串</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program//socket/" class="image is-7by1">
-            <img class="thumbnail" src="/post-images/denglu.jpg" alt="大话Socket">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-06T10:30:55.000Z">2018-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 分钟 读完 (大约 1286 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program//socket/">大话Socket</a>
-            
-        </h1>
-        <div class="content">
-            <p>要了解Socket首先要了解 TCP，他们两个的关系可以说是：</p>
-<p>Socket 是抽象出来的使用 TCP/UDP 的概念模型，屏蔽掉了晦涩的底层协议的实现，是一个接口。</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program//socket/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program//http/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="HTTP状态码汇总">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-06T08:32:20.000Z">2018-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 小时 读完 (大约 8143 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program//http/">HTTP状态码汇总</a>
-            
-        </h1>
-        <div class="content">
-            <p>HTTP状态码</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program//http/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program//ip/" class="image is-7by1">
-            <img class="thumbnail" src="/post-images/denglu.jpg" alt="移动端网络请求优化之 IP 测速排序方案">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-06T08:17:03.000Z">2018-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1266 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program//ip/">移动端网络请求优化之 IP 测速排序方案</a>
-            
-        </h1>
-        <div class="content">
-            <p>IP 测速排序方案</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program//ip/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program//KVOcrash/" class="image is-7by1">
-            <img class="thumbnail" src="/post-images/denglu.jpg" alt="KVO crash 自修复技术实现与原理解析">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-06T07:44:53.000Z">2018-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    11 分钟 读完 (大约 1598 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program//KVOcrash/">KVO crash 自修复技术实现与原理解析</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li></li></ul>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program//KVOcrash/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program//crash/" class="image is-7by1">
-            <img class="thumbnail" src="/post-images/denglu.jpg" alt="连续启动 crash 自修复技术实现与原理解析">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-06T07:21:18.000Z">2018-02-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    22 分钟 读完 (大约 3287 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program//crash/">连续启动 crash 自修复技术实现与原理解析</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>前言</li>
-<li>实现原理</li>
-<li>优化：降低50%以上误报机率</li>
-<li>对原有API设计的几点优化意见</li>
-<li><ol>
-<li>机制状态应当用枚举来做为API透出</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>关键数值应当做为初始化参数供用户设置</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>修复、上报逻辑应当支持用户异步操作</li>
-</ol>
-</li>
-<li>什么时候会出现该异常？</li>
-<li>连续启动 crash 自修复技术实现与原理解析</li></ul>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program//crash/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Linux/nginx/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/17/5d2ecda68496439228.jpg" alt="Nginx">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-02-03T09:11:38.000Z">2018-02-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    13 分钟 读完 (大约 1940 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Linux/nginx/">Nginx</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx?"></a>什么是Nginx?</h3><p>Nginx (engine x) 是一款轻量级的Web 服务器 、反向代理服务器及电子邮件（IMAP/POP3）代理服务器。</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Linux/nginx/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -803,7 +818,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/7/">7</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/8/">8</a></li>
             
         </ul>
     </nav>
@@ -1077,7 +1092,7 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="https://www.2345.com/?k.cn" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
                 </p>
@@ -1086,7 +1101,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1225,7 +1240,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">68</span>
+                <span class="level-item tag">76</span>
             </span>
         </a></li>
             </ul>
@@ -1688,7 +1703,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -1734,7 +1749,7 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="https://www.2345.com/?k.cn" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
                 </p>
@@ -1743,7 +1758,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1882,7 +1897,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">68</span>
+                <span class="level-item tag">76</span>
             </span>
         </a></li>
             </ul>
@@ -2345,7 +2360,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 

@@ -350,17 +350,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Git/git-del/" class="image is-7by1">
-            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/12333/20160916155205-650847467.jpg/300" alt="git如何删除已经提交的文件夹">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-09-17T08:02:32.000Z">2018-09-17</time>
+                <time class="level-item has-text-grey" datetime="2019-06-27T07:38:00.000Z">2019-06-27</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -370,7 +364,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 190 个字)
+                    3 分钟 读完 (大约 510 个字)
                 </span>
                 
                 
@@ -379,22 +373,63 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Git/git-del/">git如何删除已经提交的文件夹</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/7d0264406a8e">Python札记20_递归、传递</a>
             
         </h1>
         <div class="content">
-            <p>在上传项目到github时,忘记忽略了某个文件夹.idea,就直接push上去了, 最后意识到了此问题,决定删除掉远程仓库中的.idea文件夹</p>
+            <blockquote>
+<p>在 <code>Python</code>中函数也是一种 <code>&amp;#x5BF9;&amp;#x8C61;</code>，有几种特别的应用，本文中先讲解前两种：</p>
+</blockquote>
+<ul>
+<li>递归函数</li>
+<li>传递函数</li>
+<li>嵌套函数</li>
+</ul>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><blockquote>
+<p><code>&amp;#x9012;&amp;#x5F52;</code>又称为 <code>&amp;#x9012;&amp;#x56DE;</code>，是指在函数的定义中使用函数自身的方法。 <strong>递归最典型的例子就是斐波那契数列的实现。</strong></p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    if n == 0:</span><br><span class="line">        return 0</span><br><span class="line">    elif n == 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return fib(n-1) + fib(n-2)   # &amp;#x4E24;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#x8C03;&amp;#x7528;fib()&amp;#x51FD;&amp;#x6570;&amp;#x672C;&amp;#x8EAB;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    result = fib(4)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>过程解释</strong></p>
+<ul>
+<li>n=0：返回0</li>
+<li>n=1：返回1</li>
+<li>n=4：<ul>
+<li>第一步变成：fib(3) + fib(2)</li>
+<li>第二步变成：fib(3)变成fib(2)+fib(1)；fib(2)变成fib(1)+fib(0)=1</li>
+<li>第三步变成：步骤二中的fib(2)继续变成fib(1)+fib(0)，fib(1)+fib(0)+fib(1)=2</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>总结：每个递归的过程都是朝着最开始的条件挺近。递归是能够被迭代或者循环替代的，后者的效率高于递归。 <strong>递归慎用。</strong></p>
+</blockquote>
+<ul>
+<li>优化：</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m = &#123;0:0, 1:1&#125;  # &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E24;&amp;#x4E2A;&amp;#x6700;&amp;#x521D;&amp;#x7684;&amp;#x503C;</span><br><span class="line"></span><br><span class="line">def fib(n):</span><br><span class="line">    if not n in m.keys():   # &amp;#x5224;&amp;#x65AD;n&amp;#x662F;&amp;#x5426;&amp;#x5728;m&amp;#x7684;&amp;#x952E;&amp;#x4E2D;</span><br><span class="line">        m[n] = fib(n-1) + fib(n-2)</span><br><span class="line">    return m[n]</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    f = fib(5)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="传递函数"><a href="#传递函数" class="headerlink" title="传递函数"></a>传递函数</h4><p>将函数当作参数传入到另一个函数中。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def power_seq(func, seq):  #&amp;#x4E24;&amp;#x4E2A;&amp;#x53C2;&amp;#x6570;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#xFF0C;&amp;#x4E00;&amp;#x4E2A;&amp;#x53D8;&amp;#x91CF;</span><br><span class="line">    return [func(i) for i in seq]</span><br><span class="line"></span><br><span class="line">def ping_fang(i):</span><br><span class="line">    return i ** 2</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    num_seq = [1, 2, 3]</span><br><span class="line">    res = power_seq(ping_fang, num_seq)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><p><strong>方法1</strong><br>将列表list=[1, 2, 3]变成l[“1”, “2”, “3”]</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def fun(func, seq):</span><br><span class="line">    return [func(i) for i in seq]</span><br><span class="line"></span><br><span class="line">def str_change(i):</span><br><span class="line">    return &quot;&#123;&#125;&quot;.format(i)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    list1 = [1, 2, 3]</span><br><span class="line">    res = fun(str_change, list1)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>方法2</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list1 = [1, 2, 3]</span><br><span class="line">list2 = []</span><br><span class="line">for i in list1:</span><br><span class="line">    list2.append(&quot;&#123;&#125;&quot;.format(i))</span><br><span class="line">    print(list2)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>方法3</strong><br>通过 <code>for</code>循环进行遍历 <code>list1</code>中的每个元素，再利用 <code>str()</code>函数进行转化，最后通过list()函数显示出来：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">list1 = [1, 2, 3]</span><br><span class="line">list2 = [str(i) for i in list1]</span><br><span class="line">print(list(list2))</span><br><span class="line"></span><br><span class="line">&amp;#x7ED3;&amp;#x679C;&amp;#xFF1A;</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;]</span><br></pre></td></tr></table></figure>
+
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Git/git-del/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -409,17 +444,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/python-excel/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="Python利用openpyxl来操作Excel">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-19T08:39:16.000Z">2018-06-19</time>
+                <time class="level-item has-text-grey" datetime="2019-06-25T08:00:00.000Z">2019-06-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -429,7 +458,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1689 个字)
+                    2 分钟 读完 (大约 263 个字)
                 </span>
                 
                 
@@ -438,22 +467,39 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/python-excel/">Python利用openpyxl来操作Excel</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/885ca0e41a85">Python札记19_python参数收集</a>
             
         </h1>
         <div class="content">
-            <p>自动化的工作是为了从繁琐重复的劳动中挣脱出来，把精力用在数据分析上。自动化方面python是在好不过了，不过既然要提交报表， 就不免要美观什么的。pandas虽然很强大，但是无法对Excel完全操作，现学vba有点来不及。于是就找到这个openpyxl包，用python来修改Excel。</p>
+            <blockquote>
+<p>Python是如何处理函数中参数的个数不确定性呢？</p>
+</blockquote>
+<ul>
+<li><code>*args</code>： <strong>元组</strong>形式收集</li>
+<li><code>**kargs</code>： <strong>字典</strong>形式收集</li>
+</ul>
+<h4 id="元组形式"><a href="#元组形式" class="headerlink" title="元组形式"></a>元组形式</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def fun(x, *args):</span><br><span class="line">    print(x)</span><br><span class="line">    result = x</span><br><span class="line">    print(args)</span><br><span class="line">    for i in args:</span><br><span class="line">        result += i</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line">y = fun(1,2,3,4,5,6)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>结果解析</strong></p>
+<ul>
+<li>若参数个数不确定，其他参数全部通过*args以 <code>&amp;#x5143;&amp;#x7EC4;</code>的形式收集</li>
+<li>1传给参数x， <strong>只有第一个参数</strong></li>
+<li>其他全部给 <code>args</code>，其中* <strong>号必须带上</strong></li>
+<li><code>&amp;#x7262;&amp;#x8BB0;&amp;#xFF1A;</code>一定是通过 <code>&amp;#x5143;&amp;#x7EC4;</code>收集</li>
+</ul>
+<p>image.png</p>
+<h4 id="字典形式"><a href="#字典形式" class="headerlink" title="字典形式"></a>字典形式</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def foo(**kargs):</span><br><span class="line">    print(kargs)</span><br><span class="line"></span><br><span class="line">foo(a=1, b=2, c=3)   # &amp;#x4F20;&amp;#x5165;&amp;#x201C;&amp;#x952E;&amp;#x201D;&amp;#x201C;&amp;#x503C;&amp;#x201D;</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>一个综合题让你明白到底是怎么传参的？</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def foo(x,y,z,*args,**kargs):</span><br><span class="line">    print(x)</span><br><span class="line">    print(y)</span><br><span class="line">    print(z)</span><br><span class="line">    print(args)</span><br><span class="line">    print(kargs)</span><br><span class="line"></span><br><span class="line">foo(&quot;python&quot;, 11, &quot;java&quot;)   # &amp;#x53EA;&amp;#x6709;3&amp;#x4E2A;&amp;#x53D8;&amp;#x91CF;&amp;#xFF0C;&amp;#x5206;&amp;#x522B;&amp;#x7ED9;x&amp;#x3001;y&amp;#x3001;z</span><br><span class="line">foo(&quot;python&quot;, 11, &quot;java&quot;,12,13,name=&quot;Peter&quot;)  # &amp;#x524D;3&amp;#x4E2A;&amp;#x4F20;&amp;#x7ED9;xyz&amp;#xFF0C;&amp;#x5176;&amp;#x4ED6;&amp;#x7684;&amp;#x975E;&amp;#x5B57;&amp;#x5178;&amp;#x5F62;&amp;#x5F0F;&amp;#x7ED9;args</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python-excel/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -468,17 +514,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/python-writer/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="python操作excel的包(openpyxl、xlsxwriter)">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-17T10:28:27.000Z">2018-06-17</time>
+                <time class="level-item has-text-grey" datetime="2019-06-25T04:50:00.000Z">2019-06-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -488,7 +528,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 181 个字)
+                    3 分钟 读完 (大约 494 个字)
                 </span>
                 
                 
@@ -497,23 +537,46 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/python-writer/">python操作excel的包(openpyxl、xlsxwriter)</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/033e50614991">Python札记18_斐波那契函数（更新）</a>
             
         </h1>
         <div class="content">
-            <p>现在支持python操作excel的包有下列这些<br><img src="https://policx.github.io/post-images/1560767425488.png" alt></p>
-<p>官网上最推荐的是openpyxl，其他包支持较老的excel版本。<br><img src="https://policx.github.io/post-images/1560767456846.png" alt><br><img src="https://policx.github.io/post-images/1560767522161.png" alt></p>
+            <blockquote>
+<p>斐波那契函数起源于 <code>&amp;#x5BF9;&amp;#x6590;&amp;#x6CE2;&amp;#x90A3;&amp;#x5951;&amp;#x6570;&amp;#x5217;</code>的实现，斐波那契数列为：<br>a[0] = 0 (n=0)<br>a[1] = 1 (n=1)<br>a[n] = a[n-1] + a[n-2] (n&gt;=2)</p>
+</blockquote>
+<p><strong>本篇文章将会从各个方法实现斐波那契数列</strong></p>
+<ul>
+<li><em>*方法1</em></li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def fibs(n):</span><br><span class="line">    list1 = [0,1]</span><br><span class="line">    for i in range(n-2):</span><br><span class="line">        list1.append(list1[-2]+list1[-1])</span><br><span class="line">    return list1</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    result = fibs(10)</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先定义一个初始列表 <code>[0,1]</code>，用于存放数据</li>
+<li><code>list.append(x)</code>方法的理解：将参数x存放在列表list的最后面</li>
+<li><code>list1.append(list1[-2]+list1[-1])</code>：表示将 <code>&amp;#x5012;&amp;#x6570;&amp;#x672B;&amp;#x5C3E;</code>两个元素相加，再追加到 <code>list1</code>末尾</li>
+<li>通过 <code>n-2</code>次遍历，获取所有的数据</li>
+<li>过程如下： <code>&amp;#x672B;&amp;#x5C3E;&amp;#x4E24;&amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#x76F8;&amp;#x52A0;&amp;#xFF0C;&amp;#x518D;&amp;#x653E;&amp;#x5230;&amp;#x672B;&amp;#x5C3E;&amp;#xFF0C;&amp;#x53CD;&amp;#x590D;&amp;#x5FAA;&amp;#x73AF;</code></li>
+</ul>
+<p>循环次数 list1前 list1后 1 [0,1] [0,1,1] 2 [0,1,1] [0,1,1,2] 3 [0,1,1,2] [0,1,1,2,3] … … … 8 [0, 1, 1, 2, 3, 5, 8, 13, 21] [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</p>
+<p><strong>方法2</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def fib(n):</span><br><span class="line">    if n == 0:</span><br><span class="line">        return 0</span><br><span class="line">    elif n == 1:</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return fib(n-1) + fib(n-2)   # &amp;#x4E24;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#x8C03;&amp;#x7528;fib()&amp;#x51FD;&amp;#x6570;&amp;#x672C;&amp;#x8EAB;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    result = fib(4)</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法3</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m = &#123;0:0, 1:1&#125;  # &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x4E24;&amp;#x4E2A;&amp;#x6700;&amp;#x521D;&amp;#x7684;&amp;#x503C;</span><br><span class="line"></span><br><span class="line">def fib(n):</span><br><span class="line">    if not n in m.keys():   # &amp;#x5224;&amp;#x65AD;n&amp;#x662F;&amp;#x5426;&amp;#x5728;m&amp;#x7684;&amp;#x952E;&amp;#x4E2D;</span><br><span class="line">        m[n] = fib(n-1) + fib(n-2)</span><br><span class="line">    return m[n]</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    f = fib(5)</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法4</strong></p>
+<ul>
+<li>通过迭代器进行实现，参考</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Fibs:   # &amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x4E2A;&amp;#x7C7B;</span><br><span class="line">    def __init__(self, max):  # &amp;#x4F20;&amp;#x5165;max&amp;#x53C2;&amp;#x6570;</span><br><span class="line">        self.max = max   # &amp;#x4E09;&amp;#x4E2A;&amp;#x5C5E;&amp;#x6027;&amp;#xFF0C;&amp;#x4E09;&amp;#x4E2A;&amp;#x521D;&amp;#x59CB;&amp;#x503C;</span><br><span class="line">        self.a = 0</span><br><span class="line">        self.b = 1</span><br><span class="line"></span><br><span class="line">    def __iter__(self):   # &amp;#x8FD4;&amp;#x56DE;&amp;#x8FED;&amp;#x4EE3;&amp;#x5668;&amp;#x672C;&amp;#x8EAB;&amp;#xFF0C;&amp;#x8BF4;&amp;#x660E;&amp;#x662F;&amp;#x53EF;&amp;#x8FED;&amp;#x4EE3;&amp;#x7684;</span><br><span class="line">        return self</span><br><span class="line"></span><br><span class="line">    def __next__(self):   # &amp;#x8FED;&amp;#x4EE3;&amp;#x5668;&amp;#x5BF9;&amp;#x8C61;</span><br><span class="line">        fib = self.a</span><br><span class="line">        if fib &gt; self.max:</span><br><span class="line">            raise StopIteration</span><br><span class="line">        self.a, self.b = self.b, self.a + self.b</span><br><span class="line">        return fib</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    fibs = Fibs(9)</span><br><span class="line">    print(list(fibs))</span><br><span class="line">#     print([x for x in fibs])</span><br></pre></td></tr></table></figure>
+
+<p><strong>一行代码解决</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print([x[0] for x in [(a[i][0], a.append([a[i][1], a[i][0]+a[i][1]])) for a in ([[1, 1]], ) for i in range(30)]])</span><br></pre></td></tr></table></figure>
+
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python-writer/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -528,17 +591,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/pymongo/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="python3 与 MongoDB 之间的交互">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T07:27:47.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-06-25T04:08:00.000Z">2019-06-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -548,7 +605,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1484 个字)
+                    6 分钟 读完 (大约 844 个字)
                 </span>
                 
                 
@@ -557,22 +614,92 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymongo/">python3 与 MongoDB 之间的交互</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/20b2df2e0389">Python札记17_初识函数function</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。</p>
+            <blockquote>
+<p>在数学中，一个函数就是一种 <code>&amp;#x6620;&amp;#x5C04;</code>关系。 <strong>在Python中一切皆是对象，函数也是对象，那么函数有自己的属性</strong>。在 <code>Python</code>中用句点（英文的句号.）来表示对象的属性， <code>function</code>函数的定义，通过一个例子理解如下：</p>
+</blockquote>
+<h4 id="初识函数"><a href="#初识函数" class="headerlink" title="初识函数"></a>初识函数</h4><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1 def add_function(x, y):</span><br><span class="line">2    z = x + y</span><br><span class="line">3    return z</span><br><span class="line"></span><br><span class="line">5 if __name__ == &amp;#x201C;__main__&amp;#x201D;</span><br><span class="line">6 result = add_function(2, 3)</span><br><span class="line">7 print(result)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 <code>Python</code>中 <code>&amp;#x5192;&amp;#x53F7;</code>和 <code>&amp;#x7A7A;&amp;#x683C;</code>很重要</li>
+<li>第一行<ul>
+<li><code>def</code>是函数的开始，告诉 <code>Python</code>解析器要声明一个函数</li>
+<li><code>add_function</code>：函数名字；不能是 <code>Python</code>中的关键字</li>
+<li><code>add_function</code>：是一个对象，function类；只有对象才可以与变量建立引用关系</li>
+<li><code>x&amp;#xFF0C;y</code>：传入函数中的参数，要写在括号里面</li>
+<li>参数x，y没有特殊的类型；在Python中， <strong>变量无类型，对象才有类型</strong></li>
+<li>第一行整体被称为函数头</li>
+</ul>
+</li>
+<li>第二行<ul>
+<li>缩进4个空格， <code>Python</code>的规定，否则报错</li>
+<li>称为函数体，需要执行的内容</li>
+</ul>
+</li>
+<li>第三行<ul>
+<li>缩进4个空格</li>
+<li>返回有调用这个函数的地方；如果不写，默认是 <code>return None</code></li>
+</ul>
+</li>
+<li>第五行：固定写法</li>
+<li>第六行：<ul>
+<li>传入两个值 <code>2,3</code>，调用之前的函数</li>
+<li>相当于是把 <code>2,3</code>分别放在 <code>a,b</code>的位置上</li>
+</ul>
+</li>
+<li>第七行：打印输出 <code>result</code>值</li>
+</ul>
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Python的命名规则为：</p>
+<ul>
+<li>变量全部小写，由下划线连接各个单词；</li>
+<li>变量名不能与Python的关键字冲突</li>
+<li>文件名全部小写，可使用下划线</li>
+<li>函数名：主要是<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E5%258C%2588%25E7%2589%2599%25E5%2588%25A9%25E5%2591%25BD%25E5%2590%258D%25E6%25B3%2595%2F7632397%3Ffr%3Daladdin" target="_blank" rel="noopener">驼峰体</a>和<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E5%258C%2588%25E7%2589%2599%25E5%2588%25A9%25E5%2591%25BD%25E5%2590%258D%25E6%25B3%2595%2F7632397%3Ffr%3Daladdin" target="_blank" rel="noopener">匈牙利命名</a>。Python中一般采用小写，可使用下划线</li>
+</ul>
+<h4 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h4><p>任何函数在被调用之前都必须先定义，再使用。</p>
+<p>image.png</p>
+<p><strong>关于返回return</strong></p>
+<ul>
+<li>返回某个值</li>
+<li>中断程序，离开函数体</li>
+</ul>
+<p>image.png</p>
+<blockquote>
+<p>不是所有的函数都有return，有的函数什么都不执行，就是返回None，pass的作用就是什么也不做：</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def foo():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def my_fun():</span><br><span class="line">    print(&quot;hello python&quot;)</span><br><span class="line">    return   # return&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#xFF1A;&amp;#x4E2D;&amp;#x65AD;&amp;#x51FD;&amp;#x6570;&amp;#x4F53;&amp;#x5185;&amp;#x7684;&amp;#x6D41;&amp;#x7A0B;&amp;#xFF0C;&amp;#x79BB;&amp;#x5F00;&amp;#x51FD;&amp;#x6570;</span><br><span class="line">    print(&quot;hello java&quot;)</span><br><span class="line"></span><br><span class="line">a = my_fun()</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="参数和变量"><a href="#参数和变量" class="headerlink" title="参数和变量"></a>参数和变量</h4><p>参数分为形参和实参。</p>
+<ul>
+<li><strong>形参：</strong><ul>
+<li>函数名后面的括号里面如果有参数，称之为 <code>&amp;#x5F62;&amp;#x53C2;</code></li>
+<li>形参表示一个值，过程希望调用它时候传递该值</li>
+<li>定义函数的时候，括号内部指定形参列表</li>
+<li>每个形参可以作为过程内部的变量</li>
+</ul>
+</li>
+</ul>
+<p>image.png</p>
+<ul>
+<li><strong>实参：</strong><ul>
+<li>调用函数的时候，给函数提供过的参数称之为 <code>&amp;#x5B9E;&amp;#x53C2;</code>，或者称之为 <code>&amp;#x53C2;&amp;#x6570;</code></li>
+<li>调用时候传递给形参的值</li>
+<li>实参没有表达式名字，每个实参都是一个表达式</li>
+<li><strong>函数参数传递的对象引用</strong>（ <code>&amp;#x52A1;&amp;#x5FC5;&amp;#x7262;&amp;#x8BB0;</code>）<br>image.png</li>
+</ul>
+</li>
+</ul>
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymongo/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -587,17 +714,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/mongodb/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="MongoDB">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T06:11:11.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-06-25T03:23:00.000Z">2019-06-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -607,7 +728,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    30 分钟 读完 (大约 4574 个字)
+                    5 分钟 读完 (大约 746 个字)
                 </span>
                 
                 
@@ -616,22 +737,75 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/mongodb/">MongoDB</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/846ced9f138f">Python札记16_操作文件（with、read、readline、readlines)</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。</p>
+            <ul>
+<li>打开文件用到open函数，标准的语法为： <code>open(name[,mode[,buffering]])</code></li>
+<li><code>open</code>函数的文件名是必须的，模式和缓冲参数是可选的；例如，打开 <code>c:\text</code>的文件 <code>a.txt</code>： <code>x = open(r&#39;c:\text\a.txt&#39;)</code></li>
+<li>用读的模式打开文件，如果不存在就会报错。<br>image.png</li>
+</ul>
+<blockquote>
+<p>文件打开模式 <code>r&amp;#x3001;w&amp;#x3001;a</code>对应基本的 <code>&amp;#x53EA;&amp;#x8BFB;</code>、 <code>&amp;#x53EA;&amp;#x5199;</code>、 <code>&amp;#x8FFD;&amp;#x52A0;&amp;#x6A21;&amp;#x5F0F;</code>；<br> <code>b&amp;#x3001;t&amp;#x3001;+&amp;#x3001;U</code>对应 <code>&amp;#x4E8C;&amp;#x8FDB;&amp;#x5236;&amp;#x6A21;&amp;#x5F0F;</code>、 <code>&amp;#x6587;&amp;#x672C;&amp;#x6A21;&amp;#x5F0F;</code>、 <code>&amp;#x8BFB;&amp;#x5199;&amp;#x6A21;&amp;#x5F0F;</code>、 <code>&amp;#x901A;&amp;#x7528;&amp;#x6362;&amp;#x884C;&amp;#x7B26;</code>。</p>
+</blockquote>
+<p>模式 含义 是否报错 位置 r 只读 报错 文件开头 r+ 读+写 报错 文件开头 w 只写 创建 清空 文件开头 w+ 写+读 创建 清空 文件开头 a 追加写 创建 文件结尾 a+ 追加写+读 创建 文件结尾</p>
+<ul>
+<li><code>f = open(&#39;a.txt&#39;, &#39;w&#39;)</code> //用写的方式打开 <code>a.txt</code>文件，并且赋给f</li>
+<li><code>f.write(&#39;hello,&#39;)</code> // <code>write</code>写入括号中的内容</li>
+<li><code>f.write(&#39;i play python&#39;)</code> //写入内容，但是内容是追加在 <code>hello</code>之后的</li>
+<li><code>f.close()</code> //调用 <code>close</code>方法，关闭文件</li>
+</ul>
+<p>四、文件读取操作方法</p>
+<blockquote>
+<p>文件的读取主要是三种方式： <code>read&amp;#x3001;readline&amp;#x3001;readlines</code>，每次读取都有指针伴随着移动，用 <code>seek()</code>函数能够查看指针的偏移量，下面进行详细的讲解：</p>
+</blockquote>
+<p><strong>read</strong></p>
+<ul>
+<li><code>file.read(size)</code>：参数 <code>size</code>可省略</li>
+<li>按照 <code>&amp;#x5B57;&amp;#x8282;</code>读取，并返回的是 <code>&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;</code></li>
+<li>将文件内容从指针开始读取到文件结束</li>
+<li>全部读取，返回的是 <code>&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;</code></li>
+</ul>
+<p><strong>readline</strong></p>
+<ul>
+<li>从指针位置读取一行，直到最后一行</li>
+<li>到了最后一行，如果还读取则返回 <code>&amp;#x7A7A;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;</code>， <code>&amp;#x4E0D;&amp;#x62A5;&amp;#x9519;</code></li>
+</ul>
+<p><strong>readlines</strong></p>
+<ul>
+<li>将文件按照行读取，放到一个列表中，用for进行遍历</li>
+<li>列表中的每个元素都是文件的一行，并且都是字符串</li>
+<li><code>readlines</code>利用 <code>for</code>循环读取和 <code>for i in f</code>直接获取的区别是：<ul>
+<li>前者先执行f.readlines，将文件的每行先存入内存中；</li>
+<li>后者没有，一次性将文件全部读入内存中；</li>
+</ul>
+</li>
+</ul>
+<p><strong>test：利用一个rest文件进行测试三个方法的功能</strong><br>源文件如下：</p>
+<ul>
+<li>for遍历直接读取</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f =open(&quot;D:\Python\datalearning\qiwei\test&quot;)</span><br><span class="line">for i in f:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>read读取</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = open(r&quot;D:\Python\datalearning\qiwei\test&quot;)</span><br><span class="line">for i in f.read():</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<p>部分结果截图如下，按照 <code>&amp;#x5B57;&amp;#x8282;</code>输出：</p>
+<p>…..中间省略</p>
+<ul>
+<li>readline<br>只显示一行的信息；如果继续读取，则返回下一行信息</li>
+<li>readlines<br>image.png</li>
+</ul>
+<p><strong>fileinput模块</strong><br>读取大文件常用的是 <code>fileinput</code>模块，需要先进行导入： <code>import fileinput</code></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import fileinput</span><br><span class="line">for line in fileinput.input(&quot;a.txt&quot;):</span><br><span class="line">    print(line, end=&quot;&quot;)</span><br></pre></td></tr></table></figure>
+
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/mongodb/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -646,17 +820,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/pymysql/" class="image is-7by1">
-            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/9935/20170728175103-650600219.jpg/300" alt="python3 与 MySQL 之间的交互">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T03:14:27.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-06-24T04:35:00.000Z">2019-06-24</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -666,7 +834,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2784 个字)
+                    5 分钟 读完 (大约 681 个字)
                 </span>
                 
                 
@@ -675,23 +843,60 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymysql/">python3 与 MySQL 之间的交互</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/4c6c9fc782d8">Python札记15_break、continue、else</a>
             
         </h1>
         <div class="content">
-            <h2 id="什么是-PyMySQL？"><a href="#什么是-PyMySQL？" class="headerlink" title="什么是 PyMySQL？"></a>什么是 PyMySQL？</h2><p>PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。</p>
-<p>PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。</p>
+            <blockquote>
+<p>break：在某个地方中断循环，跳出循环体<br>continue：从当前位置（ <code>continue</code>所在位置）中跳到循环体 <code>&amp;#x6700;&amp;#x540E;&amp;#x4E00;&amp;#x884C;&amp;#x7684;&amp;#x540E;&amp;#x9762;</code>，不执行最后一行。对于一个循环体来说， <code>&amp;#x6700;&amp;#x540E;&amp;#x4E00;&amp;#x884C;&amp;#x7684;&amp;#x540E;&amp;#x9762;&amp;#x5C31;&amp;#x662F;&amp;#x5F00;&amp;#x59CB;</code>。通过例子来体会两种语句<br>else：主要适合if或者while等进行联合使用。</p>
+</blockquote>
+<ul>
+<li>break</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = 6</span><br><span class="line">while a :    # a=6&amp;#x5C31;&amp;#x8868;&amp;#x793A;&amp;#x4E3A;True&amp;#xFF0C;&amp;#x4E0B;&amp;#x540C;</span><br><span class="line">    if a % 2 == 0:</span><br><span class="line">        break    # &amp;#x6EE1;&amp;#x8DB3;&amp;#x6761;&amp;#x4EF6;&amp;#xFF0C;&amp;#x8DF3;&amp;#x51FA;&amp;#x5FAA;&amp;#x73AF;&amp;#x4F53;,&amp;#x76F4;&amp;#x63A5;&amp;#x6267;&amp;#x884C;&amp;#x7B2C;&amp;#x4E8C;&amp;#x4E2A;print&amp;#x8BED;&amp;#x53E5;</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;&#123;&#125; is odd number&quot;.format(a))</span><br><span class="line">        a -= 1</span><br><span class="line">print(&quot;&#123;&#125; is even number&quot;.format(a))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = 7</span><br><span class="line">while a :</span><br><span class="line">    if a % 2 == 0:</span><br><span class="line">        break    # &amp;#x4E0D;&amp;#x6EE1;&amp;#x8DB3;&amp;#x6761;&amp;#x4EF6;&amp;#xFF0C;&amp;#x6267;&amp;#x884C;else&amp;#x8BED;&amp;#x53E5;&amp;#xFF0C;&amp;#x6253;&amp;#x5370;print&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;a&amp;#x51CF;1&amp;#x53D8;&amp;#x6210;6&amp;#xFF1B;&amp;#x518D;&amp;#x6267;&amp;#x884C;&amp;#x5FAA;&amp;#x73AF;&amp;#xFF0C;&amp;#x6EE1;&amp;#x8DB3;if&amp;#x6761;&amp;#x4EF6;&amp;#xFF0C;&amp;#x8DF3;&amp;#x51FA;&amp;#x5FAA;&amp;#x73AF;&amp;#x6267;&amp;#x884C;&amp;#x7B2C;&amp;#x4E8C;&amp;#x4E2A;print</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;&#123;&#125; is odd number&quot;.format(a))</span><br><span class="line">        a -= 1</span><br><span class="line">print(&quot;&#123;&#125; is even number&quot;.format(a))</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<ul>
+<li>continue</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = 9</span><br><span class="line">while a:</span><br><span class="line">    if a % 2 == 0:</span><br><span class="line">        a -= 1</span><br><span class="line">        continue</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;&#123;&#125; is odd number&quot;.format(a))</span><br><span class="line">        a -= 1</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>理解结果：</strong></p>
+<ul>
+<li><p>最开始 <code>a=9</code>不满足 <code>if</code>，执行 <code>else</code>的 <code>print</code>语句，同时 <code>a</code>变成8进入第二次循环。</p>
+</li>
+<li><p>第二次循环 <code>a=8</code>，满足 <code>if</code>， <code>a</code>执行自减1操作变成7，遇到 <code>continue</code>，跳到循环开始地方 <code>while</code>语句，带着 <code>a=7</code>进入第三次循环。</p>
+</li>
+<li><p>第三次循环 <code>a=7</code>，不满足if，执行 <code>else</code>的 <code>print</code>语句，同时 <code>a</code>变成6进入第四次循环。</p>
+</li>
+<li><p>第四次循环 <code>a=6</code>，满足 <code>if</code>， <code>a</code>执行自减1操作变成5，遇到 <code>continue</code>，跳到循环开始地方 <code>while</code>语句，带着 <code>a=5</code>进入第五次循环。<br>……</p>
+</li>
+<li><p>最后一次， <code>a=1</code>不满足if，执行 <code>else</code>语句，同时 <code>a</code>自减变成0，不再满足 <code>while</code>语句条件，循环结束。</p>
+</li>
+</ul>
+<p><strong>while…else…</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">count = 0</span><br><span class="line">while count &lt; 5:</span><br><span class="line">    print(&quot;&#123;&#125; is less than 5 &quot;.format(count))</span><br><span class="line">    count += 1</span><br><span class="line">else:</span><br><span class="line">    print(&quot;&#123;&#125; is not less than 5 &quot;.format(count))</span><br></pre></td></tr></table></figure>
+
+<p><strong>按照步骤来理解</strong>：</p>
+<ul>
+<li><p><code>a=0</code>满足 <code>while</code>条件，执行第一个 <code>print</code>，并且自加1变成了1，进去第二次循环</p>
+</li>
+<li><p><code>a=1</code>满足 <code>while</code>条件，执行第一个 <code>print</code>，并且自加1变成了2，进去第三次循环</p>
+</li>
+<li><p><code>a=2</code>满足 <code>while</code>条件，执行第一个 <code>print</code>，并且自加1变成了3，进去第四次循环<br>……</p>
+</li>
+<li><p>a=4满足 <code>while</code>条件，执行第一个 <code>print</code>，并且自加1变成了5，进去第六次循环</p>
+</li>
+<li><p><code>a=5</code>满足 <code>while</code>条件，执行 <code>else</code>语句，循环结束。</p>
+</li>
+</ul>
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymysql/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -706,17 +911,11 @@
 
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/django-bi-ji/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django笔记">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T17:00:16.000Z">2018-04-18</time>
+                <time class="level-item has-text-grey" datetime="2019-06-23T07:49:00.000Z">2019-06-23</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -726,7 +925,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 745 个字)
+                    7 分钟 读完 (大约 1099 个字)
                 </span>
                 
                 
@@ -735,22 +934,56 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/django-bi-ji/">Django笔记</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/659bc234b31d">Python札记14_while语句</a>
             
         </h1>
         <div class="content">
-            <p>Django是一个开放源代码的Web应用框架，由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。</p>
+            <blockquote>
+<p>单词 <code>while</code>翻译成中文就是 <code>&amp;#x5F53;......&amp;#x7684;&amp;#x65F6;&amp;#x5019;</code>，常用作时间状语， <code>while someone do something</code>，表示当某个条件成立的时候做某事。</p>
+</blockquote>
+<ul>
+<li><code>while</code> 判断条件:<ul>
+<li>执行语句</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.runoob.com%2Fpython%2Fpython-while-loop.html" target="_blank" rel="noopener">while循环语句</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fbaijiahao.baidu.com%2Fs%3Fid%3D1617026919131512866%26wfr%3Dspider%26for%3Dpc" target="_blank" rel="noopener">while循环语句的使用</a></p>
+<ul>
+<li>通过一个简单的猜数字游戏来认识 <code>while</code>语句</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import  random</span><br><span class="line">count = 0</span><br><span class="line">number = random.randint(0, 101)    # &amp;#x4EA7;&amp;#x751F;&amp;#x4E00;&amp;#x4E2A;&amp;#x968F;&amp;#x673A;&amp;#x6570;</span><br><span class="line"></span><br><span class="line">while True:    # &amp;#x4E0D;&amp;#x9650;&amp;#x5236;&amp;#x731C;&amp;#x7684;&amp;#x6B21;&amp;#x6570;&amp;#xFF0C;True&amp;#x4E00;&amp;#x76F4;&amp;#x4E3A;&amp;#x771F;</span><br><span class="line">    number_input = input(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x5B57;&quot;)     # input&amp;#x51FD;&amp;#x6570;&amp;#x8F93;&amp;#x5165;&amp;#x90FD;&amp;#x662F;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x8FDB;&amp;#x884C;&amp;#x8F6C;&amp;#x5316;&amp;#x6210;int&amp;#x7C7B;&amp;#x578B;</span><br><span class="line">    count += 1</span><br><span class="line"></span><br><span class="line">    if not number_input.isdigit():   # &amp;#x5224;&amp;#x65AD;&amp;#x8F93;&amp;#x5165;&amp;#x7684;&amp;#x6570;&amp;#x662F;&amp;#x5426;&amp;#x662F;&amp;#x6574;&amp;#x6570;</span><br><span class="line">        print(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;&amp;#x4E00;&amp;#x4E2A;&amp;#x6574;&amp;#x6570;&quot;)</span><br><span class="line">    elif int(number_input) &lt; 0 or int(number_input)&gt; 100:   # &amp;#x4FDD;&amp;#x8BC1;&amp;#x8303;&amp;#x56F4;&amp;#x5728;0-100</span><br><span class="line">        print(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;0&amp;#x5230;100&amp;#x7684;&amp;#x6570;&amp;#x5B57;&quot;)</span><br><span class="line">    else:   #    &amp;#x5206;3&amp;#x4E2D;&amp;#x60C5;&amp;#x51B5;&amp;#x6765;&amp;#x6BD4;&amp;#x8F83;&amp;#x8F93;&amp;#x5165;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&amp;#x548C;&amp;#x968F;&amp;#x673A;&amp;#x6570;&amp;#x7684;&amp;#x5927;&amp;#x5C0F;&amp;#x5173;&amp;#x7CFB;</span><br><span class="line">        if int(number_input) == number:</span><br><span class="line">            print(&quot;&amp;#x606D;&amp;#x559C;&amp;#x60A8;&#123;&#125;&amp;#x6B21;&amp;#x731C;&amp;#x5BF9;&amp;#xFF0C;&amp;#x6570;&amp;#x5B57;&amp;#x6B63;&amp;#x662F;&#123;&#125;&quot;.format(count, number_input))</span><br><span class="line">        elif int(number_input) &gt; number:</span><br><span class="line">            print(&quot;&amp;#x60A8;&amp;#x731C;&amp;#x4E86;&#123;&#125;&amp;#x6B21;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&#123;&#125;&amp;#x8FC7;&amp;#x5927;&amp;#xFF0C;&amp;#x8BF7;&amp;#x518D;&amp;#x6B21;&amp;#x8F93;&amp;#x5165;&quot;.format(count, number_input))</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;&amp;#x60A8;&amp;#x731C;&amp;#x4E86;&#123;&#125;&amp;#x6B21;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&#123;&#125;&amp;#x8FC7;&amp;#x5C0F;&amp;#xFF0C;&amp;#x8BF7;&amp;#x518D;&amp;#x6B21;&amp;#x8F93;&amp;#x5165;&quot;.format(count, number_input))</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<ul>
+<li><code>while</code>后面的条件为真，执行循环体中的内容</li>
+<li><code>input</code>函数的输入内容都是字符串</li>
+<li>需要判断输入的内容是否是整数</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 13, 68, 34, 27, 91, 28]</span><br><span class="line">even = []</span><br><span class="line">odd = []    # &amp;#x5B9A;&amp;#x4E49;&amp;#x4E24;&amp;#x4E2A;&amp;#x7A7A;&amp;#x5217;&amp;#x8868;&amp;#x7528;&amp;#x6765;&amp;#x5B58;&amp;#x5728;&amp;#x6570;&amp;#x636E;</span><br><span class="line">while len(list1) &gt; 0:   #  &amp;#x5C06;&amp;#x957F;&amp;#x5EA6;&amp;#x4F5C;&amp;#x4E3A;&amp;#x5FAA;&amp;#x73AF;&amp;#x7684;&amp;#x6B21;&amp;#x6570;</span><br><span class="line">    number = list1.pop()    # pop &amp;#x51FD;&amp;#x6570;&amp;#x662F;&amp;#x5220;&amp;#x9664;&amp;#x672B;&amp;#x5C3E;&amp;#x7684;&amp;#x5143;&amp;#x7D20;&amp;#xFF0C;&amp;#x4F5C;&amp;#x4E3A;&amp;#x8FD4;&amp;#x56DE;&amp;#x503C;&amp;#x7ED9;number</span><br><span class="line">    if number % 2 == 0:     # &amp;#x5224;&amp;#x65AD;&amp;#x5947;&amp;#x5076;&amp;#x6027;</span><br><span class="line">        even.append(number)    # append&amp;#x65B9;&amp;#x6CD5;&amp;#x6570;&amp;#x8FFD;&amp;#x52A0;&amp;#x5230;&amp;#x5217;&amp;#x8868;&amp;#x4E2D;</span><br><span class="line">    else:</span><br><span class="line">        odd.append(number)</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">count = 0</span><br><span class="line">while count &lt; 9:   # &amp;#x5FAA;&amp;#x73AF;&amp;#x6B21;&amp;#x6570;</span><br><span class="line">    print(&quot;This is &#123;&#125;&quot;.format(count))   # &amp;#x683C;&amp;#x5F0F;&amp;#x5316;&amp;#x8F93;&amp;#x51FA;</span><br><span class="line">    count += 1   # count&amp;#x81EA;&amp;#x52A8;&amp;#x52A0;&amp;#x4E00;&amp;#xFF0C;&amp;#x5B9E;&amp;#x73B0;&amp;#x81EA;&amp;#x52A8;&amp;#x5FAA;&amp;#x73AF;</span><br><span class="line">print(&quot;Good bye&quot;)  # &amp;#x5F53;&amp;#x8DF3;&amp;#x51FA;&amp;#x5FAA;&amp;#x73AF;&amp;#x4F53;&amp;#xFF0C;&amp;#x6267;&amp;#x884C;&amp;#x672C;&amp;#x8BED;&amp;#x53E5;</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="习题：现有列表：list1-2-81-98-47-23-56-24-61-34-，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放"><a href="#习题：现有列表：list1-2-81-98-47-23-56-24-61-34-，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放" class="headerlink" title="习题：现有列表：list1=[2, 81, 98, 47, 23, 56, 24, 61, 34]，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放"></a>习题：现有列表：list1=[2, 81, 98, 47, 23, 56, 24, 61, 34]，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放</h4><ul>
+<li>奇数和偶数分开放：通过除以2的 <code>&amp;#x4F59;&amp;#x6570;</code>结果进行判断</li>
+<li>从小到大排序，利用 <code>&amp;#x5192;&amp;#x6CE1;&amp;#x7B97;&amp;#x6CD5;</code>实现</li>
+</ul>
+<p><strong>for遍历实现</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 81, 98, 47, 23, 56, 24, 61, 34]</span><br><span class="line">even = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5076;&amp;#x6570;</span><br><span class="line">odd = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5947;&amp;#x6570;</span><br><span class="line">for i in list1:</span><br><span class="line">    if i % 2 == 0:</span><br><span class="line">        even.append(i)   # &amp;#x5148;&amp;#x751F;&amp;#x6210;&amp;#x5076;&amp;#x6570;&amp;#x5217;&amp;#x8868;&amp;#xFF0C;&amp;#x518D;&amp;#x5229;&amp;#x7528;&amp;#x5192;&amp;#x6CE1;&amp;#x6CD5;&amp;#x8FDB;&amp;#x884C;&amp;#x4ECE;&amp;#x5C0F;&amp;#x5230;&amp;#x5927;&amp;#x8FDB;&amp;#x884C;&amp;#x6392;&amp;#x5E8F;&amp;#xFF1B;&amp;#x4E0B;&amp;#x540C;</span><br><span class="line">        length = len(even)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if even[j] &gt; even[j+1]:</span><br><span class="line">                    even[j], even[j+1] = even[j+1], even[j]</span><br><span class="line">    else:</span><br><span class="line">        odd.append(i)</span><br><span class="line">        length = len(odd)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if odd[j] &gt; odd[j+1]:</span><br><span class="line">                    odd[j], odd[j+1] = odd[j+1], odd[j]</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>while实现</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 81, 98, 47, 23, 56, 24, 61, 34]</span><br><span class="line">even = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5076;&amp;#x6570;</span><br><span class="line">odd = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5947;&amp;#x6570;</span><br><span class="line">while  len(list1) &gt; 0 :</span><br><span class="line">    i = list1.pop()</span><br><span class="line">    if i % 2 == 0:</span><br><span class="line">        even.append(i)   # &amp;#x5148;&amp;#x751F;&amp;#x6210;&amp;#x5076;&amp;#x6570;&amp;#x5217;&amp;#x8868;&amp;#xFF0C;&amp;#x518D;&amp;#x5229;&amp;#x7528;&amp;#x5192;&amp;#x6CE1;&amp;#x6CD5;&amp;#x8FDB;&amp;#x884C;&amp;#x4ECE;&amp;#x5C0F;&amp;#x5230;&amp;#x5927;&amp;#x8FDB;&amp;#x884C;&amp;#x6392;&amp;#x5E8F;&amp;#xFF1B;&amp;#x4E0B;&amp;#x540C;</span><br><span class="line">        length = len(even)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if even[j] &gt; even[j+1]:</span><br><span class="line">                    even[j], even[j+1] = even[j+1], even[j]</span><br><span class="line">    else:</span><br><span class="line">        odd.append(i)</span><br><span class="line">        length = len(odd)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if odd[j] &gt; odd[j+1]:</span><br><span class="line">                    odd[j], odd[j+1] = odd[j+1], odd[j]</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p><strong>写在最后：</strong></p>
+<blockquote>
+<p>刚好今天学习了 <code>&amp;#x5192;&amp;#x6CE1;&amp;#x6392;&amp;#x5E8F;&amp;#x7B97;&amp;#x6CD5;</code>，所以将这个列表分类的例题和冒泡算法排序相结合， 一点小成就，写出了这个代码，希望对感兴趣的小伙伴有帮助。 <strong>加油！</strong></p>
+</blockquote>
+
             
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/django-bi-ji/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -783,7 +1016,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/7/">7</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/8/">8</a></li>
             
         </ul>
     </nav>
@@ -1057,7 +1290,7 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="https://www.2345.com/?k.cn" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
                 </p>
@@ -1066,7 +1299,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1205,7 +1438,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">68</span>
+                <span class="level-item tag">76</span>
             </span>
         </a></li>
             </ul>
@@ -1668,7 +1901,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -1714,7 +1947,7 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="https://www.2345.com/?k.cn" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
                 </p>
@@ -1723,7 +1956,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1862,7 +2095,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">68</span>
+                <span class="level-item tag">76</span>
             </span>
         </a></li>
             </ul>
@@ -2325,7 +2558,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
