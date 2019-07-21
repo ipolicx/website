@@ -173,11 +173,17 @@
 
     <div class="card">
     
+    <div class="card-image">
+        <a href="/framework/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d32eb8e91e5a53488.jpg" alt="再谈iOS静态库">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-22T23:35:00.000Z">2019-06-23</time>
+                <time class="level-item has-text-grey" datetime="2017-12-20T10:21:23.000Z">2017-12-20</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -187,7 +193,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 482 个字)
+                    9 分钟 读完 (大约 1371 个字)
                 </span>
                 
                 
@@ -196,109 +202,15 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="https://www.jianshu.com/p/80b487807e8d">Python札记13_内建函数zip、enumerate</a>
+                <a class="has-link-black-ter" href="/framework/">再谈iOS静态库</a>
             
         </h1>
         <div class="content">
             <blockquote>
-<p><code>Python</code>中有很多的内建函数， <code>zip()</code>、 <code>enumerate()</code>等</p>
+<p><strong>1.现在桌面创建文件夹 SHTestSDk</strong></p>
+<p><strong>2.打开Xcode,创建一个workspace 流程: Xcode—File—New—Workspace  快捷键 :command +N = 创建项目</strong></p>
+<p><strong>3.把创建好的添加到 文件名为 SHTestSDK 里面</strong></p>
 </blockquote>
-<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><ul>
-<li>zip用于合并两个对象中的元素，合并的两个元素类型必须是一致的</li>
-<li>如果长度不一致， <strong>采用长度小的</strong></li>
-<li>其参数必须是 <strong>可迭代对象</strong>。</li>
-</ul>
-<p>image.png</p>
-<p>image.png</p>
-<p>image.png</p>
-<p>image.png</p>
-<p><strong>一个例题：通过zip函数实现字典中键、值位置的互换</strong><br>dict1 = {“name”: “Peter”, “lang”: “python”, “city”: “shenzhen”}</p>
-<blockquote>
-<p><code>&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;</code>：通过for遍历出字典中的key-value值，再互换</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dict1 = &#123;&quot;name&quot;: &quot;Peter&quot;, &quot;lang&quot;: &quot;python&quot;, &quot;city&quot;: &quot;shenzhen&quot;&#125;</span><br><span class="line">dict2 = &#123;&#125;</span><br><span class="line">for k,v in dict1.items():   # &amp;#x5148;&amp;#x904D;&amp;#x5386;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x952E;&amp;#x503C;&amp;#x5BF9;</span><br><span class="line">    dict2[v]=k  # &amp;#x5728;&amp;#x65B0;&amp;#x7684;&amp;#x5B57;&amp;#x5178;&amp;#x4E2D;&amp;#xFF0C;&amp;#x5C06;dict1&amp;#x7684;&amp;#x952E;&amp;#x4F5C;&amp;#x4E3A;&amp;#x503C;&amp;#x4FDD;&amp;#x5B58;&amp;#x5728;dict2&amp;#x4E2D;</span><br><span class="line">print(dict2)</span><br><span class="line"></span><br><span class="line">&#123;&apos;Peter&apos;: &apos;name&apos;, &apos;python&apos;: &apos;lang&apos;, &apos;shenzhen&apos;: &apos;city&apos;&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>方法二：通过zip函数实现</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(zip(dict1.values(),dict1.keys()))</span><br></pre></td></tr></table></figure>
-
-<p>image.png</p>
-<h4 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate()"></a>enumerate()</h4><ul>
-<li>enumerate()是python的内置函数</li>
-<li>enumerate在字典上是 <code>&amp;#x679A;&amp;#x4E3E;&amp;#x3001;&amp;#x5217;&amp;#x4E3E;</code>的意思</li>
-<li>对于一个可迭代的（iterable）/可遍历的对象（如列表、字符串），enumerate将其组成一个索引序列，利用它可以 <code>&amp;#x540C;&amp;#x65F6;&amp;#x83B7;&amp;#x5F97;&amp;#x7D22;&amp;#x5F15;&amp;#x548C;&amp;#x503C;</code></li>
-<li>enumerate多用于在for循环中得到计数</li>
-</ul>
-<blockquote>
-<p>通过一个例子来了解枚举enumerate()函数的功能：取出给定列表中的索引和对应的元素<br>list1 = [“python”, “java”, “php”, “Go”]</p>
-</blockquote>
-<p>方法1：for遍历</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i in range(len(list1)):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br></pre></td></tr></table></figure>
-
-<p>方法二：枚举enumerate</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i, language in enumerate(list1):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br><span class="line"></span><br><span class="line">0 is python</span><br><span class="line">1 is java</span><br><span class="line">2 is php</span><br><span class="line">3 is Go</span><br></pre></td></tr></table></figure>
-
-<p>image.png</p>
-<p><strong>例子：将字符串中的 <code>java</code> 替换成 <code>python</code></strong></p>
-<ul>
-<li>用 <code>enumerate()</code>函数的结果中少了问号，不完美<br>image.png</li>
-</ul>
-<p>用 <code>replace</code>方法解决，完美</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">raw = &quot;Do you love java? java is a good language.&quot;</span><br><span class="line">raw_string = raw.replace(&quot;java&quot;, &quot;python&quot;)</span><br><span class="line">print(raw_string)</span><br></pre></td></tr></table></figure>
-
-
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Git/git-del/" class="image is-7by1">
-            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/12333/20160916155205-650847467.jpg/300" alt="git如何删除已经提交的文件夹">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-09-17T08:02:32.000Z">2018-09-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 190 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Git/git-del/">git如何删除已经提交的文件夹</a>
-            
-        </h1>
-        <div class="content">
-            <p>在上传项目到github时,忘记忽略了某个文件夹.idea,就直接push上去了, 最后意识到了此问题,决定删除掉远程仓库中的.idea文件夹</p>
             
         </div>
         
@@ -306,7 +218,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Git/git-del/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/framework/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -325,8 +237,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/python-excel/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="Python利用openpyxl来操作Excel">
+        <a href="/program//GCD-Global/" class="image is-7by1">
+            <img class="thumbnail" src="/post-images/denglu.jpg" alt="避免使用 GCD Global队列创建Runloop常驻线程">
         </a>
     </div>
     
@@ -334,7 +246,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-19T08:39:16.000Z">2018-06-19</time>
+                <time class="level-item has-text-grey" datetime="2017-09-06T11:30:00.000Z">2017-09-06</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -344,7 +256,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1689 个字)
+                    20 分钟 读完 (大约 2998 个字)
                 </span>
                 
                 
@@ -353,11 +265,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/python-excel/">Python利用openpyxl来操作Excel</a>
+                <a class="has-link-black-ter" href="/program//GCD-Global/">避免使用 GCD Global队列创建Runloop常驻线程</a>
             
         </h1>
         <div class="content">
-            <p>自动化的工作是为了从繁琐重复的劳动中挣脱出来，把精力用在数据分析上。自动化方面python是在好不过了，不过既然要提交报表， 就不免要美观什么的。pandas虽然很强大，但是无法对Excel完全操作，现学vba有点来不及。于是就找到这个openpyxl包，用python来修改Excel。</p>
+            <p>本文对应 Demo 以及 Markdown 文件在<a href="https://github.com/ChenYilong/iOSBlog/tree/master/Tips/避免使用GCD-Global队列创建Runloop常驻线程" target="_blank" rel="noopener">仓库中</a>，文中的错误可以提 PR 到这个文件，我会及时更改。</p>
             
         </div>
         
@@ -365,7 +277,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python-excel/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//GCD-Global/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -384,8 +296,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/python-writer/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/22/5d0e4f2f57e4e99534.jpg" alt="python操作excel的包(openpyxl、xlsxwriter)">
+        <a href="/program//RxSwift/" class="image is-7by1">
+            <img class="thumbnail" src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=ef305e5a4510b912bfc1f1f8fbc69b3e/500fd9f9d72a6059070cf8fb2a34349b033bba36.jpg" alt="什么是RxSwift">
         </a>
     </div>
     
@@ -393,7 +305,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-17T10:28:27.000Z">2018-06-17</time>
+                <time class="level-item has-text-grey" datetime="2017-08-25T12:32:36.000Z">2017-08-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -403,7 +315,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 181 个字)
+                    31 分钟 读完 (大约 4626 个字)
                 </span>
                 
                 
@@ -412,12 +324,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/python-writer/">python操作excel的包(openpyxl、xlsxwriter)</a>
+                <a class="has-link-black-ter" href="/program//RxSwift/">什么是RxSwift</a>
             
         </h1>
         <div class="content">
-            <p>现在支持python操作excel的包有下列这些<br><img src="https://policx.github.io/post-images/1560767425488.png" alt></p>
-<p>官网上最推荐的是openpyxl，其他包支持较老的excel版本。<br><img src="https://policx.github.io/post-images/1560767456846.png" alt><br><img src="https://policx.github.io/post-images/1560767522161.png" alt></p>
+            <p>相信大家很早就听说过函数式响应编程概念，我是去年面试的时候接触到函数式响应编程的，当时也是第一次接触到MVVM这个概念，转眼都一年过去了，我却没有在函数式编程上做深入的研究，说来还真是惭愧。<br>不过最近由于想要使用RxSwift，所以趁这个时候好好接触和研究一下传说中的函数式编程，由于网上关于RxSwift的教程资料很少，这篇文章其实就是最RxSwift官方文档和一些概念做一些解读。算是大家学习的参考文章吧！ 先挖个坑，这可能会是一个RxSwift系列，希望大家在学习的时候有所参考。</p>
             
         </div>
         
@@ -425,7 +336,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/python-writer/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//RxSwift/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -444,8 +355,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/pymongo/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="python3 与 MongoDB 之间的交互">
+        <a href="/program//iphone/" class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="iPhone开发者选项">
         </a>
     </div>
     
@@ -453,7 +364,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T07:27:47.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2017-03-28T12:03:14.000Z">2017-03-28</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -463,7 +374,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1484 个字)
+                    4 分钟 读完 (大约 583 个字)
                 </span>
                 
                 
@@ -472,11 +383,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymongo/">python3 与 MongoDB 之间的交互</a>
+                <a class="has-link-black-ter" href="/program//iphone/">iPhone开发者选项</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。</p>
+            <p>iOS上的开发者选项，这个功能从iOS系统刚开始时就已经存在了。想要打开这个功能，我们需要满足一定的条件，首先你需要将iPhone和一台Mac电脑相连接，然后在Mac上打开Xcode开发工具，此时你iPhone的设置里就会出现“开发者”这个选项了。<br></p>
             
         </div>
         
@@ -484,7 +395,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymongo/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//iphone/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -503,8 +414,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/mongodb/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="MongoDB">
+        <a href="/program//block-callback/" class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler">
         </a>
     </div>
     
@@ -512,7 +423,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T06:11:11.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2017-02-06T11:07:03.000Z">2017-02-06</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -522,7 +433,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    30 分钟 读完 (大约 4574 个字)
+                    11 分钟 读完 (大约 1660 个字)
                 </span>
                 
                 
@@ -531,11 +442,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/mongodb/">MongoDB</a>
+                <a class="has-link-black-ter" href="/program//block-callback/">有一种 Block 叫 Callback，有一种 Callback 叫 CompletionHandler</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。</p>
+            <p>iOS10推送部分的API，大量使用了 CompletionHandler 这种命名方式，那么本文我们将对比下这种 Block 的特殊性，以便更好的理解和在自己的项目中实践 CompletionHandler 样式的 Blcok。</p>
             
         </div>
         
@@ -543,7 +454,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/mongodb/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//block-callback/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -562,8 +473,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/pymysql/" class="image is-7by1">
-            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/9935/20170728175103-650600219.jpg/300" alt="python3 与 MySQL 之间的交互">
+        <a href="/program//iosyoumeng/" class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=format%2Ccompress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="iOS 友盟分享笔记">
         </a>
     </div>
     
@@ -571,7 +482,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T03:14:27.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2017-01-16T18:30:36.000Z">2017-01-17</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -581,7 +492,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2784 个字)
+                    6 分钟 读完 (大约 912 个字)
                 </span>
                 
                 
@@ -590,12 +501,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymysql/">python3 与 MySQL 之间的交互</a>
+                <a class="has-link-black-ter" href="/program//iosyoumeng/">iOS 友盟分享笔记</a>
             
         </h1>
         <div class="content">
-            <h2 id="什么是-PyMySQL？"><a href="#什么是-PyMySQL？" class="headerlink" title="什么是 PyMySQL？"></a>什么是 PyMySQL？</h2><p>PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。</p>
-<p>PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。</p>
+            <ul>
+<li></li></ul>
             
         </div>
         
@@ -603,7 +514,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymysql/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//iosyoumeng/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -622,8 +533,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/django-bi-ji/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django笔记">
+        <a href="/program//ioshuancun/" class="image is-7by1">
+            <img class="thumbnail" src="/post-images/banner.jpg" alt="iOS计算App缓存的大小以及清理">
         </a>
     </div>
     
@@ -631,7 +542,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T17:00:16.000Z">2018-04-18</time>
+                <time class="level-item has-text-grey" datetime="2016-08-01T18:24:04.000Z">2016-08-02</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -641,7 +552,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 745 个字)
+                    1 分钟 读完 (大约 201 个字)
                 </span>
                 
                 
@@ -650,11 +561,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/django-bi-ji/">Django笔记</a>
+                <a class="has-link-black-ter" href="/program//ioshuancun/">iOS计算App缓存的大小以及清理</a>
             
         </h1>
         <div class="content">
-            <p>Django是一个开放源代码的Web应用框架，由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。</p>
+            <ul>
+<li></li></ul>
             
         </div>
         
@@ -662,7 +574,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/django-bi-ji/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//ioshuancun/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -681,8 +593,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/django/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django部署——uwsgi+Nginx">
+        <a href="/program//UIMenuController/" class="image is-7by1">
+            <img class="thumbnail" src="/post-images/iPhone.jpg" alt="UIMenuController">
         </a>
     </div>
     
@@ -690,7 +602,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T09:42:04.000Z">2018-04-17</time>
+                <time class="level-item has-text-grey" datetime="2016-07-22T13:49:01.000Z">2016-07-22</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -700,7 +612,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 864 个字)
+                    几秒 读完 (大约 5 个字)
                 </span>
                 
                 
@@ -709,11 +621,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/django/">Django部署——uwsgi+Nginx</a>
+                <a class="has-link-black-ter" href="/program//UIMenuController/">UIMenuController</a>
             
         </h1>
         <div class="content">
-            <p>用Django写了个小网站，只能在自己本地跑一跑！这怎么行？听说可以部署在云服务器上，这样别人就可以访问了!</p>
+            <ul>
+<li></li></ul>
             
         </div>
         
@@ -721,7 +634,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/django/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//UIMenuController/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -740,8 +653,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Markdown/markdown/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/06/29/5d1644497904496497.jpg" alt="Markdown 的设计哲学">
+        <a href="/program//javascriptcore/" class="image is-7by1">
+            <img class="thumbnail" src="/post-images/banner.jpg" alt="深入剖析-JavaScriptCore">
         </a>
     </div>
     
@@ -749,7 +662,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-03-22T11:32:01.000Z">2018-03-22</time>
+                <time class="level-item has-text-grey" datetime="2016-06-18T02:03:39.000Z">2016-06-18</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -759,7 +672,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1650 个字)
+                    1 小时 读完 (大约 9742 个字)
                 </span>
                 
                 
@@ -768,11 +681,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Markdown/markdown/">Markdown 的设计哲学</a>
+                <a class="has-link-black-ter" href="/program//javascriptcore/">深入剖析-JavaScriptCore</a>
             
         </h1>
         <div class="content">
-            <p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 </p>
+            <ul>
+<li></li></ul>
             
         </div>
         
@@ -780,7 +694,67 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Markdown/markdown/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/program//javascriptcore/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/program//webkit/" class="image is-7by1">
+            <img class="thumbnail" src="https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="深入剖析-WebKit">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-06-18T02:00:59.000Z">2016-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 小时 读完 (大约 31434 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/program//webkit/">深入剖析-WebKit</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li></li></ul>
+            
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/program//webkit/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -816,9 +790,9 @@
             
             <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/4/">4</a></li>
             
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/5/">5</a></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/8/">8</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/categories/program/page/6/">6</a></li>
             
         </ul>
     </nav>
@@ -866,7 +840,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        113
+                        95
                     </p>
                 </div>
             </div>
@@ -1092,16 +1066,35 @@
         
         <article class="media">
             
-            <a href="https://www.2345.com/?k.cn" class="media-left">
+            <a href="/Accomplice/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
+                    <img class="thumbnail" src="/post-images/dxkcy.jpg" alt="超时空从犯">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T02:18:06.000Z">2019-07-18</time></div>
+                    <a href="/Accomplice/" class="has-link-black-ter is-size-6">超时空从犯</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/label/">label</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1111,16 +1104,16 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="/spider/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1130,18 +1123,18 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="/ddos/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">Python札记11_运算符、if、for</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T07:26:43.000Z">2019-07-14</time></div>
+                    <a href="/ddos/" class="has-link-black-ter is-size-6">DDoS（分布式拒绝服务）攻击是无解的吗？</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1149,35 +1142,16 @@
         
         <article class="media">
             
-            <a href="/python3-notes07/" class="media-left">
+            <a href="/program/JavaScript/node/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》7_深入理解赋值和深、浅拷贝(更新)">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/15/5d2c49fe7e01233711.jpg" alt="Node.js">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T02:38:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes07/" class="has-link-black-ter is-size-6">《Python札记》7_深入理解赋值和深、浅拷贝(更新)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes06/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》6_字典">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-13T16:06:04.000Z">2019-07-14</time></div>
+                    <a href="/program/JavaScript/node/" class="has-link-black-ter is-size-6">Node.js</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1240,7 +1214,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">76</span>
+                <span class="level-item tag">58</span>
             </span>
         </a></li>
             </ul>
@@ -1262,7 +1236,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">19</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1273,7 +1247,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1703,7 +1677,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1749,16 +1723,35 @@
         
         <article class="media">
             
-            <a href="https://www.2345.com/?k.cn" class="media-left">
+            <a href="/Accomplice/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
+                    <img class="thumbnail" src="/post-images/dxkcy.jpg" alt="超时空从犯">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
-                    <a href="https://www.2345.com/?k.cn" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T02:18:06.000Z">2019-07-18</time></div>
+                    <a href="/Accomplice/" class="has-link-black-ter is-size-6">超时空从犯</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/label/">label</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/flutter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time></div>
+                    <a href="/flutter/" class="has-link-black-ter is-size-6">Flutter的环境配置 for Mac</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1768,16 +1761,16 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="/spider/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2d5059794e137401.jpg" alt="Python爬虫">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-15T02:06:04.000Z">2019-07-15</time></div>
+                    <a href="/spider/" class="has-link-black-ter is-size-6">Python爬虫</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1787,18 +1780,18 @@
         
         <article class="media">
             
-            <a href="/python3-notes08/" class="media-left">
+            <a href="/ddos/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/14/5d2ad9be1666f71074.jpeg" alt="DDoS（分布式拒绝服务）攻击是无解的吗？">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">Python札记11_运算符、if、for</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-14T07:26:43.000Z">2019-07-14</time></div>
+                    <a href="/ddos/" class="has-link-black-ter is-size-6">DDoS（分布式拒绝服务）攻击是无解的吗？</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
                     </p>
                 </div>
             </div>
@@ -1806,35 +1799,16 @@
         
         <article class="media">
             
-            <a href="/python3-notes07/" class="media-left">
+            <a href="/program/JavaScript/node/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》7_深入理解赋值和深、浅拷贝(更新)">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/15/5d2c49fe7e01233711.jpg" alt="Node.js">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T02:38:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes07/" class="has-link-black-ter is-size-6">《Python札记》7_深入理解赋值和深、浅拷贝(更新)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes06/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》6_字典">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-13T16:06:04.000Z">2019-07-14</time></div>
+                    <a href="/program/JavaScript/node/" class="has-link-black-ter is-size-6">Node.js</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1897,7 +1871,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">76</span>
+                <span class="level-item tag">58</span>
             </span>
         </a></li>
             </ul>
@@ -1919,7 +1893,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">19</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1930,7 +1904,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -2360,7 +2334,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
