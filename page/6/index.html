@@ -162,27 +162,17 @@
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
     <div class="card">
     
-    <div class="card-image">
-        <a href="/program/Python/pymongo/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="python3 与 MongoDB 之间的交互">
-        </a>
-    </div>
-    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T07:27:47.000Z">2018-05-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-06-23T07:49:00.000Z">2019-06-23</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1484 个字)
+                    7 分钟 读完 (大约 1099 个字)
                 </span>
                 
                 
@@ -191,11 +181,192 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymongo/">python3 与 MongoDB 之间的交互</a>
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/659bc234b31d">Python札记14_while语句</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。在这一节中，我们就来看看Python 3下MongoDB的存储操作。</p>
+            <blockquote>
+<p>单词 <code>while</code>翻译成中文就是 <code>&amp;#x5F53;......&amp;#x7684;&amp;#x65F6;&amp;#x5019;</code>，常用作时间状语， <code>while someone do something</code>，表示当某个条件成立的时候做某事。</p>
+</blockquote>
+<ul>
+<li><code>while</code> 判断条件:<ul>
+<li>执行语句</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.runoob.com%2Fpython%2Fpython-while-loop.html" target="_blank" rel="noopener">while循环语句</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fbaijiahao.baidu.com%2Fs%3Fid%3D1617026919131512866%26wfr%3Dspider%26for%3Dpc" target="_blank" rel="noopener">while循环语句的使用</a></p>
+<ul>
+<li>通过一个简单的猜数字游戏来认识 <code>while</code>语句</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import  random</span><br><span class="line">count = 0</span><br><span class="line">number = random.randint(0, 101)    # &amp;#x4EA7;&amp;#x751F;&amp;#x4E00;&amp;#x4E2A;&amp;#x968F;&amp;#x673A;&amp;#x6570;</span><br><span class="line"></span><br><span class="line">while True:    # &amp;#x4E0D;&amp;#x9650;&amp;#x5236;&amp;#x731C;&amp;#x7684;&amp;#x6B21;&amp;#x6570;&amp;#xFF0C;True&amp;#x4E00;&amp;#x76F4;&amp;#x4E3A;&amp;#x771F;</span><br><span class="line">    number_input = input(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;&amp;#x4E00;&amp;#x4E2A;&amp;#x6570;&amp;#x5B57;&quot;)     # input&amp;#x51FD;&amp;#x6570;&amp;#x8F93;&amp;#x5165;&amp;#x90FD;&amp;#x662F;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x8FDB;&amp;#x884C;&amp;#x8F6C;&amp;#x5316;&amp;#x6210;int&amp;#x7C7B;&amp;#x578B;</span><br><span class="line">    count += 1</span><br><span class="line"></span><br><span class="line">    if not number_input.isdigit():   # &amp;#x5224;&amp;#x65AD;&amp;#x8F93;&amp;#x5165;&amp;#x7684;&amp;#x6570;&amp;#x662F;&amp;#x5426;&amp;#x662F;&amp;#x6574;&amp;#x6570;</span><br><span class="line">        print(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;&amp;#x4E00;&amp;#x4E2A;&amp;#x6574;&amp;#x6570;&quot;)</span><br><span class="line">    elif int(number_input) &lt; 0 or int(number_input)&gt; 100:   # &amp;#x4FDD;&amp;#x8BC1;&amp;#x8303;&amp;#x56F4;&amp;#x5728;0-100</span><br><span class="line">        print(&quot;&amp;#x8BF7;&amp;#x8F93;&amp;#x5165;0&amp;#x5230;100&amp;#x7684;&amp;#x6570;&amp;#x5B57;&quot;)</span><br><span class="line">    else:   #    &amp;#x5206;3&amp;#x4E2D;&amp;#x60C5;&amp;#x51B5;&amp;#x6765;&amp;#x6BD4;&amp;#x8F83;&amp;#x8F93;&amp;#x5165;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&amp;#x548C;&amp;#x968F;&amp;#x673A;&amp;#x6570;&amp;#x7684;&amp;#x5927;&amp;#x5C0F;&amp;#x5173;&amp;#x7CFB;</span><br><span class="line">        if int(number_input) == number:</span><br><span class="line">            print(&quot;&amp;#x606D;&amp;#x559C;&amp;#x60A8;&#123;&#125;&amp;#x6B21;&amp;#x731C;&amp;#x5BF9;&amp;#xFF0C;&amp;#x6570;&amp;#x5B57;&amp;#x6B63;&amp;#x662F;&#123;&#125;&quot;.format(count, number_input))</span><br><span class="line">        elif int(number_input) &gt; number:</span><br><span class="line">            print(&quot;&amp;#x60A8;&amp;#x731C;&amp;#x4E86;&#123;&#125;&amp;#x6B21;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&#123;&#125;&amp;#x8FC7;&amp;#x5927;&amp;#xFF0C;&amp;#x8BF7;&amp;#x518D;&amp;#x6B21;&amp;#x8F93;&amp;#x5165;&quot;.format(count, number_input))</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;&amp;#x60A8;&amp;#x731C;&amp;#x4E86;&#123;&#125;&amp;#x6B21;&amp;#x7684;&amp;#x6570;&amp;#x5B57;&#123;&#125;&amp;#x8FC7;&amp;#x5C0F;&amp;#xFF0C;&amp;#x8BF7;&amp;#x518D;&amp;#x6B21;&amp;#x8F93;&amp;#x5165;&quot;.format(count, number_input))</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<ul>
+<li><code>while</code>后面的条件为真，执行循环体中的内容</li>
+<li><code>input</code>函数的输入内容都是字符串</li>
+<li>需要判断输入的内容是否是整数</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 13, 68, 34, 27, 91, 28]</span><br><span class="line">even = []</span><br><span class="line">odd = []    # &amp;#x5B9A;&amp;#x4E49;&amp;#x4E24;&amp;#x4E2A;&amp;#x7A7A;&amp;#x5217;&amp;#x8868;&amp;#x7528;&amp;#x6765;&amp;#x5B58;&amp;#x5728;&amp;#x6570;&amp;#x636E;</span><br><span class="line">while len(list1) &gt; 0:   #  &amp;#x5C06;&amp;#x957F;&amp;#x5EA6;&amp;#x4F5C;&amp;#x4E3A;&amp;#x5FAA;&amp;#x73AF;&amp;#x7684;&amp;#x6B21;&amp;#x6570;</span><br><span class="line">    number = list1.pop()    # pop &amp;#x51FD;&amp;#x6570;&amp;#x662F;&amp;#x5220;&amp;#x9664;&amp;#x672B;&amp;#x5C3E;&amp;#x7684;&amp;#x5143;&amp;#x7D20;&amp;#xFF0C;&amp;#x4F5C;&amp;#x4E3A;&amp;#x8FD4;&amp;#x56DE;&amp;#x503C;&amp;#x7ED9;number</span><br><span class="line">    if number % 2 == 0:     # &amp;#x5224;&amp;#x65AD;&amp;#x5947;&amp;#x5076;&amp;#x6027;</span><br><span class="line">        even.append(number)    # append&amp;#x65B9;&amp;#x6CD5;&amp;#x6570;&amp;#x8FFD;&amp;#x52A0;&amp;#x5230;&amp;#x5217;&amp;#x8868;&amp;#x4E2D;</span><br><span class="line">    else:</span><br><span class="line">        odd.append(number)</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">count = 0</span><br><span class="line">while count &lt; 9:   # &amp;#x5FAA;&amp;#x73AF;&amp;#x6B21;&amp;#x6570;</span><br><span class="line">    print(&quot;This is &#123;&#125;&quot;.format(count))   # &amp;#x683C;&amp;#x5F0F;&amp;#x5316;&amp;#x8F93;&amp;#x51FA;</span><br><span class="line">    count += 1   # count&amp;#x81EA;&amp;#x52A8;&amp;#x52A0;&amp;#x4E00;&amp;#xFF0C;&amp;#x5B9E;&amp;#x73B0;&amp;#x81EA;&amp;#x52A8;&amp;#x5FAA;&amp;#x73AF;</span><br><span class="line">print(&quot;Good bye&quot;)  # &amp;#x5F53;&amp;#x8DF3;&amp;#x51FA;&amp;#x5FAA;&amp;#x73AF;&amp;#x4F53;&amp;#xFF0C;&amp;#x6267;&amp;#x884C;&amp;#x672C;&amp;#x8BED;&amp;#x53E5;</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="习题：现有列表：list1-2-81-98-47-23-56-24-61-34-，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放"><a href="#习题：现有列表：list1-2-81-98-47-23-56-24-61-34-，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放" class="headerlink" title="习题：现有列表：list1=[2, 81, 98, 47, 23, 56, 24, 61, 34]，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放"></a>习题：现有列表：list1=[2, 81, 98, 47, 23, 56, 24, 61, 34]，将list1中的奇数和偶数分别放在两个不同的列表，并且实现从小到大的顺序摆放</h4><ul>
+<li>奇数和偶数分开放：通过除以2的 <code>&amp;#x4F59;&amp;#x6570;</code>结果进行判断</li>
+<li>从小到大排序，利用 <code>&amp;#x5192;&amp;#x6CE1;&amp;#x7B97;&amp;#x6CD5;</code>实现</li>
+</ul>
+<p><strong>for遍历实现</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 81, 98, 47, 23, 56, 24, 61, 34]</span><br><span class="line">even = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5076;&amp;#x6570;</span><br><span class="line">odd = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5947;&amp;#x6570;</span><br><span class="line">for i in list1:</span><br><span class="line">    if i % 2 == 0:</span><br><span class="line">        even.append(i)   # &amp;#x5148;&amp;#x751F;&amp;#x6210;&amp;#x5076;&amp;#x6570;&amp;#x5217;&amp;#x8868;&amp;#xFF0C;&amp;#x518D;&amp;#x5229;&amp;#x7528;&amp;#x5192;&amp;#x6CE1;&amp;#x6CD5;&amp;#x8FDB;&amp;#x884C;&amp;#x4ECE;&amp;#x5C0F;&amp;#x5230;&amp;#x5927;&amp;#x8FDB;&amp;#x884C;&amp;#x6392;&amp;#x5E8F;&amp;#xFF1B;&amp;#x4E0B;&amp;#x540C;</span><br><span class="line">        length = len(even)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if even[j] &gt; even[j+1]:</span><br><span class="line">                    even[j], even[j+1] = even[j+1], even[j]</span><br><span class="line">    else:</span><br><span class="line">        odd.append(i)</span><br><span class="line">        length = len(odd)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if odd[j] &gt; odd[j+1]:</span><br><span class="line">                    odd[j], odd[j+1] = odd[j+1], odd[j]</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>while实现</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">list1 = [2, 81, 98, 47, 23, 56, 24, 61, 34]</span><br><span class="line">even = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5076;&amp;#x6570;</span><br><span class="line">odd = []  # &amp;#x5B58;&amp;#x653E;&amp;#x5947;&amp;#x6570;</span><br><span class="line">while  len(list1) &gt; 0 :</span><br><span class="line">    i = list1.pop()</span><br><span class="line">    if i % 2 == 0:</span><br><span class="line">        even.append(i)   # &amp;#x5148;&amp;#x751F;&amp;#x6210;&amp;#x5076;&amp;#x6570;&amp;#x5217;&amp;#x8868;&amp;#xFF0C;&amp;#x518D;&amp;#x5229;&amp;#x7528;&amp;#x5192;&amp;#x6CE1;&amp;#x6CD5;&amp;#x8FDB;&amp;#x884C;&amp;#x4ECE;&amp;#x5C0F;&amp;#x5230;&amp;#x5927;&amp;#x8FDB;&amp;#x884C;&amp;#x6392;&amp;#x5E8F;&amp;#xFF1B;&amp;#x4E0B;&amp;#x540C;</span><br><span class="line">        length = len(even)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if even[j] &gt; even[j+1]:</span><br><span class="line">                    even[j], even[j+1] = even[j+1], even[j]</span><br><span class="line">    else:</span><br><span class="line">        odd.append(i)</span><br><span class="line">        length = len(odd)</span><br><span class="line">        for i in range(length):</span><br><span class="line">            for j in range(length-1-i):</span><br><span class="line">                if odd[j] &gt; odd[j+1]:</span><br><span class="line">                    odd[j], odd[j+1] = odd[j+1], odd[j]</span><br><span class="line">print(even, odd)</span><br></pre></td></tr></table></figure>
+
+<p><strong>写在最后：</strong></p>
+<blockquote>
+<p>刚好今天学习了 <code>&amp;#x5192;&amp;#x6CE1;&amp;#x6392;&amp;#x5E8F;&amp;#x7B97;&amp;#x6CD5;</code>，所以将这个列表分类的例题和冒泡算法排序相结合， 一点小成就，写出了这个代码，希望对感兴趣的小伙伴有帮助。 <strong>加油！</strong></p>
+</blockquote>
+
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-22T23:35:00.000Z">2019-06-23</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 482 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="https://www.jianshu.com/p/80b487807e8d">Python札记13_内建函数zip、enumerate</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p><code>Python</code>中有很多的内建函数， <code>zip()</code>、 <code>enumerate()</code>等</p>
+</blockquote>
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><ul>
+<li>zip用于合并两个对象中的元素，合并的两个元素类型必须是一致的</li>
+<li>如果长度不一致， <strong>采用长度小的</strong></li>
+<li>其参数必须是 <strong>可迭代对象</strong>。</li>
+</ul>
+<p>image.png</p>
+<p>image.png</p>
+<p>image.png</p>
+<p>image.png</p>
+<p><strong>一个例题：通过zip函数实现字典中键、值位置的互换</strong><br>dict1 = {“name”: “Peter”, “lang”: “python”, “city”: “shenzhen”}</p>
+<blockquote>
+<p><code>&amp;#x65B9;&amp;#x6CD5;&amp;#x4E00;</code>：通过for遍历出字典中的key-value值，再互换</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dict1 = &#123;&quot;name&quot;: &quot;Peter&quot;, &quot;lang&quot;: &quot;python&quot;, &quot;city&quot;: &quot;shenzhen&quot;&#125;</span><br><span class="line">dict2 = &#123;&#125;</span><br><span class="line">for k,v in dict1.items():   # &amp;#x5148;&amp;#x904D;&amp;#x5386;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x952E;&amp;#x503C;&amp;#x5BF9;</span><br><span class="line">    dict2[v]=k  # &amp;#x5728;&amp;#x65B0;&amp;#x7684;&amp;#x5B57;&amp;#x5178;&amp;#x4E2D;&amp;#xFF0C;&amp;#x5C06;dict1&amp;#x7684;&amp;#x952E;&amp;#x4F5C;&amp;#x4E3A;&amp;#x503C;&amp;#x4FDD;&amp;#x5B58;&amp;#x5728;dict2&amp;#x4E2D;</span><br><span class="line">print(dict2)</span><br><span class="line"></span><br><span class="line">&#123;&apos;Peter&apos;: &apos;name&apos;, &apos;python&apos;: &apos;lang&apos;, &apos;shenzhen&apos;: &apos;city&apos;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方法二：通过zip函数实现</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(zip(dict1.values(),dict1.keys()))</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<h4 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate()"></a>enumerate()</h4><ul>
+<li>enumerate()是python的内置函数</li>
+<li>enumerate在字典上是 <code>&amp;#x679A;&amp;#x4E3E;&amp;#x3001;&amp;#x5217;&amp;#x4E3E;</code>的意思</li>
+<li>对于一个可迭代的（iterable）/可遍历的对象（如列表、字符串），enumerate将其组成一个索引序列，利用它可以 <code>&amp;#x540C;&amp;#x65F6;&amp;#x83B7;&amp;#x5F97;&amp;#x7D22;&amp;#x5F15;&amp;#x548C;&amp;#x503C;</code></li>
+<li>enumerate多用于在for循环中得到计数</li>
+</ul>
+<blockquote>
+<p>通过一个例子来了解枚举enumerate()函数的功能：取出给定列表中的索引和对应的元素<br>list1 = [“python”, “java”, “php”, “Go”]</p>
+</blockquote>
+<p>方法1：for遍历</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i in range(len(list1)):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br></pre></td></tr></table></figure>
+
+<p>方法二：枚举enumerate</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&quot;python&quot;, &quot;java&quot;, &quot;php&quot;, &quot;Go&quot;]</span><br><span class="line">for i, language in enumerate(list1):</span><br><span class="line">    print(str(i) + &quot; is &quot; + list1[i])</span><br><span class="line"></span><br><span class="line">0 is python</span><br><span class="line">1 is java</span><br><span class="line">2 is php</span><br><span class="line">3 is Go</span><br></pre></td></tr></table></figure>
+
+<p>image.png</p>
+<p><strong>例子：将字符串中的 <code>java</code> 替换成 <code>python</code></strong></p>
+<ul>
+<li>用 <code>enumerate()</code>函数的结果中少了问号，不完美<br>image.png</li>
+</ul>
+<p>用 <code>replace</code>方法解决，完美</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">raw = &quot;Do you love java? java is a good language.&quot;</span><br><span class="line">raw_string = raw.replace(&quot;java&quot;, &quot;python&quot;)</span><br><span class="line">print(raw_string)</span><br></pre></td></tr></table></figure>
+
+
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/news/harddisk/" class="image is-7by1">
+            <img class="thumbnail" src="https://cdn.sspai.com/2019/06/18/ed28c6ea800b3f133fdbc9f7b98b5dcf.jpg?imageMogr2/quality/95/thumbnail/!1440x480r/gravity/Center/crop/1440x480" alt="你的硬盘是如何存储数据的？">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-18T15:04:41.000Z">2019-06-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/news/">news</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    几秒 读完 (大约 44 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/news/harddisk/">你的硬盘是如何存储数据的？</a>
+            
+        </h1>
+        <div class="content">
+            <hr>
             
         </div>
         
@@ -203,7 +374,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymongo/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/news/harddisk/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -222,8 +393,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/mongodb/" class="image is-7by1">
-            <img class="thumbnail" src="https://i01picsos.sogoucdn.com/4dee6e9358819886" alt="MongoDB">
+        <a href="/news/2019/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24bfb11a71c28932.png" alt="WWDC 2019">
         </a>
     </div>
     
@@ -231,17 +402,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T06:11:11.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-06-05T03:06:39.000Z">2019-06-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                <a class="has-link-grey -link" href="/categories/news/">news</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    30 分钟 读完 (大约 4574 个字)
+                    几秒 读完 (大约 73 个字)
                 </span>
                 
                 
@@ -250,11 +421,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/mongodb/">MongoDB</a>
+                <a class="has-link-black-ter" href="/news/2019/">WWDC 2019</a>
             
         </h1>
         <div class="content">
-            <p>MongoDB是一个跨平台，面向文档的数据库，提供高性能，高可用性和易于扩展。MongoDB是工作在集合和文档上一种概念。</p>
+            <p>Your time is limited, so don’t waste it living someone else’s life.…Don’t let the noise of others’ opinions drown out your own inner voice。</p>
             
         </div>
         
@@ -262,7 +433,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/mongodb/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/news/2019/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -281,8 +452,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/program/Python/pymysql/" class="image is-7by1">
-            <img class="thumbnail" src="https://pic.baike.soso.com/ugc/baikepic2/9935/20170728175103-650600219.jpg/300" alt="python3 与 MySQL 之间的交互">
+        <a href="/blog/netlify/" class="image is-7by1">
+            <img class="thumbnail" src="https://dwhs7eit3h8mr.cloudfront.net/assets/images/7121d6e902e13f3cbdcdd802a691d99a/netlify.gif" alt="Hexo+Github+Netlify部署个人博客">
         </a>
     </div>
     
@@ -290,17 +461,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-02T03:14:27.000Z">2018-05-02</time>
+                <time class="level-item has-text-grey" datetime="2019-05-01T13:08:57.000Z">2019-05-01</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                <a class="has-link-grey -link" href="/categories/blog/">blog</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2784 个字)
+                    17 分钟 读完 (大约 2574 个字)
                 </span>
                 
                 
@@ -309,12 +480,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/program/Python/pymysql/">python3 与 MySQL 之间的交互</a>
+                <a class="has-link-black-ter" href="/blog/netlify/">Hexo+Github+Netlify部署个人博客</a>
             
         </h1>
         <div class="content">
-            <h2 id="什么是-PyMySQL？"><a href="#什么是-PyMySQL？" class="headerlink" title="什么是 PyMySQL？"></a>什么是 PyMySQL？</h2><p>PyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2中则使用mysqldb。</p>
-<p>PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。</p>
+            <p><a href="https://www.netlify.com" target="_blank" rel="noopener">Netlify</a> 是一个提供静态资源网络托管的综合平台，提供CI服务，能够将托管 GitHub，GitLab 等网站上的 Jekyll，Hexo，Hugo 等代码自动编译并生成静态网站。使用github分支和netlify服务的方式部署hexo，搭建一套可跨平台、可多人写作,随时随地发布编辑文字,可被百度收录,可自定域名,免费HTTPS的博客系统！！</p>
             
         </div>
         
@@ -322,125 +492,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/pymysql/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Python/django-bi-ji/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django笔记">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T17:00:16.000Z">2018-04-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 745 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Python/django-bi-ji/">Django笔记</a>
-            
-        </h1>
-        <div class="content">
-            <p>Django是一个开放源代码的Web应用框架，由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/django-bi-ji/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/program/Python/django/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/10/5d24c2000076d77783.jpg" alt="Django部署——uwsgi+Nginx">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-04-17T09:42:04.000Z">2018-04-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 864 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/program/Python/django/">Django部署——uwsgi+Nginx</a>
-            
-        </h1>
-        <div class="content">
-            <p>用Django写了个小网站，只能在自己本地跑一跑！这怎么行？听说可以部署在云服务器上，这样别人就可以访问了!</p>
-            
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/program/Python/django/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/blog/netlify/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -480,7 +532,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/21/">21</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/23/">23</a></li>
             
         </ul>
     </nav>
@@ -528,7 +580,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        103
+                        113
                     </p>
                 </div>
             </div>
@@ -756,6 +808,25 @@
             
             <a href="/python3-notes08/" class="media-left">
                 <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
                 </p>
             </a>
@@ -764,6 +835,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">Python札记11_运算符、if、for</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -802,44 +892,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》5_列表与字符串">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T22:49:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》5_列表与字符串</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》4_元组tuple">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T02:38:18.000Z">2019-07-19</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》4_元组tuple</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -902,7 +954,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">66</span>
+                <span class="level-item tag">68</span>
             </span>
         </a></li>
             </ul>
@@ -924,7 +976,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">19</span>
                 </span>
             </a>
         </li>
@@ -935,7 +987,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1365,7 +1417,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -1413,6 +1465,25 @@
             
             <a href="/python3-notes08/" class="media-left">
                 <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
                 </p>
             </a>
@@ -1421,6 +1492,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">Python札记11_运算符、if、for</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1459,44 +1549,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》5_列表与字符串">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T22:49:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》5_列表与字符串</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》4_元组tuple">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T02:38:18.000Z">2019-07-19</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》4_元组tuple</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -1559,7 +1611,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">66</span>
+                <span class="level-item tag">68</span>
             </span>
         </a></li>
             </ul>
@@ -1581,7 +1633,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">19</span>
                 </span>
             </a>
         </li>
@@ -1592,7 +1644,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -2022,7 +2074,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 

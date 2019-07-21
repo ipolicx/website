@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>《Python札记》08_集合set - IP</title>
+<title>Python札记11_运算符、if、for - IP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="集合 set是 Python中的另一种数据类型，用 { }括起来表示，里面是单个的对象，不是键值对。集合的特点是里面的元素 有的可变，有的不可变；元素 无次序，元素 不可重复。集合 set可以说是 列表和字典的杂合。">
+    <meta name="description" content="在 Python中，语句的作用是按照一定的逻辑组合来操作某些对象。">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Python札记》08_集合set">
+<meta property="og:title" content="Python札记11_运算符、if、for">
 <meta property="og:url" content="https://www.policx.com/python3-notes08/index.html">
 <meta property="og:site_name" content="IP">
-<meta property="og:description" content="集合 set是 Python中的另一种数据类型，用 { }括起来表示，里面是单个的对象，不是键值对。集合的特点是里面的元素 有的可变，有的不可变；元素 无次序，元素 不可重复。集合 set可以说是 列表和字典的杂合。">
+<meta property="og:description" content="在 Python中，语句的作用是按照一定的逻辑组合来操作某些对象。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
-<meta property="og:updated_time" content="2019-07-20T16:59:24.705Z">
+<meta property="og:updated_time" content="2019-07-21T04:43:49.766Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Python札记》08_集合set">
-<meta name="twitter:description" content="集合 set是 Python中的另一种数据类型，用 { }括起来表示，里面是单个的对象，不是键值对。集合的特点是里面的元素 有的可变，有的不可变；元素 无次序，元素 不可重复。集合 set可以说是 列表和字典的杂合。">
+<meta name="twitter:title" content="Python札记11_运算符、if、for">
+<meta name="twitter:description" content="在 Python中，语句的作用是按照一定的逻辑组合来操作某些对象。">
 <meta name="twitter:image" content="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg">
 
 
@@ -115,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="《Python札记》08_集合set" height="28">
+                <img src="/images/logo.gif" alt="Python札记11_运算符、if、for" height="28">
             
             </a>
         </div>
@@ -168,7 +168,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
         </span>
     </div>
     
@@ -176,7 +176,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time>
+                <time class="level-item has-text-grey" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/program/">program</a>
@@ -186,7 +186,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 730 个字)
+                    5 分钟 读完 (大约 701 个字)
                 </span>
                 
                 
@@ -200,90 +200,102 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                《Python札记》08_集合set
+                Python札记11_运算符、if、for
             
         </h1>
         <div class="content">
             <blockquote>
-<p>集合 <code>set</code>是 <code>Python</code>中的另一种数据类型，用 <code>{ }</code>括起来表示，里面是单个的对象，不是键值对。集合的特点是里面的元素 <strong>有的可变，有的不可变</strong>；元素 <strong>无次序</strong>，元素 <strong>不可重复</strong>。集合 <code>set</code>可以说是 <strong>列表和字典的杂合</strong>。</p>
+<p>在 <code>Python</code>中，语句的作用是按照一定的逻辑组合来操作某些对象。</p>
 </blockquote>
 <a id="more"></a>
+<p><strong>算术运算符</strong></p>
 <ul>
-<li>元素无序</li>
-<li>元素是不可变，可哈希的</li>
-<li>自动去重</li>
-<li>集合没有索引，不属于序列</li>
-<li>空集合只能通过 <code>set()</code>方法进行创建</li>
+<li><ul>
+<li>对象相加</li>
 </ul>
-<p>创建集合有两种方式：</p>
-<ul>
-<li>通过 <code>set()</code>函数创建</li>
-<li>通过 <code>{ }</code>直接进行创建</li>
-<li>创建空集合一定要用 <code>set</code>方法，否则 <code>Python</code>会认为是字典</li>
-</ul>
-<p><strong>set创建</strong><br>如果有重复的元素会自动进行过滤，一种高效的 <strong>去重</strong>方式：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 = set(&quot;peter&quot;)</span><br><span class="line">print(s1)</span><br><span class="line"></span><br><span class="line">&#123;&apos;p&apos;, &apos;t&apos;, &apos;e&apos;, &apos;r&apos;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>{ }创建</strong><br>同样的会自动去重创建，由于 <code>{ }</code>已经使用在字典中，不建议使用</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s2 = &#123;&quot;p&quot;, &quot;e&quot;, &quot;t&quot;, &quot;e&quot;, &quot;r&quot;&#125;</span><br><span class="line">print(s2)</span><br><span class="line"></span><br><span class="line">&#123;&apos;t&apos;, &apos;r&apos;, &apos;e&apos;, &apos;p&apos;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过 <code>set</code>创建的集合都是可变，不可哈希的集合；通过 <code>frozenset</code>创建的是不可变的集合</p>
-<p>哈希 <code>hashable</code>：不可变的，例如字符串、整数型、布尔值等， <strong>字典的键必须是不可变的</strong><br>不可哈希 <code>unhashable</code>：可变的，例如列表、字典等，利用 <strong>set()创建的集合是可变集合</strong></p>
-<h3 id="集合set的方法"><a href="#集合set的方法" class="headerlink" title="集合set的方法"></a>集合set的方法</h3><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>add()</td>
-<td>给一个集合增加元素，参数只能有一个：</td>
-</tr>
-<tr>
-<td>update</td>
-<td>用原有集合自身个其他东西构成的新集合，来更新原来的集合</td>
-</tr>
-<tr>
-<td>pop</td>
-<td><strong>随机删除</strong>一个元素，<strong>返回元素本身</strong>；不能指定参数，不能指定删除某个元素</td>
-</tr>
-<tr>
-<td>remove(obj)</td>
-<td>obj必须是集合set中的元素，否则报错；<strong>没有返回值</strong></td>
-</tr>
-<tr>
-<td>discard(obj)</td>
-<td>obj如果在集合中就执行删除，否则不进行任何操作，与remove不同</td>
-</tr>
-<tr>
-<td>clear()</td>
-<td>删除所有元素，bool(set)为False</td>
-</tr>
-</tbody></table>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># add</span></span><br><span class="line">s3 = set()</span><br><span class="line">s3.add(<span class="hljs-string">"peter"</span>)     <span class="hljs-comment"># 一次只能增加一个元素</span></span><br><span class="line">print(s3)</span><br><span class="line">s4 = set(<span class="hljs-string">"python"</span>)</span><br><span class="line">s4.add(<span class="hljs-string">"xiaoming"</span>)</span><br><span class="line"><span class="hljs-comment"># s4.add('[1, 2, 3]')    报错：列表是可变，不可哈希的；但集合中的元素必须是不可变的，可哈希的</span></span><br><span class="line">print(s4)</span><br><span class="line"></span><br><span class="line">&#123;<span class="hljs-string">'peter'</span>&#125;</span><br><span class="line">&#123;<span class="hljs-string">'h'</span>, <span class="hljs-string">'p'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'t'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'xiaoming'</span>, <span class="hljs-string">'n'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># update</span></span><br><span class="line">s3.update(s4)    <span class="hljs-comment">#  将s4中的元素合并到s3中</span></span><br><span class="line">print(s3)</span><br><span class="line"></span><br><span class="line">&#123;<span class="hljs-string">'n'</span>, <span class="hljs-string">'xiaoming'</span>, <span class="hljs-string">'peter'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'p'</span>, <span class="hljs-string">'h'</span>, <span class="hljs-string">'t'</span>, <span class="hljs-string">'o'</span>&#125;</span><br><span class="line"></span><br><span class="line">s4.update(<span class="hljs-string">"goo"</span>)</span><br><span class="line">print(s4)</span><br><span class="line"></span><br><span class="line">&#123;<span class="hljs-string">'xiaoming'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'t'</span>, <span class="hljs-string">'p'</span>, <span class="hljs-string">'g'</span>, <span class="hljs-string">'h'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>&#125;   <span class="hljs-comment"># 注意结果的去重</span></span><br><span class="line"></span><br><span class="line">s4.update((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))</span><br><span class="line">print(s4)</span><br><span class="line"></span><br><span class="line">&#123;<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'t'</span>, <span class="hljs-string">'g'</span>, <span class="hljs-string">'xiaoming'</span>, <span class="hljs-string">'p'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'h'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'o'</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>集合运算</p>
-<ul>
-<li><p>元素和集合关系：判断元素是否在集合中：in</p>
 </li>
-<li><p>集合与集合的关系：</p>
+<li><ul>
+<li>对象相减</li>
+</ul>
+</li>
+<li><ul>
+<li>用于复制</li>
+</ul>
+</li>
+<li>/ 相除</li>
+<li>% 求余数</li>
+<li>** 幂数</li>
+<li>// 取整数</li>
+</ul>
+<p><strong>比较和逻辑运算符</strong><br>比较运算符返回的结果一定是 <code>True</code>或者 <code>False</code></p>
+<ul>
+<li><p>== 等于</p>
+</li>
+<li><p>!= 不等于</p>
+</li>
+<li><blockquote>
+<p>大于</p>
+</blockquote>
+</li>
+<li><p>&lt; 小于</p>
+</li>
+<li><blockquote>
+<p>= 大于等于</p>
+</blockquote>
+</li>
+<li><p>比较的两个对象必须是同一种数据类型</p>
+</li>
+<li><p>字符串是按照英文字典的顺序进行比较的</p>
+</li>
+<li><p>input输入的是字符串；如果是数字，用int转化</p>
+</li>
+<li><p>bool()函数中，空格返回True，空返回False</p>
 </li>
 </ul>
-<ol>
-<li><p>两个集合是否相等 ==</p>
+<p>常用的语句有 常用的语句有循环、条件、无条件分支语句，三者都是流程控制语句：</p>
+<ul>
+<li><p>循环语句：容许一些语句反复执行多次</p>
 </li>
-<li><p>超集B.issuperset(A)、 B&gt;A和子集A.issubset(B)、A&lt;B关系</p>
+<li><p>条件语句：容许仅当某些条件成立的时候，才会执行某个区块</p>
 </li>
-<li><p>并集：A.union(B)或者使用|：得到新的集合，原来的集合不变</p>
+<li><p>无条件分支语句：容许运行顺序转移到程序的其他部分中，包含跳转等</p>
 </li>
-<li><p>交集：A.intersection(B)或者使用&amp;</p>
-</li>
-<li><p>差集：A.difference(B)或者A-B，(A中存在，B中不存在的元素)</p>
-</li>
-<li><p>对称差集：A.symmetric_difference(B)，（A，B的并集除去A，B的交集）</p>
-</li>
-</ol>
+</ul>
+<p>根据 <code>Python</code>的关键字又可以分为以下几种，每种语句的最后必须带上 英文冒号<code>:</code></p>
+<ul>
+<li>if</li>
+<li>if…elif…else</li>
+<li>for</li>
+<li>while</li>
+</ul>
+<p><strong>下面将通过各种具体的例子对各种语句进行初步讲解和学习</strong>，笔者认为：根据实际的例子是最好的学习方法，可以更好地理解一个知识点的。<br><strong>if…elif…else</strong><br><img src="https://i.loli.net/2019/07/21/5d33ec963d5f171955.jpg" alt></p>
+<p><strong>几点注意</strong></p>
+<ul>
+<li>if、elif、else关键词后面必须带上冒号</li>
+<li>Python中缩进是4个空格，不要用tab键</li>
+<li>input函数输入的内容是字符串，需要用int函数进行转换</li>
+</ul>
+<p><strong>关于三元操作符</strong><br>就是将if…else…语句合并在一行语句中个，如果if成立执行前面的操作，反之执行else后面的语句。<br><img src="https://i.loli.net/2019/07/21/5d33ecaf21c6f20929.jpg" alt></p>
+<ul>
+<li>结尾冒号</li>
+<li>语句块有四个空格<br><img src="https://i.loli.net/2019/07/21/5d33ecc50130f34915.jpg" alt></li>
+</ul>
+<p><img src="https://i.loli.net/2019/07/21/5d33ecd97a88542564.jpg" alt></p>
+<p><strong>range()函数</strong><br>range(start,stop,step)</p>
+<ul>
+<li>start：起始值，默认是0</li>
+<li>stop：终止值，不包含在内</li>
+<li>step：步长，默认是1，可以为负数，不能是0<br><img src="https://i.loli.net/2019/07/21/5d33ecfeb622a68058.jpg" alt><br><img src="https://i.loli.net/2019/07/21/5d33ed44dc5a255071.jpg" alt></li>
+</ul>
+<p><strong>并行迭代</strong></p>
+<ul>
+<li><code>迭代</code>就是指在Python中用for循环从对象中获取一定数量的元素</li>
+<li>for循环用于 <code>列表、字符串、字典的键值对</code>中<br><img src="https://i.loli.net/2019/07/21/5d33ed257709d99848.jpg" alt></li>
+</ul>
+<p><strong>for列表解析</strong></p>
+<blockquote>
+<p>通过几个例子来了解Python3中的列表解析功能</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -368,6 +380,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/python3-notes08/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">《Python札记》08_集合set</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -471,7 +490,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        103
+                        113
                     </p>
                 </div>
             </div>
@@ -699,6 +718,25 @@
             
             <a href="/python3-notes08/" class="media-left">
                 <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》12_str、list、tuple、dictionary、set总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:11:00.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》12_str、list、tuple、dictionary、set总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》08_集合set">
                 </p>
             </a>
@@ -707,6 +745,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:10:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes08/" class="has-link-black-ter is-size-6">《Python札记》08_集合set</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/python3-notes08/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="Python札记11_运算符、if、for">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T06:00:20.000Z">2019-07-20</time></div>
+                    <a href="/python3-notes08/" class="has-link-black-ter is-size-6">Python札记11_运算符、if、for</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -745,44 +802,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T01:00:00.000Z">2019-07-20</time></div>
                     <a href="/python3-notes06/" class="has-link-black-ter is-size-6">《Python札记》6_字典</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》5_列表与字符串">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T22:49:00.000Z">2019-07-20</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》5_列表与字符串</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/program/">program</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/python3-notes03/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/07/18/5d308e702e23127788.jpg" alt="《Python札记》4_元组tuple">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T02:38:18.000Z">2019-07-19</time></div>
-                    <a href="/python3-notes03/" class="has-link-black-ter is-size-6">《Python札记》4_元组tuple</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/program/">program</a>
                     </p>
@@ -845,7 +864,7 @@
                 <span class="level-item">program</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">66</span>
+                <span class="level-item tag">68</span>
             </span>
         </a></li>
             </ul>
@@ -867,7 +886,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">19</span>
                 </span>
             </a>
         </li>
@@ -878,7 +897,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1308,7 +1327,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -1348,7 +1367,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="《Python札记》08_集合set" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="Python札记11_运算符、if、for" height="28">
                     
                 </a>
                 <p class="is-size-7">
