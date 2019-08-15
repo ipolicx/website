@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>iOS静态库 - 南一道街</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="回顾下iOS静态库 【.a 和framework】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS静态库">
+<meta property="og:url" content="https://www.policx.com/program/apple/framework1/index.html">
+<meta property="og:site_name" content="南一道街">
+<meta property="og:description" content="回顾下iOS静态库 【.a 和framework】">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
+<meta property="og:updated_time" content="2019-08-15T01:53:53.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS静态库">
+<meta name="twitter:description" content="回顾下iOS静态库 【.a 和framework】">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="iOS静态库" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/20/5d31f3b07288a13945.jpg" alt="iOS静态库">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-05-19T16:36:14.000Z">2016-05-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20 分钟 读完 (大约 3025 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                iOS静态库
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>回顾下iOS静态库 【.a 和framework】</p>
+</blockquote>
+<a id="more"></a>
+
+
+<h2 id="一、什么是库？"><a href="#一、什么是库？" class="headerlink" title="一、什么是库？"></a>一、什么是库？</h2><p>库是共享程序代码的方式。 </p>
+<p>库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。<br>iOS中的静态库有 .a 和 .framework两种形式；动态库有.dylib 和 .framework 形式，后来.dylib动态库又被苹果替换成.tbd的形式。</p>
+<h2 id="二、静态库与动态库的区别？"><a href="#二、静态库与动态库的区别？" class="headerlink" title="二、静态库与动态库的区别？"></a>二、静态库与动态库的区别？</h2><p>静态库： 链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。 </p>
+<p>动态库： 链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。[ios暂时只允许使用系统动态库]； </p>
+<p>静态库和动态库是相对编译期和运行期的：静态库在程序编译时会被链接到目标代码中，程序运行时将不再需要改静态库；而动态库在程序编译时并不会被链接到目标代码中，只是在程序运行时才被载入，因为在程序运行期间还需要动态库的存在。<br>总结：同一个静态库在不同程序中使用时，每一个程序中都得导入一次，打包时也被打包进去，形成一个程序。而动态库在不同程序中，打包时并没有被打包进去，只在程序运行使用时，才链接载入（如系统的框架如UIKit、Foundation等），所以程序体积会小很多，但是苹果不让使用自己的动态库，否则审核就无法通过。</p>
+<h2 id="三、iOS里静态库形式？"><a href="#三、iOS里静态库形式？" class="headerlink" title="三、iOS里静态库形式？"></a>三、iOS里静态库形式？</h2><p>.a和.framework </p>
+<h2 id="四、iOS里动态库形式？"><a href="#四、iOS里动态库形式？" class="headerlink" title="四、iOS里动态库形式？"></a>四、iOS里动态库形式？</h2><p>.dylib和.framework </p>
+<h2 id="五、framework为什么既是静态库又是动态库？"><a href="#五、framework为什么既是静态库又是动态库？" class="headerlink" title="五、framework为什么既是静态库又是动态库？"></a>五、framework为什么既是静态库又是动态库？</h2><p>系统的.framework是动态库，我们自己建立的.framework是静态库。 </p>
+<h2 id="六、a与-framework有什么区别？"><a href="#六、a与-framework有什么区别？" class="headerlink" title="六、a与.framework有什么区别？"></a>六、a与.framework有什么区别？</h2><p>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件。 </p>
+<p>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。 </p>
+<p>.a + .h + sourceFile = .framework。 </p>
+<p>建议用.framework. </p>
+<h2 id="七、为什么要使用静态库？"><a href="#七、为什么要使用静态库？" class="headerlink" title="七、为什么要使用静态库？"></a>七、为什么要使用静态库？</h2><p>方便共享代码，便于合理使用。 </p>
+<p>实现iOS程序的模块化。可以把固定的业务模块化成静态库。 </p>
+<p>和别人分享你的代码库，但不想让别人看到你代码的实现。 </p>
+<p>开发第三方sdk的需要。 </p>
+<h2 id="八、制作静态库时的几点注意："><a href="#八、制作静态库时的几点注意：" class="headerlink" title="八、制作静态库时的几点注意："></a>八、制作静态库时的几点注意：</h2><p>1注意理解：无论是.a静态库还.framework静态库，我们需要的都是二进制文件+.h+其它资源文件的形式，不同的是，.a本身就是二进制文件，需要我们自己配上.h和其它文件才能使用，而.framework本身已经包含了.h和其它文件，可以直接使用。 </p>
+<p>2图片资源的处理：两种静态库，一般都是把图片文件单独的放在一个.bundle文件中，一般.bundle的名字和.a或.framework的名字相同。.bundle文件很好弄，新建一个文件夹，把它改名为.bundle就可以了，右键，显示包内容可以向其中添加图片资源。 </p>
+<p>3category是我们实际开发项目中经常用到的，把category打成静态库是没有问题的，但是在用这个静态库的工程中，调用category中的方法时会有找不到该方法的运行时错误（selector not recognized），解决办法是：在使用静态库的工程中配置other linker flags的值为-ObjC。 </p>
+<p>4如果一个静态库很复杂，需要暴露的.h比较多的话，就可以在静态库的内部创建一个.h文件（一般这个.h文件的名字和静态库的名字相同），然后把所有需要暴露出来的.h文件都集中放在这个.h文件中，而那些原本需要暴露的.h都不需要再暴露了，只需要把.h暴露出来就可以了。 </p>
+<h2 id="九、创建-a静态库"><a href="#九、创建-a静态库" class="headerlink" title="九、创建.a静态库"></a>九、创建.a静态库</h2><p>第一步，新建工程。一般使用工程名就使用库的名称，比如我这里用LIB来创建静态库，我的工程名就取名为LIB，创建的.a静态库就是LIB.a。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/193950_FPAj_2602883.png" alt></p>
+<p>第二步，删除.m文件，保留.h文件， 一般静态库都有一个总的.h文件，方便外部导入头文件。然后导入需要打包的源文件。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/195814_9613_2602883.png" alt></p>
+<p>第三步，先用真机，编译一次，再用模拟器编译一次。就可以生成.a文件（必须先用真机要不然，不能生成）。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/200424_25Gd_2602883.png" alt></p>
+<p>第四步，Xcode生成的.a文件默认没有导出.h文件。需要自己添加。</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/200939_IIFO_2602883.png" alt></p>
+<p>第五步，导出Products静态库的配置（其实不用设置此步骤，如果真机编译的话，生成导出的时候系统默认会变成Releasse[但是模拟器不会（如果不改这里 得需要把Debug设置为NO）]）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/202827_odLy_2602883.png" alt></p>
+<p>注意：如果第五步中，不将Build Configuration改为Release,则打包出来的静态库会存于【Debug-iphoneos】和【Debug-iphonesimulator】两个文件夹下。<br>我们一般都使用Release模式，因为程序最终发布之后是Release版的，所以静态库也是在Release模式下使用。</p>
+<p>第六步，合成模拟器的架构【默认：模拟器编译只会生成对应的1种架构，真机编译会合成两种架构】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/203414_3pSs_2602883.png" alt></p>
+<p>如果第六步这里，设置为YES，那么编译出来的.a静态库就只包含当前设备的架构。</p>
+<p>举个例子：如果我们选择iPhone 5模拟器【Command+B】编译，则编译出来的.a静态库只能用iPhone4s<del>5模拟器跑程序， 用iPhone5s</del>6plus，则会报找不到x86_64的libFMDB库。</p>
+<p>设置为 NO 之后，【Command+B】不管选择哪个【模拟器】，则都会把【386   : 32位架构   4S ~ 5】【x86_64 : 64位架构   5S ~ 现在的机型】的架构都打包合并。</p>
+<p>【注】【真机】不设置 [Build Active Architecture Only] 也默认会自动合并的armv7 和amr64架构 。但是 armv7s架构被苹果放弃了，真机要想合并armv7s的话需要进行如下操作再编译。（其实没必要设置这个）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0329/233333_H7EK_2602883.png" alt></p>
+<p>第七步，合并架构【真机和模拟器】</p>
+<p>真机和模拟器合并: lipo -create 静态库1.a（路径） 静态库2.a（路径） -output 新静态库.a   </p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001609_7PSY_2602883.png" alt></p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001915_UpFg_2602883.png" alt></p>
+<p>第八步，资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件与本地文件重名被覆盖, 导致加载资源文件出错【注：要加载bundel路径】</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/003854_4IX6_2602883.png" alt></p>
+<p> 一. 经典报错:</p>
+<p> 找不到符号在XX架构上</p>
+<p> Undefined symbols for architecture x86_64(armv7/armv7s/amr64/i386)</p>
+<p> 二. 架构的分类</p>
+<p> 1、模拟器架构: 2种</p>
+<pre><code>i386   : 32位架构  4S ~ 5
+
+x86_64 : 64位架构   5S ~ 现在的机型</code></pre><p> 2、真机架构: 3种</p>
+<pre><code>armv7 : 32位架构    3GS ~ 4S
+
+armv7s: 特殊的架构   5 ~ 5C   (此架构有问题, 有的程序变得更快, 有的程序变得更慢)
+
+amr64 : 64位架构    5S ~ 现在的机型</code></pre><p> 64位/32位: 内存寻址不同</p>
+<p> 三. 如何查看静态库架构</p>
+<p> 找到Products文件夹, 如果.a文件是黑色, 右键打开 到 Products文件夹</p>
+<p>终端中 lipo -info</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/001126_3M3b_2602883.png" alt> </p>
+<p> Generic iOS Device编译出来的OS可用, 有2种架构:armv7/ arm64 （不包含armv7s: 特殊的架构）</p>
+<p> iPhone6S模拟器编译出来的: x86_64</p>
+<p> iPhone4S模拟器编译出来的: i386</p>
+<p> (不设置Build Active Architecture Only的情况下真机编译2种架构, 模拟器编译:对应的1种架构)</p>
+<p> 四. 合成架构</p>
+<p> 一般来说, 只需要前两步即可</p>
+<ol>
+<li><p>模拟器架构的合成: Target –&gt; Build Settings –&gt; Build Active Architecture Only(是否只编译当前架构) –&gt; Debug 改为NO(改为NO, 模拟器就可以直接合成2种架构)</p>
+</li>
+<li><p>真机和模拟器合并: lipo -create 静态库1.a 静态库2.a -output 新静态库.a </p>
+</li>
+<li><ul>
+<li><p>armv7s这个架构, 在2014年10月份的xcode版本更新中, 取消了默认导出此架构. 可以不用支持此架构. </p>
+<p>如果要支持, 需要手动添加3个架构.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>五. Debug和Release版本</p>
+<p> 一般来说, 我们应该发布的是release版本.</p>
+<p> debug:调试版本, 系统本身也会有一些调试代码. 此版本体积会稍大, 运行会稍慢</p>
+<p> release: 发布版本, 系统会去除调试代码, 体积变小, 运行速度变快. 对用户来说没有明显的感觉</p>
+<p> 六. 到底要不要合成多个架构</p>
+<p> 真机和模拟器合成的好处: 调试会非常方便, 缺点是体积会变大(一种架构就占用一部分体积).</p>
+<p> 真机和模拟器不合成的好处:体积小,  缺点是调试稍显麻烦.</p>
+<p> 七. 资源包的问题</p>
+<ol>
+<li><p>静态库的资源, 都应该放到后缀为.bundle的文件夹中 –&gt; 避免文件重名被覆盖, 导致加载资源文件出错</p>
+</li>
+<li><p>静态库打包时, 并不会打包资源文件 –&gt; 需要手动拖出去</p>
+</li>
+</ol>
+<h2 id="十、创建framework静态库"><a href="#十、创建framework静态库" class="headerlink" title="十、创建framework静态库"></a>十、创建framework静态库</h2><p>第一步、新建工程。一般使用工程名就使用库的名称</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/004221_Fdey_2602883.png" alt></p>
+<p>第二步、导入需要打包的资源文件，同时把资源文件需要外界访问的.h文件导入到系统推荐的.h中</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/005214_L3wy_2602883.png" alt></p>
+<p>第三步、真机，模拟器编译一下。可能会需要输入AppleID 。导出的文件没有包含.h</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/010821_kGD2_2602883.png" alt></p>
+<p>第四步、导出.h</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/011503_xvpa_2602883.png" alt></p>
+<p>第五步、可以查看一下 没合并模拟器架构之前包含几个同.a（可跳过此步）(真机包含两个，模拟器包含一个)</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/015214_YvoK_2602883.png" alt></p>
+<p>第六步、合成架构【同.a五六步详细看上边】</p>
+<p>第七步，合并架构【真机和模拟器】【注意 合并之后的动态/静态库要与原来的名称一致。不然用的时候编译报错】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/021216_VFpb_2602883.png" alt></p>
+<p>第八步、动态库变静态库【默认是动态】好处是将来使用时不需要设置添加动态库（也就是下边的方法）</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/021900_W6yh_2602883.png" alt></p>
+<p>最后步、</p>
+<p>Framework制作后, 默认是动态库. 使用时, 需要设置一下: Tarteg –&gt; General –&gt; Embedded Binaries –&gt; 需要添加对应的动态库 【注意 要是制作的时候更改为静态库的话，就不用执行此方法】</p>
+<p><img src="https://static.oschina.net/uploads/space/2016/0330/014201_OoXJ_2602883.png" alt></p>
+<p>谢谢。 </p>
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://my.oschina.net/kaqijiang/blog/649632" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/20/5d31f2248a6d167501.jpg" alt></a></td>
+</tr>
+</tbody></table>
+<br>
+
+
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/news/2016/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">WWDC 2016</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/notes/beijing/">
+                <span class="level-item">月薪多少能撑起一个家？</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/program/apple/framework1/';
+        this.page.identifier = 'program/apple/framework1/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        106
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        9
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/善用佳软/" style="font-size: 16px;">善用佳软</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EP0PiEw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">密码管理</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/news/HarmonyOS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/policx/talk/gh-pages/images/WPHrjc.jpg" alt="HarmonyOS 鸿蒙">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-10T15:28:21.000Z">2019-08-10</time></div>
+                    <a href="/news/HarmonyOS/" class="has-link-black-ter is-size-6">HarmonyOS 鸿蒙</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/news/appleCard/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://gitee.com/policx/im/raw/master/images/Y5JTwS.jpg" alt="appleCard">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-05T09:42:00.000Z">2019-08-05</time></div>
+                    <a href="/news/appleCard/" class="has-link-black-ter is-size-6">appleCard</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Software/uPic/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/policx/talk/gh-pages/images/2F8gAE.jpg" alt="善用佳软 uPic">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-27T04:11:04.000Z">2019-07-27</time></div>
+                    <a href="/Software/uPic/" class="has-link-black-ter is-size-6">善用佳软 uPic</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Software/">Software</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Software/DragAndDrop/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/27/5d3c5e4b7380211257.png" alt="「拖放」Mac 的底层能力，也是效率神技">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-26T14:19:21.000Z">2019-07-26</time></div>
+                    <a href="/Software/DragAndDrop/" class="has-link-black-ter is-size-6">「拖放」Mac 的底层能力，也是效率神技</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Software/">Software</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/program/Python/mind/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/21/5d341ffc29b1126145.jpg" alt="Python导图">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-21T06:03:24.000Z">2019-07-21</time></div>
+                    <a href="/program/Python/mind/" class="has-link-black-ter is-size-6">Python导图</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Software/">
+            <span class="level-start">
+                <span class="level-item">Software</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/blog/">
+            <span class="level-start">
+                <span class="level-item">blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/label/">
+            <span class="level-start">
+                <span class="level-item">label</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/notes/">
+            <span class="level-start">
+                <span class="level-item">notes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/program/">
+            <span class="level-start">
+                <span class="level-item">program</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">60</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/善用佳软/">
+                        <span class="tag">善用佳软</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS静态库" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

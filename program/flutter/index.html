@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Flutter的环境配置 for Mac - 南一道街</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="前言最近Flutter已经疯狂的刷屏了各个技术博客、技术网站，完全有一统天下的气势。所以最近也决定开始尝尝鲜，从零开始一步步的来探索Flutter的世界。就从环境搭建开始，记录一下自己探索Flutter的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter的环境配置 for Mac">
+<meta property="og:url" content="https://www.policx.com/program/flutter/index.html">
+<meta property="og:site_name" content="南一道街">
+<meta property="og:description" content="前言最近Flutter已经疯狂的刷屏了各个技术博客、技术网站，完全有一统天下的气势。所以最近也决定开始尝尝鲜，从零开始一步步的来探索Flutter的世界。就从环境搭建开始，记录一下自己探索Flutter的过程。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/07/16/5d2da57fca83996078.png">
+<meta property="og:updated_time" content="2019-08-15T01:53:53.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flutter的环境配置 for Mac">
+<meta name="twitter:description" content="前言最近Flutter已经疯狂的刷屏了各个技术博客、技术网站，完全有一统天下的气势。所以最近也决定开始尝尝鲜，从零开始一步步的来探索Flutter的世界。就从环境搭建开始，记录一下自己探索Flutter的过程。">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/16/5d2da57fca83996078.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142191817-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-142191817-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3671867345973568",
+          enable_page_level_ads: true
+     });
+</script>
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.gif" alt="Flutter的环境配置 for Mac" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/message">留言板</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Instagram" href="https://www.instagram.com/aragakiyui_fanspage/">
+                        
+                        <i class="fab fa-instagram"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- 布局 -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.loli.net/2019/07/16/5d2da57fca83996078.png" alt="Flutter的环境配置 for Mac">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-16T10:14:18.000Z">2019-07-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/program/">program</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2525 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Flutter的环境配置 for Mac
+            
+        </h1>
+        <div class="content">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近Flutter已经疯狂的刷屏了各个技术博客、技术网站，完全有一统天下的气势。所以最近也决定开始尝尝鲜，从零开始一步步的来探索Flutter的世界。就从环境搭建开始，记录一下自己探索Flutter的过程。 </p>
+<a id="more"></a>
+<h2 id="安装Flutter"><a href="#安装Flutter" class="headerlink" title="安装Flutter"></a>安装Flutter</h2><p>首先我们可以在<a href="https://link.juejin.im?target=https%3A%2F%2Fflutter.dev%2Fdocs%2Fget-started%2Finstall" target="_blank" rel="noopener">Flutter官网</a>上面看到一些配置环境的步骤。这里就直接开干了，走起。 </p>
+<h3 id="1、配置HomeBrew"><a href="#1、配置HomeBrew" class="headerlink" title="1、配置HomeBrew"></a>1、配置HomeBrew</h3><p>我们在去配置Flutter的环境之前，需要先检查一下HomeBrew是不是最新的。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew update</span><br></pre></td></tr></table></figure>
+
+<p>如果没有brew的话，可以去<a href="https://link.juejin.im?target=https%3A%2F%2Fbrew.sh%2F" target="_blank" rel="noopener">HomeBrew官网</a>自行下载。这里就不赘述了，这里如果重新下载的话，看到下面的打印信息就说明下载完毕了。 </p>
+<p><img src="https://i.loli.net/2019/07/16/5d2db3aad595f24923.jpg" alt></p>
+<h3 id="2、下载SDK"><a href="#2、下载SDK" class="headerlink" title="2、下载SDK"></a>2、下载SDK</h3><p>接下来就是去官网下载SDK了。注意，这里下载SDK有两种方法：</p>
+<ul>
+<li>一是直接<code>git clone -b beta https://github.com/flutter/flutter.git</code>下载</li>
+<li>二是自己在官网下载下来，如下图<br><img src="https://i.loli.net/2019/07/16/5d2db40e0aecc50465.jpg" alt></li>
+</ul>
+<p>这里我两种方法都试过了一遍，第一种方法实在是太慢了，在经历了耗费一个半小时下载到94%，最后提示失败了的过程之后，我决定还是用第二种方法，整个过程只用了3分钟的样子，相当满意。下载完之后，是一个名字叫<code>flutter_macos_v1.5.4-hotfix.2-stable.zip</code>的压缩包。 然后我们解压这个zip包，把解压出来的<strong>flutter</strong>文件放到根目录下即可。 </p>
+<h3 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h3><p>因为Flutter的SDK中包含了很多的命令行工具。我们就需要配置环境变量，所以我直接就安装到了根目录下了。</p>
+<p><strong>配置镜像</strong></p>
+<p>因为Flutter在运行的时候，就需要去官网下载一些需要的资源，但是因为天国特色的wall的原因，我们就需要镜像服务器，这个在<a href="https://link.juejin.im?target=https%3A%2F%2Fflutter.dev%2Fcommunity%2Fchina" target="_blank" rel="noopener">官网</a>上面有写的很明白，而且这是一个临时的镜像，后面还要以官网的镜像地址为准。 </p>
+<p><img src="https://i.loli.net/2019/07/16/5d2db3f2c1f4f64480.jpg" alt></p>
+<p>我们跳转到根目录 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure>
+
+<p>就能找到这个<code>.bash_profile</code>隐藏文件，我们用vim打开这个文件 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后需要输入就把A键按一下进入编辑模式，把下面三个环境变量配置进去 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line">export PATH=/Users/xueliheng/flutter/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<p>注意下，第三个环境变量这里<code>/Users/xueliheng/</code>是我的根目录，然后<code>/flutter/</code>是我们刚刚解压的的zip包里面的<code>flutter</code>文件夹。上面两个环境变量是两个镜像地址，上文中也有说过。 接着<code>shift+：</code>然后输入<code>wq</code>保存并退出vim。输入如下命令： </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>最后我们就可以验证一下flutter环境有没有配置成功了。输入： </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter -h</span><br></pre></td></tr></table></figure>
+
+<p>看到如下如的打印信息就是配置成功了<br><img src="https://i.loli.net/2019/07/16/5d2db44407fa682753.jpg" alt></p>
+<h3 id="4、配置Android-Studio"><a href="#4、配置Android-Studio" class="headerlink" title="4、配置Android Studio"></a>4、配置Android Studio</h3><p>如果没有下载<strong>Android Studio</strong>的话，就去<a href="https://link.juejin.im?target=https%3A%2F%2Fdeveloper.android.google.cn%2Fstudio" target="_blank" rel="noopener">官网</a>去下载一下。 我们用<code>flutter doctor</code>命令去检查一下flutter的环境配置，我们可以看到如下打印 </p>
+<p><img src="https://i.loli.net/2019/07/16/5d2db4676ec3a36838.jpg" alt></p>
+<p>这里的每个<code>✗</code>都是我们要去解决的问题。不过他有告诉你应该怎么做。比如第一个提示： </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[✗] Android toolchain - develop for Android devices</span><br><span class="line">    ✗ Unable to locate Android SDK.</span><br></pre></td></tr></table></figure>
+
+<p>这就是让你去下载Android Studio。我们在下载完成之后，打开AS让他去下载一些应该下载的东西。 如果这里有提示你 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[✗] Android toolchain - develop for Android devices (Android SDK version 24.0.2)</span><br><span class="line">    ✗ Flutter requires Android SDK 28 and the Android BuildTools 28.0.3</span><br></pre></td></tr></table></figure>
+
+<p>这就是在提示让你去升级一下SDK，然后命令如下 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;/Users/xueliheng/Library/Android/sdk/tools/bin/sdkmanager&quot; &quot;platforms;android-28&quot; &quot;build-tools;28.0.3&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意一下，这个地方的升级是需要”科学上网“的，如果有的小伙伴没有这个条件的话，我这边百度云上面给大家准备了一个<a href="https://link.juejin.im?target=https%3A%2F%2Fpan.baidu.com%2Fs%2F10yp8PuRXxk7YvcNR_dTy8Q" target="_blank" rel="noopener">链接</a>，提取码: e48c，大家可以下载下来。下载下来之后解压到<code>/Users/Library/Android/</code>这个文件夹。把原先的SDK直接覆盖就行了，就已经是最新的SDK了。 </p>
+<p>接下来我们配置一下安卓的环境变量，还是在根目录下找到<code>.bash_profile</code>文件，并在其中添加四个环境变量 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_HOME=~/Library/Android/sdk</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_HOME&#125;/emulator</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_HOME&#125;/tools</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_HOME&#125;/platform-tools</span><br></pre></td></tr></table></figure>
+
+<p>分别是： </p>
+<ul>
+<li>安卓sdk的路径</li>
+<li>安卓的模拟器路径</li>
+<li>安卓tools路径</li>
+<li>安卓平台工具</li>
+</ul>
+<p>接下来我们再用<code>flutter doctor</code>检查的时候，显示的信息如下图<br><img src="https://i.loli.net/2019/07/16/5d2db4964a70b73490.jpg" alt></p>
+<p>意思就是让我们去下载iOS的相关环境，我们先暂时放放，下面还有一个关于<strong>Android Studio</strong>的没有解决完</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">✗ Flutter plugin not installed; this adds Flutter specific functionality.</span><br><span class="line">✗ Dart plugin not installed; this adds Dart specific functionality.</span><br></pre></td></tr></table></figure>
+
+<p>这个就是缺少Flutter插件的意思，那么我们就去AS里面去配置一下好了。打开AS的<code>Preferences</code>，点击<code>Plugins</code>，在搜索栏中输入<code>flutter</code>，找到相应的插件，然后<code>Install</code>。当跳出安装Dart插件的提示界面时，记得点击Yes进行安装。安装完毕之后<code>restart IDE</code>重启AS。 重启之后就能看到多了一个这个东西<br><img src="https://i.loli.net/2019/07/16/5d2db4b731cbd14001.jpg" alt></p>
+<p>我们再用<code>flutter doctor</code>检测一下<br><img src="https://i.loli.net/2019/07/16/5d2db4cdc6dd137908.jpg" alt></p>
+<p>现在终于ok了。我们看到<code>[✓]Android Studio</code>说明，安卓的环境基本上配置成功，接下来我们就配置一下安卓的模拟器就好了。 </p>
+<h3 id="5、安卓模拟器配置"><a href="#5、安卓模拟器配置" class="headerlink" title="5、安卓模拟器配置"></a>5、安卓模拟器配置</h3><p>在AS中找到模拟器配置如下图并选择<br><img src="https://i.loli.net/2019/07/16/5d2db4dacfde455330.jpg" alt></p>
+<p>接着就创建设备，选择设备<br><img src="https://i.loli.net/2019/07/16/5d2db4e68a2ed68879.jpg" alt></p>
+<p>选择系统<br><img src="https://i.loli.net/2019/07/16/5d2db4f6cdc5889902.jpg" alt></p>
+<p>最后点击下载就完成了。 </p>
+<h3 id="6、配置iOS环境"><a href="#6、配置iOS环境" class="headerlink" title="6、配置iOS环境"></a>6、配置iOS环境</h3><p>我们配置完了安卓的环境，再来<code>flutter doctor</code>检测一下。<br><img src="https://i.loli.net/2019/07/16/5d2db50ad75eb82331.jpg" alt></p>
+<p>情况是这样的。目前1.5.4版本的Flutter需要匹配新版本的Xcode10.2.1。按照他提示的来试试，提示我Xcode版本太低了，需要升级Xcode<br><img src="https://i.loli.net/2019/07/16/5d2db5275c8f825074.jpg" alt></p>
+<p>更新到最新的之后，继续走下面的步骤依旧会报错。那么我们可以试试下面的这个办法： </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ brew link pkg-config</span><br><span class="line">$ brew install --HEAD usbmuxd</span><br><span class="line">$ brew unlink usbmuxd</span><br><span class="line">$ brew link usbmuxd</span><br><span class="line">$ brew install --HEAD libimobiledevice</span><br><span class="line">$ brew install ideviceinstaller</span><br></pre></td></tr></table></figure>
+
+<p>这些执行完之后执行一下<code>flutter doctor</code><br><img src="https://i.loli.net/2019/07/16/5d2db5515858b19228.jpg" alt></p>
+<p>最后还真是没错，全部配置完成了！那么我们就把iOS的也配置完毕了。</p>
+<h3 id="7、VSCode的使用"><a href="#7、VSCode的使用" class="headerlink" title="7、VSCode的使用"></a>7、VSCode的使用</h3><p>VSCode上面使用的话，就简单多了，这里我就简答的赘述一下。 只需要将<code>Dart</code>和<code>Flutter</code>插件都下载下来<br><img src="https://i.loli.net/2019/07/16/5d2db5643b08597602.jpg" alt></p>
+<p>然后<code>command+shift+p</code>输入<code>flutter</code>，选择<code>Flutter：New Project</code><br><img src="https://i.loli.net/2019/07/16/5d2db576e145096766.jpg" alt></p>
+<p>输入要创建的项目的名称和存放项目的地址。如果提示需要指明flutter的SDK的路径，那就选择根目录那个经过解压得来的flutter的文件夹就好了。 接下来是这样一个界面<br><img src="https://i.loli.net/2019/07/16/5d2db588f1b5152482.jpg" alt></p>
+<p>接下来我们选择<code>View-&gt;Start Debugging</code>来运行项目。<br><img src="https://i.loli.net/2019/07/16/5d2db59bb3b3338193.jpg" alt></p>
+<p>当然这个过程需要你把Xcode的模拟器打开。运行完之后就能看到这个界面，也就是你的第一个Flutter工程啦！<br><img src="https://i.loli.net/2019/07/16/5d2db5ad5eaf434960.jpg" alt></p>
+<h3 id="8、Hot-reload的使用"><a href="#8、Hot-reload的使用" class="headerlink" title="8、Hot reload的使用"></a>8、Hot reload的使用</h3><p>我们打开<code>lib/main.dart</code>文件，然后在其中找到 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have pushed the button this many times:</span><br></pre></td></tr></table></figure>
+
+<p>并把这个改为 </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have clicked the button this many times:</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/07/16/5d2db5cc5b4f279074.jpg" alt><br>那么我们就能看到界面上多了一个小闪电<br><img src="https://i.loli.net/2019/07/16/5d2db5f044c0553935.jpg" alt></p>
+<p>我们现在如果<code>command+s</code>保存一下更改的话，就能很快的在模拟器上面看到相应的更改，不需要再重新去编译一边。这一点简直是太棒了！解决了iOS开发者一个大痛点啊！！！ </p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>至此，flutter的环境搭建工作基本上就进行完毕了，整个过程大概耗时接近2个小时，这期间包括采坑、查资料、下载、科学上网…等等很蛋疼的事情。当然网速基本上是最大的障碍，浪费了很多的时间。所以也是需要一定的耐心来完成的。 后面的文章也会持续的更新，最近有点懈怠，OpenGL系列的文章有点拖更的节奏，这个后面会补起来。Flutter我也才刚刚接手，也是慢慢的来采坑，也会以此来记录自己的学习经历，也希望能多多跟大家交流。 再次我附上自己的邮箱<code>coderspr1nghall@gmail.com</code>欢迎讨论交流。 </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://juejin.im/post/5d0508d56fb9a07ec373eb9e" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/16/5d2dbb03b8ef977558.jpg" alt></a></td>
+</tr>
+</tbody></table>
+
+            
+            <p><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=71fu1n7e" " target="_blank" rel="noopener"><img src="https://i.loli.net/2019/07/17/5d2df866c36e974256.png" alt></a></p>
+            
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations">
+    <input type="hidden" name="business" value="buy@policx.com">
+    <input type="hidden" name="currency_code" value="USD">
+</form>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/label/Accomplice/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">超时空从犯</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/program/Python/spider/">
+                <span class="level-item">Python爬虫</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        <!-- 
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://www.policx.com/program/flutter/';
+        this.page.identifier = 'program/flutter/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'policx' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+    var dsqjs = new DisqusJS({
+        shortname: 'policx',
+        siteName: '',
+        identifier: '',
+        url: '',
+        title: '',
+        api: 'https://disqus.skk.moe/disqus/',
+        apikey: 'yKpZ790nbB7UbaNpYxRZogQQi7HmsXTlv4XxHbvM8TEk7tdrddQKwPILq4WScQBz',
+        admin: '',
+        adminLabel: ''
+    });
+</script>
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+
+<!-- 修改，可选保留的栏 -->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="policx">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        policx
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        庙堂高，江湖远
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Helsinki-Suomi</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        106
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        9
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://996.icu" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://developer.apple.com/">
+                
+                <i class="fab fa-apple"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://docs.python.org/zh-cn/3.7/whatsnew/3.7.html">
+                
+                <i class="fab fa-python"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://nodejs.org/zh-cn/">
+                
+                <i class="fab fa-node-js"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://developer.android.google.cn/">
+                
+                <i class="fab fa-android"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/atom.xml">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+    
+    
+    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Django/" style="font-size: 12px;">Django</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/善用佳软/" style="font-size: 16px;">善用佳软</a> <a href="/tags//" style="font-size: 20px;"></a>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- tag -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3671867345973568" data-ad-slot="1578507149" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    
+    
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/RLs3BSV" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">HEXO</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EJ3xzUk" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图库</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/E6aRKaM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Swift</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmxPZU" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiOmM16n" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Easy Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/R9X5EQw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">阅后即焚</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EP0PiEw" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">密码管理</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/Re0wbzP" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">源代码图片</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/EMFRvKO" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Linux命令大全(手册)</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsBgSQ" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">张良计</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://t.cn/AiWsB61N" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">飞鱼的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">t.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/news/HarmonyOS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/policx/talk/gh-pages/images/WPHrjc.jpg" alt="HarmonyOS 鸿蒙">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-10T15:28:21.000Z">2019-08-10</time></div>
+                    <a href="/news/HarmonyOS/" class="has-link-black-ter is-size-6">HarmonyOS 鸿蒙</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/news/appleCard/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://gitee.com/policx/im/raw/master/images/Y5JTwS.jpg" alt="appleCard">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-05T09:42:00.000Z">2019-08-05</time></div>
+                    <a href="/news/appleCard/" class="has-link-black-ter is-size-6">appleCard</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/news/">news</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Software/uPic/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/policx/talk/gh-pages/images/2F8gAE.jpg" alt="善用佳软 uPic">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-27T04:11:04.000Z">2019-07-27</time></div>
+                    <a href="/Software/uPic/" class="has-link-black-ter is-size-6">善用佳软 uPic</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Software/">Software</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Software/DragAndDrop/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/27/5d3c5e4b7380211257.png" alt="「拖放」Mac 的底层能力，也是效率神技">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-26T14:19:21.000Z">2019-07-26</time></div>
+                    <a href="/Software/DragAndDrop/" class="has-link-black-ter is-size-6">「拖放」Mac 的底层能力，也是效率神技</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Software/">Software</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/program/Python/mind/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/07/21/5d341ffc29b1126145.jpg" alt="Python导图">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-21T06:03:24.000Z">2019-07-21</time></div>
+                    <a href="/program/Python/mind/" class="has-link-black-ter is-size-6">Python导图</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/program/">program</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-i6+3-d-11+36" data-ad-client="ca-pub-3671867345973568" data-ad-slot="5440842480"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+        
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Software/">
+            <span class="level-start">
+                <span class="level-item">Software</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/blog/">
+            <span class="level-start">
+                <span class="level-item">blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/label/">
+            <span class="level-start">
+                <span class="level-item">label</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/news/">
+            <span class="level-start">
+                <span class="level-item">news</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/notes/">
+            <span class="level-start">
+                <span class="level-item">notes</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/program/">
+            <span class="level-start">
+                <span class="level-item">program</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">60</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2014/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2014</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2013/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2013</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/善用佳软/">
+                        <span class="tag">善用佳软</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags//">
+                        <span class="tag"></span>
+                        <span class="tag is-grey">18</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+    
+</div>
+
+                
+
+<!-- 粘贴的部分 -->
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="Flutter的环境配置 for Mac" height="28">
+                    
+                </a>
+                <p class="is-size-7">
+                    &copy; 2019 policx&nbsp;
+                    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> 🌏 <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                    
+                    <br>
+                    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                    本站总访问量-<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>-次 |
+                    您是第-<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>-位访客
+                    <br>
+                    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                    <script>
+                        var now = new Date();
+                        function createtime() {
+                            var grt = new Date("06/01/2019 00:00:00");//此处修改你的建站时间或者网站上线时间 
+                            now.setTime(now.getTime() + 250);
+                            days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                            hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                            if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                            mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+                            seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                            snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+                            document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+                            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+                        }
+                        setInterval("createtime()", 250);
+                    </script>
+                    
+                </p>
+            </div>
+            <div class="level-end">
+                
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                    <img src="https://tool.lu/netcard/" height="80px" width="200px">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5llb4uunz4b&amp;m=6&amp;s=130&amp;c=ff0000&amp;t=1" async="async"></script>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
