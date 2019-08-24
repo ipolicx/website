@@ -16,7 +16,7 @@
 <meta property="og:description" content="说明：面试题来源是微博@我就叫Sunny怎么了的这篇博文：《招聘一个靠谱的 iOS》，其中共55题，除第一题为纠错题外，其他54道均为简答题。 出题者简介： 孙源（sunnyxx），目前就职于百度，负责百度知道 iOS 客户端的开发工作，对技术喜欢刨根问底和总结最佳实践，热爱分享和开源，维护一个叫 forkingdog 的开源小组。 答案为微博@iOS程序犭袁整理，未经出题者校对，如有纰漏，请向微">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://images.pexels.com/photos/38639/mockup-psd-ipad-iphone-38639.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
-<meta property="og:updated_time" content="2019-08-24T08:45:57.565Z">
+<meta property="og:updated_time" content="2019-08-24T08:55:27.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="靠谱的iOS">
 <meta name="twitter:description" content="说明：面试题来源是微博@我就叫Sunny怎么了的这篇博文：《招聘一个靠谱的 iOS》，其中共55题，除第一题为纠错题外，其他54道均为简答题。 出题者简介： 孙源（sunnyxx），目前就职于百度，负责百度知道 iOS 客户端的开发工作，对技术喜欢刨根问底和总结最佳实践，热爱分享和开源，维护一个叫 forkingdog 的开源小组。 答案为微博@iOS程序犭袁整理，未经出题者校对，如有纰漏，请向微">
@@ -190,7 +190,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 小时 读完 (大约 43960 个字)
+                    5 小时 读完 (大约 43957 个字)
                 </span>
                 
                 
@@ -1403,7 +1403,7 @@ ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单
 <p>打个比方：比如你们公司周末跟团旅游，高速休息站上，司机说：大家都去上厕所，速战速决，上完厕所就上高速。超大的公共厕所，大家同时去，程序猿很快就结束了，但程序媛就可能会慢一些，即使你第一个回来，司机也不会出发，司机要等待所有人都回来后，才能出发。 <code>dispatch_barrier_async</code> 函数追加的内容就如同 “上完厕所就上高速”这个动作。</p>
 <p>（注意：使用 <code>dispatch_barrier_async</code> ，该函数只能搭配自定义并行队列 <code>dispatch_queue_t</code> 使用。不能使用： <code>dispatch_get_global_queue</code> ，否则 <code>dispatch_barrier_async</code> 的作用会和 <code>dispatch_async</code> 的作用一模一样。 ）</p>
 <p><span id="43"></span></p>
-<h3 id="43-苹果为什么要废弃dispatch-get-current-queue？"><a href="#43-苹果为什么要废弃dispatch-get-current-queue？" class="headerlink" title="43. 苹果为什么要废弃dispatch_get_current_queue？"></a>43. 苹果为什么要废弃<code>dispatch_get_current_queue</code>？</h3><p><code>dispatch_get_current_queue</code>函数的行为常常与开发者所预期的不同。<br>由于派发队列是按层级来组织的，这意味着排在某条队列中的块会在其上级队列里执行。<br>队列间的层级关系会导致检查当前队列是否为执行同步派发所用的队列这种方法并不总是奏效。<code>dispatch_get_current_queue</code>函数通常会被用于解决由不可以重入的代码所引发的死锁，然后能用此函数解决的问题，通常也可以用”队列特定数据”来解决。</p>
+<h3 id="43-苹果为什么要废弃-dispatch…？"><a href="#43-苹果为什么要废弃-dispatch…？" class="headerlink" title="43. 苹果为什么要废弃 dispatch…？"></a>43. 苹果为什么要废弃 dispatch…？</h3><p><code>dispatch_get_current_queue</code>函数的行为常常与开发者所预期的不同。<br>由于派发队列是按层级来组织的，这意味着排在某条队列中的块会在其上级队列里执行。<br>队列间的层级关系会导致检查当前队列是否为执行同步派发所用的队列这种方法并不总是奏效。<code>dispatch_get_current_queue</code>函数通常会被用于解决由不可以重入的代码所引发的死锁，然后能用此函数解决的问题，通常也可以用”队列特定数据”来解决。</p>
 <p><span id="44"></span></p>
 <h3 id="44-以下代码运行结果如何？"><a href="#44-以下代码运行结果如何？" class="headerlink" title="44. 以下代码运行结果如何？"></a>44. 以下代码运行结果如何？</h3><pre><code>- (void)viewDidLoad
 {
@@ -2132,9 +2132,9 @@ ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单
         <span class="has-mr-6">1.1.42</span>
         <span>42. dispatch_barrier_async的作用是什么？</span>
         </a></li><li>
-        <a class="is-flex" href="#43-苹果为什么要废弃dispatch-get-current-queue？">
+        <a class="is-flex" href="#43-苹果为什么要废弃-dispatch…？">
         <span class="has-mr-6">1.1.43</span>
-        <span>43. 苹果为什么要废弃dispatch_get_current_queue？</span>
+        <span>43. 苹果为什么要废弃 dispatch…？</span>
         </a></li><li>
         <a class="is-flex" href="#44-以下代码运行结果如何？">
         <span class="has-mr-6">1.1.44</span>
