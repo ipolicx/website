@@ -255,6 +255,26 @@
   </entry>
   
   <entry>
+    <title>Homebrew</title>
+    <link href="https://www.policx.com/news/brew/"/>
+    <id>https://www.policx.com/news/brew/</id>
+    <published>2019-07-21T00:21:23.000Z</published>
+    <updated>2019-08-26T17:12:12.778Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><strong>macOS（或 Linux）缺失的软件包的管理器 — Homebrew</strong></p><a id="more"></a><h1 id="安装-Homebrew"><a href="#安装-Homebrew" class="headerlink" title="安装 Homebrew"></a>安装 Homebrew</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure><p>将以上命令粘贴至终端。</p><p>脚本会在执行前暂停，并说明它将做什么。高级安装选项在 <a href="https://docs.brew.sh/Installation" target="_blank" rel="noopener">这里</a> (required for Linux and Windows Subsystem for Linux)。</p><h1 id="Homebrew-能干什么"><a href="#Homebrew-能干什么" class="headerlink" title="Homebrew 能干什么?"></a>Homebrew 能干什么?</h1><p>使用 Homebrew 安装 Apple（或您的 Linux 系统）没有预装但 你需要的东西。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wget</span><br></pre></td></tr></table></figure><p>Homebrew 会将软件包安装到独立目录，并将其文件软链接至 /usr/local 。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local</span><br><span class="line">$ find Cellar</span><br><span class="line">Cellar/wget/1.16.1</span><br><span class="line">Cellar/wget/1.16.1/bin/wget</span><br><span class="line">Cellar/wget/1.16.1/share/man/man1/wget.1</span><br><span class="line"></span><br><span class="line">$ ls -l bin</span><br><span class="line">bin/wget -&gt; ../Cellar/wget/1.16.1/bin/wget</span><br></pre></td></tr></table></figure><p>Homebrew 不会将文件安装到它本身目录之外，所以您可将 Homebrew 安装到任意位置。</p><p>轻松创建你自己的 Homebrew 包。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew create https://foo.com/bar-1.0.tgz</span><br><span class="line">Created /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/bar.rb</span><br></pre></td></tr></table></figure><p>完全基于 Git 和 Ruby，所以自由修改的同时你仍可以轻松撤销你的变更或与上游更新合并。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew edit wget  # 使用 $EDITOR 编辑!</span><br></pre></td></tr></table></figure><p>Homebrew 的配方都是简单的 Ruby 脚本：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Wget &lt; Formula</span><br><span class="line">  homepage &quot;https://www.gnu.org/software/wget/&quot;</span><br><span class="line">  url &quot;https://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz&quot;</span><br><span class="line">  sha256 &quot;52126be8cf1bddd7536886e74c053ad7d0ed2aa89b4b630f76785bac21695fcd&quot;</span><br><span class="line"></span><br><span class="line">  def install</span><br><span class="line">    system &quot;./configure&quot;, &quot;--prefix=#&#123;prefix&#125;&quot;</span><br><span class="line">    system &quot;make&quot;, &quot;install&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure><p>Homebrew 使 macOS（或您的 Linux 系统）更完整。使用 gem 来安装 RubyGems、用 brew 来安装那些依赖包。</p><p>“要安装，请拖动此图标……”不会再出现了。使用 brew cask 安装 macOS 应用程序、字体和插件以及其他非开源软件。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install firefox</span><br></pre></td></tr></table></figure><p>制作一个 cask 就像创建一个配方一样简单。</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask create foo</span><br><span class="line">Editing /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks/foo.rb</span><br></pre></td></tr></table></figure><h1 id="怎么删掉-brew-cask-list-里面的已安装记录？"><a href="#怎么删掉-brew-cask-list-里面的已安装记录？" class="headerlink" title="怎么删掉 brew cask list 里面的已安装记录？"></a>怎么删掉 brew cask list 里面的已安装记录？</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/Caskroom/名称</span><br></pre></td></tr></table></figure><h1 id="更多文档"><a href="#更多文档" class="headerlink" title="更多文档"></a>更多文档</h1><p><a href="https://docs.brew.sh/" target="_blank" rel="noopener">docs.brew.sh</a></p><h1 id="Homebrew-Packages"><a href="#Homebrew-Packages" class="headerlink" title="Homebrew Packages"></a>Homebrew Packages</h1><p><a href="https://formulae.brew.sh/" target="_blank" rel="noopener">formulae.brew.sh</a></p><h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><p><a href="https://github.com/Homebrew/brew" target="_blank" rel="noopener"><strong>https://github.com/Homebrew/brew</strong></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;macOS（或 Linux）缺失的软件包的管理器 — Homebrew&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="news" scheme="https://www.policx.com/categories/news/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>《Python札记》1_列表list</title>
     <link href="https://www.policx.com/program/Python/python3-notes01/"/>
     <id>https://www.policx.com/program/Python/python3-notes01/</id>
@@ -417,26 +437,6 @@
     <summary type="html">
     
       &lt;p&gt;【CSDN 编者按】技术圈里一直倡导一句话，那便是“拥抱变化”，因为技术始终在飞速地更新迭代，过去掌握的技能可能突然之间就过时了。在近几年，移动开发逐渐趋于稳定，而人工智能、区块链等技术开始甚嚣尘上，客户端开发者们不由得开始迷茫，曾经如此吃香，未来又该怎么走？也许本文会有一点思路上的帮助。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="news" scheme="https://www.policx.com/categories/news/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>BT 种子和磁力链接是如何工作的？</title>
-    <link href="https://www.policx.com/news/BitTorrent/"/>
-    <id>https://www.policx.com/news/BitTorrent/</id>
-    <published>2019-07-05T13:06:16.000Z</published>
-    <updated>2019-08-15T01:05:16.651Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><hr><a id="more"></a><p><img src="https://cdn.sspai.com/article_images/55502.jpeg" alt="BT 种子和磁力链接是如何工作的？"><br>链接：<em><a href="https://sspai.com/post/55502" target="_blank" rel="noopener">回形针PaperClip</a></em></p><iframe src="//player.bilibili.com/player.html?aid=57748098&cid=100797037&page=1" height="300" width="520" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
     
     </summary>
     
