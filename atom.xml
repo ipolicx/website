@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.policx.com/"/>
-  <updated>2019-08-28T16:14:04.205Z</updated>
+  <updated>2019-08-28T16:40:16.358Z</updated>
   <id>https://www.policx.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>体系</title>
+    <link href="https://www.policx.com/program/system/"/>
+    <id>https://www.policx.com/program/system/</id>
+    <published>2019-08-28T14:11:04.000Z</published>
+    <updated>2019-08-28T16:40:16.358Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>知识体系图</p></blockquote><a id="more"></a><div class="content">                                <div><br><a class="button is-link">前端知识体系</a><br></div><br>                                <div id="book-web" class="card" style="width: 100%; height: 1300px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1566889275033">                                    <div style="position: relative; overflow: hidden; width: 817px; height: 1300px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">                                        <canvas data-zr-dom-id="zr_0" width="1634" height="2600" style="position: absolute; left: 0px; top: 0px; width: 817px; height: 1300px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>                                    </div>                                    <div></div>                                </div>                                <div><br><a class="button is-link">Android知识体系</a><br></div><br>                                <div id="book-android" class="card" style="width: 100%; height: 1200px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1566889275034">                                    <div style="position: relative; overflow: hidden; width: 817px; height: 1200px; padding: 0px; margin: 0px; border-width: 0px;">                                        <canvas data-zr-dom-id="zr_0" width="1634" height="2400" style="position: absolute; left: 0px; top: 0px; width: 817px; height: 1200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>                                    </div>                                    <div></div>                                </div>                                <div><br><a class="button is-link">物联网和接口体系</a><br></div><br>                                <div id="book-iot" class="card" style="width: 100%; height: 600px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1566889275035">                                    <div style="position: relative; overflow: hidden; width: 817px; height: 600px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">                                        <canvas data-zr-dom-id="zr_0" width="1634" height="1200" style="position: absolute; left: 0px; top: 0px; width: 817px; height: 600px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>                                    </div>                                    <div></div>                                </div>                                <p><br>小提示：你可以点击分类树的 <strong>叶子节点</strong> 的小圆点直接查看对应的文章内容。<br></p>                                <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>                                <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts-en.js"></script>                                <script type="text/javascript">                                    function transData(t, a, i, e) {                                        for (var o = [], n = {}, l = a, r = i, d = e, s = 0, c = 0, h = t.length; s < h; s++)                                            n[t[s][l]] = t[s]; for (; c < h; c++) { var m = t[c], g = n[m[r]]; g ? (!g[d] && (g[d] = []), g[d].push(m)) : o.push(m) } return o                                    }                                    function clickNode(t, a, i) {                                        void 0 != i && "" !== i && window.open(i)                                    }                                    var webChart = echarts.init(document.getElementById("book-web")); webChart.showLoading(), $.get("https://dp2px.com/json-data/frame-web.json", function (t) { webChart.hideLoading(), echarts.util.each(t.children, function (t, a) { a % 2 === 0 && (t.collapsed = !0) }), webChart.setOption(option = { tooltip: { trigger: "item", triggerOn: "mousemove" }, series: [{ type: "tree", data: transData(t, "value", "sj", "children"), top: "1%", left: "100px", bottom: "1%", right: "40%", symbol: "emptyCircle", symbolSize: 10, label: { normal: { position: "left", verticalAlign: "middle", align: "right", fontSize: 14 } }, leaves: { label: { normal: { position: "right", verticalAlign: "middle", align: "left" } } }, initialTreeDepth: 3, expandAndCollapse: !0, animationDuration: 550, animationDurationUpdate: 750 }] }), webChart.on("click", function (t) { var a = t.data.name, i = t.data.value, e = t.data.url; clickNode(a, i, e) }) });                                    var androidChart = echarts.init(document.getElementById("book-android")); androidChart.showLoading(), $.get("https://dp2px.com/json-data/frame-android.json", function (t) { androidChart.hideLoading(), echarts.util.each(t.children, function (t, a) { a % 2 === 0 && (t.collapsed = !0) }), androidChart.setOption(option = { tooltip: { trigger: "item", triggerOn: "mousemove" }, series: [{ type: "tree", data: transData(t, "value", "sj", "children"), top: "1%", left: "120px", bottom: "1%", right: "40%", symbolSize: 10, label: { normal: { position: "left", verticalAlign: "middle", align: "right", fontSize: 14 } }, leaves: { label: { normal: { position: "right", verticalAlign: "middle", align: "left" } } }, initialTreeDepth: 3, expandAndCollapse: !0, animationDuration: 550, animationDurationUpdate: 750 }] }), androidChart.on("click", function (t) { var a = t.data.name, i = t.data.value, e = t.data.url; clickNode(a, i, e) }) });                                    var iotChart = echarts.init(document.getElementById("book-iot")); iotChart.showLoading(), $.get("https://dp2px.com/json-data/frame-iot.json", function (t) { iotChart.hideLoading(), echarts.util.each(t.children, function (t, a) { a % 2 === 0 && (t.collapsed = !0) }), iotChart.setOption(option = { tooltip: { trigger: "item", triggerOn: "mousemove" }, series: [{ type: "tree", data: transData(t, "value", "sj", "children"), top: "1%", left: "150px", bottom: "1%", right: "40%", symbolSize: 10, label: { normal: { position: "left", verticalAlign: "middle", align: "right", fontSize: 14 } }, leaves: { label: { normal: { position: "right", verticalAlign: "middle", align: "left" } } }, initialTreeDepth: 3, expandAndCollapse: !0, animationDuration: 550, animationDurationUpdate: 750 }] }), iotChart.on("click", function (t) { var a = t.data.name, i = t.data.value, e = t.data.url; clickNode(a, i, e) }) })                                </script>                            </div><table><thead><tr><th><strong>原文链接</strong></th><th>水寒的博客👇</th></tr></thead><tbody><tr><td><a href="https://dp2px.com/books/" target="_blank" rel="noopener"><img src="https://dp2px.com/images/logo.svg" alt="水寒的博客"></a></td><td></td></tr></tbody></table><br>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;知识体系图&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="program" scheme="https://www.policx.com/categories/program/"/>
+    
+    
+      <category term="体系" scheme="https://www.policx.com/tags/%E4%BD%93%E7%B3%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>关于知识产权、知识共享与文章翻译</title>
@@ -432,26 +456,6 @@
     
     
       <category term="Hexo" scheme="https://www.policx.com/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>未来五年，iOS 开发如何前行？</title>
-    <link href="https://www.policx.com/news/iOSYear/"/>
-    <id>https://www.policx.com/news/iOSYear/</id>
-    <published>2019-07-11T11:44:45.000Z</published>
-    <updated>2019-08-15T01:48:07.226Z</updated>
-    
-    <content type="html"><![CDATA[<p>【CSDN 编者按】技术圈里一直倡导一句话，那便是“拥抱变化”，因为技术始终在飞速地更新迭代，过去掌握的技能可能突然之间就过时了。在近几年，移动开发逐渐趋于稳定，而人工智能、区块链等技术开始甚嚣尘上，客户端开发者们不由得开始迷茫，曾经如此吃香，未来又该怎么走？也许本文会有一点思路上的帮助。</p><a id="more"></a>  <ul><li>作者 | David O.</li><li>译者 | 罗昭成</li><li>责编 | 沭七</li><li>出品 | CSDN（ID：CSDNnews）</li></ul><p><strong>以下为译文：</strong></p><p>近十年，10~15 年前不存在的技术，让这个世界变得黯然失色。有趣的是，这些概念正在构建未来的生活方式。如果你认为你在现在已经上线的 App 中看到了这些变化，并且也在着手开发自己的 App，在未来五年，你依然会对 iOS 程序开发的发展方式感到异常震惊。</p><p>以下四点，你可以重点关注：</p><hr><p><strong>人工智能</strong></p><p><img src="https://p0.ifengimg.com/pmop/2018/0509/F5D88FCB8A186B6F15BE016CA7BE684C5390FDF1_size601_w500_h200.gif" alt></p><p>人工智能（AI）是一个独特的范式转换器（Paradigm Shifter）[1]。iOS 应用程序开发领域中，睿智的开发者无时无刻都在创建基于 AI 的应用程序。例如星巴克，发布了一个名叫 My Starbucks Barista 的 iOS 应用，它会根据你当天的需要，为你订购咖啡和零食。在金融领域，也有很多 iOS 的人工智能应用程序，根据你的指示，自动进行交易。</p><p>在不久的将来，在 iOS 平台，你将会看到越来越多的 AI 应用程序，它们将以全新的方式，逐渐替换传统方式为我们提供服务。这些 AI 应用程序将代替你做选择。这个领域，有无限可能。</p><hr><p><strong>增强现实</strong><br><img src="https://cdn-images-1.medium.com/max/1600/1*4bG0pGhsveSMDf2tBUnl4A.jpeg" alt><br>增强现实（AR）与 AI 一样神奇。几年前， Pokémon GO 将虚拟怪兽带到我们的世界，让全世界的人对 AR 趋之若鹜。这个游戏，在 2016 年收入约 9.5 亿美元，到 2017 年，就接近了 9 亿美元。</p><p>在未来几年，AR 将在游戏和其它应用中产生更加惊人的影响。这些变化，你将在未来几年的 iOS 应用程序中看到。</p><hr><p><strong>物联网（IoT）</strong></p><p><img src="https://cdn-images-1.medium.com/max/1600/1*erSuPcaEhaODURW47r4ABw.png" alt></p><p>随着时间的推移，物联网（IoT）正在逐渐壮大。现如今，你可以看到，灯、门铃、智能门锁、家庭安防系统、音箱、电视、电视盒子、手表、平板、冰箱都连接到互联网上，你可以随时随地控制它们。虽然 iOS 应用程序不能让你看到冰箱中还剩多少食物，还不能改善物联网的体验，但是 IoT 设备获取到越多的数据，越能帮助你作出正确的选择。</p><p>IoT 正在优化酒店、汽车、零售等多种行业，这几年的变化，甚是有趣。此外，当人工智能与 IoT 相结合，IoT 将有可能彻底改变全球人的生活方式。</p><hr><p><strong>基于云的应用程序</strong></p><p><img src="https://cdn-images-1.medium.com/max/1600/0*7HRm1x6dIktyA0-U" alt></p><p>很多 iOS 应用程序开发专家预测，基于云的 iOS 应用程序将是下一个行业重点。在未来几年内，将有超过一半的企业与组织拥有至少一个基于云的原生应用程序[2]。</p><p>上面的预测里，有一个奇怪的事情，这个市场，80% 的份额将由 Google、微软、亚马逊占据，而苹果则只剩下 20% 左右。这意味着，如果你的 iOS 应用程序要在这 1780 亿美元的市场中占据一席之地，你需要好好磨练你的 iOS 开发技能。</p><p>此外，苹果可能会在未来几年，像其它领域一样，通过创新来抢回市场。苹果今天的成绩，我们相信它有那个能力。</p><hr><p><strong>结论</strong>  </p><p>总之，上面提到的领域，并非只有这些领域。在 iOS 开发中，可穿戴设备，跨平台应用、移动支付和区块链技术等领域，都能开发出令人惊叹程序。</p><p>这篇文章并不是预测未来，而是告诉你一些潜在的领域，在前期发展的时候抓住机会。</p><p>谨以抛砖引玉，期待更多探讨。</p><ul><li>相关资料：</li></ul><p>[1] <a href="https://wiki.mbalib.com/wiki/范式转换" target="_blank" rel="noopener">https://wiki.mbalib.com/wiki/范式转换</a></p><p>[2] <a href="https://go.forrester.com/blogs/predictions-2018-cloud-computing-accelerates-enterprise-transformation-everywhere/" target="_blank" rel="noopener">https://go.forrester.com/blogs/predictions-2018-cloud-computing-accelerates-enterprise-transformation-everywhere/</a></p><blockquote><p>原文链接：<a href="https://hackernoon.com/four-exciting-areas-ios-app-development-will-evolve-over-the-next-five-years-23dc5c11f562" target="_blank" rel="noopener">hackernoon</a></p><p>本文为 CSDN 翻译，如需转载，请注明来源出处。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;【CSDN 编者按】技术圈里一直倡导一句话，那便是“拥抱变化”，因为技术始终在飞速地更新迭代，过去掌握的技能可能突然之间就过时了。在近几年，移动开发逐渐趋于稳定，而人工智能、区块链等技术开始甚嚣尘上，客户端开发者们不由得开始迷茫，曾经如此吃香，未来又该怎么走？也许本文会有一点思路上的帮助。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="news" scheme="https://www.policx.com/categories/news/"/>
-    
     
   </entry>
   

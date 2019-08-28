@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.policx.com/program/system/</loc>
+    
+    <lastmod>2019-08-28T16:40:16.358Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.policx.com/music/index.html</loc>
     
     <lastmod>2019-08-28T16:24:34.175Z</lastmod>
@@ -65,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/uicollectionview/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/pou-xi/</loc>
     
     <lastmod>2019-08-28T08:10:45.201Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/pou-xi/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/uicollectionview/</loc>
     
     <lastmod>2019-08-28T08:10:45.201Z</lastmod>
     
@@ -107,14 +114,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/objc-runtime/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/jian-ce/</loc>
     
     <lastmod>2019-08-28T08:10:45.200Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/jian-ce/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/objc-runtime/</loc>
     
     <lastmod>2019-08-28T08:10:45.200Z</lastmod>
     
@@ -268,14 +275,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/UIMenuController/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/RxSwift/</loc>
     
     <lastmod>2019-08-28T08:10:45.197Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/RxSwift/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/UIMenuController/</loc>
     
     <lastmod>2019-08-28T08:10:45.197Z</lastmod>
     
@@ -317,14 +324,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Python/django-bi-ji/</loc>
+    <loc>https://www.policx.com/program/Python/mind/</loc>
     
     <lastmod>2019-08-28T08:10:45.196Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Python/mind/</loc>
+    <loc>https://www.policx.com/program/Python/django-bi-ji/</loc>
     
     <lastmod>2019-08-28T08:10:45.196Z</lastmod>
     
@@ -346,6 +353,13 @@
   
   <url>
     <loc>https://www.policx.com/program/Python/mongodb/</loc>
+    
+    <lastmod>2019-08-28T08:10:45.196Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/Python/pymysql/</loc>
     
     <lastmod>2019-08-28T08:10:45.196Z</lastmod>
     
@@ -387,13 +401,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/%EF%A3%BF/3Dtouch/</loc>
-    
-    <lastmod>2019-08-28T08:10:45.196Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/Python/spider/</loc>
     
     <lastmod>2019-08-28T08:10:45.196Z</lastmod>
@@ -401,7 +408,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Python/pymysql/</loc>
+    <loc>https://www.policx.com/program/%EF%A3%BF/3Dtouch/</loc>
     
     <lastmod>2019-08-28T08:10:45.196Z</lastmod>
     
@@ -415,13 +422,6 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Git/git-del/</loc>
-    
-    <lastmod>2019-08-28T08:10:45.195Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.policx.com/program/Git/git/</loc>
     
     <lastmod>2019-08-28T08:10:45.195Z</lastmod>
@@ -429,14 +429,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/JavaScript/node/</loc>
+    <loc>https://www.policx.com/program/Linux/centos/</loc>
     
     <lastmod>2019-08-28T08:10:45.195Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/program/Linux/centos/</loc>
+    <loc>https://www.policx.com/program/Git/git-del/</loc>
     
     <lastmod>2019-08-28T08:10:45.195Z</lastmod>
     
@@ -458,6 +458,13 @@
   
   <url>
     <loc>https://www.policx.com/program/Markdown/markdown/</loc>
+    
+    <lastmod>2019-08-28T08:10:45.195Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.policx.com/program/JavaScript/node/</loc>
     
     <lastmod>2019-08-28T08:10:45.195Z</lastmod>
     
@@ -499,7 +506,7 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/mind/index.html</loc>
+    <loc>https://www.policx.com/mind/system.html</loc>
     
     <lastmod>2019-08-28T05:00:53.188Z</lastmod>
     
@@ -814,14 +821,14 @@
   </url>
   
   <url>
-    <loc>https://www.policx.com/news/2017/</loc>
+    <loc>https://www.policx.com/news/2018/</loc>
     
     <lastmod>2019-08-15T01:05:16.651Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.policx.com/news/2018/</loc>
+    <loc>https://www.policx.com/news/2017/</loc>
     
     <lastmod>2019-08-15T01:05:16.651Z</lastmod>
     
