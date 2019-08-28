@@ -17,14 +17,14 @@ textarea {
 @media screen and (min-width: 1280px) {
   .is-1-column .container,
   .is-2-column .container {
-    max-width: 1152px;
-    width: 1152px;
+    max-width: 960px;
+    width: 960px;
   }
 }
 @media screen and (min-width: 1472px) {
   .is-2-column .container {
-    max-width: 1344px;
-    width: 1344px;
+    max-width: 1152px;
+    width: 1152px;
   }
   .is-1-column .container {
     max-width: 960px;
@@ -206,9 +206,8 @@ img.thumbnail {
   font-size: 1.15rem;
   position: relative;
 }
-.article .content a img {
-  margin: auto;
-  display: block;
+.article .content a {
+  word-wrap: break-word;
 }
 .rtl {
   direction: rtl;
@@ -233,7 +232,7 @@ img.thumbnail {
   overflow: hidden;
 }
 .donate .qrcode img {
-  max-width: 160px;
+  max-width: 280px;
 }
 .donate:hover .qrcode {
   display: block;
