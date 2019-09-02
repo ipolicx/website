@@ -18,7 +18,7 @@
 <meta property="og:description" content="macOS（或 Linux）缺失的软件包的管理器 — Homebrew">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/policx/im/raw/master/images/O10nN5.png">
-<meta property="og:updated_time" content="2019-08-26T17:12:12.778Z">
+<meta property="og:updated_time" content="2019-09-02T01:07:26.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Homebrew">
 <meta name="twitter:description" content="macOS（或 Linux）缺失的软件包的管理器 — Homebrew">
@@ -222,7 +222,7 @@
 <h1 id="Homebrew-能干什么"><a href="#Homebrew-能干什么" class="headerlink" title="Homebrew 能干什么?"></a>Homebrew 能干什么?</h1><p>使用 Homebrew 安装 Apple（或您的 Linux 系统）没有预装但 你需要的东西。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wget</span><br></pre></td></tr></table></figure>
 
-<p>Homebrew 会将软件包安装到独立目录，并将其文件软链接至 /usr/local 。</p>
+<p><del>Homebrew</del> 会将软件包安装到独立目录，并将其文件软链接至 /usr/local 。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local</span><br><span class="line">$ find Cellar</span><br><span class="line">Cellar/wget/1.16.1</span><br><span class="line">Cellar/wget/1.16.1/bin/wget</span><br><span class="line">Cellar/wget/1.16.1/share/man/man1/wget.1</span><br><span class="line"></span><br><span class="line">$ ls -l bin</span><br><span class="line">bin/wget -&gt; ../Cellar/wget/1.16.1/bin/wget</span><br></pre></td></tr></table></figure>
 
 <p>Homebrew 不会将文件安装到它本身目录之外，所以您可将 Homebrew 安装到任意位置。</p>
