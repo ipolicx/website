@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.policx.com/"/>
-  <updated>2019-09-06T04:24:33.882Z</updated>
+  <updated>2019-09-06T05:49:26.154Z</updated>
   <id>https://www.policx.com/</id>
   
   <author>
@@ -17,19 +17,21 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>app</title>
-    <link href="https://www.policx.com/app/"/>
-    <id>https://www.policx.com/app/</id>
+    <title>Applications</title>
+    <link href="https://www.policx.com/Software/Applications/"/>
+    <id>https://www.policx.com/Software/Applications/</id>
     <published>2019-09-05T14:05:14.000Z</published>
-    <updated>2019-09-06T04:24:33.882Z</updated>
+    <updated>2019-09-06T05:49:26.154Z</updated>
     
-    <content type="html"><![CDATA[<p>一些小工具</p><a id="more"></a><h2 id="Surl-短链接转换工具"><a href="#Surl-短链接转换工具" class="headerlink" title="Surl 短链接转换工具"></a>Surl 短链接转换工具</h2><p><a href="https://send.firefox.com/download/1d12a1eb65d2e7c8/#17RVoTLWLO7rFt1PoYn9bQ" target="_blank" rel="noopener">网盘地址</a> 密码：policx</p>]]></content>
+    <content type="html"><![CDATA[<p>一些小工具</p><a id="more"></a><table><thead><tr><th>ICON</th><th>APP名称</th><th>说明</th><th>特点Tags</th><th>是否在线</th><th>独立开发</th><th>网盘地址</th><th>密码</th></tr></thead><tbody><tr><td><img src="https://i.loli.net/2019/09/06/IeE1X7fhaKup2lC.png" alt></td><td>《Surl》</td><td>短链接转换工具</td><td>Mac</td><td><img src="https://dp2px.com/images/about/choosed.png" alt></td><td><img src="https://dp2px.com/images/about/choosed.png" alt></td><td><a href="https://send.firefox.com/download/1d12a1eb65d2e7c8/#17RVoTLWLO7rFt1PoYn9bQ" target="_blank" rel="noopener">网盘地址</a></td><td>policx</td></tr></tbody></table>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;一些小工具&lt;/p&gt;
     
     </summary>
+    
+      <category term="Software" scheme="https://www.policx.com/categories/Software/"/>
     
     
       <category term="善用佳软" scheme="https://www.policx.com/tags/%E5%96%84%E7%94%A8%E4%BD%B3%E8%BD%AF/"/>
