@@ -7,20 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>iOS计算App缓存的大小以及清理 - POLICX</title>
+<title>Foxmail 居然又更新了 - POLICX</title>
 
 
-    <meta name="keywords" content="">
+    <meta name="description" content="不知道现在还有多少人喜欢用桌面客户端收发邮件呢？相信大家现在不是Web就是手机了吧，Foxmail这种经典软件也早已经淡出了视野，不过腾讯还真有良心，竟然又升级了Foxmail，一个极小的升级">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS计算App缓存的大小以及清理">
-<meta property="og:url" content="https://www.policx.com/program//ioshuancun/index.html">
+<meta property="og:title" content="Foxmail 居然又更新了">
+<meta property="og:url" content="https://www.policx.com/foxmail/index.html">
 <meta property="og:site_name" content="POLICX">
+<meta property="og:description" content="不知道现在还有多少人喜欢用桌面客户端收发邮件呢？相信大家现在不是Web就是手机了吧，Foxmail这种经典软件也早已经淡出了视野，不过腾讯还真有良心，竟然又升级了Foxmail，一个极小的升级">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.policx.com/post-images/banner.jpg">
-<meta property="og:updated_time" content="2019-09-07T14:03:19.041Z">
+<meta property="og:image" content="https://www.foxmail.com/images/mac/zh/mainbanner_content_2x.png">
+<meta property="og:updated_time" content="2019-09-14T00:33:59.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS计算App缓存的大小以及清理">
-<meta name="twitter:image" content="https://www.policx.com/post-images/banner.jpg">
+<meta name="twitter:title" content="Foxmail 居然又更新了">
+<meta name="twitter:description" content="不知道现在还有多少人喜欢用桌面客户端收发邮件呢？相信大家现在不是Web就是手机了吧，Foxmail这种经典软件也早已经淡出了视野，不过腾讯还真有良心，竟然又升级了Foxmail，一个极小的升级">
+<meta name="twitter:image" content="https://www.foxmail.com/images/mac/zh/mainbanner_content_2x.png">
 
 
 
@@ -111,7 +113,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.gif" alt="iOS计算App缓存的大小以及清理" height="28">
+                <img src="/images/logo.gif" alt="Foxmail 居然又更新了" height="28">
             
             </a>
         </div>
@@ -171,7 +173,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="/post-images/banner.jpg" alt="iOS计算App缓存的大小以及清理">
+            <img class="thumbnail" src="https://www.foxmail.com/images/mac/zh/mainbanner_content_2x.png" alt="Foxmail 居然又更新了">
         </span>
     </div>
     
@@ -179,17 +181,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-08-01T18:24:04.000Z">2016-08-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/program/">program</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-09-13T10:20:02.000Z">2019-09-13</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 201 个字)
+                    1 分钟 读完 (大约 191 个字)
                 </span>
                 
                 
@@ -203,29 +201,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                iOS计算App缓存的大小以及清理
+                Foxmail 居然又更新了
             
         </h1>
         <div class="content">
-            <ul>
-<li><a id="more"></a>
-<h2 id="一、计算缓存"><a href="#一、计算缓存" class="headerlink" title="一、计算缓存"></a>一、计算缓存</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 缓存大小</span><br><span class="line">- (CGFloat)folderSize&#123;</span><br><span class="line">    CGFloat folderSize;</span><br><span class="line">    //获取路径</span><br><span class="line">    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];</span><br><span class="line">    </span><br><span class="line">    //获取所有文件的数组</span><br><span class="line">    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;文件数：%ld&quot;,files.count);</span><br><span class="line">    </span><br><span class="line">    for(NSString *path in files) &#123;</span><br><span class="line">        </span><br><span class="line">        NSString*filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@&quot;/%@&quot;,path]];</span><br><span class="line">      </span><br><span class="line">  //累加</span><br><span class="line">        folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize; </span><br><span class="line">    &#125;</span><br><span class="line">    //转换为M为单位</span><br><span class="line">    CGFloat sizeM = folderSize /1024.0/1024.0;</span><br><span class="line">   </span><br><span class="line"> return sizeM;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>不知道现在还有多少人喜欢用桌面客户端收发邮件呢？相信大家现在不是Web就是手机了吧，Foxmail这种经典软件也早已经淡出了视野，不过腾讯还真有良心，竟然又升级了Foxmail，一个极小的升级</p>
+<a id="more"></a>
 
-</li>
-</ul>
-<h2 id="二、清除缓存"><a href="#二、清除缓存" class="headerlink" title="二、清除缓存"></a>二、清除缓存</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (void)removeCache&#123;</span><br><span class="line">    //===============清除缓存==============</span><br><span class="line">    //获取路径</span><br><span class="line">    NSString*cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)objectAtIndex:0];</span><br><span class="line">    </span><br><span class="line">    //返回路径中的文件数组</span><br><span class="line">    NSArray*files = [[NSFileManager defaultManager]subpathsAtPath:cachePath];</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;文件数：%ld&quot;,[files count]);</span><br><span class="line">    for(NSString *p in files)&#123;</span><br><span class="line">        NSError*error;</span><br><span class="line">        </span><br><span class="line">        NSString*path = [cachePath stringByAppendingString:[NSString stringWithFormat:@&quot;/%@&quot;,p]];</span><br><span class="line">        </span><br><span class="line">        if([[NSFileManager defaultManager]fileExistsAtPath:path])</span><br><span class="line">               &#123;</span><br><span class="line">            BOOL isRemove = [[NSFileManager defaultManager]removeItemAtPath:path error:&amp;error];</span><br><span class="line">            if(isRemove) &#123;</span><br><span class="line">                NSLog(@&quot;清除成功&quot;);</span><br><span class="line">                //这里发送一个通知给外界，外界接收通知，可以做一些操作（比如UIAlertViewController）</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">         </span><br><span class="line">                NSLog(@&quot;清除失败&quot;);</span><br><span class="line">                </span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Foxmail 1.2.1 是它多年年多来的第一次更新，版本号只提升了0.0.1，优化：提高Foxmail的兼容性，支持64位系统；修复部分Bug；。<br><img src="https://i.loli.net/2019/09/14/Dr6NxcqueI5Spdf.png" alt><br>上次更新还是2013-09-26。</p>
+<p>Foxmail for Mac V1.2.1 (New)官方下载：<br><a href="https://itunes.apple.com/cn/app/foxmail/id617950461?mt=12" target="_blank" rel="noopener"><img src="https://www.foxmail.com/images/pc/zh/logo_2x.png" alt="foxmail"></a></p>
+<table>
+<thead>
+<tr>
+<th><strong>原文链接</strong><br>👇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://policx.com/" target="_blank" rel="noopener"><img src="https://policx.com/images/avatar.png" alt="policx"></a></td>
+</tr>
+</tbody></table>
+
             
             <p><a href="https://url.cn/5CCJSZ1"" target="_blank" rel="noopener"><img src="https://url.cn/5DYmfrv" alt=""></a></p>
             
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags//"></a>
-                </div>
-            </div>
         </div>
         
         
@@ -288,17 +286,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/notes/banjia/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">搬家</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/program//UIMenuController/">
-                <span class="level-item">UIMenuController</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/Software/Applications/">
+                <span class="level-item">Applications</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -314,8 +305,8 @@
         <!-- 
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://www.policx.com/program//ioshuancun/';
-        this.page.identifier = 'program//ioshuancun/';
+        this.page.url = 'https://www.policx.com/foxmail/';
+        this.page.identifier = 'foxmail/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1321,7 +1312,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="iOS计算App缓存的大小以及清理" height="28">
+                    <img src="https://api.netlify.com/api/v1/badges/463de27d-503e-4e61-9352-dbdf036876b6/deploy-status" alt="Foxmail 居然又更新了" height="28">
                     
                 </a>
                 <p class="is-size-7">
